@@ -364,6 +364,14 @@ input.ans:disabled,textarea:disabled{opacity:1;background:var(--shade);-webkit-t
   .card,.aq{break-inside:avoid;border-color:#bbb}
   .aidea[open] .aidea-body{display:flex}
 }
+.adec{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:10px 12px}
+.adec.set{border-color:var(--action);background:var(--action-soft)}
+.adec p{margin:4px 0 0}
+.adecbtns .btn[aria-pressed="true"]{background:var(--action);color:var(--action-ink)}
+#decNote,.aremark textarea,#genRemark{font:inherit;width:100%;box-sizing:border-box;padding:10px 12px;border:1.5px solid var(--rule);border-radius:10px;background:var(--card);color:var(--ink)}
+.aremark{display:flex;flex-direction:column;gap:8px}
+.anote{border-left:4px solid var(--action);padding:4px 0 4px 10px}
+.anote p{margin:2px 0 0}
 
 /* Hosted version only: sign-in screens, account button, People card. */
 .gate{position:fixed;inset:0;z-index:1000;background:var(--paper);display:flex;align-items:flex-start;justify-content:center;padding:max(24px,8vh) 16px 24px;overflow:auto}
@@ -1395,7 +1403,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   };
 
   // ---------- store ----------
-  var SUBS = ['lessons', 'attempts', 'days', 'reading', 'scores', 'requests', 'config', 'state', 'passages'];
+  var SUBS = ['lessons', 'attempts', 'days', 'reading', 'scores', 'requests', 'config', 'state', 'passages', 'notes', 'decisions'];
   var store = Hub.store = { mode: 'connecting', pending: 0, failed: 0, _db: null, _maps: {}, _fns: {}, _chains: {}, _first: {} };
   var readyResolve; store.ready = new Promise(function (r) { readyResolve = r; });
   store.col = function (n) { return store._maps[n] || (store._maps[n] = new Map()); };
@@ -1816,6 +1824,45 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     if (g.right === g.total && tm.usedSec <= target) return 'excellence';
     if (g.right === g.total && tm.usedSec <= bar) return 'mastery';
     return 'not_ready';
+  }
+
+  // ---------- what comes after a lesson: the hub's suggestion (a parent or tutor decision wins) ----------
+  var DEC = {
+    move_on: ['Move on', 'Ready for the next lesson.'],
+    practice_parts: ['Short practice, then move on', 'Move on after a short practice set (10 to 15 questions) on the weak parts.'],
+    practice: ['Practice first', 'Stay on these skills: a practice set of 20 to 30 questions on what he missed, then the next lesson.'],
+    redo: ['Redo the lesson', 'Redo the lesson: a new version with new numbers, starting again from the idea cards.'],
+    retest: ['Practice, then retest', 'Not ready yet: a few days of practice on the missed and slow question types, then a new two-day retest.']
+  };
+  // L may be the content (section names) or just the meta; A is the attempt. Thresholds are Claude's proposal.
+  function recommend(L, A) {
+    if (!A || !A.q) return { code: null, text: 'Not started yet.', why: [] };
+    var test = (L && L.kind === 'test') || A.kind === 'test';
+    var s = (L && L.sections) ? summarize(L, A) : (A.summary || null);
+    if (!s || !s.total) return { code: null, text: 'Not started yet.', why: [] };
+    var names = (L && L.sections) ? L.sections.map(function (x) { return x.name; }) : null;
+    var done = !!A.finishedAt, why = [];
+    if (test) {
+      var r = A.test && A.test.result;
+      if (!done || !r) return { code: null, text: 'Test in progress.', why: [] };
+      why.push(s.first + ' of ' + s.total + ' right' + (A.test.usedSec ? ', ' + hm(A.test.usedSec) + ' used' : '') + '.');
+      if (r === 'not_ready') return { code: 'retest', text: DEC.retest[1], why: why };
+      return { code: 'move_on', text: r === 'excellence' ? 'Excellent: all correct inside 50 minutes. Move on.' : 'Mastery: all correct inside 60 minutes. Move on, and keep these question types in reviews until he finishes inside 50.', why: why };
+    }
+    var weak = [];
+    (s.byPart || []).forEach(function (b, i) {
+      var nm = names ? names[i] : 'Part ' + String.fromCharCode(65 + i);
+      var base = done ? b[2] : b[1];
+      if (i === 0 && (!names || /review/i.test(nm))) { if (base && b[0] < base) why.push('Review part: ' + b[0] + ' of ' + base + ' right on the first try, so the older skill still needs work.'); return; }
+      if (base >= 2 && b[0] / base < 0.6) weak.push(nm);
+    });
+    if (!done) return { code: null, text: 'In progress: ' + s.done + ' of ' + s.total + ' answered, ' + s.first + ' right on the first try so far.', why: weak.length ? ['Weak so far: ' + weak.join(', ') + '.'].concat(why) : why };
+    var rate = s.first / s.total;
+    why.unshift(s.first + ' of ' + s.total + ' right on the first try (' + Math.round(rate * 100) + '%).');
+    if (weak.length) why.push('Under 60% on the first try: ' + weak.join(', ') + '.');
+    if (((s.why || {}).new || 0) >= 3) why.push('He chose "Did not know the method" ' + s.why.new + ' times: go over those idea cards with him before more practice.');
+    var code = rate >= 0.8 ? (weak.length ? 'practice_parts' : 'move_on') : rate >= 0.6 ? 'practice' : 'redo';
+    return { code: code, text: DEC[code][1], why: why };
   }
 
   // ---------- Today provider ----------
@@ -2516,7 +2563,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     });
   }
 
-  H.math = { queue: queue, metas: metas, attempt: att, content: content, flat: flat, summarize: summarize, review: review, dayStats: dayStats, label: label, hm: hm, partOk: partOk, pkey: pkey, WHY: WHY, learnBody: learnBody, figBlock: figBlock, qFirst: qFirst, qAllOk: qAllOk };
+  H.math = { queue: queue, metas: metas, attempt: att, content: content, flat: flat, summarize: summarize, review: review, dayStats: dayStats, label: label, hm: hm, partOk: partOk, pkey: pkey, WHY: WHY, DEC: DEC, recommend: recommend, learnBody: learnBody, figBlock: figBlock, qFirst: qFirst, qAllOk: qAllOk };
   H.views.register('lesson', {
     render: function (r) { root = r; },
     show: openLesson,
@@ -3591,7 +3638,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 /* Parent: answers to check, requests for Claude, the builder's last note, and a simple PIN gate. */
 (function () {
   'use strict';
-  var H = window.Hub, el = H.el, C = window.NLHCheck, root, reviewCache = {}, loading = {}, pinMsg = '', sent = '', visited = false;
+  var H = window.Hub, el = H.el, C = window.NLHCheck, root, reviewCache = {}, loading = {}, pinMsg = '', sent = '', visited = false, genDraft = '';
   function loaded() { return H.store.mode === 'local' || !!H.store._first.config; }
 
   function pinDoc() { return H.store.col('config').get('parent') || {}; }
@@ -3691,9 +3738,31 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       el('div', { class: 'llist' }, ms.map(function (m) {
         var a = H.math.attempt(m.id), s = a && a.summary;
         var line = !a ? 'Not started' : (a.finishedAt ? 'Finished' : 'In progress') + (s ? ' · ' + s.done + ' of ' + s.total + ' answered · ' + s.first + ' right on the first try' : '');
-        return el('div', { class: 'lrow' }, el('div', {}, el('div', { class: 't', text: H.math.label(m) + ': ' + m.title }), el('div', { class: 's', text: line })),
+        var dec = H.store.col('decisions').get(m.id), rec = H.math.recommend(m, a), D = H.math.DEC, code = dec && D[dec.code] ? dec.code : rec.code;
+        var pill = code ? el('span', { class: 'pill ' + (code === 'move_on' ? 'good' : code === 'redo' || code === 'retest' ? 'bad' : 'warn'), text: (dec ? '' : 'Suggested: ') + D[code][0] }) : null;
+        return el('div', { class: 'lrow' }, el('div', {}, el('div', { class: 't', text: H.math.label(m) + ': ' + m.title }), el('div', { class: 's', text: line }), pill),
           el('button', { class: 'btn ghost', type: 'button', text: 'Answers', 'data-answers': m.id, onclick: function () { H.go('answers', { id: m.id, from: 'parent' }); } }));
       })));
+  }
+
+  function remarksCard() {
+    var all = [];
+    H.store.col('notes').forEach(function (v, id) { if (v) all.push(v); });
+    all.sort(function (a, b) { return String(b.at).localeCompare(String(a.at)); });
+    var card = el('div', { class: 'card', id: 'recentRemarks' }, el('h2', { text: 'Remarks' }),
+      el('p', { class: 'hint', text: 'Remarks from the parent and the tutor. Add one about a lesson or a question in the Answer book, or a general one here. The lesson builder reads them before it builds.' }));
+    if (!all.length) card.append(el('p', { class: 'small muted', text: 'No remarks yet.' }));
+    all.slice(0, 6).forEach(function (v) {
+      card.append(el('div', { class: 'anote' }, el('div', { class: 'small muted', text: v.by + ' (' + v.role + '), ' + H.fmt.date(H.iso(new Date(v.at))) + (v.lessonTitle ? ' · ' + v.lessonTitle + (v.qid ? ', question ' + v.qid.replace(/^q/, '') : '') : ' · general') }), el('p', { text: v.text })));
+    });
+    var ta = el('textarea', { id: 'genRemark', rows: '2', placeholder: 'A general remark, for example: he is tired on Fridays, keep Friday work light.' });
+    ta.value = genDraft; ta.addEventListener('input', function () { genDraft = ta.value; });
+    card.append(ta, el('div', { class: 'row' }, el('button', { class: 'btn ghost', type: 'button', id: 'genRemarkSave', text: 'Save remark', onclick: function () {
+      var t = String(ta.value || '').trim(); if (!t) { H.toast('Write the remark first.'); return; }
+      var m = window.HUB_ME || {};
+      H.store.add('notes', { lessonId: null, qid: null, text: t, by: m.name || 'Parent', role: m.role || 'parent', at: new Date().toISOString() }).then(function () { genDraft = ''; H.toast('Remark saved.'); paint(); });
+    } })));
+    return card;
   }
 
   function settingsCard() {
@@ -3734,6 +3803,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     else rv.append(el('div', { class: 'empty' }, el('b', { text: 'Nothing to check' }), el('span', { text: 'Typed answers are checked by the hub. Written reasons, and any answer he believes was marked wrong, wait here for you.' })));
     kids.push(rv);
     var ab = answersCard(); if (ab) kids.push(ab);
+    kids.push(remarksCard());
     kids.push(requestsCard(), builderCard());
     if (hosted()) (H.parent.cards || []).forEach(function (fn) { var c = fn(paint); if (c) kids.push(c); });
     else kids.push(settingsCard());
@@ -3757,13 +3827,70 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
    second tries, time and his own reason for a miss, and the idea card that opens each part. Live while he works. */
 (function () {
   'use strict';
-  var H = window.Hub, el = H.el, C = window.NLHCheck, root = null, cur = null, onlyMiss = false, sig = '';
+  var H = window.Hub, el = H.el, C = window.NLHCheck, root = null, cur = null, onlyMiss = false, sig = '', openQ = null, drafts = {};
   var WHYTXT = {};
   function adult() {
     if (window.HUB_CFG) { var r = (window.HUB_ME || {}).role; return r === 'parent' || r === 'tutor'; }
     var pin = (H.store.col('config').get('parent') || {}).pin;
     return !pin || H.parent.unlocked;
   }
+  function me() { var m = window.HUB_ME || {}; return { by: m.name || 'Parent', role: m.role || 'parent' }; }
+  var ROLEN = { parent: 'parent', tutor: 'tutor', student: 'student' };
+  function when(iso) { try { return H.fmt.date(H.iso(new Date(iso))); } catch (e) { return ''; } }
+  function notesFor(lessonId, qid) {
+    var out = [];
+    H.store.col('notes').forEach(function (v, id) { if (v && v.lessonId === lessonId && (qid === undefined || (v.qid || null) === qid)) out.push(Object.assign({ id: id }, v)); });
+    return out.sort(function (a, b) { return String(b.at).localeCompare(String(a.at)); });
+  }
+  function noteRow(v) {
+    return el('div', { class: 'anote' }, el('div', { class: 'small muted', text: v.by + ' (' + (ROLEN[v.role] || v.role) + '), ' + when(v.at) + (v.qid ? '' : '') }), el('p', { text: v.text }));
+  }
+  // A text box that keeps what was typed across repaints. kind: 'lesson' or a question id.
+  function remarkBox(key, qid, placeholder) {
+    var ta = el('textarea', { id: 'rem-' + key, rows: '3', placeholder: placeholder });
+    ta.value = drafts[key] || '';
+    ta.addEventListener('input', function () { drafts[key] = ta.value; });
+    var btn = el('button', { class: 'btn', type: 'button', id: 'remSave-' + key, text: 'Save remark', onclick: function () {
+      var t = String(ta.value || '').trim(); if (!t) { H.toast('Write the remark first.'); return; }
+      var m = H.store.col('lessons').get(cur.id) || {}, who = me();
+      btn.disabled = true;
+      H.store.add('notes', { lessonId: cur.id, lessonTitle: (m.n ? 'Lesson ' + m.n + ': ' : '') + (m.title || cur.id), qid: qid || null, text: t, by: who.by, role: who.role, at: new Date().toISOString() })
+        .then(function () { drafts[key] = ''; if (qid) openQ = null; H.toast('Remark saved.'); paint(true); }, function () { btn.disabled = false; });
+    } });
+    return el('div', { class: 'aremark' }, ta, el('div', { class: 'row' }, btn));
+  }
+  function setDecision(code, note) {
+    var who = me();
+    H.store.put('decisions/' + cur.id, { lessonId: cur.id, code: code, note: String(note || '').trim(), by: who.by, role: who.role, at: new Date().toISOString() })
+      .then(function () { drafts.decNote = ''; H.toast('Decision saved. The lesson builder follows it.'); paint(true); });
+  }
+  function decisionCard(L, A) {
+    var D = H.math.DEC, rec = H.math.recommend(L, A), dec = H.store.col('decisions').get(cur.id), test = L.kind === 'test';
+    var card = el('div', { class: 'card', id: 'decisionCard' }, el('h2', { text: 'What comes next' }));
+    card.append(el('div', { class: 'adec' }, el('span', { class: 'label', text: 'The hub suggests' }), el('p', { id: 'decSuggest', text: rec.text })));
+    rec.why.forEach(function (t) { card.append(el('p', { class: 'small muted', text: t })); });
+    if (dec && D[dec.code]) card.append(el('div', { class: 'adec set', id: 'decSet' }, el('span', { class: 'label', text: 'Decided' }),
+      el('p', {}, el('b', { text: D[dec.code][0] + '. ' }), 'Set by ' + dec.by + ' (' + (ROLEN[dec.role] || dec.role) + '), ' + when(dec.at) + '.' + (dec.note ? ' ' + dec.note : ''))));
+    var codes = test ? ['move_on', 'retest'] : ['move_on', 'practice_parts', 'practice', 'redo'];
+    var note = el('input', { type: 'text', id: 'decNote', placeholder: 'Reason, optional (for example: needs more on cancelling)' });
+    note.value = drafts.decNote || '';
+    note.addEventListener('input', function () { drafts.decNote = note.value; });
+    card.append(el('p', { class: 'hint', text: 'Your decision tells the lesson builder what to make next, and it wins over the suggestion. The suggestion counts right-on-the-first-try: 80% or more moves on, 60% to 79% practices first, under 60% redoes the lesson.' }),
+      el('div', { class: 'row adecbtns' }, codes.map(function (c) {
+        return el('button', { class: 'btn ghost', type: 'button', 'data-dec': c, 'aria-pressed': dec && dec.code === c ? 'true' : 'false', text: D[c][0], onclick: function () { setDecision(c, note.value); } });
+      })), note);
+    if (dec) card.append(el('div', {}, el('button', { class: 'linkbtn', type: 'button', id: 'decClear', text: 'Clear the decision and go back to the suggestion', onclick: function () { H.store.del('decisions/' + cur.id).then(function () { paint(true); }); } })));
+    return card;
+  }
+  function remarksCard() {
+    var list = notesFor(cur.id, null), all = notesFor(cur.id), qn = all.length - list.length;
+    var card = el('div', { class: 'card', id: 'remarksCard' }, el('h2', { text: 'Remarks on this lesson' }),
+      el('p', { class: 'hint', text: 'For the parent, the tutor and the lesson builder. He does not see these.' + (qn ? ' ' + qn + (qn === 1 ? ' remark is' : ' remarks are') + ' on single questions below.' : '') }));
+    list.forEach(function (v) { card.append(noteRow(v)); });
+    card.append(remarkBox('lesson', null, 'How did the lesson go? What should the next one practice?'));
+    return card;
+  }
+
   H.answers = { allowed: adult };
 
   function back() { var from = (cur && cur.from) || 'parent'; H.go(from); }
@@ -3842,6 +3969,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     if (Q && Q.flag) meta.push(Q.flagDone ? 'He asked for this to be checked; a parent has answered.' : 'He thinks his answer is right. It waits on the Parent tab.');
     if (it.min) meta.push('Planned time: ' + it.min + ' min.');
     meta.forEach(function (t) { box.append(el('p', { class: 'small muted', text: t })); });
+    notesFor(cur.id, it.id).forEach(function (v) { box.append(noteRow(v)); });
+    if (openQ === it.id) box.append(remarkBox(it.id, it.id, 'A remark on question ' + x.n));
+    else box.append(el('div', { class: 'noprint' }, el('button', { class: 'linkbtn', type: 'button', 'data-remark': it.id, text: 'Add a remark on this question', onclick: function () { openQ = it.id; paint(true); var t = H.$('#rem-' + it.id, root); if (t) t.focus(); } })));
     return box;
   }
   function ideaBlock(sec, si, A) {
@@ -3854,7 +3984,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   }
   function signature() {
     var A = cur && H.math.attempt(cur.id);
-    return [cur && cur.id, !!(cur && cur.L), onlyMiss, adult(), A ? (A.rev || 0) + '|' + (A.updatedAt || '') : '-'].join('/');
+    var d = cur && H.store.col('decisions').get(cur.id);
+    return [cur && cur.id, !!(cur && cur.L), onlyMiss, adult(), A ? (A.rev || 0) + '|' + (A.updatedAt || '') : '-', cur ? notesFor(cur.id).length : 0, d ? d.at + d.code : '-'].join('/');
   }
   function paint(force) {
     if (!root || !cur) return;
@@ -3884,7 +4015,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     head.append(el('div', { class: 'row noprint' },
       el('button', { class: 'btn ghost', type: 'button', id: 'ansAll', 'aria-pressed': onlyMiss ? 'false' : 'true', text: 'All questions', onclick: function () { onlyMiss = false; paint(true); } }),
       el('button', { class: 'btn ghost', type: 'button', id: 'ansMiss', 'aria-pressed': onlyMiss ? 'true' : 'false', text: 'Only his misses', disabled: !A, onclick: function () { onlyMiss = true; paint(true); } })));
-    kids.push(head);
+    kids.push(head, decisionCard(L, A), remarksCard());
     var items = H.math.flat(L), shown = 0;
     (L.sections || []).forEach(function (sec, si) {
       var mine = items.filter(function (x) { return x.si === si; }).filter(function (x) {
@@ -3906,8 +4037,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   }
   H.views.register('answers', {
     render: function (r) { root = r; (H.math.WHY || []).forEach(function (w) { WHYTXT[w[0]] = w[1]; }); },
-    show: function (arg) { cur = { id: arg && arg.id, from: (arg && arg.from) || 'parent', L: null }; onlyMiss = false; sig = ''; paint(true); },
-    refresh: function () { paint(false); },
+    show: function (arg) { cur = { id: arg && arg.id, from: (arg && arg.from) || 'parent', L: null }; onlyMiss = false; openQ = null; sig = ''; paint(true); },
+    refresh: function () { var a = document.activeElement; if (a && root && root.contains(a) && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return; paint(false); },
     hide: function () { cur = null; sig = ''; }
   });
 })();
