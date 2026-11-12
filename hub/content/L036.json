@@ -456,7 +456,45 @@
      "hint": "The repeated factor is the base. For part b, write out a few powers of 4 and find their values.",
      "min": 2
     }
-   ]
+   ],
+   "learn": {
+    "title": "A power is a short way to write repeated multiplication",
+    "where": [
+     "Square things hide powers: floor tiles, chessboards and square gardens are counted with numbers like 8².",
+     "Phone storage sizes such as 64, 128 and 256 gigabytes are all powers of 2, and scientists write huge numbers with powers of 10."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 165\" width=\"360\" height=\"165\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"165\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"156.0\" cy=\"52.0\" r=\"8\" fill=\"#1B6884\"/><circle cx=\"180.0\" cy=\"52.0\" r=\"8\" fill=\"#1B6884\"/><circle cx=\"204.0\" cy=\"52.0\" r=\"8\" fill=\"#1B6884\"/><circle cx=\"156.0\" cy=\"76.0\" r=\"8\" fill=\"#1B6884\"/><circle cx=\"180.0\" cy=\"76.0\" r=\"8\" fill=\"#1B6884\"/><circle cx=\"204.0\" cy=\"76.0\" r=\"8\" fill=\"#1B6884\"/><circle cx=\"156.0\" cy=\"100.0\" r=\"8\" fill=\"#1B6884\"/><circle cx=\"180.0\" cy=\"100.0\" r=\"8\" fill=\"#1B6884\"/><circle cx=\"204.0\" cy=\"100.0\" r=\"8\" fill=\"#1B6884\"/><text x=\"180.0\" y=\"26.0\" font-size=\"16.0\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">3 across</text><text x=\"134.0\" y=\"82.0\" font-size=\"16.0\" text-anchor=\"end\" fill=\"#4E5F69\" font-weight=\"700\">3 down</text><text x=\"126.9\" y=\"142.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"147.5\" y=\"142.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"168.7\" y=\"142.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"189.2\" y=\"142.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"210.5\" y=\"142.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"224.8\" y=\"131.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">2</text></svg>",
+      "alt": "Nine blue dots in a square, 3 rows of 3.",
+      "text": "Three rows of 3 dots make a square. 3 × 3 is written 3², and we say three squared. The small 2 tells how many 3s are multiplied."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 163\" width=\"360\" height=\"163\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"163\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"66.0\" cy=\"33.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"88.0\" cy=\"33.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"110.0\" cy=\"33.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"66.0\" cy=\"55.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"88.0\" cy=\"55.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"110.0\" cy=\"55.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"66.0\" cy=\"77.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"88.0\" cy=\"77.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"110.0\" cy=\"77.0\" r=\"7\" fill=\"#1B6884\"/><text x=\"88.0\" y=\"110.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">layer 1</text><circle cx=\"158.0\" cy=\"33.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"180.0\" cy=\"33.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"202.0\" cy=\"33.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"158.0\" cy=\"55.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"180.0\" cy=\"55.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"202.0\" cy=\"55.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"158.0\" cy=\"77.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"180.0\" cy=\"77.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"202.0\" cy=\"77.0\" r=\"7\" fill=\"#1B6884\"/><text x=\"180.0\" y=\"110.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">layer 2</text><circle cx=\"250.0\" cy=\"33.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"272.0\" cy=\"33.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"294.0\" cy=\"33.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"250.0\" cy=\"55.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"272.0\" cy=\"55.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"294.0\" cy=\"55.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"250.0\" cy=\"77.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"272.0\" cy=\"77.0\" r=\"7\" fill=\"#1B6884\"/><circle cx=\"294.0\" cy=\"77.0\" r=\"7\" fill=\"#1B6884\"/><text x=\"272.0\" y=\"110.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">layer 3</text><text x=\"106.1\" y=\"140.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"126.6\" y=\"140.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"147.8\" y=\"140.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"168.4\" y=\"140.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"189.6\" y=\"140.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"210.1\" y=\"140.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"231.3\" y=\"140.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"245.7\" y=\"129.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">3</text></svg>",
+      "alt": "Three squares of 9 dots side by side, labeled layer 1, layer 2 and layer 3.",
+      "text": "Stack three of those squares and you have a cube of dots. 3 × 3 × 3 is written 3³, and we say three cubed."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 215\" width=\"360\" height=\"215\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"215\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"130.0\" y=\"96.0\" font-size=\"76.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text><text x=\"156.0\" y=\"58.0\" font-size=\"44.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">4</text><line x1=\"130.0\" y1=\"106\" x2=\"130.0\" y2=\"120\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"130.0\" y=\"140.0\" font-size=\"17.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">base</text><text x=\"130.0\" y=\"158.0\" font-size=\"13.0\" text-anchor=\"middle\" fill=\"#4E5F69\">the number multiplied</text><line x1=\"186.0\" y1=\"34\" x2=\"214.0\" y2=\"26\" stroke=\"#B9470B\" stroke-width=\"2\"/><text x=\"220.0\" y=\"30.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">exponent</text><text x=\"220.0\" y=\"49.0\" font-size=\"13.0\" text-anchor=\"start\" fill=\"#4E5F69\">how many times</text><text x=\"220.0\" y=\"65.0\" font-size=\"13.0\" text-anchor=\"start\" fill=\"#4E5F69\">it is a factor</text><text x=\"85.2\" y=\"194.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">8</text><text x=\"99.5\" y=\"183.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"115.0\" y=\"194.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"136.2\" y=\"194.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">8</text><text x=\"156.7\" y=\"194.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"178.0\" y=\"194.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">8</text><text x=\"198.5\" y=\"194.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"219.7\" y=\"194.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">8</text><text x=\"240.3\" y=\"194.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"261.5\" y=\"194.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">8</text></svg>",
+      "alt": "A large 8 with a small 4 at its top right. The 8 is labeled base, the number multiplied. The 4 is labeled exponent, how many times it is a factor.",
+      "text": "In 8⁴, the 8 is the base and the 4 is the exponent. Read it as eight to the fourth power. It means four 8s multiplied together."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 124\" width=\"360\" height=\"124\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"124\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"56.8\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"71.2\" y=\"28.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"86.6\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"107.9\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"128.4\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"149.6\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"170.2\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"191.4\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"211.9\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"233.1\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"253.7\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"274.9\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#1B6884\" font-weight=\"700\">81</text><text x=\"123.7\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">3</text><text x=\"145.0\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"166.3\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"186.8\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"208.0\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">12</text><text x=\"180.0\" y=\"96.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">not the same thing</text></svg>",
+      "alt": "Two lines. 3 to the fourth power equals 3 times 3 times 3 times 3, which is 81. 3 times 4 is 12, which is not the same thing.",
+      "text": "The exponent does not mean multiply by it. 3⁴ means four 3s multiplied, which is 81. 3 × 4 is only 12."
+     }
+    ],
+    "example": {
+     "q": "A chessboard has 8 rows with 8 squares in each row. Write the number of squares as a power, then find how many squares there are.",
+     "steps": [
+      "Each row has 8 squares and there are 8 rows, so the number of squares is 8 × 8.",
+      "8 is used as a factor 2 times, so 8 × 8 = 8².",
+      "8 × 8 = 64."
+     ],
+     "answer": "8² = 64 squares"
+    }
+   }
   },
   {
    "name": "Part C: Finding the value of a power",
@@ -858,7 +896,40 @@
      "hint": "Test small numbers one at a time. For part a, keep doubling and count the 2s you use.",
      "min": 3
     }
-   ]
+   ],
+   "learn": {
+    "title": "Find the value one factor at a time",
+    "where": [
+     "Anything that keeps doubling or tripling grows as a power, like a chain message where each person sends it to 3 new people.",
+     "Builders find the area of a square floor by squaring the length of one side."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 131\" width=\"360\" height=\"131\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"131\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"36.0\" y=\"30\" width=\"64\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"68.0\" y=\"60.0\" font-size=\"21.0\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">6</text><line x1=\"106.0\" y1=\"53.0\" x2=\"138.0\" y2=\"53.0\" stroke=\"#B9470B\" stroke-width=\"2.5\"/><path d=\"M142.0,53.0 l-9,-6 v12 z\" fill=\"#B9470B\"/><text x=\"124.0\" y=\"24.0\" font-size=\"16.0\" text-anchor=\"middle\" fill=\"#B9470B\" font-weight=\"700\">× 6</text><rect x=\"148.0\" y=\"30\" width=\"64\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"180.0\" y=\"60.0\" font-size=\"21.0\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">36</text><line x1=\"218.0\" y1=\"53.0\" x2=\"250.0\" y2=\"53.0\" stroke=\"#B9470B\" stroke-width=\"2.5\"/><path d=\"M254.0,53.0 l-9,-6 v12 z\" fill=\"#B9470B\"/><text x=\"236.0\" y=\"24.0\" font-size=\"16.0\" text-anchor=\"middle\" fill=\"#B9470B\" font-weight=\"700\">× 6</text><rect x=\"260.0\" y=\"30\" width=\"64\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"292.0\" y=\"60.0\" font-size=\"21.0\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">216</text><text x=\"134.5\" y=\"110.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"148.8\" y=\"99.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"164.3\" y=\"110.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"185.5\" y=\"110.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">216</text></svg>",
+      "alt": "Three boxes joined by arrows labeled times 6: 6, then 36, then 216.",
+      "text": "To find 6³, start with 6 and multiply by 6 two more times: 6, then 36, then 216. Three 6s were used, so 6³ = 216."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 249\" width=\"360\" height=\"249\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"249\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"102.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><text x=\"180.0\" y=\"194.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">6 by 6 floor</text><text x=\"99.4\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"113.7\" y=\"215.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"129.2\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"150.4\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"171.0\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"192.2\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"212.7\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"233.9\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">36</text></svg>",
+      "alt": "A square of tiles, 6 tiles across and 6 tiles down.",
+      "text": "A square floor 6 tiles long and 6 tiles wide has 6 × 6 = 36 tiles. That is why an exponent of 2 is called squared."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 124\" width=\"360\" height=\"124\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"124\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"70.6\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"85.0\" y=\"28.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"100.4\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"121.7\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"142.2\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"163.4\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"184.0\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"205.2\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"225.7\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"246.9\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#1B6884\" font-weight=\"700\">216</text><text x=\"123.7\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">6</text><text x=\"145.0\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"166.3\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"186.8\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"208.0\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">18</text><text x=\"180.0\" y=\"96.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">not the same thing</text></svg>",
+      "alt": "Two lines. 6 cubed equals 6 times 6 times 6, which is 216. 6 times 3 is 18, which is not the same thing.",
+      "text": "Do not multiply the base by the exponent. 6³ is 216, but 6 × 3 is only 18."
+     }
+    ],
+    "example": {
+     "q": "A square patio is 13 feet long on each side. Its area is 13² square feet. How many square feet is that?",
+     "steps": [
+      "13² means 13 × 13.",
+      "13 × 10 = 130 and 13 × 3 = 39.",
+      "130 + 39 = 169."
+     ],
+     "answer": "169 square feet"
+    }
+   }
   },
   {
    "name": "Part D: Powers of 10",
@@ -1104,7 +1175,39 @@
      "hint": "Find each power of 10, multiply, then add the pieces. Watch for a place value that has no piece.",
      "min": 3
     }
-   ]
+   ],
+   "learn": {
+    "title": "Powers of 10 count the zeros",
+    "where": [
+     "Our number system is built on tens: ones, tens, hundreds, thousands. Each place is worth 10 times the place to its right.",
+     "A kilometer is 1,000 meters, which is 10³ meters. Banks, scientists and computers all write big numbers this way."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 174\" width=\"360\" height=\"174\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"174\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"30.0\" y=\"14\" width=\"300.0\" height=\"34\" fill=\"#1B6884\" rx=\"6\"/><text x=\"80.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">Power</text><text x=\"185.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">Value</text><text x=\"285.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">Zeros</text><rect x=\"30.0\" y=\"48.0\" width=\"300.0\" height=\"36.0\" fill=\"#FFFFFF\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"64.9\" y=\"71.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">10</text><text x=\"88.2\" y=\"62.8\" font-size=\"12.4\" text-anchor=\"start\" fill=\"#13212B\">1</text><text x=\"173.9\" y=\"71.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">10</text><text x=\"279.4\" y=\"71.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">1</text><rect x=\"30.0\" y=\"84.0\" width=\"300.0\" height=\"36.0\" fill=\"#D3E8F0\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"64.9\" y=\"107.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">10</text><text x=\"88.2\" y=\"98.8\" font-size=\"12.4\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"168.3\" y=\"107.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">100</text><text x=\"279.4\" y=\"107.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><rect x=\"30.0\" y=\"120.0\" width=\"300.0\" height=\"36.0\" fill=\"#FFFFFF\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"64.9\" y=\"143.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">10</text><text x=\"88.2\" y=\"134.8\" font-size=\"12.4\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"160.0\" y=\"143.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">1,000</text><text x=\"279.4\" y=\"143.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">3</text></svg>",
+      "alt": "A table. 10 to the first is 10 with 1 zero. 10 squared is 100 with 2 zeros. 10 cubed is 1,000 with 3 zeros.",
+      "text": "Each time the exponent goes up by 1, you multiply by 10 once more and one more zero appears. The exponent on 10 counts the zeros after the 1."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 181\" width=\"360\" height=\"181\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"181\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"24.0\" y=\"14\" width=\"312.0\" height=\"34\" fill=\"#1B6884\" rx=\"6\"/><text x=\"67.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">thousands</text><text x=\"153.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">hundreds</text><text x=\"231.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">tens</text><text x=\"301.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">ones</text><rect x=\"24.0\" y=\"48.0\" width=\"312.0\" height=\"36.0\" fill=\"#FFFFFF\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"294.9\" y=\"71.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><rect x=\"24.0\" y=\"84.0\" width=\"312.0\" height=\"36.0\" fill=\"#FBE0CF\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"146.5\" y=\"107.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"224.9\" y=\"107.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">0</text><text x=\"294.9\" y=\"107.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">0</text><text x=\"180.0\" y=\"142.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#4E5F69\">3 × 10² = 3 × 100 = 300. The 3 moves two</text><text x=\"180.0\" y=\"161.5\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#4E5F69\">places to the left.</text></svg>",
+      "alt": "A place value chart. The digit 3 in the ones place moves two places left to the hundreds place, giving 300.",
+      "text": "Multiplying by 10² moves every digit two places to the left, and zeros fill the empty places. 3 × 10² = 3 × 100 = 300."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 94\" width=\"360\" height=\"94\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"94\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"152.5\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">5,048</text><text x=\"66.8\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"86.2\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">5</text><text x=\"105.1\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"124.5\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">10</text><text x=\"150.0\" y=\"59.8\" font-size=\"13.6\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"164.2\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"183.6\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"202.4\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"221.9\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">10</text><text x=\"247.4\" y=\"59.8\" font-size=\"13.6\" text-anchor=\"start\" fill=\"#13212B\">1</text><text x=\"261.5\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"281.0\" y=\"69.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">8</text></svg>",
+      "alt": "5,048 equals 5 times 10 cubed plus 4 times 10 to the first plus 8.",
+      "text": "Any whole number can be written with powers of 10. 5,048 is 5 thousands, 0 hundreds, 4 tens and 8 ones."
+     }
+    ],
+    "example": {
+     "q": "A sticker company packs 10³ stickers in each box. A school orders 7 boxes. How many stickers is that?",
+     "steps": [
+      "10³ is 1 followed by 3 zeros, so 10³ = 1,000.",
+      "7 × 10³ = 7 × 1,000 = 7,000."
+     ],
+     "answer": "7,000 stickers"
+    }
+   }
   },
   {
    "name": "Part E: Comparing powers",
@@ -1275,7 +1378,35 @@
      "hint": "Find all four values first and write them down. Then sort the values, not the exponents.",
      "min": 5
     }
-   ]
+   ],
+   "learn": {
+    "title": "Find both values before you compare",
+    "where": [
+     "People compare amounts that grow in different ways, like two savings plans or two warehouses that stack boxes differently.",
+     "You can only tell which power is bigger after you find both values."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 118\" width=\"360\" height=\"118\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"118\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"92.8\" y=\"40.8\" font-size=\"18.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"103.8\" y=\"32.7\" font-size=\"11.2\" text-anchor=\"start\" fill=\"#13212B\">3</text><rect x=\"118\" y=\"23.0\" width=\"152.9\" height=\"26\" rx=\"5\" fill=\"#D3E8F0\"/><text x=\"262.9\" y=\"42.0\" font-size=\"17.0\" text-anchor=\"end\" fill=\"#13212B\" font-weight=\"700\">8</text><text x=\"92.8\" y=\"86.8\" font-size=\"18.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"103.8\" y=\"78.7\" font-size=\"11.2\" text-anchor=\"start\" fill=\"#13212B\">2</text><rect x=\"118\" y=\"69.0\" width=\"172.0\" height=\"26\" rx=\"5\" fill=\"#1B6884\"/><text x=\"282.0\" y=\"88.0\" font-size=\"17.0\" text-anchor=\"end\" fill=\"#FFFFFF\" font-weight=\"700\">9</text></svg>",
+      "alt": "Two bars. 2 cubed is 8. 3 squared is 9, a little longer.",
+      "text": "Which is bigger, 2³ or 3²? 2³ = 8 and 3² = 9, so 3² is bigger, even though 2³ has the bigger exponent."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 118\" width=\"360\" height=\"118\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"118\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"82.8\" y=\"40.8\" font-size=\"18.0\" text-anchor=\"start\" fill=\"#13212B\">11</text><text x=\"103.8\" y=\"32.7\" font-size=\"11.2\" text-anchor=\"start\" fill=\"#13212B\">2</text><rect x=\"118\" y=\"23.0\" width=\"162.6\" height=\"26\" rx=\"5\" fill=\"#D3E8F0\"/><text x=\"272.6\" y=\"42.0\" font-size=\"17.0\" text-anchor=\"end\" fill=\"#13212B\" font-weight=\"700\">121</text><text x=\"92.8\" y=\"86.8\" font-size=\"18.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"103.8\" y=\"78.7\" font-size=\"11.2\" text-anchor=\"start\" fill=\"#13212B\">7</text><rect x=\"118\" y=\"69.0\" width=\"172.0\" height=\"26\" rx=\"5\" fill=\"#1B6884\"/><text x=\"282.0\" y=\"88.0\" font-size=\"17.0\" text-anchor=\"end\" fill=\"#FFFFFF\" font-weight=\"700\">128</text></svg>",
+      "alt": "Two bars. 11 squared is 121. 2 to the seventh is 128, a little longer.",
+      "text": "Which is bigger, 11² or 2⁷? 11² = 121 and 2⁷ = 128. This time the power with the smaller base wins. The base or the exponent alone does not tell you."
+     }
+    ],
+    "example": {
+     "q": "Warehouse A stacks boxes in a cube 6 boxes long, 6 boxes wide and 6 boxes high, which is 6³ boxes. Warehouse B lays boxes flat in a square 15 boxes by 15 boxes, which is 15² boxes. Which warehouse holds more boxes?",
+     "steps": [
+      "6³ = 6 × 6 × 6 = 36 × 6 = 216.",
+      "15² = 15 × 15 = 225.",
+      "225 is greater than 216, by 9."
+     ],
+     "answer": "Warehouse B holds more, 225 boxes to 216."
+    }
+   }
   },
   {
    "name": "Part F: Order of operations",
@@ -1608,7 +1739,46 @@
      "hint": "Find the division. It comes before the addition and the subtraction.",
      "min": 4
     }
-   ]
+   ],
+   "learn": {
+    "title": "Everyone uses the same order",
+    "where": [
+     "Every cashier, calculator and app works out a bill such as 2 shirts at $9 and a $7 hat in the same order, so everyone gets the same total.",
+     "Spreadsheets and computer programs follow this exact order too."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 234\" width=\"360\" height=\"234\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"234\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"12\" y=\"12\" width=\"336\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"34.0\" y=\"42.0\" font-size=\"19.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"54.0\" y=\"41.0\" font-size=\"16.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Parentheses</text><rect x=\"24\" y=\"66\" width=\"324\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"46.0\" y=\"96.0\" font-size=\"19.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"66.0\" y=\"95.0\" font-size=\"16.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Exponents</text><rect x=\"36\" y=\"120\" width=\"312\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"58.0\" y=\"150.0\" font-size=\"19.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"78.0\" y=\"149.0\" font-size=\"14.4\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Multiply and divide, left to right</text><rect x=\"48\" y=\"174\" width=\"300\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"70.0\" y=\"204.0\" font-size=\"19.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"90.0\" y=\"203.0\" font-size=\"15.2\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Add and subtract, left to right</text></svg>",
+      "alt": "Four steps from top to bottom: 1 Parentheses, 2 Exponents, 3 Multiply and divide, left to right, 4 Add and subtract, left to right.",
+      "text": "Work in this order. 1. Parentheses. 2. Exponents. 3. Multiply and divide, from left to right. 4. Add and subtract, from left to right."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 133\" width=\"360\" height=\"133\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"133\" rx=\"12\" fill=\"#FFFFFF\"/><circle cx=\"35.0\" cy=\"52\" r=\"9\" fill=\"#B9470B\"/><circle cx=\"59.0\" cy=\"52\" r=\"9\" fill=\"#B9470B\"/><circle cx=\"83.0\" cy=\"52\" r=\"9\" fill=\"#B9470B\"/><circle cx=\"107.0\" cy=\"52\" r=\"9\" fill=\"#B9470B\"/><text x=\"71.0\" y=\"20.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">4 loose</text><rect x=\"133.0\" y=\"30\" width=\"60\" height=\"44\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"151.0\" cy=\"52\" r=\"9\" fill=\"#1B6884\"/><circle cx=\"175.0\" cy=\"52\" r=\"9\" fill=\"#1B6884\"/><rect x=\"205.0\" y=\"30\" width=\"60\" height=\"44\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"223.0\" cy=\"52\" r=\"9\" fill=\"#1B6884\"/><circle cx=\"247.0\" cy=\"52\" r=\"9\" fill=\"#1B6884\"/><rect x=\"277.0\" y=\"30\" width=\"60\" height=\"44\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"295.0\" cy=\"52\" r=\"9\" fill=\"#1B6884\"/><circle cx=\"319.0\" cy=\"52\" r=\"9\" fill=\"#1B6884\"/><text x=\"235.0\" y=\"20.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">3 bags of 2</text><text x=\"62.3\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"82.8\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"104.0\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"124.6\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"145.8\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"166.3\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"187.5\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"208.1\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"229.3\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"249.8\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"271.1\" y=\"112.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">10</text></svg>",
+      "alt": "4 loose orange apples, then 3 bags with 2 blue apples in each bag.",
+      "text": "4 + 3 × 2 can mean 4 loose apples and 3 bags with 2 apples in each. That is 4 + 6 = 10 apples. Multiply before you add, so the bags are counted first."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 142\" width=\"360\" height=\"142\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"142\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"71.3\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"90.2\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"109.6\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"128.4\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"147.9\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"166.7\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"186.2\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"205.0\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"224.5\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"243.3\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"262.7\" y=\"37.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#1B6884\" font-weight=\"700\">10</text><text x=\"180.0\" y=\"58.3\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">right: multiply first</text><text x=\"58.5\" y=\"93.9\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">4</text><text x=\"78.1\" y=\"93.9\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"97.5\" y=\"93.9\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"116.4\" y=\"93.9\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">then</text><text x=\"170.5\" y=\"93.9\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">×</text><text x=\"190.7\" y=\"93.9\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"209.5\" y=\"93.9\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">gives</text><text x=\"275.5\" y=\"93.9\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">14</text><text x=\"180.0\" y=\"114.4\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">wrong: that counts 7 bags of 2</text></svg>",
+      "alt": "Right way: 4 plus 3 times 2 equals 4 plus 6 equals 10. Wrong way: 4 plus 3, then times 2, gives 14.",
+      "text": "Working straight from left to right gives 14, which counts 7 bags of 2. That answers a different question."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 134\" width=\"360\" height=\"134\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"134\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"124.9\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">24</text><text x=\"158.8\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">÷</text><text x=\"180.0\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"200.5\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"221.8\" y=\"39.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"141.8\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"163.1\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"183.6\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"204.8\" y=\"74.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"155.2\" y=\"109.2\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"176.5\" y=\"109.2\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#1B6884\" font-weight=\"700\">18</text></svg>",
+      "alt": "24 divided by 4 times 3 equals 6 times 3 equals 18.",
+      "text": "Multiply and divide are partners, so take them in the order they appear, from left to right. Add and subtract work the same way."
+     }
+    ],
+    "example": {
+     "q": "You buy 2 shirts at $9 each and a hat for $7. You pay with $30. Write one expression for your change and find its value.",
+     "steps": [
+      "The cost is 2 × 9 + 7. It goes in parentheses because the whole cost is taken from 30: 30 − (2 × 9 + 7).",
+      "Inside the parentheses, multiply first: 2 × 9 = 18, so 30 − (18 + 7).",
+      "Then add inside the parentheses: 18 + 7 = 25, so 30 − 25.",
+      "30 − 25 = 5."
+     ],
+     "answer": "$5 in change"
+    }
+   }
   },
   {
    "name": "Part G: Order of operations with exponents",
@@ -2070,7 +2240,47 @@
      "hint": "Put parentheses around the part that the words say to do first.",
      "min": 3
     }
-   ]
+   ],
+   "learn": {
+    "title": "Powers come right after parentheses",
+    "where": [
+     "Area and volume formulas put powers inside longer expressions, such as the area of a square garden bed plus two smaller beds.",
+     "Calculators find every power before they multiply, which is why 2 × 3² and (2 × 3)² give different answers."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 234\" width=\"360\" height=\"234\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"234\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"12\" y=\"12\" width=\"336\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"34.0\" y=\"42.0\" font-size=\"19.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"54.0\" y=\"41.0\" font-size=\"16.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Parentheses</text><rect x=\"24\" y=\"66\" width=\"324\" height=\"46\" rx=\"10\" fill=\"#1B6884\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"46.0\" y=\"96.0\" font-size=\"19.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">2</text><text x=\"66.0\" y=\"95.0\" font-size=\"16.0\" text-anchor=\"start\" fill=\"#FFFFFF\" font-weight=\"700\">Exponents</text><rect x=\"36\" y=\"120\" width=\"312\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"58.0\" y=\"150.0\" font-size=\"19.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"78.0\" y=\"149.0\" font-size=\"14.4\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Multiply and divide, left to right</text><rect x=\"48\" y=\"174\" width=\"300\" height=\"46\" rx=\"10\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><text x=\"70.0\" y=\"204.0\" font-size=\"19.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"90.0\" y=\"203.0\" font-size=\"15.2\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Add and subtract, left to right</text></svg>",
+      "alt": "The same four steps, with step 2, Exponents, highlighted.",
+      "text": "Exponents are step 2. Find the value of each power right after the parentheses, before any multiplying, dividing, adding or subtracting."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 171\" width=\"360\" height=\"171\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"171\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"89.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"115.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"141.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"89.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"115.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"141.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"89.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"115.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"141.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><text x=\"128.0\" y=\"116.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">3 by 3</text><rect x=\"193.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"219.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"245.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"193.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"219.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"245.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"193.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"219.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"245.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><text x=\"232.0\" y=\"116.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">3 by 3</text><text x=\"78.5\" y=\"148.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"99.0\" y=\"148.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"120.3\" y=\"148.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"134.6\" y=\"137.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"150.1\" y=\"148.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"171.3\" y=\"148.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"191.8\" y=\"148.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"213.1\" y=\"148.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">9</text><text x=\"233.6\" y=\"148.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"254.8\" y=\"148.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">18</text></svg>",
+      "alt": "Two separate squares of tiles, each 3 by 3.",
+      "text": "2 × 3² means 2 squares with 3² = 9 tiles each, which is 18 tiles. Square the 3 first, then multiply by 2."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 249\" width=\"360\" height=\"249\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"249\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"102.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"18.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"44.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"70.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"96.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"122.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"102.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"128.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"154.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"180.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"206.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><rect x=\"232.0\" y=\"148.0\" width=\"26.0\" height=\"26.0\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.2\"/><text x=\"180.0\" y=\"194.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">6 by 6</text><text x=\"86.8\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">(2</text><text x=\"115.3\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"136.5\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">3)</text><text x=\"158.8\" y=\"215.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"174.3\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"195.5\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"209.9\" y=\"215.8\" font-size=\"14.9\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"225.3\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"246.6\" y=\"226.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">36</text></svg>",
+      "alt": "One square of tiles, 6 by 6.",
+      "text": "(2 × 3)² means the parentheses come first: 2 × 3 = 6. Then square it: 6² = 36. The parentheses change the answer."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 184\" width=\"360\" height=\"184\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"184\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"112.0\" y=\"33.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"130.8\" y=\"33.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"150.3\" y=\"33.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">5</text><text x=\"169.1\" y=\"33.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"188.6\" y=\"33.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">(6</text><text x=\"214.7\" y=\"33.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">−</text><text x=\"234.2\" y=\"33.8\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">4)</text><text x=\"254.7\" y=\"23.9\" font-size=\"13.6\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"98.0\" y=\"65.7\" font-size=\"13.0\" text-anchor=\"end\" fill=\"#4E5F69\" font-weight=\"700\">parentheses</text><text x=\"112.0\" y=\"65.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"131.4\" y=\"65.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"150.3\" y=\"65.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"169.7\" y=\"65.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">5</text><text x=\"188.6\" y=\"65.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"208.0\" y=\"65.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"221.2\" y=\"55.8\" font-size=\"13.6\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"98.0\" y=\"97.6\" font-size=\"13.0\" text-anchor=\"end\" fill=\"#4E5F69\" font-weight=\"700\">exponent</text><text x=\"112.0\" y=\"97.6\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"131.4\" y=\"97.6\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"150.3\" y=\"97.6\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"169.7\" y=\"97.6\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">5</text><text x=\"188.6\" y=\"97.6\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"208.0\" y=\"97.6\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">8</text><text x=\"98.0\" y=\"129.5\" font-size=\"13.0\" text-anchor=\"end\" fill=\"#4E5F69\" font-weight=\"700\">multiply</text><text x=\"112.0\" y=\"129.5\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"131.4\" y=\"129.5\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"150.3\" y=\"129.5\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"169.7\" y=\"129.5\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">40</text><text x=\"98.0\" y=\"161.4\" font-size=\"13.0\" text-anchor=\"end\" fill=\"#4E5F69\" font-weight=\"700\">add</text><text x=\"112.0\" y=\"161.4\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"131.4\" y=\"161.4\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#1B6884\" font-weight=\"700\">42</text></svg>",
+      "alt": "Five lines. 2 plus 5 times the quantity 6 minus 4, cubed. Parentheses: 2 plus 5 times 2 cubed. Exponent: 2 plus 5 times 8. Multiply: 2 plus 40. Add: 42.",
+      "text": "Rewrite the whole expression after each step, and do one thing per line: parentheses, then the power, then multiply, then add."
+     }
+    ],
+    "example": {
+     "q": "A garden has one square bed that is 6 feet on each side and two rectangle beds that are each 3 feet by 2 feet. Write one expression for the total area and find it.",
+     "steps": [
+      "Square bed: 6². Two rectangle beds: 2 × (3 × 2). Total: 6² + 2 × (3 × 2).",
+      "Parentheses first: 3 × 2 = 6, so 6² + 2 × 6.",
+      "Exponent next: 6² = 36, so 36 + 2 × 6.",
+      "Multiply: 2 × 6 = 12, so 36 + 12.",
+      "Add: 36 + 12 = 48."
+     ],
+     "answer": "48 square feet"
+    }
+   }
   },
   {
    "name": "Part H: Real jobs",
@@ -2451,7 +2661,37 @@
      "real": true,
      "min": 8
     }
-   ]
+   ],
+   "learn": {
+    "title": "A real job ends in a decision",
+    "where": [
+     "Grown-ups decide with numbers every day: which phone plan, which job offer, whether a project fits the budget.",
+     "In these problems you find the numbers, compare them, and then say what you would choose and why."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 238\" width=\"360\" height=\"238\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"238\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"20\" y=\"12\" width=\"320\" height=\"52\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"38.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"44.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">1</text><text x=\"78.0\" y=\"44.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Find each number on paper</text><path d=\"M180.0,68 v12 m-7,-7 l7,8 l7,-8\" stroke=\"#B9470B\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"20\" y=\"86\" width=\"320\" height=\"52\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"112.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"118.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">2</text><text x=\"78.0\" y=\"118.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Compare the numbers</text><path d=\"M180.0,142 v12 m-7,-7 l7,8 l7,-8\" stroke=\"#B9470B\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"20\" y=\"160\" width=\"320\" height=\"66\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"193.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"199.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">3</text><text x=\"78.0\" y=\"188.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Decide, and give the reason</text><text x=\"78.0\" y=\"210.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">with the numbers</text></svg>",
+      "alt": "Three boxes joined by arrows: 1 find each number on paper, 2 compare the numbers, 3 decide and give the reason with the numbers.",
+      "text": "Every real job has three moves. Find each number. Compare. Then decide, and say why using the numbers you found."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 124\" width=\"360\" height=\"124\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"124\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"58.7\" y=\"60.8\" font-size=\"18.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"74.1\" y=\"60.8\" font-size=\"18.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"90.0\" y=\"60.8\" font-size=\"18.0\" text-anchor=\"start\" fill=\"#13212B\">15</text><rect x=\"118\" y=\"43.0\" width=\"154.8\" height=\"26\" rx=\"5\" fill=\"#1B6884\"/><text x=\"264.8\" y=\"62.0\" font-size=\"17.0\" text-anchor=\"end\" fill=\"#FFFFFF\" font-weight=\"700\">90</text><line x1=\"290.0\" y1=\"28\" x2=\"290.0\" y2=\"82.0\" stroke=\"#B9470B\" stroke-width=\"2.5\" stroke-dasharray=\"6 4\"/><text x=\"290.0\" y=\"22.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#B9470B\" font-weight=\"700\">budget 100</text><text x=\"123.4\" y=\"102.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"142.2\" y=\"102.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">×</text><text x=\"161.7\" y=\"102.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">15</text><text x=\"192.7\" y=\"102.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"212.2\" y=\"102.7\" font-size=\"22.0\" text-anchor=\"start\" fill=\"#13212B\">90</text></svg>",
+      "alt": "One bar for a cost of 90 dollars, ending before a dashed line marked budget 100.",
+      "text": "To check a budget, find the cost and compare it with the budget. 6 tickets at $15 each cost 6 × 15 = 90 dollars, which is less than $100, so it fits with $10 left."
+     }
+    ],
+    "example": {
+     "q": "Phone Plan A costs $25 a month. Phone Plan B costs $10 a month plus $2 for each gigabyte of data. You use 6 gigabytes a month. Which plan should you choose?",
+     "steps": [
+      "Plan A: 25 dollars a month.",
+      "Plan B: 10 + 2 × 6 = 10 + 12 = 22 dollars a month.",
+      "Compare: 22 is less than 25, by 3 dollars.",
+      "Decision: choose Plan B."
+     ],
+     "answer": "Plan B, because 10 + 2 × 6 = 22 dollars a month, which is $3 less than Plan A's $25."
+    },
+    "apply": true
+   }
   },
   {
    "name": "Part I: Stretch",
@@ -2760,7 +3000,37 @@
      "stretch": true,
      "min": 8
     }
-   ]
+   ],
+   "learn": {
+    "title": "Look for the pattern",
+    "where": [
+     "Competitions such as MATHCOUNTS reward students who spot a pattern instead of grinding through big numbers.",
+     "Scientists and engineers do the same: they try small cases, put them in a table, and look for what repeats."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 234\" width=\"360\" height=\"234\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"234\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"70.0\" y=\"14\" width=\"220.0\" height=\"34\" fill=\"#1B6884\" rx=\"6\"/><text x=\"125.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">Folds</text><text x=\"235.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">Layers</text><rect x=\"70.0\" y=\"48.0\" width=\"220.0\" height=\"36.0\" fill=\"#FFFFFF\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"119.4\" y=\"71.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">1</text><text x=\"229.4\" y=\"71.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><rect x=\"70.0\" y=\"84.0\" width=\"220.0\" height=\"36.0\" fill=\"#D3E8F0\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"119.4\" y=\"107.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">2</text><text x=\"229.4\" y=\"107.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">4</text><rect x=\"70.0\" y=\"120.0\" width=\"220.0\" height=\"36.0\" fill=\"#FFFFFF\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"119.4\" y=\"143.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">3</text><text x=\"229.4\" y=\"143.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">8</text><rect x=\"70.0\" y=\"156.0\" width=\"220.0\" height=\"36.0\" fill=\"#D3E8F0\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"119.4\" y=\"179.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">4</text><text x=\"223.9\" y=\"179.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">16</text><text x=\"180.0\" y=\"214.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#4E5F69\">Each fold doubles the layers: 2, 4, 8, 16.</text></svg>",
+      "alt": "A table of paper folds and layers: 1 fold, 2 layers. 2 folds, 4. 3 folds, 8. 4 folds, 16.",
+      "text": "Try small cases first and put them in a table. Folding paper doubles the layers each time, so after 4 folds there are 2 × 2 × 2 × 2 = 2⁴ = 16 layers."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 217\" width=\"360\" height=\"217\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"217\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"60.0\" y=\"14\" width=\"240.0\" height=\"34\" fill=\"#1B6884\" rx=\"6\"/><text x=\"120.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">Number</text><text x=\"240.0\" y=\"37.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">Squared</text><rect x=\"60.0\" y=\"48.0\" width=\"240.0\" height=\"36.0\" fill=\"#FFFFFF\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"108.9\" y=\"71.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">15</text><text x=\"223.3\" y=\"71.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">225</text><rect x=\"60.0\" y=\"84.0\" width=\"240.0\" height=\"36.0\" fill=\"#D3E8F0\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"108.9\" y=\"107.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">25</text><text x=\"223.3\" y=\"107.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">625</text><rect x=\"60.0\" y=\"120.0\" width=\"240.0\" height=\"36.0\" fill=\"#FFFFFF\" stroke=\"#9DB2BE\" stroke-width=\"1\"/><text x=\"108.9\" y=\"143.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">35</text><text x=\"215.0\" y=\"143.8\" font-size=\"20.0\" text-anchor=\"start\" fill=\"#13212B\">1,225</text><text x=\"180.0\" y=\"178.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#4E5F69\">1 × 2 = 2, then 25. 2 × 3 = 6, then 25. 3 × 4 =</text><text x=\"180.0\" y=\"197.5\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#4E5F69\">12, then 25.</text></svg>",
+      "alt": "A table: 15 squared is 225, 25 squared is 625, 35 squared is 1,225. Every answer ends in 25.",
+      "text": "Look at what repeats. Squares of numbers that end in 5 always end in 25. The digits in front come from the tens digit times the next whole number: for 35², 3 × 4 = 12, so 35² = 1,225."
+     }
+    ],
+    "example": {
+     "q": "Use the pattern for numbers that end in 5 to find 45². Then check it.",
+     "steps": [
+      "The tens digit of 45 is 4, and the next whole number is 5.",
+      "4 × 5 = 20.",
+      "Write 25 after 20 to get 2,025.",
+      "Check: 45 × 45 = 1,800 + 225 = 2,025."
+     ],
+     "answer": "45² = 2,025"
+    },
+    "apply": true
+   }
   }
  ],
  "n": 36,
