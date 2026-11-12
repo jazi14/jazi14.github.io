@@ -2173,6 +2173,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   function readOnly() { return !!P.A.finishedAt; }
   function leaveQuestion() {
     if (!P || P.mode !== 'q') return;
+    if (P.test) lockTestAnswers();
     var x = P.items[P.idx]; if (!x) return;
     var add = P.qsec && P.qsec[x.it.id];
     if (add) { var Q = P.A.q[x.it.id] = P.A.q[x.it.id] || { p: {} }; Q.sec = Math.round((Q.sec || 0) + add); P.qsec[x.it.id] = 0; }
@@ -2212,7 +2213,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 
   function partRow(it, p, Q, ro, test, autoOpen) {
     var k = pkey(p), ps = Q.p[k] || null, ans = p.ans, d = draftOf(it.id);
-    var locked = ro || (ps && partResolved(ps)) || (test && !!P.A.finishedAt);
+    var locked = ro || (ps && partResolved(ps)) || (test && !!P.A.finishedAt) || (test && !!(ps && ps.lock));
     var cls = 'prow';
     if (ps && !test) cls += ps.st === 'ok' || ps.st === 'self-ok' ? ' ok' : ps.st === 'out' || ps.st === 'self-no' ? ' out' : ps.st === 'no' ? ' no' : '';
     if (ps && test && P.A.finishedAt) cls += ps.st === 'ok' ? ' ok' : ' out';
@@ -2278,6 +2279,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (v) row.append(el('span', { class: 'verdict', text: v + (ps.ov ? ' (accepted by a parent)' : '') }));
       if (showAns) row.append(el('span', { class: 'pmsg', text: 'Answer: ' + (p.show || C.show(ans)) + (p.unit ? ' ' + p.unit : '') }));
     }
+    if (test && !P.A.finishedAt && ps && ps.lock) row.append(el('span', { class: 'verdict', text: 'Locked' }));
     row.append(el('span', { class: 'pmsg', 'data-msg': k, hidden: true }));
     return row;
   }
@@ -2306,9 +2308,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     if (P.test) {
       if (!P.A.finishedAt) {
         kids.push(el('div', { class: 'actions' },
-          P.idx > 0 ? el('button', { class: 'btn quiet', type: 'button', text: 'Back', onclick: function () { P.idx--; paint(); } }) : null,
+          P.idx > 0 ? el('button', { class: 'btn quiet', type: 'button', text: 'Back', onclick: function () { leaveQuestion(); P.idx--; paint(); } }) : null,
           el('span', { class: 'grow' }),
-          last ? el('button', { class: 'btn big', type: 'button', id: 'testFinish', text: 'Finish the day', onclick: askFinishTest }) : el('button', { class: 'btn big', type: 'button', id: 'qNext', text: 'Next', onclick: function () { P.idx++; paint(); } })));
+          last ? el('button', { class: 'btn big', type: 'button', id: 'testFinish', text: 'Finish the day', onclick: askFinishTest }) : el('button', { class: 'btn big', type: 'button', id: 'qNext', text: 'Next', onclick: function () { leaveQuestion(); P.idx++; paint(); } })));
         if (P.askFinish) kids.push(finishConfirm());
       } else {
         if (H.parent.unlocked) kids.push(solBlock(it));
@@ -2466,7 +2468,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       el('div', { class: 'card' }, el('h2', { text: (T.retest ? 'Retest, ' : '') + 'Day ' + T.day + ' of ' + T.of + '. Time allowed: ' + T.minutes + ' minutes.' }),
         el('div', { class: 'prose' }, el('ul', {},
           el('li', { text: 'Work every problem on paper, then type the answer. ' + P.items.length + ' questions.' }),
-          el('li', { text: 'Nothing is checked until you finish the day. You can go back and change any answer until then.' }),
+          el('li', { text: 'Nothing is checked until you finish the day. An answer locks when you move to another question, so check it on paper before you press Next. A part you leave blank stays open, and you can come back to it.' }),
           el('li', { text: 'The clock starts when you press Start and keeps running, even if the page closes. Sit down ready, with paper and pencil.' }),
           T.retest ? el('li', { text: 'Goal for this retest: finish in ' + T.target + ' minutes.' }) : null)),
         el('div', { class: 'actions' }, el('button', { class: 'btn big', type: 'button', id: 'testStart', text: 'Start the ' + T.minutes + ' minutes', onclick: function () {
@@ -2492,6 +2494,19 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     Q.p[k] = { v: v, st: 'pending', at: (stamp.getTime() > dl.getTime() ? dl : stamp).toISOString() };
     save([it.id]);
     var b = H.$$('.strip button', root)[P.idx]; if (b) b.className = qState(P.items[P.idx]);
+  }
+  // Tests: an answer locks when he moves to another question (Taimoor, 12 Nov 2026). A part left blank stays open.
+  function lockTestAnswers() {
+    if (!P || !P.test || P.A.finishedAt || P.mode !== 'q') return;
+    var x = P.items[P.idx]; if (!x) return;
+    var Q = P.A.q[x.it.id], changed = false;
+    x.it.parts.forEach(function (p) {
+      saveTestAnswer(x.it, p);
+      var ps = Q && Q.p && Q.p[pkey(p)];
+      if (!ps && P.A.q[x.it.id]) { Q = P.A.q[x.it.id]; ps = Q.p && Q.p[pkey(p)]; }
+      if (ps && !ps.lock && String(ps.v == null ? '' : (Array.isArray(ps.v) ? ps.v.join(',') : ps.v)).trim() !== '') { ps.lock = true; changed = true; }
+    });
+    if (changed) save([x.it.id]);
   }
   function captureDrafts() {           // typed but not yet committed (no change event)
     if (!P || !P.test || P.mode !== 'q') return;
