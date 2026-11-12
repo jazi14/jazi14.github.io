@@ -1,0 +1,2837 @@
+{
+ "schema": 1,
+ "id": "L036",
+ "kind": "lesson",
+ "subject": "math",
+ "strand": "Core",
+ "title": "Exponents and Order of Operations",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a power with the ^ key: 3^4 means 3⁴. For an answer below zero, type the minus sign first.",
+ "skills": {
+  "int-addsub": "Add and subtract integers",
+  "mult-multi": "Multi-digit multiplication",
+  "exp-meaning": "Read and write powers",
+  "exp-eval": "Evaluate powers",
+  "exp-10": "Powers of 10",
+  "exp-compare": "Compare powers",
+  "ooo": "Order of operations",
+  "ooo-exp": "Order of operations with exponents",
+  "exp-apply": "Use powers in real problems"
+ },
+ "sections": [
+  {
+   "name": "Part A: Review",
+   "desc": "Two problems from older lessons. Picture a number line for the integers. Line up the digits for the multiplication.",
+   "items": [
+    {
+     "id": "q1",
+     "q": "Add or subtract. Picture a number line: adding moves right and subtracting moves left.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-4"
+       },
+       "label": "a",
+       "prompt": "5 − 9",
+       "tests": {
+        "ok": [
+         "-4",
+         "−4"
+        ],
+        "no": [
+         "4",
+         "14"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-10"
+       },
+       "label": "b",
+       "prompt": "−4 − 6",
+       "tests": {
+        "ok": [
+         "-10",
+         "−10"
+        ],
+        "no": [
+         "-2",
+         "2",
+         "10"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-6"
+       },
+       "label": "c",
+       "prompt": "The temperature was −3°C at dawn. It rose 8 degrees by noon, then fell 11 degrees by midnight. What was the temperature at midnight, in degrees Celsius?",
+       "unit": "°C",
+       "tests": {
+        "ok": [
+         "-6",
+         "−6",
+         "-6°C",
+         "-6 degrees"
+        ],
+        "no": [
+         "6",
+         "-22",
+         "16"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 5 − 9 = −4",
+      "b) −4 − 6 = −10",
+      "c) −3 + 8 = 5 at noon",
+      "5 − 11 = −6 at midnight",
+      "Answers: a) −4, b) −10, c) −6°C"
+     ],
+     "skill": "int-addsub",
+     "tag": "Review of Lesson 33",
+     "min": 4
+    },
+    {
+     "id": "q2",
+     "q": "Multiply. Write the partial products on paper before you add them.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1692"
+       },
+       "label": "a",
+       "prompt": "47 × 36",
+       "tests": {
+        "ok": [
+         "1692",
+         "1,692"
+        ],
+        "no": [
+         "423",
+         "1682"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "9360"
+       },
+       "label": "b",
+       "prompt": "208 × 45",
+       "tests": {
+        "ok": [
+         "9360",
+         "9,360"
+        ],
+        "no": [
+         "1872",
+         "936"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3456"
+       },
+       "label": "c",
+       "prompt": "A school orders 24 boxes of pencils. Each box holds 144 pencils. How many pencils is that in all?",
+       "unit": "pencils",
+       "tests": {
+        "ok": [
+         "3456",
+         "3,456"
+        ],
+        "no": [
+         "864",
+         "168"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 47 × 6 = 282",
+      "47 × 30 = 1,410",
+      "282 + 1,410 = 1,692",
+      "b) 208 × 5 = 1,040",
+      "208 × 40 = 8,320",
+      "1,040 + 8,320 = 9,360",
+      "c) 144 × 4 = 576",
+      "144 × 20 = 2,880",
+      "576 + 2,880 = 3,456",
+      "Answers: a) 1,692, b) 9,360, c) 3,456 pencils"
+     ],
+     "skill": "mult-multi",
+     "tag": "Review of Lesson 21",
+     "min": 6
+    }
+   ]
+  },
+  {
+   "name": "Part B: Reading and writing powers",
+   "desc": "The exponent tells how many times the base is used as a factor.",
+   "items": [
+    {
+     "id": "q3",
+     "q": "Look at the power 5³.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "5"
+       },
+       "label": "a",
+       "prompt": "What is the base?",
+       "tests": {
+        "ok": [
+         "5"
+        ],
+        "no": [
+         "3",
+         "15"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3"
+       },
+       "label": "b",
+       "prompt": "What is the exponent?",
+       "tests": {
+        "ok": [
+         "3"
+        ],
+        "no": [
+         "5",
+         "15"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) The base is the number that gets multiplied. Here the base is 5.",
+      "b) The exponent counts the factors. 5³ = 5 × 5 × 5, so the exponent is 3.",
+      "Answers: a) 5, b) 3"
+     ],
+     "skill": "exp-meaning",
+     "hint": "One number is the factor that repeats. The other number counts how many times it repeats.",
+     "min": 2
+    },
+    {
+     "id": "q4",
+     "q": "Write each product as a power. Type a power with the ^ key, like 3^4.",
+     "parts": [
+      {
+       "ans": {
+        "type": "power",
+        "base": "7",
+        "exp": "5"
+       },
+       "label": "a",
+       "prompt": "7 × 7 × 7 × 7 × 7",
+       "tests": {
+        "ok": [
+         "7^5",
+         "7 ^ 5"
+        ],
+        "no": [
+         "5^7",
+         "7^4"
+        ],
+        "nudge": [
+         "16807"
+        ],
+        "bad": [
+         "7 x 5"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "power",
+        "base": "2",
+        "exp": "7"
+       },
+       "label": "b",
+       "prompt": "2 × 2 × 2 × 2 × 2 × 2 × 2",
+       "tests": {
+        "ok": [
+         "2^7",
+         "2 ^ 7"
+        ],
+        "no": [
+         "7^2",
+         "2^6"
+        ],
+        "nudge": [
+         "128"
+        ],
+        "bad": [
+         "2 x 7"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 7 is a factor 5 times, so the power is 7⁵.",
+      "b) 2 is a factor 7 times, so the power is 2⁷.",
+      "Answers: a) 7⁵, b) 2⁷"
+     ],
+     "skill": "exp-meaning",
+     "hint": "Count the factors. That count is the exponent, and the repeated number is the base.",
+     "min": 2
+    },
+    {
+     "id": "q5",
+     "q": "Which expression shows what 4⁵ means?",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "4 × 5",
+         "4 + 4 + 4 + 4 + 4",
+         "4 × 4 × 4 × 4 × 4",
+         "5 × 5 × 5 × 5"
+        ],
+        "correct": 2
+       }
+      }
+     ],
+     "a": [
+      "4⁵ uses 4 as a factor 5 times.",
+      "4 × 4 × 4 × 4 × 4 = 1,024",
+      "4 × 5 = 20, which multiplies the base by the exponent. That is a different number.",
+      "4 + 4 + 4 + 4 + 4 = 20, which is repeated addition.",
+      "5 × 5 × 5 × 5 = 625, which is 5⁴ with the base and the exponent swapped.",
+      "Answer: 4 × 4 × 4 × 4 × 4"
+     ],
+     "skill": "exp-meaning",
+     "hint": "The exponent counts factors. It does not multiply the base.",
+     "min": 2
+    },
+    {
+     "id": "q6",
+     "q": "Write each phrase as a power. Type a power with the ^ key, like 3^4.",
+     "parts": [
+      {
+       "ans": {
+        "type": "power",
+        "base": "9",
+        "exp": "3"
+       },
+       "label": "a",
+       "prompt": "9 cubed",
+       "tests": {
+        "ok": [
+         "9^3",
+         "9 ^ 3"
+        ],
+        "no": [
+         "3^9",
+         "9^2"
+        ],
+        "nudge": [
+         "729"
+        ],
+        "bad": [
+         "9 x 3"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "power",
+        "base": "6",
+        "exp": "4"
+       },
+       "label": "b",
+       "prompt": "6 to the fourth power",
+       "tests": {
+        "ok": [
+         "6^4",
+         "6 ^ 4"
+        ],
+        "no": [
+         "4^6"
+        ],
+        "nudge": [
+         "1296"
+        ],
+        "bad": [
+         "6 x 4"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "power",
+        "base": "10",
+        "exp": "5"
+       },
+       "label": "c",
+       "prompt": "10 to the fifth power",
+       "tests": {
+        "ok": [
+         "10^5",
+         "10 ^ 5"
+        ],
+        "no": [
+         "5^10"
+        ],
+        "nudge": [
+         "100000"
+        ],
+        "bad": [
+         "10 x 5"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) Cubed means exponent 3, so the power is 9³.",
+      "b) Fourth power means exponent 4, so the power is 6⁴.",
+      "c) Fifth power means exponent 5, so the power is 10⁵.",
+      "Answers: a) 9³, b) 6⁴, c) 10⁵"
+     ],
+     "skill": "exp-meaning",
+     "hint": "The number named first is the base. The words after it tell how many times the base is used as a factor.",
+     "min": 3
+    },
+    {
+     "id": "q7",
+     "q": "Answer each question about powers.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "11"
+       },
+       "label": "a",
+       "prompt": "A power with exponent 3 means 11 × 11 × 11. What is its base?",
+       "tests": {
+        "ok": [
+         "11"
+        ],
+        "no": [
+         "3",
+         "33"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1"
+       },
+       "label": "b",
+       "prompt": "A power has base 4, and its value is also 4. What is its exponent?",
+       "tests": {
+        "ok": [
+         "1"
+        ],
+        "no": [
+         "0",
+         "4"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) The repeated factor is the base, so the base is 11.",
+      "b) 4¹ = 4, so the exponent is 1.",
+      "Answers: a) 11, b) 1"
+     ],
+     "skill": "exp-meaning",
+     "hint": "The repeated factor is the base. For part b, write out a few powers of 4 and find their values.",
+     "min": 2
+    }
+   ]
+  },
+  {
+   "name": "Part C: Finding the value of a power",
+   "desc": "Write out the factors and multiply one step at a time. A power is repeated multiplication. Do not multiply the base by the exponent.",
+   "items": [
+    {
+     "id": "q8",
+     "q": "Find the value of each square.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "81"
+       },
+       "label": "a",
+       "prompt": "9²",
+       "tests": {
+        "ok": [
+         "81"
+        ],
+        "no": [
+         "18"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "144"
+       },
+       "label": "b",
+       "prompt": "12²",
+       "tests": {
+        "ok": [
+         "144"
+        ],
+        "no": [
+         "24"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 9 × 9 = 81",
+      "b) 12 × 12 = 144",
+      "Answers: a) 81, b) 144"
+     ],
+     "skill": "exp-eval",
+     "hint": "A square is the number times itself.",
+     "min": 2
+    },
+    {
+     "id": "q9",
+     "q": "Find the value of each cube.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "27"
+       },
+       "label": "a",
+       "prompt": "3³",
+       "tests": {
+        "ok": [
+         "27"
+        ],
+        "no": [
+         "9"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "125"
+       },
+       "label": "b",
+       "prompt": "5³",
+       "tests": {
+        "ok": [
+         "125"
+        ],
+        "no": [
+         "15",
+         "25"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "343"
+       },
+       "label": "c",
+       "prompt": "7³",
+       "tests": {
+        "ok": [
+         "343"
+        ],
+        "no": [
+         "21",
+         "49"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 3 × 3 × 3 = 27",
+      "b) 5 × 5 × 5 = 125",
+      "c) 7 × 7 = 49",
+      "49 × 7 = 343",
+      "Answers: a) 27, b) 125, c) 343"
+     ],
+     "skill": "exp-eval",
+     "hint": "A cube uses the base as a factor three times. Multiply two of them, then multiply by the base once more.",
+     "min": 3
+    },
+    {
+     "id": "q10",
+     "q": "These three look alike but have different values. Find each one.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "10"
+       },
+       "label": "a",
+       "prompt": "2 × 5",
+       "tests": {
+        "ok": [
+         "10"
+        ],
+        "no": [
+         "32",
+         "25"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "32"
+       },
+       "label": "b",
+       "prompt": "2⁵",
+       "tests": {
+        "ok": [
+         "32"
+        ],
+        "no": [
+         "10",
+         "25"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "25"
+       },
+       "label": "c",
+       "prompt": "5²",
+       "tests": {
+        "ok": [
+         "25"
+        ],
+        "no": [
+         "10",
+         "32"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2 × 5 = 10",
+      "b) 2⁵ = 2 × 2 × 2 × 2 × 2 = 32",
+      "c) 5² = 5 × 5 = 25",
+      "Answers: a) 10, b) 32, c) 25"
+     ],
+     "skill": "exp-eval",
+     "hint": "Only one of these is a plain multiplication. For each power, write out the factors first.",
+     "min": 3
+    },
+    {
+     "id": "q11",
+     "q": "Find the value of each power.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "64"
+       },
+       "label": "a",
+       "prompt": "2⁶",
+       "tests": {
+        "ok": [
+         "64"
+        ],
+        "no": [
+         "12",
+         "36"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1"
+       },
+       "label": "b",
+       "prompt": "1⁹",
+       "tests": {
+        "ok": [
+         "1"
+        ],
+        "no": [
+         "9"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "0"
+       },
+       "label": "c",
+       "prompt": "0⁵",
+       "tests": {
+        "ok": [
+         "0"
+        ],
+        "no": [
+         "5",
+         "1"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2 × 2 × 2 × 2 × 2 × 2 = 64",
+      "b) 1 × 1 × 1 × 1 × 1 × 1 × 1 × 1 × 1 = 1",
+      "c) 0 × 0 × 0 × 0 × 0 = 0",
+      "Answers: a) 64, b) 1, c) 0"
+     ],
+     "skill": "exp-eval",
+     "hint": "Multiply one factor at a time and write each product down before you go on.",
+     "min": 3
+    },
+    {
+     "id": "q12",
+     "q": "Look at the pattern in the table. Each time the exponent goes down by 1, the value is divided by the base, which is 2.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "2"
+       },
+       "label": "a",
+       "prompt": "What is the value of 2¹?",
+       "tests": {
+        "ok": [
+         "2"
+        ],
+        "no": [
+         "1",
+         "0"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1"
+       },
+       "label": "b",
+       "prompt": "Follow the pattern one more step. What is the value of 2⁰?",
+       "tests": {
+        "ok": [
+         "1"
+        ],
+        "no": [
+         "0",
+         "2"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1"
+       },
+       "label": "c",
+       "prompt": "The same pattern works for other bases. 10² is 100 and 10¹ is 10. What is the value of 10⁰?",
+       "tests": {
+        "ok": [
+         "1"
+        ],
+        "no": [
+         "0",
+         "10"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 4 ÷ 2 = 2, so the value of 2¹ is 2.",
+      "b) 2 ÷ 2 = 1, so the value of 2⁰ is 1.",
+      "c) 10 ÷ 10 = 1, so the value of 10⁰ is 1.",
+      "Answers: a) 2, b) 1, c) 1. A base other than 0 with exponent 0 always has the value 1."
+     ],
+     "skill": "exp-eval",
+     "hint": "Each step to the right, divide by the base. For part c the base is 10, not 2.",
+     "min": 4,
+     "table": {
+      "head": [
+       "Power",
+       "2⁴",
+       "2³",
+       "2²",
+       "2¹",
+       "2⁰"
+      ],
+      "rows": [
+       [
+        "Value",
+        "16",
+        "8",
+        "4",
+        "?",
+        "?"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "q13",
+     "q": "Find each missing number.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "5"
+       },
+       "label": "a",
+       "prompt": "2 raised to which exponent equals 32?",
+       "tests": {
+        "ok": [
+         "5"
+        ],
+        "no": [
+         "16",
+         "6",
+         "4"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "7"
+       },
+       "label": "b",
+       "prompt": "Which whole number squared equals 49?",
+       "tests": {
+        "ok": [
+         "7"
+        ],
+        "no": [
+         "24.5",
+         "8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "4"
+       },
+       "label": "c",
+       "prompt": "Which whole number cubed equals 64?",
+       "tests": {
+        "ok": [
+         "4"
+        ],
+        "no": [
+         "8",
+         "32"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2 × 2 × 2 × 2 × 2 = 32, which uses five 2s, so the exponent is 5.",
+      "b) 7 × 7 = 49, so the number is 7.",
+      "c) 4 × 4 × 4 = 64, so the number is 4.",
+      "Answers: a) 5, b) 7, c) 4"
+     ],
+     "skill": "exp-eval",
+     "hint": "Test small numbers one at a time. For part a, keep doubling and count the 2s you use.",
+     "min": 3
+    }
+   ]
+  },
+  {
+   "name": "Part D: Powers of 10",
+   "desc": "The exponent on 10 tells how many zeros follow the 1.",
+   "items": [
+    {
+     "id": "q14",
+     "q": "Find the value of each power of 10.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "10000"
+       },
+       "label": "a",
+       "prompt": "10⁴",
+       "tests": {
+        "ok": [
+         "10000",
+         "10,000"
+        ],
+        "no": [
+         "40",
+         "1000"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1000000"
+       },
+       "label": "b",
+       "prompt": "10⁶",
+       "tests": {
+        "ok": [
+         "1000000",
+         "1,000,000"
+        ],
+        "no": [
+         "60",
+         "100000"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 10 × 10 × 10 × 10 = 10,000",
+      "b) 10⁶ = 1,000,000, a 1 followed by 6 zeros.",
+      "Answers: a) 10,000, b) 1,000,000"
+     ],
+     "skill": "exp-10",
+     "hint": "Count the zeros as you write them, in groups of three.",
+     "min": 2
+    },
+    {
+     "id": "q15",
+     "q": "Write each number as a power of 10. Type a power with the ^ key, like 10^2.",
+     "parts": [
+      {
+       "ans": {
+        "type": "power",
+        "base": "10",
+        "exp": "7"
+       },
+       "label": "a",
+       "prompt": "10,000,000",
+       "tests": {
+        "ok": [
+         "10^7",
+         "10 ^ 7"
+        ],
+        "no": [
+         "10^8",
+         "10^6"
+        ],
+        "nudge": [
+         "10000000"
+        ],
+        "bad": [
+         "10 x 7"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "power",
+        "base": "10",
+        "exp": "9"
+       },
+       "label": "b",
+       "prompt": "1,000,000,000 (one billion)",
+       "tests": {
+        "ok": [
+         "10^9",
+         "10 ^ 9"
+        ],
+        "no": [
+         "10^10",
+         "10^8"
+        ],
+        "nudge": [
+         "1000000000"
+        ],
+        "bad": [
+         "10 x 9"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 10,000,000 has 7 zeros, so the power is 10⁷.",
+      "b) 1,000,000,000 has 9 zeros, so the power is 10⁹.",
+      "Answers: a) 10⁷, b) 10⁹"
+     ],
+     "skill": "exp-10",
+     "hint": "Count the zeros after the 1. Count in groups of three so that none are skipped.",
+     "min": 2
+    },
+    {
+     "id": "q16",
+     "q": "Find each value. Find the power of 10 first, then multiply.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "4000"
+       },
+       "label": "a",
+       "prompt": "4 × 10³",
+       "tests": {
+        "ok": [
+         "4000",
+         "4,000"
+        ],
+        "no": [
+         "120",
+         "64000"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "250000"
+       },
+       "label": "b",
+       "prompt": "25 × 10⁴",
+       "tests": {
+        "ok": [
+         "250000",
+         "250,000"
+        ],
+        "no": [
+         "1000",
+         "25000"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "6000000"
+       },
+       "label": "c",
+       "prompt": "6 × 10⁶",
+       "tests": {
+        "ok": [
+         "6000000",
+         "6,000,000"
+        ],
+        "no": [
+         "360",
+         "600000"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 10³ = 1,000",
+      "4 × 1,000 = 4,000",
+      "b) 10⁴ = 10,000",
+      "25 × 10,000 = 250,000",
+      "c) 10⁶ = 1,000,000",
+      "6 × 1,000,000 = 6,000,000",
+      "Answers: a) 4,000, b) 250,000, c) 6,000,000"
+     ],
+     "skill": "exp-10",
+     "hint": "The exponent comes before the multiplying. Only the 10 is raised to the power.",
+     "min": 3
+    },
+    {
+     "id": "q17",
+     "q": "Each number is written in expanded form with powers of 10. Find its value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "6029"
+       },
+       "label": "a",
+       "prompt": "6 × 10³ + 2 × 10¹ + 9",
+       "tests": {
+        "ok": [
+         "6029",
+         "6,029"
+        ],
+        "no": [
+         "629",
+         "6209"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "400700"
+       },
+       "label": "b",
+       "prompt": "4 × 10⁵ + 7 × 10²",
+       "tests": {
+        "ok": [
+         "400700",
+         "400,700"
+        ],
+        "no": [
+         "4700",
+         "470000"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 6 × 1,000 = 6,000",
+      "2 × 10 = 20",
+      "6,000 + 20 + 9 = 6,029",
+      "b) 4 × 100,000 = 400,000",
+      "7 × 100 = 700",
+      "400,000 + 700 = 400,700",
+      "Answers: a) 6,029, b) 400,700"
+     ],
+     "skill": "exp-10",
+     "hint": "Find each power of 10, multiply, then add the pieces. Watch for a place value that has no piece.",
+     "min": 3
+    }
+   ]
+  },
+  {
+   "name": "Part E: Comparing powers",
+   "desc": "Find each value before you compare. A bigger exponent does not always make a bigger number.",
+   "items": [
+    {
+     "id": "q18",
+     "q": "Find both values, then choose the greater power.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "125"
+       },
+       "label": "a",
+       "prompt": "Value of 5³",
+       "tests": {
+        "ok": [
+         "125"
+        ],
+        "no": [
+         "15",
+         "25"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "243"
+       },
+       "label": "b",
+       "prompt": "Value of 3⁵",
+       "tests": {
+        "ok": [
+         "243"
+        ],
+        "no": [
+         "15",
+         "81"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "5³",
+         "3⁵",
+         "They are equal"
+        ],
+        "correct": 1
+       },
+       "label": "c",
+       "prompt": "Which is greater?"
+      }
+     ],
+     "a": [
+      "a) 5 × 5 × 5 = 125",
+      "b) 3 × 3 × 3 × 3 × 3 = 243",
+      "c) 243 is greater than 125, so 3⁵ is greater.",
+      "Answers: a) 125, b) 243, c) 3⁵"
+     ],
+     "skill": "exp-compare",
+     "hint": "Write out all the factors for each power. Count them before you multiply.",
+     "min": 4
+    },
+    {
+     "id": "q19",
+     "q": "Find both values, then compare.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "256"
+       },
+       "label": "a",
+       "prompt": "Value of 4⁴",
+       "tests": {
+        "ok": [
+         "256"
+        ],
+        "no": [
+         "16",
+         "64"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "256"
+       },
+       "label": "b",
+       "prompt": "Value of 2⁸",
+       "tests": {
+        "ok": [
+         "256"
+        ],
+        "no": [
+         "16",
+         "128"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "4⁴ is greater",
+         "2⁸ is greater",
+         "They are equal"
+        ],
+        "correct": 2
+       },
+       "label": "c",
+       "prompt": "Which statement is true?"
+      }
+     ],
+     "a": [
+      "a) 4 × 4 × 4 × 4 = 256",
+      "b) 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 = 256",
+      "c) Both values are 256, so the two powers are equal.",
+      "Answers: a) 256, b) 256, c) They are equal"
+     ],
+     "skill": "exp-compare",
+     "hint": "Keep a running product on paper. For the second power, keep doubling and count each 2.",
+     "min": 4
+    },
+    {
+     "id": "q20",
+     "q": "Find the value of each power: 2⁵, 3³, 5² and 6¹. Then type the four values in order from least to greatest, with commas between them.",
+     "parts": [
+      {
+       "ans": {
+        "type": "list",
+        "values": [
+         "6",
+         "25",
+         "27",
+         "32"
+        ],
+        "ordered": true
+       },
+       "tests": {
+        "ok": [
+         "6, 25, 27, 32",
+         "6,25,27,32",
+         "6 25 27 32"
+        ],
+        "no": [
+         "32, 27, 25, 6",
+         "6, 9, 10, 10",
+         "25, 27, 32, 6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "2⁵ = 32",
+      "3³ = 27",
+      "5² = 25",
+      "6¹ = 6",
+      "From least to greatest the values are 6, 25, 27, 32.",
+      "Answer: 6, 25, 27, 32"
+     ],
+     "skill": "exp-compare",
+     "hint": "Find all four values first and write them down. Then sort the values, not the exponents.",
+     "min": 5
+    }
+   ]
+  },
+  {
+   "name": "Part F: Order of operations",
+   "desc": "Parentheses first. Then multiply and divide from left to right. Then add and subtract from left to right.",
+   "items": [
+    {
+     "id": "q21",
+     "q": "Find the value of each expression.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "17"
+       },
+       "label": "a",
+       "prompt": "20 − 12 ÷ 4",
+       "tests": {
+        "ok": [
+         "17"
+        ],
+        "no": [
+         "2"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "28"
+       },
+       "label": "b",
+       "prompt": "6 × 3 + 2 × 5",
+       "tests": {
+        "ok": [
+         "28"
+        ],
+        "no": [
+         "100",
+         "40"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "7"
+       },
+       "label": "c",
+       "prompt": "30 − 4 × 6 + 1",
+       "tests": {
+        "ok": [
+         "7"
+        ],
+        "no": [
+         "157",
+         "5"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 12 ÷ 4 = 3",
+      "20 − 3 = 17",
+      "b) 6 × 3 = 18",
+      "2 × 5 = 10",
+      "18 + 10 = 28",
+      "c) 4 × 6 = 24",
+      "30 − 24 = 6",
+      "6 + 1 = 7",
+      "Answers: a) 17, b) 28, c) 7"
+     ],
+     "skill": "ooo",
+     "hint": "Circle each multiplication and division. Do those before any adding or subtracting.",
+     "min": 3
+    },
+    {
+     "id": "q22",
+     "q": "Work from left to right. Find the value of each expression.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "16"
+       },
+       "label": "a",
+       "prompt": "18 − 6 + 4",
+       "tests": {
+        "ok": [
+         "16"
+        ],
+        "no": [
+         "8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "4"
+       },
+       "label": "b",
+       "prompt": "40 ÷ 5 ÷ 2",
+       "tests": {
+        "ok": [
+         "4"
+        ],
+        "no": [
+         "16"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "18"
+       },
+       "label": "c",
+       "prompt": "12 × 4 ÷ 8 × 3",
+       "tests": {
+        "ok": [
+         "18"
+        ],
+        "no": [
+         "2"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 18 − 6 = 12",
+      "12 + 4 = 16",
+      "b) 40 ÷ 5 = 8",
+      "8 ÷ 2 = 4",
+      "c) 12 × 4 = 48",
+      "48 ÷ 8 = 6",
+      "6 × 3 = 18",
+      "Answers: a) 16, b) 4, c) 18"
+     ],
+     "skill": "ooo",
+     "hint": "Multiplying and dividing have the same rank, so take them in the order they appear. The same goes for adding and subtracting.",
+     "min": 3
+    },
+    {
+     "id": "q23",
+     "q": "Find the value of each expression. Do the work inside the parentheses first.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "6"
+       },
+       "label": "a",
+       "prompt": "36 ÷ (4 + 2)",
+       "tests": {
+        "ok": [
+         "6"
+        ],
+        "no": [
+         "11"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "40"
+       },
+       "label": "b",
+       "prompt": "(15 − 7) × (2 + 3)",
+       "tests": {
+        "ok": [
+         "40"
+        ],
+        "no": [
+         "4"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "30"
+       },
+       "label": "c",
+       "prompt": "50 − (8 + 6 × 2)",
+       "tests": {
+        "ok": [
+         "30"
+        ],
+        "no": [
+         "22",
+         "54"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 4 + 2 = 6",
+      "36 ÷ 6 = 6",
+      "b) 15 − 7 = 8",
+      "2 + 3 = 5",
+      "8 × 5 = 40",
+      "c) 6 × 2 = 12",
+      "8 + 12 = 20",
+      "50 − 20 = 30",
+      "Answers: a) 6, b) 40, c) 30"
+     ],
+     "skill": "ooo",
+     "hint": "Inside parentheses the same order still applies: multiply before you add.",
+     "min": 3
+    },
+    {
+     "id": "q24",
+     "q": "Find the value of each expression. Rewrite the whole expression after each step.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "27"
+       },
+       "label": "a",
+       "prompt": "5 × (12 − 4) ÷ 2 + 7",
+       "tests": {
+        "ok": [
+         "27"
+        ],
+        "no": [
+         "65"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "24"
+       },
+       "label": "b",
+       "prompt": "48 ÷ (2 × 4) + 3 × 6",
+       "tests": {
+        "ok": [
+         "24"
+        ],
+        "no": [
+         "54",
+         "114"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "88"
+       },
+       "label": "c",
+       "prompt": "100 − 8 × (9 − 3) ÷ 4",
+       "tests": {
+        "ok": [
+         "88"
+        ],
+        "no": [
+         "138",
+         "52"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 12 − 4 = 8",
+      "5 × 8 = 40",
+      "40 ÷ 2 = 20",
+      "20 + 7 = 27",
+      "b) 2 × 4 = 8",
+      "48 ÷ 8 = 6",
+      "3 × 6 = 18",
+      "6 + 18 = 24",
+      "c) 9 − 3 = 6",
+      "8 × 6 = 48",
+      "48 ÷ 4 = 12",
+      "100 − 12 = 88",
+      "Answers: a) 27, b) 24, c) 88"
+     ],
+     "skill": "ooo",
+     "hint": "Number your steps: parentheses, then multiply and divide from the left, then add and subtract from the left.",
+     "min": 5
+    },
+    {
+     "id": "q25",
+     "q": "Sam and Lena each found the value of 8 + 12 ÷ 4 − 2. Sam got 3. Lena got 9.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "9"
+       },
+       "label": "a",
+       "prompt": "What is the correct value of 8 + 12 ÷ 4 − 2?",
+       "tests": {
+        "ok": [
+         "9"
+        ],
+        "no": [
+         "3",
+         "14"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "He added 8 + 12 before he divided",
+         "He subtracted 4 − 2 before he divided",
+         "He divided before he added",
+         "He made no mistake"
+        ],
+        "correct": 0
+       },
+       "label": "b",
+       "prompt": "What did Sam do?"
+      }
+     ],
+     "a": [
+      "a) 12 ÷ 4 = 3",
+      "8 + 3 = 11",
+      "11 − 2 = 9",
+      "b) Sam added first and got 20. Then 20 ÷ 4 is 5, and 5 − 2 is 3. The division had to come before the addition.",
+      "Answers: a) 9, b) He added 8 + 12 before he divided"
+     ],
+     "skill": "ooo",
+     "hint": "Find the division. It comes before the addition and the subtraction.",
+     "min": 4
+    }
+   ]
+  },
+  {
+   "name": "Part G: Order of operations with exponents",
+   "desc": "Find the value of each power right after the parentheses, before you multiply, divide, add or subtract.",
+   "items": [
+    {
+     "id": "q26",
+     "q": "Find the value of each expression.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "40"
+       },
+       "label": "a",
+       "prompt": "5 × 2³",
+       "tests": {
+        "ok": [
+         "40"
+        ],
+        "no": [
+         "1000",
+         "30"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1000"
+       },
+       "label": "b",
+       "prompt": "(5 × 2)³",
+       "tests": {
+        "ok": [
+         "1000",
+         "1,000"
+        ],
+        "no": [
+         "40",
+         "30"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "6"
+       },
+       "label": "c",
+       "prompt": "4² − 2 × 5",
+       "tests": {
+        "ok": [
+         "6"
+        ],
+        "no": [
+         "70",
+         "-2"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2³ = 8",
+      "5 × 8 = 40",
+      "b) 5 × 2 = 10",
+      "10³ = 1,000",
+      "c) 4² = 16",
+      "2 × 5 = 10",
+      "16 − 10 = 6",
+      "Answers: a) 40, b) 1,000, c) 6"
+     ],
+     "skill": "ooo-exp",
+     "hint": "An exponent belongs only to the number it sits on, unless parentheses group more.",
+     "min": 4
+    },
+    {
+     "id": "q27",
+     "q": "Find the value of each expression.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "28"
+       },
+       "label": "a",
+       "prompt": "100 − 6² × 2",
+       "tests": {
+        "ok": [
+         "28"
+        ],
+        "no": [
+         "128",
+         "76"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "30"
+       },
+       "label": "b",
+       "prompt": "(7 − 4)³ + 6 ÷ 2",
+       "tests": {
+        "ok": [
+         "30"
+        ],
+        "no": [
+         "16.5",
+         "12"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "38"
+       },
+       "label": "c",
+       "prompt": "2³ × 5 − 4² ÷ 8",
+       "tests": {
+        "ok": [
+         "38"
+        ],
+        "no": [
+         "3",
+         "29"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 6² = 36",
+      "36 × 2 = 72",
+      "100 − 72 = 28",
+      "b) 7 − 4 = 3",
+      "3³ = 27",
+      "6 ÷ 2 = 3",
+      "27 + 3 = 30",
+      "c) 2³ = 8",
+      "4² = 16",
+      "8 × 5 = 40",
+      "16 ÷ 8 = 2",
+      "40 − 2 = 38",
+      "Answers: a) 28, b) 30, c) 38"
+     ],
+     "skill": "ooo-exp",
+     "hint": "List the powers first and replace each one with its value. Then multiply and divide before you add or subtract.",
+     "min": 4
+    },
+    {
+     "id": "q28",
+     "q": "Some of these values are below zero. Find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-8"
+       },
+       "label": "a",
+       "prompt": "10 − 2 × 3²",
+       "tests": {
+        "ok": [
+         "-8",
+         "−8"
+        ],
+        "no": [
+         "8",
+         "72",
+         "-26"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-4"
+       },
+       "label": "b",
+       "prompt": "5 − (2 + 4)² ÷ 4",
+       "tests": {
+        "ok": [
+         "-4",
+         "−4"
+        ],
+        "no": [
+         "4",
+         "2",
+         "-7.75"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-6"
+       },
+       "label": "c",
+       "prompt": "2⁴ − 5² + 3",
+       "tests": {
+        "ok": [
+         "-6",
+         "−6"
+        ],
+        "no": [
+         "6",
+         "-12",
+         "1"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 3² = 9",
+      "2 × 9 = 18",
+      "10 − 18 = −8",
+      "b) 2 + 4 = 6",
+      "6² = 36",
+      "36 ÷ 4 = 9",
+      "5 − 9 = −4",
+      "c) 2⁴ = 16",
+      "5² = 25",
+      "16 − 25 = −9",
+      "−9 + 3 = −6",
+      "Answers: a) −8, b) −4, c) −6"
+     ],
+     "skill": "ooo-exp",
+     "hint": "Find the powers first. When you subtract a larger number from a smaller one, the result is below zero. Picture the number line.",
+     "min": 4
+    },
+    {
+     "id": "q29",
+     "q": "Find the value of each expression.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "2500"
+       },
+       "label": "a",
+       "prompt": "2 × 10³ + 5 × 10²",
+       "tests": {
+        "ok": [
+         "2500",
+         "2,500"
+        ],
+        "no": [
+         "10500",
+         "160"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "19"
+       },
+       "label": "b",
+       "prompt": "(4 + 6)² − 9²",
+       "tests": {
+        "ok": [
+         "19"
+        ],
+        "no": [
+         "1",
+         "2"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "13"
+       },
+       "label": "c",
+       "prompt": "9² ÷ 3³ + 10¹",
+       "tests": {
+        "ok": [
+         "13"
+        ],
+        "no": [
+         "12",
+         "3"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 10³ = 1,000",
+      "10² = 100",
+      "2 × 1,000 = 2,000",
+      "5 × 100 = 500",
+      "2,000 + 500 = 2,500",
+      "b) 4 + 6 = 10",
+      "10² = 100",
+      "9² = 81",
+      "100 − 81 = 19",
+      "c) 9² = 81",
+      "3³ = 27",
+      "81 ÷ 27 = 3",
+      "10¹ = 10",
+      "3 + 10 = 13",
+      "Answers: a) 2,500, b) 19, c) 13"
+     ],
+     "skill": "ooo-exp",
+     "hint": "Replace every power with its value before you do anything else.",
+     "min": 4
+    },
+    {
+     "id": "q30",
+     "q": "Find the value of each expression. Take one step per line.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "8"
+       },
+       "label": "a",
+       "prompt": "2 × (5² − 3 × 7)",
+       "tests": {
+        "ok": [
+         "8"
+        ],
+        "no": [
+         "308",
+         "-22"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "14"
+       },
+       "label": "b",
+       "prompt": "6 + 2 × (10 − 2³)²",
+       "tests": {
+        "ok": [
+         "14"
+        ],
+        "no": [
+         "32",
+         "38"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-1"
+       },
+       "label": "c",
+       "prompt": "4³ ÷ (2 × 2²) − 3²",
+       "tests": {
+        "ok": [
+         "-1",
+         "−1"
+        ],
+        "no": [
+         "1",
+         "-5"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 5² = 25",
+      "3 × 7 = 21",
+      "25 − 21 = 4",
+      "2 × 4 = 8",
+      "b) 2³ = 8",
+      "10 − 8 = 2",
+      "2² = 4",
+      "2 × 4 = 8",
+      "6 + 8 = 14",
+      "c) 4³ = 64",
+      "2² = 4",
+      "2 × 4 = 8",
+      "64 ÷ 8 = 8",
+      "3² = 9",
+      "8 − 9 = −1",
+      "Answers: a) 8, b) 14, c) −1"
+     ],
+     "skill": "ooo-exp",
+     "hint": "Start inside the parentheses. Inside them, a power still comes before the other operations.",
+     "min": 4
+    },
+    {
+     "id": "q31",
+     "q": "Turn the words into an expression on paper, then find its value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "81"
+       },
+       "label": "a",
+       "prompt": "Add 4 and 5, then square the result.",
+       "tests": {
+        "ok": [
+         "81"
+        ],
+        "no": [
+         "29",
+         "41"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "7"
+       },
+       "label": "b",
+       "prompt": "Square 5, then subtract the product of 3 and 6.",
+       "tests": {
+        "ok": [
+         "7"
+        ],
+        "no": [
+         "132",
+         "-8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "400"
+       },
+       "label": "c",
+       "prompt": "Subtract 2 squared from 2 cubed, then multiply the result by 10 squared.",
+       "tests": {
+        "ok": [
+         "400"
+        ],
+        "no": [
+         "-392",
+         "40"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 4 + 5 = 9",
+      "9² = 81",
+      "b) 5² = 25",
+      "3 × 6 = 18",
+      "25 − 18 = 7",
+      "c) 2³ = 8",
+      "2² = 4",
+      "8 − 4 = 4",
+      "10² = 100",
+      "4 × 100 = 400",
+      "Answers: a) 81, b) 7, c) 400"
+     ],
+     "skill": "ooo-exp",
+     "hint": "Put parentheses around the part that the words say to do first.",
+     "min": 3
+    }
+   ]
+  },
+  {
+   "name": "Part H: Real jobs",
+   "desc": "Each problem ends in a decision. Find the numbers first, then decide, then give the reason with the numbers in it.",
+   "items": [
+    {
+     "id": "q32",
+     "q": "A neighbor offers two ways to pay you for 5 days of yard work. Plan A pays $40 every day. Plan B pays $2 on day 1, and the pay doubles every day after that: day 2 pays $4, day 3 pays $8, and so on.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "200"
+       },
+       "label": "a",
+       "prompt": "Total pay for the 5 days under Plan A",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "200",
+         "$200",
+         "200.00"
+        ],
+        "no": [
+         "45",
+         "40"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "62"
+       },
+       "label": "b",
+       "prompt": "Total pay for the 5 days under Plan B",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "62",
+         "$62",
+         "62.00"
+        ],
+        "no": [
+         "32",
+         "64",
+         "30"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Plan A",
+         "Plan B"
+        ],
+        "correct": 0
+       },
+       "label": "c",
+       "prompt": "Which plan should you take for this 5 day job?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "Plan A pays $200 in total. Plan B pays only $62 in total over 5 days, so Plan A pays $138 more.",
+        "look": "Names both totals ($200 and $62) and says which is greater."
+       },
+       "label": "d",
+       "prompt": "Give the reason for your choice. Use both totals."
+      }
+     ],
+     "a": [
+      "a) $40 × 5 = $200",
+      "b) Day 5 pays 2⁵ = 32 dollars.",
+      "2 + 4 + 8 + 16 + 32 = 62, so Plan B pays $62 in total.",
+      "200 − 62 = 138, so Plan A pays $138 more.",
+      "c) and d) Decision: Plan A, because $200 is more than $62."
+     ],
+     "skill": "exp-apply",
+     "hint": "For Plan B, write the pay for each day in a row. Then add the five amounts.",
+     "real": true,
+     "min": 7
+    },
+    {
+     "id": "q33",
+     "q": "The same neighbor now needs help for 10 days and offers the same two plans. Plan A pays $40 every day. Plan B pays $2 on day 1, and the pay doubles every day after that: day 2 pays $4, day 3 pays $8, and so on.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "400"
+       },
+       "label": "a",
+       "prompt": "Total pay for the 10 days under Plan A",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "400",
+         "$400",
+         "400.00"
+        ],
+        "no": [
+         "50",
+         "200"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1024"
+       },
+       "label": "b",
+       "prompt": "Pay on day 10 alone under Plan B",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "1024",
+         "1,024",
+         "$1,024",
+         "1024.00"
+        ],
+        "no": [
+         "20",
+         "512",
+         "100"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "2046"
+       },
+       "label": "c",
+       "prompt": "Total pay for the 10 days under Plan B",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "2046",
+         "2,046",
+         "$2,046",
+         "2046.00"
+        ],
+        "no": [
+         "1024",
+         "2048",
+         "1022"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Plan A",
+         "Plan B"
+        ],
+        "correct": 1
+       },
+       "label": "d",
+       "prompt": "Which plan should you take for this 10 day job?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "Plan A pays $400 in total. Plan B pays $2,046 in total, so Plan B pays $1,646 more. Day 10 alone pays $1,024, which is already more than all of Plan A.",
+        "look": "Names both totals ($400 and $2,046), or compares $400 with the $1,024 paid on day 10 alone."
+       },
+       "label": "e",
+       "prompt": "Give the reason for your choice. Use the numbers."
+      }
+     ],
+     "a": [
+      "a) $40 × 10 = $400",
+      "b) 2¹⁰ = 1,024, so day 10 pays $1,024.",
+      "c) 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 + 1,024 = 2,046",
+      "2,046 − 400 = 1,646, so Plan B pays $1,646 more.",
+      "d) and e) Decision: Plan B, because $2,046 is more than $400. Doubling starts small and then passes the fixed amount."
+     ],
+     "skill": "exp-apply",
+     "hint": "List the pay for each day by doubling, and write the day number above each amount.",
+     "real": true,
+     "min": 8
+    },
+    {
+     "id": "q34",
+     "q": "A family wants to pave a patio. Paving costs $8 for each square foot, and the budget is $1,100. Design 1 is a square that is 12 feet on each side. Design 2 is a rectangle that is 9 feet by 15 feet.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "144"
+       },
+       "label": "a",
+       "prompt": "Area of Design 1",
+       "unit": "square feet",
+       "tests": {
+        "ok": [
+         "144",
+         "144 sq ft",
+         "144 square feet"
+        ],
+        "no": [
+         "24",
+         "48"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1152"
+       },
+       "label": "b",
+       "prompt": "Cost of Design 1",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "1152",
+         "1,152",
+         "$1,152",
+         "1152.00"
+        ],
+        "no": [
+         "192",
+         "1080"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1080"
+       },
+       "label": "c",
+       "prompt": "Cost of Design 2",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "1080",
+         "1,080",
+         "$1,080",
+         "1080.00"
+        ],
+        "no": [
+         "192",
+         "1152"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Design 1, the square",
+         "Design 2, the rectangle",
+         "Both designs",
+         "Neither design"
+        ],
+        "correct": 1
+       },
+       "label": "d",
+       "prompt": "Which design fits the budget?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "Design 1 costs $1,152, which is $52 over the $1,100 budget. Design 2 costs $1,080, which is $20 under the budget, so only Design 2 fits.",
+        "look": "Names both costs and compares each one with $1,100."
+       },
+       "label": "e",
+       "prompt": "Give the reason for your choice. Use both costs."
+      }
+     ],
+     "a": [
+      "a) 12² = 144, so the square is 144 square feet.",
+      "b) 144 × 8 = 1,152, so Design 1 costs $1,152.",
+      "c) 9 × 15 = 135, so the rectangle is 135 square feet.",
+      "135 × 8 = 1,080, so Design 2 costs $1,080.",
+      "1,152 − 1,100 = 52, so Design 1 is $52 over the budget.",
+      "1,100 − 1,080 = 20, so Design 2 is $20 under the budget.",
+      "d) and e) Decision: Design 2, because $1,080 is within the $1,100 budget and $1,152 is not."
+     ],
+     "skill": "exp-apply",
+     "hint": "Find the area of each design in square feet before you find any cost.",
+     "real": true,
+     "min": 7
+    },
+    {
+     "id": "q35",
+     "q": "A class trip costs $12 for each of 3 adults and $7 for each of 24 students. The group gets $20 off the total. Maya writes the cost as 3 × 12 + 24 × 7 − 20. Omar writes it as (3 × 12 + 24) × 7 − 20.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "184"
+       },
+       "label": "a",
+       "prompt": "Value of Maya's expression, 3 × 12 + 24 × 7 − 20",
+       "tests": {
+        "ok": [
+         "184"
+        ],
+        "no": [
+         "400",
+         "224"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "400"
+       },
+       "label": "b",
+       "prompt": "Value of Omar's expression, (3 × 12 + 24) × 7 − 20",
+       "tests": {
+        "ok": [
+         "400"
+        ],
+        "no": [
+         "184",
+         "420"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Maya's",
+         "Omar's",
+         "Both",
+         "Neither"
+        ],
+        "correct": 0
+       },
+       "label": "c",
+       "prompt": "Whose expression matches the real cost of the trip?"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Yes, with money left over",
+         "No, the class needs more money"
+        ],
+        "correct": 0
+       },
+       "label": "d",
+       "prompt": "The class has collected $190. Is that enough to pay for the trip?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "The adults cost 3 × 12 = $36 and the students cost 24 × 7 = $168. After the $20 discount the trip costs $184, which is the value of Maya's expression. Omar's parentheses multiply the adult cost by 7 as well, so his total is too high. $190 is $6 more than $184, so the class has enough.",
+        "look": "Says the trip costs $184, explains what Omar's parentheses change, and compares $184 with $190."
+       },
+       "label": "e",
+       "prompt": "Give the reason for your two choices. Use the numbers."
+      }
+     ],
+     "a": [
+      "a) 3 × 12 = 36",
+      "24 × 7 = 168",
+      "36 + 168 − 20 = 184",
+      "b) 3 × 12 + 24 = 60",
+      "60 × 7 = 420",
+      "420 − 20 = 400",
+      "c) Maya's expression matches, because each adult pays $12 once and each student pays $7 once.",
+      "d) 190 − 184 = 6, so $190 is enough and $6 is left over.",
+      "e) Decision: use Maya's expression. The trip costs $184, and the $190 covers it."
+     ],
+     "skill": "ooo",
+     "hint": "In Maya's expression, do both multiplications before you add or subtract. In Omar's, finish the parentheses first.",
+     "real": true,
+     "min": 8
+    }
+   ]
+  },
+  {
+   "name": "Part I: Stretch",
+   "desc": "Competition-style problems. Look for a pattern before you compute.",
+   "items": [
+    {
+     "id": "q36",
+     "q": "The ones digits of the powers of 3 follow a pattern. Here are the first five powers: 3¹ is 3, 3² is 9, 3³ is 27, 3⁴ is 81 and 3⁵ is 243.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "9"
+       },
+       "label": "a",
+       "prompt": "What is the ones digit of 3⁶?",
+       "tests": {
+        "ok": [
+         "9"
+        ],
+        "no": [
+         "3",
+         "7",
+         "729"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "4"
+       },
+       "label": "b",
+       "prompt": "The ones digits repeat in a cycle. How many digits are in the cycle before it starts over?",
+       "tests": {
+        "ok": [
+         "4"
+        ],
+        "no": [
+         "5",
+         "3"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1"
+       },
+       "label": "c",
+       "prompt": "What is the ones digit of 3²⁰?",
+       "tests": {
+        "ok": [
+         "1"
+        ],
+        "no": [
+         "3",
+         "9",
+         "7"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 243 × 3 = 729, so the ones digit of 3⁶ is 9.",
+      "b) The ones digits go 3, 9, 7, 1, and then 3, 9, 7, 1 again. The cycle has 4 digits.",
+      "c) 20 ÷ 4 = 5, so 3²⁰ comes at the end of the fifth full cycle. Every full cycle ends in the digit 1.",
+      "Answers: a) 9, b) 4, c) 1"
+     ],
+     "skill": "exp-eval",
+     "hint": "Write only the ones digit of each power in a row. Keep going until the digits start over.",
+     "stretch": true,
+     "min": 6
+    },
+    {
+     "id": "q37",
+     "q": "2 raised to which exponent has the same value as 4³?",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "6"
+       },
+       "tests": {
+        "ok": [
+         "6"
+        ],
+        "no": [
+         "3",
+         "12",
+         "5"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "4³ = 4 × 4 × 4 = 64",
+      "2 × 2 × 2 × 2 × 2 × 2 = 64, which uses six 2s.",
+      "2⁶ = 64, so the exponent is 6.",
+      "Answer: 6"
+     ],
+     "skill": "exp-eval",
+     "hint": "Find the value of the power of 4 first. Then build that value by multiplying 2s, and count them.",
+     "stretch": true,
+     "min": 5
+    },
+    {
+     "id": "q38",
+     "q": "Look at the expression 2 + 3 × 4² − 6.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "44"
+       },
+       "label": "a",
+       "prompt": "Find the value of 2 + 3 × 4² − 6 as it is written.",
+       "tests": {
+        "ok": [
+         "44"
+        ],
+        "no": [
+         "74",
+         "394",
+         "140"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "(2 + 3) × 4² − 6",
+         "2 + (3 × 4)² − 6",
+         "2 + 3 × (4² − 6)",
+         "(2 + 3 × 4)² − 6"
+        ],
+        "correct": 0
+       },
+       "label": "b",
+       "prompt": "Which placement of parentheses changes the value to 74?"
+      }
+     ],
+     "a": [
+      "a) 4² = 16",
+      "3 × 16 = 48",
+      "2 + 48 − 6 = 44",
+      "b) (2 + 3) × 4² − 6 = 5 × 16 − 6 = 80 − 6 = 74",
+      "2 + (3 × 4)² − 6 = 2 + 144 − 6 = 140",
+      "2 + 3 × (4² − 6) = 2 + 3 × 10 = 32",
+      "(2 + 3 × 4)² − 6 = 14² − 6 = 196 − 6 = 190",
+      "Answers: a) 44, b) (2 + 3) × 4² − 6"
+     ],
+     "skill": "ooo-exp",
+     "hint": "Test each choice with the order of operations and write its value next to it.",
+     "stretch": true,
+     "min": 6
+    },
+    {
+     "id": "q39",
+     "q": "Add the odd numbers in order, starting from 1, and look at the sums: 1 + 3 = 4, 1 + 3 + 5 = 9 and 1 + 3 + 5 + 7 = 16.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "36"
+       },
+       "label": "a",
+       "prompt": "Find 1 + 3 + 5 + 7 + 9 + 11.",
+       "tests": {
+        "ok": [
+         "36"
+        ],
+        "no": [
+         "35",
+         "25"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "power",
+        "base": "6",
+        "exp": "2"
+       },
+       "label": "b",
+       "prompt": "Write your answer to part a as a power with exponent 2. Type it with the ^ key.",
+       "tests": {
+        "ok": [
+         "6^2"
+        ],
+        "no": [
+         "2^6",
+         "3^6"
+        ],
+        "nudge": [
+         "36"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "100"
+       },
+       "label": "c",
+       "prompt": "Use the pattern to find the sum of the first 10 odd numbers, 1 + 3 + 5 and so on up to 19.",
+       "tests": {
+        "ok": [
+         "100"
+        ],
+        "no": [
+         "20",
+         "190",
+         "81"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 1 + 3 + 5 + 7 + 9 + 11 = 36",
+      "b) 36 = 6 × 6 = 6², so adding the first 6 odd numbers gives 6².",
+      "c) 10² = 100, so adding the first 10 odd numbers gives 100.",
+      "1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19 = 100",
+      "Answers: a) 36, b) 6², c) 100"
+     ],
+     "skill": "exp-eval",
+     "hint": "Compare each sum with how many odd numbers were added to make it.",
+     "stretch": true,
+     "min": 6
+    },
+    {
+     "id": "q40",
+     "q": "One cell splits into 2 cells every hour. After 1 hour there are 2 cells, after 2 hours there are 4 cells, and after 3 hours there are 8 cells.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "64"
+       },
+       "label": "a",
+       "prompt": "How many cells are there after 6 hours?",
+       "unit": "cells",
+       "tests": {
+        "ok": [
+         "64"
+        ],
+        "no": [
+         "12",
+         "36"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "10"
+       },
+       "label": "b",
+       "prompt": "After how many hours are there more than 1,000 cells for the first time?",
+       "unit": "hours",
+       "tests": {
+        "ok": [
+         "10",
+         "10 hours"
+        ],
+        "no": [
+         "9",
+         "500",
+         "11"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1048576"
+       },
+       "label": "c",
+       "prompt": "After 20 hours there are 2²⁰ cells. Twenty 2s multiplied together is the same as ten 2s times ten 2s, which is 2¹⁰ × 2¹⁰. Find the value of 2²⁰.",
+       "unit": "cells",
+       "tests": {
+        "ok": [
+         "1048576",
+         "1,048,576"
+        ],
+        "no": [
+         "2048",
+         "1024000",
+         "40"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2⁶ = 64, so there are 64 cells after 6 hours.",
+      "b) 2⁹ = 512, which is less than 1,000.",
+      "2¹⁰ = 1,024, which is more than 1,000, so the first time is after 10 hours.",
+      "c) 1,024 × 1,000 = 1,024,000",
+      "1,024 × 24 = 24,576",
+      "1,024,000 + 24,576 = 1,048,576",
+      "Answers: a) 64, b) 10 hours, c) 1,048,576"
+     ],
+     "skill": "exp-apply",
+     "hint": "Keep doubling and number each step with its hour. Stop the first time you pass 1,000.",
+     "stretch": true,
+     "min": 8
+    }
+   ]
+  }
+ ],
+ "n": 36,
+ "note": "A power is a short way to write repeated multiplication: 3⁴ means 3 × 3 × 3 × 3. When an expression mixes operations, everyone follows one order: parentheses, exponents, multiply and divide from left to right, then add and subtract from left to right.",
+ "scene": {
+  "title": "Where you will see this",
+  "text": [
+   "Powers show up wherever something keeps doubling or keeps growing by the same factor. If you send a photo to 2 friends, and each person who gets it sends it to 2 more, the third round of sending reaches 2 × 2 × 2 new people, and each round doubles again. Phone and tablet storage usually comes in sizes that are powers of 2 (32, 64, 128, 256 gigabytes). Money and measurement use powers of 10: there are 10² cents in a dollar, 10³ meters in a kilometer, and 10⁶ is one million.",
+   "Squares and cubes come from space. A square floor 12 feet on each side has 12² square feet of area, and a cube shaped box 3 feet on each side holds 3³ cubic feet. The order of operations is the agreement that lets a spreadsheet, a scientific calculator and a scientist all read 3 + 4 × 5 the same way. Without that agreement, two people could get two different totals from the same line. A simple calculator that works each key as you press it may skip the agreement, so the order is worth knowing yourself."
+  ],
+  "ask": "Before you start: find the storage size of a phone, tablet or computer at home, in gigabytes (look in Settings or on the box). Check whether the number is in this list of powers of 2: 16, 32, 64, 128, 256, 512."
+ },
+ "scene_key": "Not graded. Most devices show 32, 64, 128, 256 or 512 GB, which are 2⁵, 2⁶, 2⁷, 2⁸ and 2⁹. If his device shows a different number, ask him which power of 2 is closest. The point is that he sees powers of 2 on a real object before the first question.",
+ "teach": [
+  {
+   "h": "Reading a power",
+   "text": [
+    "In 3⁴, the 3 is the base and the 4 is the exponent. The exponent tells how many times the base is used as a factor: 3⁴ = 3 × 3 × 3 × 3.",
+    "The exponent does not mean multiply by it. 3⁴ is 81, and 3 × 4 is only 12.",
+    "Exponent 2 is called squared (5² is 5 squared) and exponent 3 is called cubed (2³ is 2 cubed). Exponent 1 uses the base one time: 7¹ = 7. For powers of 10, the exponent tells how many zeros follow the 1: 10³ = 1,000."
+   ],
+   "ex": [
+    {
+     "q": "Find the value of 6³.",
+     "steps": [
+      "Write the factors: 6 × 6 × 6.",
+      "Multiply one step at a time: 6 × 6 = 36, then 36 × 6 = 216.",
+      "6³ = 216"
+     ]
+    }
+   ]
+  },
+  {
+   "h": "The order of operations",
+   "text": [
+    "When an expression has more than one operation, work in this order.",
+    "1. Parentheses: do what is inside them first.",
+    "2. Exponents: find the value of each power.",
+    "3. Multiply and divide, from left to right.",
+    "4. Add and subtract, from left to right.",
+    "Rewrite the whole expression after every step. One step per line makes a slip easy to find."
+   ],
+   "ex": [
+    {
+     "q": "Find the value of 5 + 2 × (7 − 4)².",
+     "steps": [
+      "Parentheses first: 7 − 4 = 3. The expression is now 5 + 2 × 3².",
+      "Exponent next: 3² = 9. The expression is now 5 + 2 × 9.",
+      "Multiply: 2 × 9 = 18.",
+      "Add: 5 + 18 = 23."
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Two traps",
+   "text": [
+    "Trap 1. Multiplying and dividing are partners, and so are adding and subtracting. Take each pair from left to right, in the order they appear. In 30 ÷ 5 × 2 the division comes first because it is on the left: 30 ÷ 5 = 6, then 6 × 2 = 12.",
+    "Trap 2. An exponent belongs only to the number it sits on. In 3 × 8² only the 8 is squared: 3 × 64 = 192. To square the whole product you need parentheses: (3 × 8)² = 24² = 576."
+   ],
+   "ex": [
+    {
+     "q": "Find the value of 20 − 8 + 5.",
+     "steps": [
+      "Subtraction is first from the left: 20 − 8 = 12.",
+      "Then add: 12 + 5 = 17.",
+      "Adding first would take away 13 and leave 7. That breaks the left to right rule."
+     ]
+    }
+   ]
+  }
+ ],
+ "min_questions": 35
+}

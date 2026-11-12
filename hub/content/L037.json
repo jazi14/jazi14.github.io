@@ -1,0 +1,2399 @@
+{
+ "schema": 1,
+ "id": "L037",
+ "kind": "lesson",
+ "subject": "math",
+ "strand": "Core",
+ "title": "Multiplying Fractions",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a fraction like 3/4, a mixed number like 2 1/2, and a power like 3^4.",
+ "skills": {
+  "int-addsub": "Add and subtract integers",
+  "ooo-exp": "Order of operations with exponents",
+  "frac-of-frac": "A fraction of a fraction",
+  "frac-mult": "Multiply fractions",
+  "frac-mult-simplify": "Simplify and cancel in fraction products",
+  "frac-mult-whole": "Fraction times a whole number",
+  "frac-mult-mixed": "Multiply mixed numbers",
+  "frac-mult-compare": "Compare a product with its factors",
+  "frac-mult-apply": "Fraction multiplication in real problems"
+ },
+ "sections": [
+  {
+   "name": "Part A: Review",
+   "desc": "Two problems from older lessons. Check every sign before you type.",
+   "items": [
+    {
+     "id": "q1",
+     "q": "Find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "5"
+       },
+       "label": "a",
+       "prompt": "−7 + 12",
+       "tests": {
+        "ok": [
+         "5",
+         "+5"
+        ],
+        "no": [
+         "-5",
+         "19",
+         "-19"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-7"
+       },
+       "label": "b",
+       "prompt": "4 − 11",
+       "tests": {
+        "ok": [
+         "-7",
+         "−7"
+        ],
+        "no": [
+         "7",
+         "15",
+         "-15"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-3"
+       },
+       "label": "c",
+       "prompt": "At 6 a.m. the temperature was −9°F. By noon it had risen 14 degrees. By evening it had dropped 8 degrees from the noon reading. What was the evening temperature?",
+       "unit": "°F",
+       "tests": {
+        "ok": [
+         "-3",
+         "−3",
+         "-3°F"
+        ],
+        "no": [
+         "3",
+         "-31",
+         "15",
+         "13"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) −7 + 12 = 5, because 12 steps to the right of −7 lands on 5",
+      "b) 4 − 11 = −7, because 11 steps to the left of 4 lands on −7",
+      "c) −9 + 14 = 5 and 5 − 8 = −3",
+      "Answers: 5, −7 and −3°F"
+     ],
+     "skill": "int-addsub",
+     "hint": "Picture the number line. Adding moves right and subtracting moves left.",
+     "tag": "Review of Lesson 33",
+     "min": 4
+    },
+    {
+     "id": "q2",
+     "q": "Find each value. Follow the order of operations.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "25"
+       },
+       "label": "a",
+       "prompt": "5 + 3 × 2³ − 4",
+       "tests": {
+        "ok": [
+         "25"
+        ],
+        "no": [
+         "60",
+         "19",
+         "217"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "28"
+       },
+       "label": "b",
+       "prompt": "(5 + 3) × 2² − 4",
+       "tests": {
+        "ok": [
+         "28"
+        ],
+        "no": [
+         "0",
+         "252",
+         "13"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2³ = 8",
+      "3 × 8 = 24",
+      "5 + 24 − 4 = 25",
+      "b) 5 + 3 = 8 and 2² = 4",
+      "8 × 4 = 32",
+      "32 − 4 = 28",
+      "Answers: 25 and 28"
+     ],
+     "skill": "ooo-exp",
+     "hint": "Parentheses come first, then powers, then multiplying, then adding and subtracting from left to right.",
+     "tag": "Review of Lesson 36",
+     "min": 4
+    }
+   ]
+  },
+  {
+   "name": "Part B: A fraction of a fraction",
+   "desc": "The word of means multiply. Multiply the numerators, then multiply the denominators.",
+   "items": [
+    {
+     "id": "q3",
+     "q": "Find 1/2 of 1/3. Write your answer as a fraction in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/6",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "1/6"
+        ],
+        "no": [
+         "2/5",
+         "5/6",
+         "1/5"
+        ],
+        "nudge": [
+         "2/12"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "1/2 of 1/3 means 1/2 × 1/3.",
+      "1 × 1 = 1 for the numerator and 2 × 3 = 6 for the denominator",
+      "1/2 × 1/3 = 1/6",
+      "Answer: 1/6"
+     ],
+     "skill": "frac-of-frac",
+     "hint": "The word of tells you which operation to use.",
+     "min": 2
+    },
+    {
+     "id": "q4",
+     "q": "Multiply. Write each answer as a fraction in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/20",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "1/4 × 1/5",
+       "tests": {
+        "ok": [
+         "1/20"
+        ],
+        "no": [
+         "2/9",
+         "1/9",
+         "9/20"
+        ],
+        "nudge": [
+         "2/40"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "2/15",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "2/3 × 1/5",
+       "tests": {
+        "ok": [
+         "2/15"
+        ],
+        "no": [
+         "3/8",
+         "13/15",
+         "3/15"
+        ],
+        "nudge": [
+         "4/30"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "9/20",
+        "form": "fraction"
+       },
+       "label": "c",
+       "prompt": "3/4 × 3/5",
+       "tests": {
+        "ok": [
+         "9/20"
+        ],
+        "no": [
+         "6/9",
+         "27/20",
+         "6/20"
+        ],
+        "nudge": [
+         "18/40"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 1/4 × 1/5 = 1/20",
+      "b) 2/3 × 1/5 = 2/15",
+      "c) 3/4 × 3/5 = 9/20",
+      "Answers: 1/20, 2/15 and 9/20"
+     ],
+     "skill": "frac-mult",
+     "hint": "Multiply numerator by numerator and denominator by denominator.",
+     "min": 4
+    },
+    {
+     "id": "q5",
+     "q": "Find 2/3 of 4/5. Write your answer as a fraction in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "8/15",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "8/15"
+        ],
+        "no": [
+         "6/8",
+         "3/4",
+         "22/15",
+         "6/15"
+        ],
+        "nudge": [
+         "16/30"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "2/3 of 4/5 means 2/3 × 4/5.",
+      "2 × 4 = 8 and 3 × 5 = 15",
+      "2/3 × 4/5 = 8/15",
+      "Answer: 8/15"
+     ],
+     "skill": "frac-of-frac",
+     "hint": "Rewrite the word of as a multiplication sign first.",
+     "min": 2
+    },
+    {
+     "id": "q6",
+     "q": "Multiply. Write each answer as a fraction in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/4",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "1/2 × 1/2",
+       "tests": {
+        "ok": [
+         "1/4"
+        ],
+        "no": [
+         "2/4",
+         "1/2",
+         "1"
+        ],
+        "nudge": [
+         "2/8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "8/21",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "4/7 × 2/3",
+       "tests": {
+        "ok": [
+         "8/21"
+        ],
+        "no": [
+         "6/10",
+         "26/21",
+         "6/21"
+        ],
+        "nudge": [
+         "16/42"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "21/40",
+        "form": "fraction"
+       },
+       "label": "c",
+       "prompt": "7/8 × 3/5",
+       "tests": {
+        "ok": [
+         "21/40"
+        ],
+        "no": [
+         "10/13",
+         "59/40",
+         "10/40"
+        ],
+        "nudge": [
+         "42/80"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 1/2 × 1/2 = 1/4",
+      "b) 4/7 × 2/3 = 8/21",
+      "c) 7/8 × 3/5 = 21/40",
+      "Answers: 1/4, 8/21 and 21/40"
+     ],
+     "skill": "frac-mult",
+     "hint": "Multiply across. Each answer should be smaller than both of its factors.",
+     "min": 4
+    },
+    {
+     "id": "q7",
+     "q": "A pan of brownies is 3/4 full. Maya eats 1/2 of the brownies that are in the pan.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "1/2 + 3/4",
+         "1/2 × 3/4",
+         "3/4 − 1/2"
+        ],
+        "correct": 1
+       },
+       "label": "a",
+       "prompt": "Which expression gives the fraction of the whole pan that Maya eats?"
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3/8",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "What fraction of the whole pan does Maya eat? Write your answer in simplest form.",
+       "tests": {
+        "ok": [
+         "3/8"
+        ],
+        "no": [
+         "1/4",
+         "5/4",
+         "4/6",
+         "1/2"
+        ],
+        "nudge": [
+         "6/16"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) She eats 1/2 of 3/4 of a pan, so the expression is 1/2 × 3/4.",
+      "b) 1/2 × 3/4 = 3/8",
+      "Answers: 1/2 × 3/4, and she eats 3/8 of the pan"
+     ],
+     "skill": "frac-of-frac",
+     "hint": "The pan is not full. Ask yourself what Maya takes a half of.",
+     "min": 4
+    }
+   ]
+  },
+  {
+   "name": "Part C: Simplify the product",
+   "desc": "After you multiply, divide the numerator and the denominator by their largest common factor.",
+   "items": [
+    {
+     "id": "q8",
+     "q": "Multiply 2/3 × 3/4. Write your answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/2",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "1/2"
+        ],
+        "no": [
+         "5/7",
+         "17/12",
+         "5/12"
+        ],
+        "nudge": [
+         "6/12",
+         "3/6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "2/3 × 3/4 = 6/12",
+      "6 ÷ 6 = 1 and 12 ÷ 6 = 2",
+      "6/12 = 1/2",
+      "Answer: 1/2"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "Multiply first. Then find a number that divides both the numerator and the denominator.",
+     "min": 3
+    },
+    {
+     "id": "q9",
+     "q": "Multiply. Write each answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "3/10",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "3/4 × 2/5",
+       "tests": {
+        "ok": [
+         "3/10"
+        ],
+        "no": [
+         "5/9",
+         "23/20",
+         "5/20"
+        ],
+        "nudge": [
+         "6/20"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/3",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "4/9 × 3/4",
+       "tests": {
+        "ok": [
+         "1/3"
+        ],
+        "no": [
+         "7/13",
+         "43/36",
+         "7/36"
+        ],
+        "nudge": [
+         "12/36",
+         "4/12"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/4",
+        "form": "fraction"
+       },
+       "label": "c",
+       "prompt": "5/6 × 3/10",
+       "tests": {
+        "ok": [
+         "1/4"
+        ],
+        "no": [
+         "8/16",
+         "1/2",
+         "17/15"
+        ],
+        "nudge": [
+         "15/60",
+         "3/12"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 3/4 × 2/5 = 6/20 = 3/10",
+      "b) 4/9 × 3/4 = 12/36 = 1/3",
+      "c) 5/6 × 3/10 = 15/60 = 1/4",
+      "Answers: 3/10, 1/3 and 1/4"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "Every one of these products can be reduced. Keep dividing until only 1 divides both parts.",
+     "min": 5
+    },
+    {
+     "id": "q10",
+     "q": "Find 3/5 of 10/11. Write your answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "6/11",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "6/11"
+        ],
+        "no": [
+         "13/16",
+         "83/55",
+         "13/55"
+        ],
+        "nudge": [
+         "30/55"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "3/5 of 10/11 means 3/5 × 10/11.",
+      "3/5 × 10/11 = 30/55",
+      "30 ÷ 5 = 6 and 55 ÷ 5 = 11",
+      "30/55 = 6/11",
+      "Answer: 6/11"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "After you multiply, check whether the numerator and the denominator share a factor.",
+     "min": 3
+    },
+    {
+     "id": "q11",
+     "q": "Multiply 5/8 × 4/15. Write your answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/6",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "1/6"
+        ],
+        "no": [
+         "9/23",
+         "107/120",
+         "9/120"
+        ],
+        "nudge": [
+         "20/120",
+         "2/12",
+         "4/24"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "5/8 × 4/15 = 20/120",
+      "20 ÷ 20 = 1 and 120 ÷ 20 = 6",
+      "20/120 = 1/6",
+      "Answer: 1/6"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "The product has large numbers. Divide the numerator and the denominator by any common factor, then check whether you can divide again.",
+     "min": 3
+    }
+   ]
+  },
+  {
+   "name": "Part D: Cancel before you multiply",
+   "desc": "If a numerator and a denominator share a factor, divide both by it before you multiply.",
+   "items": [
+    {
+     "id": "q12",
+     "q": "Cancel common factors first, then multiply: 4/9 × 3/16. Write your answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/12",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "1/12"
+        ],
+        "no": [
+         "7/25",
+         "91/144",
+         "7/144"
+        ],
+        "nudge": [
+         "12/144",
+         "3/36"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "4 ÷ 4 = 1 and 16 ÷ 4 = 4",
+      "3 ÷ 3 = 1 and 9 ÷ 3 = 3",
+      "The problem becomes 1/3 × 1/4.",
+      "4/9 × 3/16 = 1/3 × 1/4 = 1/12",
+      "Answer: 1/12"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "Look at one numerator and one denominator at a time. Which pairs share a factor?",
+     "min": 3
+    },
+    {
+     "id": "q13",
+     "q": "Cancel first, then multiply. Write each answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/10",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "5/12 × 6/25",
+       "tests": {
+        "ok": [
+         "1/10"
+        ],
+        "no": [
+         "11/37",
+         "30/37",
+         "1/5"
+        ],
+        "nudge": [
+         "30/300",
+         "6/60",
+         "3/30"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3/4",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "7/10 × 15/14",
+       "tests": {
+        "ok": [
+         "3/4"
+        ],
+        "no": [
+         "22/24",
+         "4/3",
+         "105/24"
+        ],
+        "nudge": [
+         "105/140",
+         "15/20",
+         "6/8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "2/9",
+        "form": "fraction"
+       },
+       "label": "c",
+       "prompt": "8/21 × 7/12",
+       "tests": {
+        "ok": [
+         "2/9"
+        ],
+        "no": [
+         "15/33",
+         "56/33",
+         "9/2"
+        ],
+        "nudge": [
+         "56/252",
+         "8/36",
+         "4/18"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 5/12 × 6/25 = 1/2 × 1/5 = 1/10",
+      "b) 7/10 × 15/14 = 1/2 × 3/2 = 3/4",
+      "c) 8/21 × 7/12 = 2/3 × 1/3 = 2/9",
+      "Answers: 1/10, 3/4 and 2/9"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "Cancel one pair at a time. A numerator can cancel with either denominator.",
+     "min": 6
+    },
+    {
+     "id": "q14",
+     "q": "Cancel first, then multiply: 14/15 × 25/28. Write your answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "5/6",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "5/6"
+        ],
+        "no": [
+         "39/43",
+         "6/5",
+         "350/43"
+        ],
+        "nudge": [
+         "350/420",
+         "35/42",
+         "10/12"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "14 ÷ 14 = 1 and 28 ÷ 14 = 2",
+      "25 ÷ 5 = 5 and 15 ÷ 5 = 3",
+      "The problem becomes 1/3 × 5/2.",
+      "14/15 × 25/28 = 1/3 × 5/2 = 5/6",
+      "Answer: 5/6"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "Both numerators can cancel with a denominator. Find the two pairs.",
+     "min": 3
+    },
+    {
+     "id": "q15",
+     "q": "Sam wants to multiply 6/35 × 14/27 by canceling first.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "3"
+       },
+       "label": "a",
+       "prompt": "What is the largest number that divides evenly into both 6 and 27?",
+       "tests": {
+        "ok": [
+         "3"
+        ],
+        "no": [
+         "9",
+         "2",
+         "1"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "7"
+       },
+       "label": "b",
+       "prompt": "What is the largest number that divides evenly into both 14 and 35?",
+       "tests": {
+        "ok": [
+         "7"
+        ],
+        "no": [
+         "5",
+         "2",
+         "1"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "4/45",
+        "form": "fraction"
+       },
+       "label": "c",
+       "prompt": "Write the product in simplest form.",
+       "tests": {
+        "ok": [
+         "4/45"
+        ],
+        "no": [
+         "20/62",
+         "10/31",
+         "4/9"
+        ],
+        "nudge": [
+         "84/945",
+         "12/135",
+         "28/315"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 6 ÷ 3 = 2 and 27 ÷ 3 = 9, so the number is 3",
+      "b) 14 ÷ 7 = 2 and 35 ÷ 7 = 5, so the number is 7",
+      "c) The problem becomes 2/5 × 2/9.",
+      "6/35 × 14/27 = 2/5 × 2/9 = 4/45",
+      "Answers: 3, 7 and 4/45"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "After you divide by each of those numbers, four small numbers are left. Multiply those.",
+     "min": 5
+    },
+    {
+     "id": "q16",
+     "q": "Find 9/20 of 5/18. Cancel first. Write your answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/8",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "1/8"
+        ],
+        "no": [
+         "14/38",
+         "7/19",
+         "45/38"
+        ],
+        "nudge": [
+         "45/360",
+         "5/40"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "9/20 of 5/18 means 9/20 × 5/18.",
+      "9 ÷ 9 = 1 and 18 ÷ 9 = 2",
+      "5 ÷ 5 = 1 and 20 ÷ 5 = 4",
+      "9/20 × 5/18 = 1/4 × 1/2 = 1/8",
+      "Answer: 1/8"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "Rewrite the word of as a multiplication sign. Then find the two pairs that cancel.",
+     "min": 3
+    }
+   ]
+  },
+  {
+   "name": "Part E: Whole numbers and three factors",
+   "desc": "Write a whole number as a fraction over 1. With three factors, cancel wherever you can before you multiply.",
+   "items": [
+    {
+     "id": "q17",
+     "q": "Multiply. Write each answer as a whole number or a mixed number in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "9",
+        "form": "mixed"
+       },
+       "label": "a",
+       "prompt": "3/4 × 12",
+       "tests": {
+        "ok": [
+         "9"
+        ],
+        "no": [
+         "36",
+         "16",
+         "12 3/4"
+        ],
+        "nudge": [
+         "36/4"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "8",
+        "form": "mixed"
+       },
+       "label": "b",
+       "prompt": "2/5 × 20",
+       "tests": {
+        "ok": [
+         "8"
+        ],
+        "no": [
+         "40",
+         "50",
+         "20 2/5"
+        ],
+        "nudge": [
+         "40/5"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "7 1/2",
+        "form": "mixed"
+       },
+       "label": "c",
+       "prompt": "5/6 × 9",
+       "tests": {
+        "ok": [
+         "7 1/2"
+        ],
+        "no": [
+         "45",
+         "10 4/5",
+         "9 5/6"
+        ],
+        "nudge": [
+         "15/2",
+         "45/6",
+         "7 3/6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 3/4 × 12 = 36/4 = 9",
+      "b) 2/5 × 20 = 40/5 = 8",
+      "c) 5/6 × 9 = 45/6 = 15/2 = 7 1/2",
+      "Answers: 9, 8 and 7 1/2"
+     ],
+     "skill": "frac-mult-whole",
+     "hint": "Write the whole number over 1. If the denominator divides the whole number evenly, cancel first.",
+     "min": 5
+    },
+    {
+     "id": "q18",
+     "q": "Find 3/8 of 6. Write your answer as a mixed number in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "2 1/4",
+        "form": "mixed"
+       },
+       "tests": {
+        "ok": [
+         "2 1/4"
+        ],
+        "no": [
+         "16",
+         "6 3/8",
+         "18"
+        ],
+        "nudge": [
+         "9/4",
+         "18/8",
+         "2 2/8"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "3/8 of 6 means 3/8 × 6.",
+      "3/8 × 6 = 18/8",
+      "18/8 = 9/4 = 2 1/4",
+      "Answer: 2 1/4"
+     ],
+     "skill": "frac-mult-whole",
+     "hint": "Write 6 as 6/1. Multiply, then change the improper fraction to a mixed number.",
+     "min": 3
+    },
+    {
+     "id": "q19",
+     "q": "Multiply 1/2 × 2/3 × 3/4. Write your answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/4",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "1/4"
+        ],
+        "no": [
+         "6/9",
+         "2/3",
+         "23/12"
+        ],
+        "nudge": [
+         "6/24",
+         "3/12"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "The 2 in a numerator cancels the 2 in a denominator. The 3 in a numerator cancels the 3 in a denominator.",
+      "1/2 × 2/3 × 3/4 = 6/24 = 1/4",
+      "Answer: 1/4"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "A numerator can cancel with any denominator in the problem, not only the one beside it.",
+     "min": 3
+    },
+    {
+     "id": "q20",
+     "q": "Multiply. Write each answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "2/7",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "2/3 × 3/5 × 5/7",
+       "tests": {
+        "ok": [
+         "2/7"
+        ],
+        "no": [
+         "10/15",
+         "2/3",
+         "30/15"
+        ],
+        "nudge": [
+         "30/105",
+         "6/21"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "3/4 × 2/9 × 6",
+       "tests": {
+        "ok": [
+         "1"
+        ],
+        "no": [
+         "36",
+         "11/13",
+         "6"
+        ],
+        "nudge": [
+         "36/36",
+         "6/6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2/3 × 3/5 × 5/7 = 30/105 = 2/7",
+      "b) 3/4 × 2/9 × 6 = 36/36 = 1",
+      "Answers: 2/7 and 1"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "Write 6 as 6/1 so that every factor is a fraction. Then cancel before you multiply.",
+     "min": 5
+    }
+   ]
+  },
+  {
+   "name": "Part F: Mixed numbers",
+   "desc": "Change every mixed number to an improper fraction before you multiply.",
+   "items": [
+    {
+     "id": "q21",
+     "q": "Write each mixed number as an improper fraction.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "3/2",
+        "form": "fraction",
+        "simplest": false,
+        "improper": true
+       },
+       "label": "a",
+       "prompt": "1 1/2",
+       "tests": {
+        "ok": [
+         "3/2",
+         "6/4"
+        ],
+        "no": [
+         "2/2",
+         "1/2",
+         "11/2"
+        ],
+        "nudge": [
+         "1 1/2"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "8/3",
+        "form": "fraction",
+        "simplest": false,
+        "improper": true
+       },
+       "label": "b",
+       "prompt": "2 2/3",
+       "tests": {
+        "ok": [
+         "8/3",
+         "16/6"
+        ],
+        "no": [
+         "4/3",
+         "6/3",
+         "22/3"
+        ],
+        "nudge": [
+         "2 2/3"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "15/4",
+        "form": "fraction",
+        "simplest": false,
+        "improper": true
+       },
+       "label": "c",
+       "prompt": "3 3/4",
+       "tests": {
+        "ok": [
+         "15/4",
+         "30/8"
+        ],
+        "no": [
+         "9/4",
+         "13/4",
+         "33/4"
+        ],
+        "nudge": [
+         "3 3/4"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 1 × 2 + 1 = 3, so 1 1/2 = 3/2",
+      "b) 2 × 3 + 2 = 8, so 2 2/3 = 8/3",
+      "c) 3 × 4 + 3 = 15, so 3 3/4 = 15/4",
+      "Answers: 3/2, 8/3 and 15/4"
+     ],
+     "skill": "frac-mult-mixed",
+     "hint": "How many halves, thirds or fourths are in the whole-number part? Add the extra pieces to those.",
+     "min": 3
+    },
+    {
+     "id": "q22",
+     "q": "Multiply 1 1/2 × 3/5. Write your answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "9/10",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "9/10"
+        ],
+        "no": [
+         "1 3/10",
+         "3/10",
+         "21/10"
+        ],
+        "nudge": [
+         "18/20"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "1 1/2 = 3/2",
+      "3/2 × 3/5 = 9/10",
+      "Answer: 9/10"
+     ],
+     "skill": "frac-mult-mixed",
+     "hint": "Change 1 1/2 to an improper fraction first.",
+     "min": 3
+    },
+    {
+     "id": "q23",
+     "q": "Multiply. Write each answer in simplest form. Use a mixed number when the answer is greater than 1.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "5/8",
+        "form": "mixed"
+       },
+       "label": "a",
+       "prompt": "2 1/2 × 1/4",
+       "tests": {
+        "ok": [
+         "5/8"
+        ],
+        "no": [
+         "2 1/8",
+         "1/8",
+         "11/4"
+        ],
+        "nudge": [
+         "10/16"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/2",
+        "form": "mixed"
+       },
+       "label": "b",
+       "prompt": "1 1/3 × 3/8",
+       "tests": {
+        "ok": [
+         "1/2"
+        ],
+        "no": [
+         "1 1/8",
+         "1/8",
+         "41/24"
+        ],
+        "nudge": [
+         "12/24",
+         "4/8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1 2/3",
+        "form": "mixed"
+       },
+       "label": "c",
+       "prompt": "2 2/3 × 5/8",
+       "tests": {
+        "ok": [
+         "1 2/3"
+        ],
+        "no": [
+         "2 10/24",
+         "2 5/12",
+         "10/24"
+        ],
+        "nudge": [
+         "5/3",
+         "40/24",
+         "1 16/24"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2 1/2 = 5/2, and 5/2 × 1/4 = 5/8",
+      "b) 1 1/3 = 4/3, and 4/3 × 3/8 = 12/24 = 1/2",
+      "c) 2 2/3 = 8/3, and 8/3 × 5/8 = 40/24 = 5/3 = 1 2/3",
+      "Answers: 5/8, 1/2 and 1 2/3"
+     ],
+     "skill": "frac-mult-mixed",
+     "hint": "Keep each mixed number together by changing it to an improper fraction.",
+     "min": 6
+    },
+    {
+     "id": "q24",
+     "q": "Multiply 2 1/4 × 1 1/3. Write your answer as a whole number or a mixed number in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "3",
+        "form": "mixed"
+       },
+       "tests": {
+        "ok": [
+         "3"
+        ],
+        "no": [
+         "2 1/12",
+         "3 7/12",
+         "27/16"
+        ],
+        "nudge": [
+         "36/12",
+         "9/3"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "2 1/4 = 9/4 and 1 1/3 = 4/3",
+      "9/4 × 4/3 = 36/12 = 3",
+      "Answer: 3"
+     ],
+     "skill": "frac-mult-mixed",
+     "hint": "Both numbers must become improper fractions. Then look for factors to cancel.",
+     "min": 3
+    },
+    {
+     "id": "q25",
+     "q": "Multiply. Write each answer as a whole number or a mixed number in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "3 3/4",
+        "form": "mixed"
+       },
+       "label": "a",
+       "prompt": "1 1/2 × 2 1/2",
+       "tests": {
+        "ok": [
+         "3 3/4"
+        ],
+        "no": [
+         "2 1/4",
+         "4",
+         "15"
+        ],
+        "nudge": [
+         "15/4",
+         "3 6/8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "4",
+        "form": "mixed"
+       },
+       "label": "b",
+       "prompt": "3 1/3 × 1 1/5",
+       "tests": {
+        "ok": [
+         "4"
+        ],
+        "no": [
+         "3 1/15",
+         "4 8/15",
+         "60"
+        ],
+        "nudge": [
+         "60/15",
+         "12/3"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "4 1/2",
+        "form": "mixed"
+       },
+       "label": "c",
+       "prompt": "2 2/5 × 1 7/8",
+       "tests": {
+        "ok": [
+         "4 1/2"
+        ],
+        "no": [
+         "2 14/40",
+         "2 7/20",
+         "4 11/40"
+        ],
+        "nudge": [
+         "9/2",
+         "180/40",
+         "4 2/4"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 1 1/2 × 2 1/2 = 3/2 × 5/2 = 15/4 = 3 3/4",
+      "b) 3 1/3 × 1 1/5 = 10/3 × 6/5 = 60/15 = 4",
+      "c) 2 2/5 × 1 7/8 = 12/5 × 15/8 = 180/40 = 9/2 = 4 1/2",
+      "Answers: 3 3/4, 4 and 4 1/2"
+     ],
+     "skill": "frac-mult-mixed",
+     "hint": "Do not multiply the whole parts and the fraction parts separately. Improper fractions first.",
+     "min": 7
+    }
+   ]
+  },
+  {
+   "name": "Part G: Bigger or smaller",
+   "desc": "Multiplying by a number less than 1 gives less than you started with. Multiplying by a number greater than 1 gives more.",
+   "items": [
+    {
+     "id": "q26",
+     "q": "Do not multiply. Decide how each product compares with 24.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "greater than 24",
+         "less than 24",
+         "equal to 24"
+        ],
+        "correct": 1
+       },
+       "label": "a",
+       "prompt": "5/6 × 24"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "greater than 24",
+         "less than 24",
+         "equal to 24"
+        ],
+        "correct": 0
+       },
+       "label": "b",
+       "prompt": "1 1/4 × 24"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "greater than 24",
+         "less than 24",
+         "equal to 24"
+        ],
+        "correct": 2
+       },
+       "label": "c",
+       "prompt": "3/3 × 24"
+      }
+     ],
+     "a": [
+      "a) 5/6 is less than 1, so 5/6 × 24 is less than 24.",
+      "b) 1 1/4 is greater than 1, so 1 1/4 × 24 is greater than 24.",
+      "c) 3/3 = 1, so 3/3 × 24 is equal to 24.",
+      "Answers: less than 24, greater than 24, equal to 24"
+     ],
+     "skill": "frac-mult-compare",
+     "hint": "Compare the first factor with 1.",
+     "min": 3
+    },
+    {
+     "id": "q27",
+     "q": "Tap every product that is less than 3/5. Do not multiply.",
+     "parts": [
+      {
+       "ans": {
+        "type": "multi",
+        "options": [
+         "3/5 × 1/2",
+         "3/5 × 4/3",
+         "3/5 × 7/8",
+         "3/5 × 1 1/2",
+         "3/5 × 2/2"
+        ],
+        "correct": [
+         0,
+         2
+        ]
+       }
+      }
+     ],
+     "a": [
+      "1/2 and 7/8 are less than 1, so those two products are less than 3/5.",
+      "4/3 and 1 1/2 are greater than 1, so those two products are greater than 3/5.",
+      "2/2 = 1, so 3/5 × 2/2 is equal to 3/5.",
+      "Answer: 3/5 × 1/2 and 3/5 × 7/8"
+     ],
+     "skill": "frac-mult-compare",
+     "hint": "Look only at the second factor in each product. Is it less than 1, equal to 1, or greater than 1?",
+     "min": 3
+    },
+    {
+     "id": "q28",
+     "q": "Choose the sign that makes each statement true. Do not multiply.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "<",
+         ">",
+         "="
+        ],
+        "correct": 0
+       },
+       "label": "a",
+       "prompt": "7/8 × 4/5 ___ 4/5"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "<",
+         ">",
+         "="
+        ],
+        "correct": 1
+       },
+       "label": "b",
+       "prompt": "4/5 × 1 1/9 ___ 4/5"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "<",
+         ">",
+         "="
+        ],
+        "correct": 2
+       },
+       "label": "c",
+       "prompt": "2/3 × 3/4 ___ 3/4 × 2/3"
+      }
+     ],
+     "a": [
+      "a) 7/8 is less than 1, so 7/8 × 4/5 is less than 4/5.",
+      "b) 1 1/9 is greater than 1, so 4/5 × 1 1/9 is greater than 4/5.",
+      "c) Both sides have the same two factors. Changing the order of the factors does not change a product.",
+      "Answers: less than, greater than, and equal"
+     ],
+     "skill": "frac-mult-compare",
+     "hint": "For parts a and b, compare the other factor with 1. For part c, look closely at the factors on each side.",
+     "min": 4
+    }
+   ]
+  },
+  {
+   "name": "Part H: Area and word problems",
+   "desc": "The area of a rectangle is length times width, even when the sides are fractions. A fraction of an amount means multiply.",
+   "items": [
+    {
+     "id": "q29",
+     "q": "A rectangular tile is 7/8 foot long and 2/3 foot wide. Find its area. Write your answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "7/12",
+        "form": "fraction"
+       },
+       "unit": "square feet",
+       "tests": {
+        "ok": [
+         "7/12",
+         "7/12 sq ft",
+         "7/12 square feet"
+        ],
+        "no": [
+         "37/24",
+         "9/11",
+         "1 13/24"
+        ],
+        "nudge": [
+         "14/24"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Area is length × width.",
+      "7/8 × 2/3 = 14/24 = 7/12",
+      "Answer: 7/12 square foot"
+     ],
+     "skill": "frac-mult-apply",
+     "hint": "Area is length times width.",
+     "min": 3
+    },
+    {
+     "id": "q30",
+     "q": "A garden bed is 3 1/3 yards long and 1 1/2 yards wide. Find its area. Write your answer as a whole number or a mixed number in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "5",
+        "form": "mixed"
+       },
+       "unit": "square yards",
+       "tests": {
+        "ok": [
+         "5",
+         "5 square yards"
+        ],
+        "no": [
+         "3 1/6",
+         "4 5/6",
+         "9 2/3"
+        ],
+        "nudge": [
+         "30/6",
+         "10/2"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "3 1/3 = 10/3 and 1 1/2 = 3/2",
+      "10/3 × 3/2 = 30/6 = 5",
+      "Answer: 5 square yards"
+     ],
+     "skill": "frac-mult-apply",
+     "hint": "Change both mixed numbers to improper fractions before you multiply.",
+     "min": 4
+    },
+    {
+     "id": "q31",
+     "q": "Zara has 7/8 gallon of paint. She uses 4/7 of it on a fence.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/2",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "How much paint does she use? Write your answer in simplest form.",
+       "unit": "gallon",
+       "tests": {
+        "ok": [
+         "1/2",
+         "1/2 gallon"
+        ],
+        "no": [
+         "11/15",
+         "81/56",
+         "17/56"
+        ],
+        "nudge": [
+         "28/56",
+         "4/8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3/8",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "How much paint is left? Write your answer in simplest form.",
+       "unit": "gallon",
+       "tests": {
+        "ok": [
+         "3/8",
+         "3/8 gallon"
+        ],
+        "no": [
+         "17/56",
+         "1/2",
+         "3/7"
+        ],
+        "nudge": [
+         "6/16",
+         "21/56"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 4/7 of 7/8 means 4/7 × 7/8.",
+      "4/7 × 7/8 = 28/56 = 1/2",
+      "b) 7/8 − 1/2 = 7/8 − 4/8 = 3/8",
+      "3/7 × 7/8 = 21/56 = 3/8, which checks the amount left a second way",
+      "Answers: 1/2 gallon used and 3/8 gallon left"
+     ],
+     "skill": "frac-mult-apply",
+     "hint": "She uses 4/7 of the paint she has, not 4/7 of a gallon.",
+     "min": 5
+    },
+    {
+     "id": "q32",
+     "q": "On a trail map, 1 inch stands for 3/4 mile. The Ridge Trail measures 4 2/3 inches on the map. How long is the real trail? Write a whole number or a mixed number in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "3 1/2",
+        "form": "mixed"
+       },
+       "unit": "miles",
+       "tests": {
+        "ok": [
+         "3 1/2",
+         "3 1/2 miles"
+        ],
+        "no": [
+         "4 1/2",
+         "5 5/12",
+         "6 2/9"
+        ],
+        "nudge": [
+         "7/2",
+         "42/12",
+         "3 6/12"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Every inch on the map stands for 3/4 mile, so the real length is 4 2/3 × 3/4.",
+      "4 2/3 = 14/3",
+      "14/3 × 3/4 = 42/12 = 7/2 = 3 1/2",
+      "Answer: 3 1/2 miles"
+     ],
+     "skill": "frac-mult-apply",
+     "hint": "Each inch on the map stands for the same real distance. How do you find the distance for 4 2/3 inches?",
+     "min": 4
+    }
+   ]
+  },
+  {
+   "name": "Part I: Real jobs",
+   "desc": "Real decisions. Work out the numbers, then decide and give your reason.",
+   "items": [
+    {
+     "id": "q33",
+     "q": "A pancake recipe uses 2 1/4 cups of flour. You want to make 2/3 of the recipe. The flour bag has 1 2/3 cups left.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1 1/2",
+        "form": "mixed"
+       },
+       "label": "a",
+       "prompt": "How many cups of flour does 2/3 of the recipe need? Write a mixed number in simplest form.",
+       "unit": "cups",
+       "tests": {
+        "ok": [
+         "1 1/2",
+         "1 1/2 cups"
+        ],
+        "no": [
+         "2 1/6",
+         "2 11/12",
+         "3 3/8"
+        ],
+        "nudge": [
+         "3/2",
+         "18/12",
+         "1 6/12"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Yes, there is enough flour",
+         "No, there is not enough flour"
+        ],
+        "correct": 0
+       },
+       "label": "b",
+       "prompt": "Do you have enough flour?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "2/3 of the recipe needs 1 1/2 cups of flour. The bag has 1 2/3 cups. 1 2/3 is more than 1 1/2 (10/6 compared with 9/6), so there is enough.",
+        "look": "Names the amount needed (1 1/2 cups) and the amount in the bag (1 2/3 cups), and compares them."
+       },
+       "label": "c",
+       "prompt": "Give your reason. Use the numbers."
+      }
+     ],
+     "a": [
+      "a) 2 1/4 = 9/4",
+      "9/4 × 2/3 = 18/12 = 3/2 = 1 1/2",
+      "b) 1 2/3 = 10/6 and 1 1/2 = 9/6",
+      "10/6 is more than 9/6, so the bag holds more than the recipe needs.",
+      "Decision: yes, there is enough flour, because 2/3 of the recipe needs 1 1/2 cups and the bag has 1 2/3 cups."
+     ],
+     "skill": "frac-mult-apply",
+     "hint": "Every ingredient shrinks by the same fraction as the recipe. Work out the flour you need, then compare it with the bag.",
+     "real": true,
+     "min": 9
+    },
+    {
+     "id": "q34",
+     "q": "Your family may use 5/6 of a community garden plot. You plan to plant tomatoes on 2/5 of your family's part. A garden rule says no single crop may cover more than 3/10 of the whole plot.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/3",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "What fraction of the whole plot would the tomatoes cover? Write your answer in simplest form.",
+       "tests": {
+        "ok": [
+         "1/3"
+        ],
+        "no": [
+         "7/11",
+         "37/30",
+         "13/30"
+        ],
+        "nudge": [
+         "10/30",
+         "2/6"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Yes, the plan follows the rule",
+         "No, the plan breaks the rule"
+        ],
+        "correct": 1
+       },
+       "label": "b",
+       "prompt": "Does your plan follow the rule?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "The tomatoes would cover 1/3 of the whole plot. 1/3 = 10/30 and 3/10 = 9/30, so 1/3 is more than 3/10. The plan breaks the rule.",
+        "look": "Names the tomato fraction (1/3), compares it with 3/10 using a common denominator, and states the decision."
+       },
+       "label": "c",
+       "prompt": "Give your reason. Use the numbers."
+      }
+     ],
+     "a": [
+      "a) 2/5 of 5/6 means 2/5 × 5/6.",
+      "2/5 × 5/6 = 10/30 = 1/3",
+      "b) 1/3 = 10/30 and 3/10 = 9/30",
+      "10/30 is more than 9/30, so the tomatoes would cover more than the rule allows.",
+      "Decision: no, the plan breaks the rule, because 1/3 of the plot is more than 3/10 of the plot."
+     ],
+     "skill": "frac-mult-apply",
+     "hint": "The tomatoes cover a fraction of a fraction of the plot. Compare your product with 3/10 by using a common denominator.",
+     "real": true,
+     "min": 9
+    },
+    {
+     "id": "q35",
+     "q": "Two stores sell the same jacket. The original price is $60 at both stores.\nStore A: the price is cut to 3/4 of the original price. Today you pay only 2/3 of that sale price.\nStore B: the price is cut to 4/5 of the original price. Today you pay only 3/4 of that sale price.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/2",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "What fraction of the original price do you pay at Store A? Write your answer in simplest form.",
+       "tests": {
+        "ok": [
+         "1/2"
+        ],
+        "no": [
+         "5/7",
+         "17/12",
+         "1/12"
+        ],
+        "nudge": [
+         "6/12"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3/5",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "What fraction of the original price do you pay at Store B? Write your answer in simplest form.",
+       "tests": {
+        "ok": [
+         "3/5"
+        ],
+        "no": [
+         "7/9",
+         "31/20",
+         "1/20"
+        ],
+        "nudge": [
+         "12/20",
+         "6/10"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "6"
+       },
+       "label": "c",
+       "prompt": "How many dollars less does the cheaper store charge?",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "6",
+         "$6",
+         "6.00"
+        ],
+        "no": [
+         "30",
+         "36",
+         "66",
+         "12"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Store A",
+         "Store B",
+         "Either one, the prices are the same"
+        ],
+        "correct": 0
+       },
+       "label": "d",
+       "prompt": "Where should you buy the jacket?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "Store A charges 1/2 of $60, which is $30. Store B charges 3/5 of $60, which is $36. Store A costs $6 less, so buy the jacket at Store A.",
+        "look": "Names both final prices ($30 and $36) and the $6 difference."
+       },
+       "label": "e",
+       "prompt": "Give your reason. Use the numbers."
+      }
+     ],
+     "a": [
+      "a) 3/4 × 2/3 = 6/12 = 1/2",
+      "b) 4/5 × 3/4 = 12/20 = 3/5",
+      "c) 1/2 × 60 = 30 and 3/5 × 60 = 36",
+      "36 − 30 = 6",
+      "Decision: buy at Store A, because $30 is $6 less than $36."
+     ],
+     "skill": "frac-mult-apply",
+     "hint": "Each store charges a fraction of a fraction of the original price. Find each product, then each price in dollars.",
+     "real": true,
+     "min": 10
+    }
+   ]
+  },
+  {
+   "name": "Part J: Stretch",
+   "desc": "Competition-style problems. Look for a shortcut before you compute.",
+   "items": [
+    {
+     "id": "q36",
+     "q": "Find the value. Write your answer in simplest form. Look for factors that cancel before you multiply anything.\n1/2 × 2/3 × 3/4 × 4/5 × 5/6 × 6/7 × 7/8 × 8/9 × 9/10",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/10",
+        "form": "fraction"
+       },
+       "tests": {
+        "ok": [
+         "1/10"
+        ],
+        "no": [
+         "1/9",
+         "9/10",
+         "1/2"
+        ],
+        "nudge": [
+         "2/20",
+         "362880/3628800"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Every number from 2 to 9 appears once in a numerator and once in a denominator, so each of them cancels.",
+      "Only the 1 in the first numerator and the 10 in the last denominator are left.",
+      "1/2 × 2/3 × 3/4 × 4/5 × 5/6 × 6/7 × 7/8 × 8/9 × 9/10 = 1/10",
+      "Answer: 1/10"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "The 2 in the second numerator cancels the 2 in the first denominator. What happens all the way down the line?",
+     "stretch": true,
+     "min": 6
+    },
+    {
+     "id": "q37",
+     "q": "Find the missing fraction in each equation. Write each answer in simplest form. Think about how numerators and denominators multiply.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/2",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "3/4 × ___ = 3/8",
+       "tests": {
+        "ok": [
+         "1/2"
+        ],
+        "no": [
+         "2",
+         "1/4",
+         "9/32"
+        ],
+        "nudge": [
+         "2/4"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3/7",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "2/5 × ___ = 6/35",
+       "tests": {
+        "ok": [
+         "3/7"
+        ],
+        "no": [
+         "4/30",
+         "7/3",
+         "12/175"
+        ],
+        "nudge": [
+         "6/14"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "6/5",
+        "form": "fraction"
+       },
+       "label": "c",
+       "prompt": "5/6 × ___ = 1",
+       "tests": {
+        "ok": [
+         "6/5",
+         "1 1/5"
+        ],
+        "no": [
+         "1/6",
+         "5/6",
+         "1"
+        ],
+        "nudge": [
+         "12/10"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 3 × 1 = 3 and 4 × 2 = 8, so the missing fraction is 1/2",
+      "3/4 × 1/2 = 3/8",
+      "b) 2 × 3 = 6 and 5 × 7 = 35, so the missing fraction is 3/7",
+      "2/5 × 3/7 = 6/35",
+      "c) 5 × 6 = 30 and 6 × 5 = 30, so the missing fraction is 6/5",
+      "5/6 × 6/5 = 30/30 = 1",
+      "Answers: 1/2, 3/7 and 6/5"
+     ],
+     "skill": "frac-mult",
+     "hint": "Work on the numerators and the denominators separately.",
+     "stretch": true,
+     "min": 8
+    },
+    {
+     "id": "q38",
+     "q": "Four products are shown. Without multiplying, put them in order from least to greatest.\nA = 2/3 × 7/8\nB = 2/3 × 1\nC = 2/3 × 9/8\nD = 2/3 × 2/3",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "D, A, B, C",
+         "A, D, B, C",
+         "D, B, A, C",
+         "C, B, A, D"
+        ],
+        "correct": 0
+       }
+      }
+     ],
+     "a": [
+      "Each product is 2/3 times another number, so the products are in the same order as those other numbers.",
+      "2/3 = 16/24 and 7/8 = 21/24, so 2/3 is less than 7/8.",
+      "From least to greatest, the other numbers are 2/3, 7/8, 1 and 9/8.",
+      "Answer: D, A, B, C"
+     ],
+     "skill": "frac-mult-compare",
+     "hint": "Every product has the factor 2/3. Put the other factors in order.",
+     "stretch": true,
+     "min": 6
+    },
+    {
+     "id": "q39",
+     "q": "A school garden has 60 plants. 2/3 of the plants are vegetables. 3/4 of the vegetables are tomato plants. 1/2 of the tomato plants have fruit on them.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/4",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "What fraction of all the plants are tomato plants with fruit? Write your answer in simplest form.",
+       "tests": {
+        "ok": [
+         "1/4"
+        ],
+        "no": [
+         "6/9",
+         "2/3",
+         "23/12",
+         "1/2"
+        ],
+        "nudge": [
+         "6/24",
+         "15/60"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "15"
+       },
+       "label": "b",
+       "prompt": "How many plants is that?",
+       "tests": {
+        "ok": [
+         "15",
+         "15 plants"
+        ],
+        "no": [
+         "40",
+         "30",
+         "20",
+         "45"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2/3 × 3/4 × 1/2 = 6/24 = 1/4",
+      "b) 1/4 × 60 = 15",
+      "Check one step at a time. The garden has 40 vegetables, 30 tomato plants and 15 tomato plants with fruit.",
+      "2/3 × 60 = 40",
+      "3/4 × 40 = 30",
+      "1/2 × 30 = 15",
+      "Answers: 1/4 of the plants, which is 15 plants"
+     ],
+     "skill": "frac-mult-apply",
+     "hint": "It is a fraction of a fraction of a fraction. Write one multiplication with three factors.",
+     "stretch": true,
+     "min": 8
+    },
+    {
+     "id": "q40",
+     "q": "A ball is dropped from a height of 81 centimeters. After every bounce it rises to 2/3 of the height it fell from.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "8/27",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "What fraction of the starting height does the ball reach after the third bounce? Write your answer as a fraction in simplest form.",
+       "tests": {
+        "ok": [
+         "8/27"
+        ],
+        "no": [
+         "6/9",
+         "2/3",
+         "4/9",
+         "2"
+        ],
+        "nudge": [
+         "16/54"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "24"
+       },
+       "label": "b",
+       "prompt": "How high does the ball rise after the third bounce?",
+       "unit": "cm",
+       "tests": {
+        "ok": [
+         "24",
+         "24 cm"
+        ],
+        "no": [
+         "54",
+         "36",
+         "27",
+         "16"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2/3 × 2/3 × 2/3 = 8/27",
+      "b) 8/27 × 81 = 24",
+      "Check one bounce at a time. The ball rises to 54, then 36, then 24 centimeters.",
+      "2/3 × 81 = 54",
+      "2/3 × 54 = 36",
+      "2/3 × 36 = 24",
+      "Answers: 8/27 of the starting height, which is 24 centimeters"
+     ],
+     "skill": "frac-mult-apply",
+     "hint": "Each bounce keeps the same fraction of the height before it. Count how many times that happens.",
+     "stretch": true,
+     "min": 8
+    }
+   ]
+  }
+ ],
+ "n": 37,
+ "note": "To multiply fractions, multiply the numerators and multiply the denominators. The word of means multiply. Cancel common factors first to keep the numbers small.",
+ "scene": {
+  "title": "Where you will see this",
+  "text": [
+   "Cooks multiply fractions when they shrink a recipe. If a recipe needs 3/4 cup of milk and you make 1/2 of it, you need 1/2 of 3/4 cup. Gardeners and builders do the same with land. A bed that takes up 2/5 of your half of a yard covers 2/5 × 1/2 of the whole yard.",
+   "Stores stack price cuts the same way. A price cut to 3/4 and then to 2/3 of that leaves 3/4 × 2/3 of the first price. Maps and models work by scale. When 1 inch on a map stands for 3/4 mile, a trail that measures 2 1/2 inches is 2 1/2 × 3/4 miles long."
+  ],
+  "ask": "Before you start: find a recipe at home. Pick one ingredient measured with a fraction and work out how much you would need for 1/2 of the recipe."
+ },
+ "scene_key": "Not graded. Any ingredient works. Look for the amount multiplied by 1/2 (for example, 1/2 of 3/4 cup is 3/8 cup), and ask him why the answer is smaller than the amount in the recipe.",
+ "teach": [
+  {
+   "h": "A fraction of a fraction",
+   "text": [
+    "The word of means multiply. To find 3/4 of 5/7, write 3/4 × 5/7.",
+    "Multiply the numerators to get the new numerator. Multiply the denominators to get the new denominator."
+   ],
+   "ex": [
+    {
+     "q": "Find 3/4 of 5/7.",
+     "steps": [
+      "3/4 of 5/7 means 3/4 × 5/7.",
+      "Numerators: 3 × 5 = 15",
+      "Denominators: 4 × 7 = 28",
+      "3/4 × 5/7 = 15/28"
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Cancel before you multiply",
+   "text": [
+    "If a numerator and a denominator share a factor, divide both by that factor before you multiply. It does not matter which fraction each number is in.",
+    "The numbers stay small, and the product comes out in simplest form."
+   ],
+   "ex": [
+    {
+     "q": "Find 4/9 × 3/8.",
+     "steps": [
+      "4 and 8 share the factor 4. 4 ÷ 4 = 1 and 8 ÷ 4 = 2.",
+      "3 and 9 share the factor 3. 3 ÷ 3 = 1 and 9 ÷ 3 = 3.",
+      "The problem becomes 1/3 × 1/2.",
+      "1/3 × 1/2 = 1/6"
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Mixed numbers become improper fractions first",
+   "text": [
+    "You cannot multiply the whole parts and the fraction parts separately. Change each mixed number to an improper fraction, then multiply as usual.",
+    "If the product is greater than 1, change it back to a mixed number."
+   ],
+   "ex": [
+    {
+     "q": "Find 2 1/3 × 1 1/2.",
+     "steps": [
+      "2 1/3 = 7/3 and 1 1/2 = 3/2",
+      "7/3 × 3/2 = 21/6",
+      "21/6 = 7/2 = 3 1/2"
+     ]
+    }
+   ]
+  }
+ ],
+ "min_questions": 35
+}
