@@ -1,0 +1,304 @@
+{
+ "schema": 1,
+ "id": "CU-2026-11-13",
+ "kind": "catchup",
+ "subject": "math",
+ "strand": "Mixed",
+ "title": "4 questions from earlier lessons",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. For an answer below zero, type the minus sign first. Type a power like 3^4.",
+ "skills": {
+  "int-addsub": "Add and subtract integers",
+  "mult-multi": "Multi-digit multiplication",
+  "exp-meaning": "Read and write powers"
+ },
+ "sections": [
+  {
+   "name": "Catch-up",
+   "desc": "Questions you missed before, with new numbers or a new story. Right on the first try takes one off your list.",
+   "items": [
+    {
+     "id": "c1",
+     "q": "Add or subtract. Picture a number line: adding moves right and subtracting moves left.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-5"
+       },
+       "label": "a",
+       "prompt": "6 − 11",
+       "tests": {
+        "ok": [
+         "-5",
+         "−5"
+        ],
+        "no": [
+         "5",
+         "17"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-12"
+       },
+       "label": "b",
+       "prompt": "−5 − 7",
+       "tests": {
+        "ok": [
+         "-12",
+         "−12"
+        ],
+        "no": [
+         "-2",
+         "2",
+         "12"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-7"
+       },
+       "label": "c",
+       "prompt": "In a parking garage, level 0 is the street and levels below the street have negative numbers. An elevator starts on level −2. It goes up 6 levels, then down 11 levels. What level number does it stop on?",
+       "tests": {
+        "ok": [
+         "-7",
+         "−7"
+        ],
+        "no": [
+         "7",
+         "-3",
+         "-19",
+         "15"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 6 − 11 = −5",
+      "b) −5 − 7 = −12",
+      "c) −2 + 6 = 4 after going up",
+      "4 − 11 = −7 after going down",
+      "Answers: a) −5, b) −12, c) level −7"
+     ],
+     "skill": "int-addsub",
+     "hint": "Start at the first number on a number line. Which way do you move, and how far?",
+     "min": 4,
+     "from": "L036/q1",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c2",
+     "q": "Multiply. Write the partial products on paper before you add them.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1972"
+       },
+       "label": "a",
+       "prompt": "58 × 34",
+       "tests": {
+        "ok": [
+         "1972",
+         "1,972"
+        ],
+        "no": [
+         "406",
+         "1962",
+         "1872"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "14382"
+       },
+       "label": "b",
+       "prompt": "306 × 47",
+       "tests": {
+        "ok": [
+         "14382",
+         "14,382"
+        ],
+        "no": [
+         "3366",
+         "14282",
+         "1438"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3680"
+       },
+       "label": "c",
+       "prompt": "A farm ships 32 crates of apples. Each crate holds 115 apples. How many apples is that in all?",
+       "unit": "apples",
+       "tests": {
+        "ok": [
+         "3680",
+         "3,680"
+        ],
+        "no": [
+         "575",
+         "147",
+         "3580"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 58 × 4 = 232",
+      "58 × 30 = 1,740",
+      "232 + 1,740 = 1,972",
+      "b) 306 × 7 = 2,142",
+      "306 × 40 = 12,240",
+      "2,142 + 12,240 = 14,382",
+      "c) 115 × 2 = 230",
+      "115 × 30 = 3,450",
+      "230 + 3,450 = 3,680",
+      "Answers: a) 1,972, b) 14,382, c) 3,680 apples"
+     ],
+     "skill": "mult-multi",
+     "hint": "Make one partial product for each digit of the bottom number. The partial product for the tens digit ends in 0.",
+     "min": 6,
+     "from": "L036/q2",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c3",
+     "q": "Which expression shows what 7⁴ means?",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "7 × 7 × 7 × 7",
+         "7 × 4",
+         "4 × 4 × 4 × 4 × 4 × 4 × 4",
+         "7 + 7 + 7 + 7"
+        ],
+        "correct": 0
+       }
+      }
+     ],
+     "a": [
+      "7⁴ uses 7 as a factor 4 times.",
+      "7 × 7 × 7 × 7 = 2,401",
+      "7 × 4 = 28, which multiplies the base by the exponent. That is a different number.",
+      "7 + 7 + 7 + 7 = 28, which is repeated addition.",
+      "Seven 4s multiplied together is 4⁷, with the base and the exponent swapped.",
+      "Answer: 7 × 7 × 7 × 7"
+     ],
+     "skill": "exp-meaning",
+     "hint": "The small raised number counts how many times the big number is written as a factor.",
+     "min": 2,
+     "from": "L036/q5",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c4",
+     "q": "Write each phrase as a power. Type a power with the ^ key, like 3^4.",
+     "parts": [
+      {
+       "ans": {
+        "type": "power",
+        "base": "8",
+        "exp": "3"
+       },
+       "label": "a",
+       "prompt": "8 cubed",
+       "tests": {
+        "ok": [
+         "8^3",
+         "8 ^ 3"
+        ],
+        "no": [
+         "3^8",
+         "8^2",
+         "8^8"
+        ],
+        "nudge": [
+         "512"
+        ],
+        "bad": [
+         "8 x 3"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "power",
+        "base": "5",
+        "exp": "6"
+       },
+       "label": "b",
+       "prompt": "5 to the sixth power",
+       "tests": {
+        "ok": [
+         "5^6",
+         "5 ^ 6"
+        ],
+        "no": [
+         "6^5"
+        ],
+        "nudge": [
+         "15625"
+        ],
+        "bad": [
+         "5 x 6"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "power",
+        "base": "10",
+        "exp": "8"
+       },
+       "label": "c",
+       "prompt": "10 to the eighth power",
+       "tests": {
+        "ok": [
+         "10^8",
+         "10 ^ 8"
+        ],
+        "no": [
+         "8^10"
+        ],
+        "nudge": [
+         "100000000"
+        ],
+        "bad": [
+         "10 x 8"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) Cubed means exponent 3, so the power is 8³.",
+      "b) Sixth power means exponent 6, so the power is 5⁶.",
+      "c) Eighth power means exponent 8, so the power is 10⁸.",
+      "Answers: a) 8³, b) 5⁶, c) 10⁸"
+     ],
+     "skill": "exp-meaning",
+     "hint": "The number named first is the base. The words after it tell how many times the base is used as a factor.",
+     "min": 3,
+     "from": "L036/q6",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    }
+   ]
+  }
+ ]
+}
