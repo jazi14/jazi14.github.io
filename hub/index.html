@@ -386,6 +386,8 @@ button[data-n]{min-width:44px}
   .strip button{min-width:40px;height:40px;font-size:.92rem}
 }
 @media (min-width:900px){.lfig{max-width:560px}}
+.acu{font-size:.9rem;margin:2px 0;padding:6px 10px;border-radius:8px;background:var(--hl);color:#13212B}
+.acu.ok{background:var(--good-soft);color:var(--good)}
 
 /* Hosted version only: sign-in screens, account button, People card. */
 .gate{position:fixed;inset:0;z-index:1000;background:var(--paper);display:flex;align-items:flex-start;justify-content:center;padding:max(24px,8vh) 16px 24px;overflow:auto}
@@ -1756,6 +1758,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     if (m.kind === 'test') return 'Test' + (m.timed ? ', Day ' + m.timed.day + ' of ' + m.timed.of : '');
     if (m.kind === 'practice') return 'Practice';
     if (m.kind === 'review') return 'Review';
+    if (m.kind === 'catchup') return 'Catch-up';
     return m.n ? 'Lesson ' + m.n : 'Lesson';
   }
   function hm(sec) { var m = Math.round(sec / 60); return m < 60 ? m + ' min' : Math.floor(m / 60) + ' h ' + (m % 60) + ' min'; }
@@ -1781,16 +1784,17 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   }
   function qAllOk(it, Q) { return !!Q && !!Q.p && it.parts.every(function (p) { return partOk(Q.p[pkey(p)]); }); }
   function summarize(L, A) {
-    var items = flat(L), s = { total: items.length, done: 0, first: 0, fixed: 0, shown: 0, pending: 0, flags: 0, bySkill: {}, byPart: [], firstMissPart: null, why: {} };
+    var items = flat(L), s = { total: items.length, done: 0, first: 0, fixed: 0, shown: 0, pending: 0, flags: 0, bySkill: {}, byPart: [], firstMissPart: null, why: {}, miss: [], firstIds: [], openIds: [] };
     (L.sections || []).forEach(function (sec) { s.byPart.push([0, 0, sec.items.length]); });
     items.forEach(function (x) {
       var Q = (A.q || {})[x.it.id];
-      if (!Q || !Q.done) return;
+      if (!Q || !Q.done) { s.openIds.push(x.it.id); return; }
       s.done++; s.byPart[x.si][1]++;
       var first = qFirst(x.it, Q), sk = x.it.skill || 'other';
       s.bySkill[sk] = s.bySkill[sk] || [0, 0]; s.bySkill[sk][1]++;
-      if (first) { s.first++; s.byPart[x.si][0]++; s.bySkill[sk][0]++; }
+      if (first) { s.first++; s.byPart[x.si][0]++; s.bySkill[sk][0]++; s.firstIds.push(x.it.id); }
       else {
+        s.miss.push([x.it.id, x.it.skill || null]);
         if (Q.shown || !qAllOk(x.it, Q)) s.shown++; else s.fixed++;
         if (!s.firstMissPart) s.firstMissPart = x.sec.name;
         if (Q.why) s.why[Q.why] = (s.why[Q.why] || 0) + 1;
@@ -1840,6 +1844,44 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     return 'not_ready';
   }
 
+  // ---------- catch-up loop (Taimoor, 12 Nov 2026) ----------
+  // Every lesson question not right on the first try goes on his catch-up list. Each morning the builder writes a new
+  // version of up to 6 of them (new numbers, or a new story for a word problem) as a catch-up set (kind 'catchup'),
+  // which comes first in his next session. A new version right on the first try clears the original; otherwise it
+  // stays on the list and another new version follows. Worked out from saved attempts and the sets' meta (items[].from).
+  // kit/catchup.py applies the same rules for the builder.
+  function catchupState() {
+    var ms = metas(), by = {}, list = [];
+    ms.forEach(function (m) {
+      if (m.kind !== 'lesson') return;
+      var A = att(m.id), s = A && A.summary; if (!s || !s.miss) return;
+      var ids = s.miss.slice();
+      if (A.finishedAt) (s.openIds || []).forEach(function (id) { ids.push([id, null]); });
+      ids.forEach(function (x) {
+        var Q = (A.q || {})[x[0]] || {}, key = m.id + '/' + x[0];
+        by[key] = { key: key, lessonId: m.id, qid: x[0], n: m.n, title: m.title, skill: x[1], skillName: x[1] ? (m.skills || {})[x[1]] || x[1] : '',
+          missedAt: Q.at || A.finishedAt || A.updatedAt, rounds: [], cleared: false, clearedAt: null, pending: null };
+      });
+    });
+    ms.forEach(function (m) {
+      if (m.kind !== 'catchup') return;
+      var A = att(m.id), s = A && A.summary;
+      (m.items || []).forEach(function (x) {
+        var c = by[x.from]; if (!c) return;
+        var Q = A && A.q && A.q[x.id];
+        if (Q && Q.done && s) {
+          var ok = (s.firstIds || []).indexOf(x.id) >= 0;
+          c.rounds.push({ set: m.id, id: x.id, at: Q.at || A.updatedAt, ok: ok });
+          if (ok && !c.cleared) { c.cleared = true; c.clearedAt = Q.at || A.updatedAt; }
+        } else if (A && A.finishedAt) c.rounds.push({ set: m.id, id: x.id, at: A.finishedAt, ok: false });
+        else c.pending = { set: m.id, id: x.id };
+      });
+    });
+    Object.keys(by).forEach(function (k) { list.push(by[k]); });
+    list.sort(function (a, b) { return String(a.missedAt).localeCompare(String(b.missedAt)); });
+    return { open: list.filter(function (c) { return !c.cleared; }), cleared: list.filter(function (c) { return c.cleared; }), byKey: by };
+  }
+
   // ---------- what comes after a lesson: the hub's suggestion (a parent or tutor decision wins) ----------
   var DEC = {
     move_on: ['Move on', 'Ready for the next lesson.'],
@@ -1854,6 +1896,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var test = (L && L.kind === 'test') || A.kind === 'test';
     var s = (L && L.sections) ? summarize(L, A) : (A.summary || null);
     if (!s || !s.total) return { code: null, text: 'Not started yet.', why: [] };
+    if ((L && L.kind === 'catchup') || A.kind === 'catchup') return { code: null, text: 'Catch-up set: each question right on the first try comes off his list; the others come back with new numbers.', why: [] };
     var names = (L && L.sections) ? L.sections.map(function (x) { return x.name; }) : null;
     var done = !!A.finishedAt, why = [];
     if (test) {
@@ -1875,8 +1918,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     why.unshift(s.first + ' of ' + s.total + ' right on the first try (' + Math.round(rate * 100) + '%).');
     if (weak.length) why.push('Under 60% on the first try: ' + weak.join(', ') + '.');
     if (((s.why || {}).new || 0) >= 3) why.push('He chose "Did not know the method" ' + s.why.new + ' times: go over those idea cards with him before more practice.');
-    var code = rate >= 0.8 ? (weak.length ? 'practice_parts' : 'move_on') : rate >= 0.6 ? 'practice' : 'redo';
-    return { code: code, text: DEC[code][1], why: why };
+    var missed = s.total - s.first;
+    if (rate < 0.6) return { code: 'redo', text: DEC.redo[1], why: why };
+    return { code: 'move_on', text: missed ? 'Move on. The ' + missed + (missed === 1 ? ' question he missed comes' : ' questions he missed come') + ' back as catch-up, with new numbers, until he gets each one right.' : 'Move on. Every question was right on the first try.', why: why };
   }
 
   // ---------- Today provider ----------
@@ -1898,6 +1942,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var a = att(cur.id), s = a && a.summary, started = !!(a && (a.rev || a.test));
       var title = label(cur) + ': ' + cur.title, line;
       if (cur.kind === 'test') line = started ? 'In progress. The clock keeps running.' : (cur.timed ? cur.timed.minutes + ' minutes in one sitting, no checking until the end.' : 'Timed test.');
+      else if (cur.kind === 'catchup') line = (cur.count || '') + ' questions you missed before, with new numbers. Then back to your lesson.' + todayLine;
       else line = (started && s ? 'Question ' + Math.min((s.done || 0) + 1, cur.count || s.total) + ' of ' + (cur.count || s.total) + '.' : (cur.count || '') + ' questions. Work on paper, type each answer.') + todayLine;
       return {
         state: doneToday ? 'done' : (started && ds.sec > 0 ? 'doing' : 'todo'), title: title, line: line,
@@ -1938,6 +1983,10 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     else kids.push(el('div', { class: 'card' }, el('h2', { text: 'Now' }), el('div', { class: 'empty' }, el('b', { text: 'No lesson waiting' }), el('span', { text: 'Every loaded lesson is finished. A new one arrives with the next build.' }))));
     if (q.waiting.length) kids.push(el('div', { class: 'card' }, el('h2', { text: 'Waiting' }), el('div', { class: 'llist' }, q.waiting.map(function (m) { return row(m, 'wait'); }))));
     if (q.done.length) kids.push(el('div', { class: 'card' }, el('h2', { text: 'Finished' }), el('div', { class: 'llist' }, q.done.map(function (m) { return row(m, 'done'); }))));
+    var cu = catchupState();
+    if (cu.open.length || cu.cleared.length) kids.unshift(el('div', { class: 'card', id: 'cuCard' }, el('h2', { text: 'Catch-up list' }),
+      el('p', { text: cu.open.length ? cu.open.length + (cu.open.length === 1 ? ' question is' : ' questions are') + ' still on your list. Each one comes back with new numbers until you get it right on the first try.' : 'Your list is empty. Every question you missed, you have now got right.' }),
+      cu.cleared.length ? el('p', { class: 'hint', text: cu.cleared.length + (cu.cleared.length === 1 ? ' question has' : ' questions have') + ' come off the list so far.' }) : null));
     var map = (H.store.col('config').get('map') || {}).next || [], have = {};
     metas().forEach(function (m) { if (m.n) have[m.n] = true; });
     var next = map.filter(function (x) { return !(x.n && have[x.n]); }).slice(0, 6);
@@ -2087,6 +2136,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     root.replaceChildren(
       topBar(label(P.m)),
       el('div', {}, el('h1', { text: L.title }), L.note ? el('p', { class: 'hint', style: 'margin-top:6px', text: L.note }) : null),
+      L.kind === 'catchup' ? el('div', { class: 'card' }, el('h2', { text: 'Catch-up' }), el('p', { text: 'These are questions you missed before, with new numbers or a new story. Get one right on the first try and it comes off your list. If not, it comes back another day in a new way. Work on paper, then type the answer.' })) : null,
       sceneBlock(L), hasLearn(L) ? el('div', { class: 'card' }, el('h2', { text: 'How this lesson works' }), el('p', { text: 'Each new part starts with a short picture lesson: where people use the idea, the idea step by step, and a worked example from real life. Read it, try the example on paper, then answer the questions. You can open the idea again from any question.' })) : teachBlock(L),
       el('div', { class: 'card' }, el('h2', { text: P.items.length + ' questions, easiest to hardest' }), parts,
         est ? el('p', { class: 'small muted', text: 'About ' + hm(est * 60) + ' of work. You can stop any time and continue later; every answer is saved.' }) : null,
@@ -2456,7 +2506,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var parts = el('div', { class: 'partlist' });
     (L.sections || []).forEach(function (sec, i) { var b = s.byPart[i]; parts.append(el('div', {}, el('span', { text: sec.name }), el('span', { class: 'num', text: b[0] + ' of ' + b[2] + ' first try' }))); });
     kids.push(el('div', { class: 'card' }, el('h2', { text: 'By part' }), parts,
-      s.firstMissPart ? el('p', { class: 'hint', text: 'Misses started in ' + s.firstMissPart + '. Practice from there.' }) : el('p', { class: 'hint', text: 'No misses in any part.' })));
+      L.kind === 'catchup' ? el('p', { class: 'hint', text: s.first + (s.first === 1 ? ' question' : ' questions') + ' came off your catch-up list.' + (s.total - s.first === 1 ? ' The other one comes back another day in a new way.' : s.total - s.first ? ' The other ' + (s.total - s.first) + ' come back another day in a new way.' : '') })
+        : (s.total - s.first) ? el('p', { class: 'hint', text: (s.total - s.first) + (s.total - s.first === 1 ? ' question goes' : ' questions go') + ' on your catch-up list. ' + (s.total - s.first === 1 ? 'It comes' : 'They come') + ' back with new numbers until you get ' + (s.total - s.first === 1 ? 'it' : 'each one') + ' right.' + (s.firstMissPart ? ' Misses started in ' + s.firstMissPart + '.' : '') })
+        : el('p', { class: 'hint', text: 'No misses in any part.' })));
     kids.push(el('div', { class: 'actions' }, el('button', { class: 'btn big', type: 'button', text: 'Done', onclick: exit }), el('button', { class: 'btn ghost', type: 'button', text: 'Look through my answers', onclick: function () { P.idx = 0; P.mode = 'q'; paint(); } })));
     root.replaceChildren.apply(root, kids); window.scrollTo(0, 0);
   }
@@ -2592,7 +2644,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     });
   }
 
-  H.math = { queue: queue, metas: metas, attempt: att, content: content, flat: flat, summarize: summarize, review: review, dayStats: dayStats, label: label, hm: hm, partOk: partOk, pkey: pkey, WHY: WHY, DEC: DEC, recommend: recommend, learnBody: learnBody, figBlock: figBlock, qFirst: qFirst, qAllOk: qAllOk };
+  H.math = { queue: queue, metas: metas, attempt: att, content: content, flat: flat, summarize: summarize, review: review, dayStats: dayStats, label: label, hm: hm, partOk: partOk, pkey: pkey, WHY: WHY, DEC: DEC, recommend: recommend, catchupState: catchupState, learnBody: learnBody, figBlock: figBlock, qFirst: qFirst, qAllOk: qAllOk };
   H.views.register('lesson', {
     render: function (r) { root = r; },
     show: openLesson,
@@ -3774,6 +3826,23 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       })));
   }
 
+  function catchupCard() {
+    if (!H.math || !H.math.catchupState) return null;
+    var cu = H.math.catchupState();
+    var card = el('div', { class: 'card', id: 'cuList' }, el('h2', { text: 'Catch-up list' }),
+      el('p', { class: 'hint', text: 'Every question he did not get right on the first try. Each morning the builder writes a new version of up to 6 of them (new numbers, or a new story for a word problem), and they come first in his next session. Right on the first try clears it.' }));
+    if (!cu.open.length && !cu.cleared.length) { card.append(el('p', { class: 'small muted', text: 'Nothing on the list yet.' })); return card; }
+    card.append(el('p', { text: cu.open.length + ' open, ' + cu.cleared.length + ' cleared.' }));
+    if (cu.open.length) card.append(el('div', { class: 'llist' }, cu.open.slice(0, 12).map(function (c) {
+      return el('div', { class: 'lrow' }, el('div', {},
+        el('div', { class: 't', text: 'Lesson ' + (c.n || c.lessonId) + ', question ' + c.qid.replace(/^q/, '') + (c.skillName ? ' · ' + c.skillName : '') }),
+        el('div', { class: 's', text: (c.rounds.length ? 'New versions tried: ' + c.rounds.length + '. ' : '') + (c.pending ? 'A new version is in his catch-up set.' : 'New version comes with the next morning build.') })),
+        el('button', { class: 'btn quiet', type: 'button', text: 'Answers', onclick: function () { H.go('answers', { id: c.lessonId, from: 'parent' }); } }));
+    })));
+    if (cu.open.length > 12) card.append(el('p', { class: 'small muted', text: 'And ' + (cu.open.length - 12) + ' more.' }));
+    return card;
+  }
+
   function remarksCard() {
     var all = [];
     H.store.col('notes').forEach(function (v, id) { if (v) all.push(v); });
@@ -3832,6 +3901,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     else rv.append(el('div', { class: 'empty' }, el('b', { text: 'Nothing to check' }), el('span', { text: 'Typed answers are checked by the hub. Written reasons, and any answer he believes was marked wrong, wait here for you.' })));
     kids.push(rv);
     var ab = answersCard(); if (ab) kids.push(ab);
+    var cc = catchupCard(); if (cc) kids.push(cc);
     kids.push(remarksCard());
     kids.push(requestsCard(), builderCard());
     if (hosted()) (H.parent.cards || []).forEach(function (fn) { var c = fn(paint); if (c) kids.push(c); });
@@ -3856,7 +3926,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
    second tries, time and his own reason for a miss, and the idea card that opens each part. Live while he works. */
 (function () {
   'use strict';
-  var H = window.Hub, el = H.el, C = window.NLHCheck, root = null, cur = null, onlyMiss = false, sig = '', openQ = null, drafts = {};
+  var H = window.Hub, el = H.el, C = window.NLHCheck, root = null, cur = null, onlyMiss = false, sig = '', openQ = null, drafts = {}, cuNow = null;
   var WHYTXT = {};
   function adult() {
     if (window.HUB_CFG) { var r = (window.HUB_ME || {}).role; return r === 'parent' || r === 'tutor'; }
@@ -3900,11 +3970,12 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     rec.why.forEach(function (t) { card.append(el('p', { class: 'small muted', text: t })); });
     if (dec && D[dec.code]) card.append(el('div', { class: 'adec set', id: 'decSet' }, el('span', { class: 'label', text: 'Decided' }),
       el('p', {}, el('b', { text: D[dec.code][0] + '. ' }), 'Set by ' + dec.by + ' (' + (ROLEN[dec.role] || dec.role) + '), ' + when(dec.at) + '.' + (dec.note ? ' ' + dec.note : ''))));
-    var codes = test ? ['move_on', 'retest'] : ['move_on', 'practice_parts', 'practice', 'redo'];
+    var codes = test ? ['move_on', 'retest'] : L.kind === 'catchup' ? [] : ['move_on', 'redo'];
     var note = el('input', { type: 'text', id: 'decNote', placeholder: 'Reason, optional (for example: needs more on cancelling)' });
     note.value = drafts.decNote || '';
     note.addEventListener('input', function () { drafts.decNote = note.value; });
-    card.append(el('p', { class: 'hint', text: 'Your decision tells the lesson builder what to make next, and it wins over the suggestion. The suggestion counts right-on-the-first-try: 80% or more moves on, 60% to 79% practices first, under 60% redoes the lesson.' }),
+    if (!codes.length) return card;
+    card.append(el('p', { class: 'hint', text: 'Your decision tells the lesson builder what to make next, and it wins over the suggestion. The suggestion: 60% or more right on the first try moves on, and every missed question comes back as catch-up until he gets it right; under 60% redoes the lesson.' }),
       el('div', { class: 'row adecbtns' }, codes.map(function (c) {
         return el('button', { class: 'btn ghost', type: 'button', 'data-dec': c, 'aria-pressed': dec && dec.code === c ? 'true' : 'false', text: D[c][0], onclick: function () { setDecision(c, note.value); } });
       })), note);
@@ -3998,6 +4069,13 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     if (Q && Q.flag) meta.push(Q.flagDone ? 'He asked for this to be checked; a parent has answered.' : 'He thinks his answer is right. It waits on the Parent tab.');
     if (it.min) meta.push('Planned time: ' + it.min + ' min.');
     meta.forEach(function (t) { box.append(el('p', { class: 'small muted', text: t })); });
+    var c = cuNow && cuNow.byKey[cur.id + '/' + it.id];
+    if (c) {
+      var hist = c.rounds.map(function (r) { return when(r.at) + (r.ok ? ' right' : ' wrong'); }).join(', ');
+      box.append(el('p', { class: 'acu ' + (c.cleared ? 'ok' : 'open'), text: c.cleared ? 'Catch-up: cleared after ' + c.rounds.length + (c.rounds.length === 1 ? ' new version' : ' new versions') + ' (' + hist + ').'
+        : 'On his catch-up list' + (c.rounds.length ? ' (' + hist + ')' : '') + '. ' + (c.pending ? 'A new version is waiting in his catch-up set.' : 'The next morning build writes a new version.') }));
+    }
+    if (it.from) box.append(el('p', { class: 'acu', text: 'New version of ' + it.from.replace(/^L0*(\d+)\//, 'Lesson $1, question ').replace(/question q/, 'question ') + (it.round ? ', try ' + it.round : '') + '.' }));
     notesFor(cur.id, it.id).forEach(function (v) { box.append(noteRow(v)); });
     if (openQ === it.id) box.append(remarkBox(it.id, it.id, 'A remark on question ' + x.n));
     else box.append(el('div', { class: 'noprint' }, el('button', { class: 'linkbtn', type: 'button', 'data-remark': it.id, text: 'Add a remark on this question', onclick: function () { openQ = it.id; paint(true); var t = H.$('#rem-' + it.id, root); if (t) t.focus(); } })));
@@ -4013,8 +4091,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   }
   function signature() {
     var A = cur && H.math.attempt(cur.id);
-    var d = cur && H.store.col('decisions').get(cur.id);
-    return [cur && cur.id, !!(cur && cur.L), onlyMiss, adult(), A ? (A.rev || 0) + '|' + (A.updatedAt || '') : '-', cur ? notesFor(cur.id).length : 0, d ? d.at + d.code : '-'].join('/');
+    var d = cur && H.store.col('decisions').get(cur.id), cs = H.math.catchupState();
+    return [cur && cur.id, !!(cur && cur.L), onlyMiss, adult(), A ? (A.rev || 0) + '|' + (A.updatedAt || '') : '-', cur ? notesFor(cur.id).length : 0, d ? d.at + d.code : '-', cs.open.length + ':' + cs.cleared.length].join('/');
   }
   function paint(force) {
     if (!root || !cur) return;
@@ -4035,6 +4113,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
     if (cur.L === false) { root.replaceChildren(bar(title), el('div', { class: 'banner', text: 'The questions for this lesson could not be loaded. Check the connection and try again.' })); return; }
     var L = cur.L, A = H.math.attempt(cur.id), test = L.kind === 'test', kids = [bar(title)];
+    cuNow = H.math.catchupState();
     var head = el('div', { class: 'card' }, el('h1', { text: L.title }));
     if (A) {
       var sm = A.summary || H.math.summarize(L, A);
