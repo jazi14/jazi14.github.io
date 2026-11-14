@@ -1,0 +1,339 @@
+{
+ "schema": 1,
+ "id": "CU-2026-11-14",
+ "kind": "catchup",
+ "subject": "math",
+ "strand": "Mixed",
+ "title": "4 questions from earlier lessons",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a fraction like 3/4, a mixed number like 2 1/2, and a power like 3^4.",
+ "skills": {
+  "int-addsub": "Add and subtract integers",
+  "mult-multi": "Multi-digit multiplication",
+  "exp-eval": "Evaluate powers",
+  "exp-compare": "Compare powers"
+ },
+ "sections": [
+  {
+   "name": "Catch-up",
+   "desc": "Questions you missed before, with new numbers or a new story. Right on the first try takes one off your list.",
+   "items": [
+    {
+     "id": "c1",
+     "q": "Work out each one. On a number line, adding moves you right and subtracting moves you left.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-8"
+       },
+       "label": "a",
+       "prompt": "4 − 12",
+       "tests": {
+        "ok": [
+         "-8",
+         "−8"
+        ],
+        "no": [
+         "8",
+         "16"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-11"
+       },
+       "label": "b",
+       "prompt": "−8 − 3",
+       "tests": {
+        "ok": [
+         "-11",
+         "−11"
+        ],
+        "no": [
+         "-5",
+         "5",
+         "11"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-9"
+       },
+       "label": "c",
+       "prompt": "In a board game, Lena's score is −5 points. On her next turn she earns 9 points. On the turn after that she loses 13 points. What is her score now?",
+       "unit": "points",
+       "tests": {
+        "ok": [
+         "-9",
+         "−9"
+        ],
+        "no": [
+         "9",
+         "1",
+         "-27",
+         "4"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 4 − 12 = −8",
+      "b) −8 − 3 = −11",
+      "c) −5 + 9 = 4 after earning",
+      "4 − 13 = −9 after losing",
+      "Answers: a) −8, b) −11, c) −9 points"
+     ],
+     "skill": "int-addsub",
+     "hint": "Start at the first number on a number line. A minus sign means move left. Count how far you move, and check which side of 0 you land on.",
+     "min": 4,
+     "from": "L036/q1",
+     "round": 2,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c2",
+     "q": "Find each product. On paper, write one partial product for each digit of the bottom number, then add.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "2546"
+       },
+       "label": "a",
+       "prompt": "67 × 38",
+       "tests": {
+        "ok": [
+         "2546",
+         "2,546"
+        ],
+        "no": [
+         "737",
+         "536",
+         "2536"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "14580"
+       },
+       "label": "b",
+       "prompt": "405 × 36",
+       "tests": {
+        "ok": [
+         "14580",
+         "14,580"
+        ],
+        "no": [
+         "3645",
+         "2430",
+         "14480"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3510"
+       },
+       "label": "c",
+       "prompt": "A stadium has 26 sections. Each section has 135 seats. How many seats is that in all? Put the bigger number on top when you multiply.",
+       "unit": "seats",
+       "tests": {
+        "ok": [
+         "3510",
+         "3,510"
+        ],
+        "no": [
+         "1080",
+         "810",
+         "3410"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 67 × 8 = 536",
+      "67 × 30 = 2,010",
+      "536 + 2,010 = 2,546",
+      "b) 405 × 6 = 2,430",
+      "405 × 30 = 12,150",
+      "2,430 + 12,150 = 14,580",
+      "c) 135 × 6 = 810",
+      "135 × 20 = 2,700",
+      "810 + 2,700 = 3,510",
+      "Answers: a) 2,546, b) 14,580, c) 3,510 seats"
+     ],
+     "skill": "mult-multi",
+     "hint": "Make one partial product for each digit of the bottom number, then check each one before you add. The partial product for the tens digit ends in 0.",
+     "min": 6,
+     "from": "L036/q2",
+     "round": 2,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c3",
+     "q": "Look at the pattern in the table. Each time the exponent goes down by 1, the value is divided by the base, which is 3.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "3"
+       },
+       "label": "a",
+       "prompt": "What is the value of 3¹?",
+       "tests": {
+        "ok": [
+         "3"
+        ],
+        "no": [
+         "1",
+         "0",
+         "9"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1"
+       },
+       "label": "b",
+       "prompt": "Follow the pattern one more step. What is the value of 3⁰?",
+       "tests": {
+        "ok": [
+         "1"
+        ],
+        "no": [
+         "0",
+         "3"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1"
+       },
+       "label": "c",
+       "prompt": "The same pattern works for other bases. 5² is 25 and 5¹ is 5. What is the value of 5⁰?",
+       "tests": {
+        "ok": [
+         "1"
+        ],
+        "no": [
+         "0",
+         "5"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 9 ÷ 3 = 3, so the value of 3¹ is 3.",
+      "b) 3 ÷ 3 = 1, so the value of 3⁰ is 1.",
+      "c) 5 ÷ 5 = 1, so the value of 5⁰ is 1.",
+      "Answers: a) 3, b) 1, c) 1. A base other than 0 with exponent 0 always has the value 1."
+     ],
+     "skill": "exp-eval",
+     "hint": "Each step to the right, divide the value by the base. For part c the base is 5, not 3.",
+     "min": 4,
+     "table": {
+      "head": [
+       "Power",
+       "3⁴",
+       "3³",
+       "3²",
+       "3¹",
+       "3⁰"
+      ],
+      "rows": [
+       [
+        "Value",
+        "81",
+        "27",
+        "9",
+        "?",
+        "?"
+       ]
+      ]
+     },
+     "from": "L036/q12",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c4",
+     "q": "Work out the value of each power. Then decide which power is greater.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "216"
+       },
+       "label": "a",
+       "prompt": "Value of 6³",
+       "tests": {
+        "ok": [
+         "216"
+        ],
+        "no": [
+         "18",
+         "36",
+         "9"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "729"
+       },
+       "label": "b",
+       "prompt": "Value of 3⁶",
+       "tests": {
+        "ok": [
+         "729"
+        ],
+        "no": [
+         "18",
+         "243",
+         "216"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "3⁶",
+         "6³",
+         "They are equal"
+        ],
+        "correct": 0
+       },
+       "label": "c",
+       "prompt": "Which is greater?"
+      }
+     ],
+     "a": [
+      "a) 6 × 6 × 6 = 216",
+      "b) 3 × 3 × 3 × 3 × 3 × 3 = 729",
+      "c) 729 is greater than 216, so 3⁶ is greater.",
+      "Answers: a) 216, b) 729, c) 3⁶"
+     ],
+     "skill": "exp-compare",
+     "hint": "Write out all the factors for each power. Count them before you multiply.",
+     "min": 4,
+     "from": "L036/q18",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    }
+   ]
+  }
+ ]
+}
