@@ -1,0 +1,98 @@
+{
+ "schema": 1,
+ "id": "CU-2026-11-15",
+ "kind": "catchup",
+ "subject": "math",
+ "strand": "Mixed",
+ "title": "1 question from an earlier lesson",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a fraction like 3/4, a mixed number like 2 1/2, and a power like 3^4.",
+ "skills": {
+  "int-addsub": "Add and subtract integers"
+ },
+ "sections": [
+  {
+   "name": "Catch-up",
+   "desc": "Questions you missed before, with new numbers or a new story. Right on the first try takes one off your list.",
+   "items": [
+    {
+     "id": "c1",
+     "q": "Work out each one. Picture a number line: adding moves you right and subtracting moves you left.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-9"
+       },
+       "label": "a",
+       "prompt": "1 − 10",
+       "tests": {
+        "ok": [
+         "-9",
+         "−9"
+        ],
+        "no": [
+         "9",
+         "11"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-14"
+       },
+       "label": "b",
+       "prompt": "−2 − 12",
+       "tests": {
+        "ok": [
+         "-14",
+         "−14"
+        ],
+        "no": [
+         "10",
+         "-10",
+         "14"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-8"
+       },
+       "label": "c",
+       "prompt": "A hiking trail near a desert lake starts at −7 meters, which means 7 meters below sea level. A hiker climbs up 12 meters, then walks down 13 meters into a canyon. What number gives her height compared with sea level now, in meters?",
+       "unit": "meters",
+       "tests": {
+        "ok": [
+         "-8",
+         "−8",
+         "-8 meters"
+        ],
+        "no": [
+         "8",
+         "-32",
+         "5",
+         "18"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 1 − 10 = −9",
+      "b) −2 − 12 = −14",
+      "c) −7 + 12 = 5 after climbing up",
+      "5 − 13 = −8 after walking down",
+      "Answers: a) −9, b) −14, c) −8 meters"
+     ],
+     "skill": "int-addsub",
+     "hint": "Start at the first number on a number line. The minus sign between two numbers means move left. If you start left of 0 and move left, do you end up closer to 0 or farther from it?",
+     "min": 4,
+     "from": "L036/q1",
+     "round": 3,
+     "tag": "Back from Lesson 36"
+    }
+   ]
+  }
+ ]
+}
