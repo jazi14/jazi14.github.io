@@ -1,0 +1,210 @@
+{
+ "schema": 1,
+ "id": "C004",
+ "kind": "comp",
+ "title": "The Book That Named Algebra",
+ "genre": "History",
+ "topic": "al-Khwarizmi and the House of Wisdom",
+ "passage": [
+  "More than twelve hundred years ago, the city of Baghdad was one of the great centers of learning in the world. Its rulers collected books from Greece, Persia, and India, and paid scholars to translate them into Arabic and to write new ones. The most famous place for this work came to be known as the House of Wisdom, though historians still debate exactly what it was like. Among the scholars who worked there was a man named Muhammad ibn Musa al-Khwarizmi.",
+  "Not much is known about his life. His name suggests that his family came from Khwarazm, a region in Central Asia, and he was probably born around the year 780. What we do know comes mostly from his books, and those books turned out to be some of the most important ever written about mathematics.",
+  "Around the year 820, al-Khwarizmi wrote a book about solving problems in which one number is unknown. In the opening pages, he explained that he wanted to help people with the kinds of calculations they needed every day: dividing property among family members, buying and selling, measuring land, and digging canals. He described two main moves. The first, called al-jabr, means \"restoring\" or \"completing.\" It is the move a person makes today when something being subtracted on one side of an equation is added back to both sides. The second, al-muqabala, means \"balancing,\" and it removes the same amount from both sides.",
+  "What may surprise a student today is that al-Khwarizmi used no letters or symbols at all. There was no x and no equals sign. Every problem was written out in words. One of his examples reads, in English, \"a square and ten roots are equal to thirty-nine.\" (A root is the unknown number, and a square is that number times itself.) He then explained, step by step and with drawings of squares and rectangles, how to find the unknown number. Later mathematicians invented symbols to make the same ideas shorter to write.",
+  "Al-Khwarizmi also wrote a book explaining the number system that had come from India, with nine digits and a symbol for zero. In this system, the place where a digit sits tells its value, so the 3 in 300 means something very different from the 3 in 30. People in Europe were still using Roman numerals, which are clumsy for multiplying and dividing. When his book was translated into Latin in the 1100s, it helped spread the new numbers across Europe. In 1202, an Italian named Fibonacci published his own book praising the same system, and over the next few centuries it replaced Roman numerals for most calculations.",
+  "Translators turned the name al-Khwarizmi into the Latin word Algoritmi. Over time, that word became algorithm, which today means a set of steps for solving a problem, the kind of set of steps a computer follows. And the al-jabr in the title of his first book became a word that students all over the world now learn: algebra."
+ ],
+ "words": 497,
+ "gist": {
+  "model": "Al-Khwarizmi, a scholar in Baghdad, wrote books that explained how to solve problems with an unknown number and how to use the number system from India, and his work shaped mathematics so much that the words algebra and algorithm come from him.",
+  "look": "names al-Khwarizmi, says what his books taught, and explains why he is still remembered."
+ },
+ "questions": [
+  {
+   "id": "q1",
+   "type": "main",
+   "q": "Which sentence best tells what the passage is mostly about?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Al-Khwarizmi wrote books on unknown numbers and on place-value numbers that shaped mathematics.",
+     "Baghdad's rulers collected books from Greece, Persia, and India and had them translated.",
+     "Fibonacci was the first person to bring the number system from India to Europe.",
+     "Roman numerals were used in Europe because they are easier for multiplying."
+    ],
+    "correct": 0
+   },
+   "hint": "Pick the choice that fits most of the paragraphs, not one sentence.",
+   "why": "Most paragraphs explain what al-Khwarizmi's books taught and how they spread. The other choices are details that support that idea."
+  },
+  {
+   "id": "q2",
+   "type": "purpose",
+   "q": "In paragraph 3, why does the author list dividing property, buying and selling, measuring land, and digging canals?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "To explain how workers in Baghdad dug canals and measured land",
+     "To describe the different jobs of the scholars at the House of Wisdom",
+     "To show that al-Khwarizmi wrote his book to solve real, everyday problems",
+     "To show that al-Khwarizmi owned land and property in Baghdad"
+    ],
+    "correct": 2
+   },
+   "hint": "Read the sentence just before the list. What did he say he wanted to do?",
+   "why": "The list follows \"he wanted to help people with the kinds of calculations they needed every day.\" It shows the practical purpose of his book.",
+   "para": [
+    3
+   ]
+  },
+  {
+   "id": "q3",
+   "type": "vocab",
+   "q": "In paragraph 3, what does al-jabr mean? Type one of the two English words the passage gives.",
+   "ans": {
+    "type": "text",
+    "accept": [
+     "restoring",
+     "completing",
+     "restoring or completing",
+     "restoring and completing",
+     "completing or restoring",
+     "\"restoring\"",
+     "\"completing\"",
+     "“restoring”",
+     "“completing”",
+     "restore",
+     "restoration",
+     "complete",
+     "completion"
+    ]
+   },
+   "hint": "Find the sentence in paragraph 3 that says what al-jabr means.",
+   "why": "The passage says al-jabr means \"restoring\" or \"completing.\"",
+   "para": [
+    3
+   ]
+  },
+  {
+   "id": "q4",
+   "type": "detail",
+   "q": "How did al-Khwarizmi write the problems in his book?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "With an x and an equals sign, like today",
+     "In words, with no letters or symbols",
+     "Only with drawings and no words",
+     "In Roman numerals"
+    ],
+    "correct": 1
+   },
+   "hint": "Look at the first two sentences of paragraph 4.",
+   "why": "Paragraph 4 says he used no letters or symbols and wrote every problem in words, explaining with drawings as well.",
+   "para": [
+    4
+   ]
+  },
+  {
+   "id": "q5",
+   "type": "evidence",
+   "q": "Which two sentences best explain why the number system from India was better than Roman numerals?",
+   "ans": {
+    "type": "multi",
+    "options": [
+     "When his book was translated into Latin in the 1100s, it helped spread the new numbers across Europe.",
+     "In this system, the place where a digit sits tells its value, so the 3 in 300 means something very different from the 3 in 30.",
+     "In 1202, an Italian named Fibonacci published his own book praising the same system, and over the next few centuries it replaced Roman numerals for most calculations.",
+     "People in Europe were still using Roman numerals, which are clumsy for multiplying and dividing."
+    ],
+    "correct": [
+     1,
+     3
+    ]
+   },
+   "hint": "Which sentences describe how the two number systems work, or how easy they are to use?",
+   "why": "Place value lets a few digits stand for any number, and Roman numerals are clumsy for multiplying and dividing. Together they explain why the new system won.",
+   "para": [
+    5
+   ]
+  },
+  {
+   "id": "q6",
+   "type": "infer",
+   "q": "Paragraph 4 says, \"Later mathematicians invented symbols to make the same ideas shorter to write.\" What can you conclude from this sentence?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Using symbols made algebra much harder for students to understand.",
+     "Al-Khwarizmi was the one who invented the x and the equals sign.",
+     "Al-Khwarizmi's ideas were wrong and had to be replaced by better ones.",
+     "The ideas in algebra stayed the same, but the way of writing them changed."
+    ],
+    "correct": 3
+   },
+   "hint": "The sentence says \"the same ideas.\" What changed, and what did not?",
+   "why": "\"The same ideas\" tells you the math itself stayed; only the way of writing it got shorter.",
+   "para": [
+    4
+   ]
+  },
+  {
+   "id": "q7",
+   "type": "infer",
+   "q": "Why might al-Khwarizmi be remembered more today than many other scholars of the House of Wisdom?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "His ideas and even his name became part of words and methods people still use every day.",
+     "He was the only scholar at the House of Wisdom who studied or wrote about mathematics.",
+     "He was the first to write algebra with x and an equals sign.",
+     "He invented the number system with nine digits and a zero."
+    ],
+    "correct": 0
+   },
+   "hint": "Think about paragraph 6. Where do people meet his name and his book title today?",
+   "why": "Algorithm and algebra come from his name and his book, and the number system he explained is the one used today.",
+   "para": [
+    5,
+    6
+   ]
+  },
+  {
+   "id": "q8",
+   "type": "structure",
+   "q": "How does the author organize the last paragraph?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "It describes a problem and its solution.",
+     "It lists the steps for solving an equation.",
+     "It explains where two modern words came from.",
+     "It compares two mathematicians."
+    ],
+    "correct": 2
+   },
+   "hint": "What two words does the last paragraph trace back to al-Khwarizmi?",
+   "why": "The last paragraph traces algorithm to his name and algebra to the title of his book.",
+   "para": [
+    6
+   ]
+  }
+ ],
+ "write": {
+  "kind": "paragraph",
+  "prompt": "Why is al-Khwarizmi still remembered more than a thousand years after he lived? Write a paragraph. Use two details from the passage and explain how each detail shows why he is remembered.",
+  "plan": [
+   "Your answer in one sentence: why is he still remembered?",
+   "Detail 1 from the passage about what his books did.",
+   "Detail 2 from the passage about what came from his work or his name.",
+   "Explain how each detail shows why he is remembered.",
+   "A closing sentence that sums up your answer in new words."
+  ],
+  "minWords": 80,
+  "model": "Al-Khwarizmi is still remembered because his books changed how people do mathematics, and his work lives on in words we use today. His first book explained how to solve problems with an unknown number, using moves called al-jabr and al-muqabala, and he wrote it to help with everyday jobs like measuring land and buying and selling. Those same ideas are what students learn in algebra now. Another of his books explained the number system from India, with place value and zero, and its Latin translation helped that system replace Roman numerals in Europe. Every time someone uses the numbers 0 to 9, they are using the system his book helped spread. Even the words algebra and algorithm come from his book and his name, so his work is hard to forget.",
+  "look": [
+   "answers why he is remembered in the first sentence",
+   "uses one detail about his books and one about what came from them",
+   "explains how each detail shows why he is remembered"
+  ]
+ }
+}

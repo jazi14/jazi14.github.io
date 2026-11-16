@@ -1,0 +1,217 @@
+{
+ "schema": 1,
+ "id": "C002",
+ "kind": "comp",
+ "title": "Low Tide",
+ "genre": "Story",
+ "topic": "a choice on a rocky beach",
+ "passage": [
+  "\"Low tide is at two,\" Mom said, tapping the paper chart taped inside the beach house door. \"Be back at the stairs by three. The water comes in faster than you think.\"",
+  "Noor had been waiting all summer for this afternoon. Her cousin Bilal had described the Sentinel so many times that she could picture it with her eyes closed: a tall black rock at the very tip of the point, ringed with tide pools so deep that starfish as wide as dinner plates clung to their walls. It could be reached only at low tide, he had explained, by hopping along a crooked spine of rocks that vanished completely when the water returned. Bilal had made it there last summer, and he had not stopped bragging since. Noor was eleven now, a full year older than he had been, and she intended to see those starfish for herself.",
+  "The only obstacle was Idris. Her little brother was six, and he regarded the ocean with deep suspicion. He disliked the cold, the slippery ribbons of seaweed, and especially the way the waves hissed as they dragged back across the pebbles, as if the sea were warning him away. But Mom had a headache, and the rule was firm: Noor could go out on the rocks only if Idris came along.",
+  "\"Stay close and step where I step,\" Noor told him at the bottom of the stairs. At 2:05 they started out.",
+  "Idris stopped at the very first puddle. He squatted down, his nose almost touching the water. \"There's something moving,\" he whispered.",
+  "\"It's just a snail. Come on.\" Noor pulled him up by his sleeve. Ahead of them, the line of rocks stretched toward the Sentinel like a row of stepping stones in a giant's garden.",
+  "Idris was maddeningly slow. He tested every rock with the toe of his sneaker before trusting it with his weight, and he halted to examine a crab shell, then a gull feather, then a strand of kelp that looked, he announced, exactly like a dragon's tail. Each time, Noor said, \"Come on,\" a little louder and a little sharper. By the time they were halfway to the Sentinel, her watch read 2:35.",
+  "That was when Idris slipped. His sneaker skidded on a green, slimy patch, and he sat down hard on the rock. When he lifted his hand, his palm was scraped and beaded with tiny dots of blood. His face crumpled.",
+  "Noor looked toward the Sentinel. Somehow it seemed no closer than when they had started. Then she glanced down at the channel beside their rock. When they had crossed it on the way out, it had been a trickle she could step over without a second thought. Now it was a little river, swirling and widening, and the water was flowing toward the shore. Already the sea was beginning to stitch the rocks together.",
+  "She took his good hand and led him back across the channel while she still could. On the near side, she crouched down next to him. She rinsed his hand in a clear pool and wrapped it in the bandana from her pocket. Then, because he was still sniffling, she pointed into the pool. \"Look. Don't move, and watch that shell.\"",
+  "For a long moment nothing happened. Then two spindly legs poked out of the shell, followed by two more, and a tiny hermit crab hauled its borrowed house across the sand like someone hurrying home with an overstuffed backpack. Idris stopped sniffling. He leaned so close that his breath sent ripples across the surface.",
+  "Together they discovered three more hermit crabs, a red sea star no bigger than a cookie, and a sea anemone that closed around Noor's fingertip like a soft, sticky flower. Idris giggled every time it squeezed. Noor showed him how to lift a rock slowly and lower it back exactly the way it had been, so that nothing living underneath would be crushed.",
+  "At 2:50 she stood up. \"Time to head back,\" she said. \"Step where I step.\" This time she did not hurry him, and this time he did not test every rock.",
+  "When they reached the bottom of the stairs, Noor turned around. The rocks they had crossed were vanishing one by one beneath the gray water. Far out at the end of the point, waves exploded in white sprays against the Sentinel, and the crooked path that led to it was gone.",
+  "\"Can we come back tomorrow?\" Idris asked, holding up his bandaged hand like a prize.",
+  "Noor ran up the stairs ahead of him, straight to the chart on the door. \"Low tide's at 2:50 tomorrow,\" she called down. \"We'll start at one.\""
+ ],
+ "words": 784,
+ "gist": {
+  "model": "On her way to a famous rock at low tide, Noor stops to care for her hurt little brother and shows him the tide pools, and she gives up her goal as the tide comes back in.",
+  "look": "tells who the story is about, what she wanted, what happened to her brother, and what she chose instead, not just one event."
+ },
+ "questions": [
+  {
+   "id": "q1",
+   "type": "main",
+   "q": "Which sentence best tells what happens in the story?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Mom stays in the beach house with a headache all afternoon while the two children play out on the beach.",
+     "Noor gives up reaching the Sentinel to care for her brother, and they explore the tide pools instead.",
+     "Noor reaches the Sentinel and finds the giant starfish that Bilal described to her.",
+     "Idris is afraid of the ocean until a hermit crab makes him forget about the waves."
+    ],
+    "correct": 1
+   },
+   "hint": "The answer should cover the beginning, the middle, and the end of the story.",
+   "why": "Only the choice about giving up the Sentinel covers the whole story: her goal, Idris getting hurt, and the tide pools. The others are single events, and Noor never reaches the Sentinel."
+  },
+  {
+   "id": "q2",
+   "type": "infer",
+   "q": "Why does Noor decide not to keep going to the Sentinel?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Mom calls her back to the beach house because it is three o'clock.",
+     "She is afraid of the tall black rock and the waves around it.",
+     "She finds giant starfish in a pool much closer to the shore.",
+     "Her brother is hurt, and she sees that the tide is already coming in."
+    ],
+    "correct": 3
+   },
+   "hint": "Reread paragraphs 8 and 9. What happens, and what does Noor see?",
+   "why": "Idris has scraped his hand, and the channel they crossed has become a little river moving toward shore. The story never says she is afraid of the rock, and Mom does not call her.",
+   "para": [
+    8,
+    9
+   ]
+  },
+  {
+   "id": "q3",
+   "type": "vocab",
+   "q": "In paragraph 9, the author writes that the sea was \"beginning to stitch the rocks together.\" What does this mean?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Water was filling in the gaps between the rocks, joining them like stitches join cloth.",
+     "Waves were pushing the loose rocks closer and closer to each other.",
+     "Long strands of slippery seaweed were slowly growing in all the cracks between the rocks.",
+     "Someone had built a path of flat rocks leading out to the Sentinel."
+    ],
+    "correct": 0
+   },
+   "hint": "Think about what the channel looked like before and after. What is the water doing to the spaces between the rocks?",
+   "why": "The channel had turned from a trickle into a little river. As water fills the spaces, the separate rocks start to look joined, the way stitches join two pieces of cloth.",
+   "para": [
+    9
+   ]
+  },
+  {
+   "id": "q4",
+   "type": "character",
+   "q": "Which word best describes Noor at the beginning of the story?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "frightened",
+     "careless with the rules",
+     "impatient",
+     "lazy"
+    ],
+    "correct": 2
+   },
+   "hint": "What does she keep saying to Idris in paragraphs 6 and 7?",
+   "why": "She keeps saying \"Come on,\" each time louder, and pulls him up by his sleeve. She follows Mom's rule by bringing Idris, so she is not careless with the rules.",
+   "para": [
+    6,
+    7
+   ]
+  },
+  {
+   "id": "q5",
+   "type": "evidence",
+   "q": "Which two sentences from late in the story show Noor acting differently than she did at the start?",
+   "ans": {
+    "type": "multi",
+    "options": [
+     "Noor looked toward the Sentinel.",
+     "This time she did not hurry him, and this time he did not test every rock.",
+     "\"It's just a snail. Come on.\"",
+     "Noor showed him how to lift a rock slowly and lower it back exactly the way it had been, so that nothing living underneath would be crushed."
+    ],
+    "correct": [
+     1,
+     3
+    ]
+   },
+   "hint": "Look for sentences from late in the story where she acts differently from how she acted at the start.",
+   "why": "Late in the story she is patient with Idris and careful with the creatures in the pools. The snail line comes from the start, and looking toward the Sentinel shows nothing new about her.",
+   "para": [
+    6,
+    12,
+    13
+   ]
+  },
+  {
+   "id": "q6",
+   "type": "infer",
+   "q": "Why does the author have Mom say, \"The water comes in faster than you think,\" in paragraph 1?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "It shows that Mom does not want the children to have any fun at the beach.",
+     "It tells the reader that the story takes place on a cold winter day.",
+     "It is a warning that matters later, when the tide rises while they are out on the rocks.",
+     "It explains why Mom has a headache and has to stay inside the beach house all afternoon."
+    ],
+    "correct": 2
+   },
+   "hint": "Did the water matter later in the story? Find where.",
+   "why": "The warning comes true in paragraph 9, when Noor sees the channel filling. An early detail that pays off later helps the reader see why her choice matters.",
+   "para": [
+    1,
+    9
+   ]
+  },
+  {
+   "id": "q7",
+   "type": "sequence",
+   "q": "What does Noor do right after she sees that the channel has become a little river?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "She leads him back across the channel, then rinses and wraps his hand.",
+     "She checks the tide chart taped inside the beach house door.",
+     "She leaves Idris on the rock and runs back toward the stairs alone.",
+     "She shows Idris how to turn over a rock without crushing anything."
+    ],
+    "correct": 0
+   },
+   "hint": "Find the paragraph that comes right after the one about the channel.",
+   "why": "Paragraph 10 begins with her leading Idris back across the channel while she still can, then caring for his hand. The rock-turning comes later, and the chart comes at the very end.",
+   "para": [
+    9,
+    10
+   ]
+  },
+  {
+   "id": "q8",
+   "type": "infer",
+   "q": "At the end, Noor runs to check the chart and says, \"We'll start at one.\" What does this suggest about her?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "She wants to leave Idris at home so that she can go faster next time.",
+     "She thinks Mom read the tide chart wrong today and gave her the wrong time for low tide.",
+     "She has decided that she will never go out on the rocks again.",
+     "She still wants to explore, and now she plans ahead so there is enough time before the tide."
+    ],
+    "correct": 3
+   },
+   "hint": "Low tide tomorrow is at 2:50. Why would she start almost two hours earlier?",
+   "why": "Starting at one gives them time to go slowly and still be safe from the tide. She has not given up exploring, and she plans to go together.",
+   "para": [
+    16
+   ]
+  }
+ ],
+ "write": {
+  "kind": "paragraph",
+  "prompt": "How does Noor change from the beginning of the story to the end? Write a paragraph. Use two details from the story and explain what each detail shows about her.",
+  "plan": [
+   "Your answer in one sentence: how is Noor different at the end?",
+   "A detail from the beginning that shows how she acts at first.",
+   "A detail from later in the story that shows how she has changed.",
+   "Explain what each detail shows about her.",
+   "A closing sentence that sums up your answer in new words."
+  ],
+  "minWords": 80,
+  "model": "At the beginning of the story Noor cares most about reaching the Sentinel, but by the end she cares more about her brother and about planning carefully. At first she rushes Idris. When he finds something moving in a puddle, she says \"It's just a snail\" and pulls him up by his sleeve, which shows that she sees him as something slowing her down. After he gets hurt and she notices the tide coming in, she stops, takes care of his hand, and shows him hermit crabs. On the way back, \"she did not hurry him,\" which shows she has learned to be patient. Even at the end she still wants to explore, but now she checks the chart and plans to start early, so she has become more thoughtful about her brother and the sea.",
+  "look": [
+   "says how she changes in the first sentence",
+   "uses one detail from the beginning and one from later",
+   "explains what each detail shows about her"
+  ]
+ }
+}

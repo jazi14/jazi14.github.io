@@ -1,0 +1,1343 @@
+{
+ "schema": 1,
+ "id": "P-INT-01",
+ "kind": "practice",
+ "subject": "math",
+ "strand": "Core",
+ "title": "Practice: subtracting from a negative number",
+ "instructions": "Work every problem on paper first. Then type your answer and press Check. You get two tries on each question. Type each answer as a number, and type a negative number with the minus sign, like −1.",
+ "skills": {
+  "int-addsub": "Add and subtract integers",
+  "int-sign": "Sign of an answer with negatives"
+ },
+ "sections": [
+  {
+   "name": "Part A: Warm-up",
+   "desc": "Start above 0 and take away more: count down to 0, then keep going.",
+   "items": [
+    {
+     "id": "q1",
+     "q": "Warm up. Each one starts above 0 and takes away more than it has.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-2"
+       },
+       "label": "a",
+       "prompt": "5 − 7",
+       "tests": {
+        "ok": [
+         "-2",
+         "−2"
+        ],
+        "no": [
+         "2",
+         "12"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-8"
+       },
+       "label": "b",
+       "prompt": "3 − 11",
+       "tests": {
+        "ok": [
+         "-8",
+         "−8"
+        ],
+        "no": [
+         "8",
+         "14"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-7"
+       },
+       "label": "c",
+       "prompt": "10 − 17",
+       "tests": {
+        "ok": [
+         "-7",
+         "−7"
+        ],
+        "no": [
+         "7",
+         "27"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 5 − 7 = −2",
+      "b) 3 − 11 = −8",
+      "c) 10 − 17 = −7",
+      "Answers: a) −2, b) −8, c) −7"
+     ],
+     "skill": "int-addsub",
+     "hint": "Count down to 0 first, then keep going below 0 for what is left.",
+     "min": 2
+    },
+    {
+     "id": "q2",
+     "q": "Find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-6"
+       },
+       "label": "a",
+       "prompt": "0 − 6",
+       "tests": {
+        "ok": [
+         "-6",
+         "−6"
+        ],
+        "no": [
+         "6"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "0"
+       },
+       "label": "b",
+       "prompt": "7 − 7",
+       "tests": {
+        "ok": [
+         "0"
+        ],
+        "no": [
+         "14"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-13"
+       },
+       "label": "c",
+       "prompt": "2 − 15",
+       "tests": {
+        "ok": [
+         "-13",
+         "−13"
+        ],
+        "no": [
+         "13",
+         "17"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 0 − 6 = −6",
+      "b) 7 − 7 = 0",
+      "c) 2 − 15 = −13",
+      "Answers: a) −6, b) 0, c) −13"
+     ],
+     "skill": "int-addsub",
+     "hint": "Start at the first number on a number line and move left.",
+     "min": 2
+    }
+   ]
+  },
+  {
+   "name": "Part B: A negative minus a positive",
+   "desc": "Below 0, minus moves you farther down. Add the sizes, keep the minus sign.",
+   "items": [
+    {
+     "id": "q3",
+     "q": "Look at −5 − 4.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "positive",
+         "negative",
+         "zero"
+        ],
+        "correct": 1
+       },
+       "label": "a",
+       "prompt": "Before you work it out: will the answer be positive, negative, or zero?"
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-9"
+       },
+       "label": "b",
+       "prompt": "Now find the value.",
+       "tests": {
+        "ok": [
+         "-9",
+         "−9"
+        ],
+        "no": [
+         "1",
+         "-1",
+         "9"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "−5 is left of 0. Subtracting 4 moves 4 more to the left, so the answer is negative.",
+      "Add the sizes: 5 + 4 = 9. Keep the minus sign.",
+      "−5 − 4 = −9",
+      "Answers: a) negative, b) −9"
+     ],
+     "skill": "int-sign",
+     "hint": "You start below 0 and move farther down. Can you ever get back up to 0 that way?",
+     "min": 2
+    },
+    {
+     "id": "q4",
+     "q": "Look at −3 − 8.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "positive",
+         "negative",
+         "zero"
+        ],
+        "correct": 1
+       },
+       "label": "a",
+       "prompt": "Before you work it out: will the answer be positive, negative, or zero?"
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-11"
+       },
+       "label": "b",
+       "prompt": "Now find the value.",
+       "tests": {
+        "ok": [
+         "-11",
+         "−11"
+        ],
+        "no": [
+         "-5",
+         "11",
+         "5"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "−3 is left of 0. Subtracting 8 moves 8 more to the left, so the answer is negative.",
+      "Add the sizes: 3 + 8 = 11. Keep the minus sign.",
+      "−3 − 8 = −11",
+      "Answers: a) negative, b) −11"
+     ],
+     "skill": "int-sign",
+     "hint": "You start below 0 and move farther down. Can you ever get back up to 0 that way?",
+     "min": 2
+    },
+    {
+     "id": "q5",
+     "q": "Find the value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-12"
+       },
+       "prompt": "−6 − 6",
+       "tests": {
+        "ok": [
+         "-12",
+         "−12"
+        ],
+        "no": [
+         "0",
+         "12"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Start at −6 and move 6 more to the left.",
+      "6 + 6 = 12, and the answer stays negative.",
+      "−6 − 6 = −12",
+      "Answer: −12"
+     ],
+     "skill": "int-addsub",
+     "hint": "Both numbers have size 6. You are moving away from 0, not toward it.",
+     "min": 1
+    },
+    {
+     "id": "q6",
+     "q": "Sign first, then the size. Find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-10"
+       },
+       "label": "a",
+       "prompt": "−1 − 9",
+       "tests": {
+        "ok": [
+         "-10",
+         "−10"
+        ],
+        "no": [
+         "-8",
+         "10",
+         "8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-17"
+       },
+       "label": "b",
+       "prompt": "−12 − 5",
+       "tests": {
+        "ok": [
+         "-17",
+         "−17"
+        ],
+        "no": [
+         "7",
+         "-7",
+         "17"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-20"
+       },
+       "label": "c",
+       "prompt": "−7 − 13",
+       "tests": {
+        "ok": [
+         "-20",
+         "−20"
+        ],
+        "no": [
+         "-6",
+         "20",
+         "6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) −1 − 9 = −10",
+      "b) −12 − 5 = −17",
+      "c) −7 − 13 = −20",
+      "Answers: a) −10, b) −17, c) −20"
+     ],
+     "skill": "int-addsub",
+     "hint": "Each one starts below 0 and moves farther left. Add the two sizes and keep the minus sign.",
+     "min": 2
+    },
+    {
+     "id": "q7",
+     "q": "Bigger numbers, same rule. Find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-35"
+       },
+       "label": "a",
+       "prompt": "−20 − 15",
+       "tests": {
+        "ok": [
+         "-35",
+         "−35"
+        ],
+        "no": [
+         "5",
+         "-5",
+         "35"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-33"
+       },
+       "label": "b",
+       "prompt": "−8 − 25",
+       "tests": {
+        "ok": [
+         "-33",
+         "−33"
+        ],
+        "no": [
+         "-17",
+         "33",
+         "17"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-49"
+       },
+       "label": "c",
+       "prompt": "−40 − 9",
+       "tests": {
+        "ok": [
+         "-49",
+         "−49"
+        ],
+        "no": [
+         "31",
+         "-31",
+         "49"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) −20 − 15 = −35",
+      "b) −8 − 25 = −33",
+      "c) −40 − 9 = −49",
+      "Answers: a) −35, b) −33, c) −49"
+     ],
+     "skill": "int-addsub",
+     "hint": "Add the two sizes. The answer is below 0.",
+     "min": 3
+    },
+    {
+     "id": "q8",
+     "q": "Which way gives the right value of −7 − 5?",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Subtract 5 from 7, then make the answer negative",
+         "Add 7 and 5",
+         "Add 7 and 5, then make the answer negative",
+         "Subtract 5 from 7"
+        ],
+        "correct": 2
+       }
+      }
+     ],
+     "a": [
+      "−7 is 7 below 0. Subtracting 5 moves 5 more below 0.",
+      "So the answer is 7 + 5 = 12 below 0.",
+      "−7 − 5 = −12",
+      "Answer: add 7 and 5, then make the answer negative"
+     ],
+     "skill": "int-sign",
+     "hint": "Picture it on a number line. Do you end up 2 below 0 or 12 below 0?",
+     "min": 2
+    },
+    {
+     "id": "q9",
+     "q": "Sam says −9 − 4 = −5.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "He dropped the minus sign",
+         "He subtracted the sizes",
+         "Nothing: his answer is right"
+        ],
+        "correct": 1
+       },
+       "label": "a",
+       "prompt": "What did Sam do wrong?"
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-13"
+       },
+       "label": "b",
+       "prompt": "What is −9 − 4?",
+       "tests": {
+        "ok": [
+         "-13",
+         "−13"
+        ],
+        "no": [
+         "5",
+         "-5",
+         "13"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Sam found 9 − 4 = 5, which is the distance between the sizes.",
+      "But −9 − 4 starts 9 below 0 and moves 4 more down: 9 + 4 = 13 below 0.",
+      "−9 − 4 = −13",
+      "Answers: a) he subtracted the sizes, b) −13"
+     ],
+     "skill": "int-sign",
+     "hint": "Is −5 closer to 0 or farther from 0 than −9? Subtracting should take you farther.",
+     "min": 2
+    },
+    {
+     "id": "q10",
+     "q": "Ava says −6 − 8 = 14.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "She subtracted the sizes",
+         "She dropped the minus sign",
+         "Nothing: her answer is right"
+        ],
+        "correct": 1
+       },
+       "label": "a",
+       "prompt": "What did Ava do wrong?"
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-14"
+       },
+       "label": "b",
+       "prompt": "What is −6 − 8?",
+       "tests": {
+        "ok": [
+         "-14",
+         "−14"
+        ],
+        "no": [
+         "-2",
+         "14",
+         "2"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Ava added the sizes correctly: 6 + 8 = 14.",
+      "But the answer is 14 below 0, so it needs the minus sign.",
+      "−6 − 8 = −14",
+      "Answers: a) she dropped the minus sign, b) −14"
+     ],
+     "skill": "int-sign",
+     "hint": "Where did she start, above 0 or below 0? Which way did she move?",
+     "min": 2
+    }
+   ],
+   "learn": {
+    "title": "Below zero, minus takes you farther down",
+    "where": [
+     "Thermometers, elevation maps and parking floors all go below zero. When the temperature is already below zero and it drops, it gets colder, never warmer.",
+     "The same is true for every number below zero: subtracting moves you left, away from 0."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 140\" width=\"360\" height=\"140\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"140\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"24\" y1=\"92\" x2=\"336\" y2=\"92\" stroke=\"#13212B\" stroke-width=\"2.5\"/><line x1=\"24.0\" y1=\"83\" x2=\"24.0\" y2=\"101\" stroke=\"#13212B\" stroke-width=\"2\"/><text x=\"24.0\" y=\"122.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">−30</text><line x1=\"34.4\" y1=\"87\" x2=\"34.4\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"44.8\" y1=\"87\" x2=\"44.8\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"55.2\" y1=\"87\" x2=\"55.2\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"65.6\" y1=\"87\" x2=\"65.6\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"76.0\" y1=\"83\" x2=\"76.0\" y2=\"101\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"86.4\" y1=\"87\" x2=\"86.4\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"96.8\" y1=\"87\" x2=\"96.8\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"107.2\" y1=\"87\" x2=\"107.2\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"117.6\" y1=\"87\" x2=\"117.6\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"128.0\" y1=\"83\" x2=\"128.0\" y2=\"101\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"138.4\" y1=\"83\" x2=\"138.4\" y2=\"101\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"148.8\" y1=\"87\" x2=\"148.8\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"159.2\" y1=\"87\" x2=\"159.2\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"169.6\" y1=\"87\" x2=\"169.6\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"180.0\" y1=\"83\" x2=\"180.0\" y2=\"101\" stroke=\"#13212B\" stroke-width=\"2\"/><text x=\"180.0\" y=\"122.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">−15</text><line x1=\"190.4\" y1=\"87\" x2=\"190.4\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"200.8\" y1=\"87\" x2=\"200.8\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"211.2\" y1=\"87\" x2=\"211.2\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"221.6\" y1=\"87\" x2=\"221.6\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"232.0\" y1=\"83\" x2=\"232.0\" y2=\"101\" stroke=\"#13212B\" stroke-width=\"2\"/><text x=\"232.0\" y=\"122.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">−10</text><line x1=\"242.4\" y1=\"87\" x2=\"242.4\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"252.8\" y1=\"87\" x2=\"252.8\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"263.2\" y1=\"87\" x2=\"263.2\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"273.6\" y1=\"87\" x2=\"273.6\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"284.0\" y1=\"83\" x2=\"284.0\" y2=\"101\" stroke=\"#13212B\" stroke-width=\"2\"/><text x=\"284.0\" y=\"122.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">−5</text><line x1=\"294.4\" y1=\"87\" x2=\"294.4\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"304.8\" y1=\"87\" x2=\"304.8\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"315.2\" y1=\"87\" x2=\"315.2\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"325.6\" y1=\"87\" x2=\"325.6\" y2=\"97\" stroke=\"#13212B\" stroke-width=\"1.2\"/><line x1=\"336.0\" y1=\"83\" x2=\"336.0\" y2=\"101\" stroke=\"#13212B\" stroke-width=\"2\"/><text x=\"336.0\" y=\"122.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">0</text><circle cx=\"138.4\" cy=\"92\" r=\"7\" fill=\"#1B6884\"/><text x=\"138.4\" y=\"122.0\" font-size=\"16.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">−19</text><circle cx=\"76.0\" cy=\"92\" r=\"7\" fill=\"#B9470B\"/><text x=\"76.0\" y=\"122.0\" font-size=\"16.0\" text-anchor=\"middle\" fill=\"#B9470B\" font-weight=\"700\">−25</text><path d=\"M138.4,70 H84.0\" stroke=\"#B9470B\" stroke-width=\"3\" fill=\"none\"/><path d=\"M76.0,70 l10,-7 v14 z\" fill=\"#B9470B\"/><text x=\"107.2\" y=\"58.0\" font-size=\"15.0\" text-anchor=\"middle\" fill=\"#B9470B\" font-weight=\"700\">− 6: move 6 to the left</text><text x=\"138.4\" y=\"34.0\" font-size=\"13.0\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">start</text></svg>",
+      "alt": "A number line from −30 to 0. A blue dot at −19 and an orange arrow moving 6 to the left, ending at an orange dot at −25.",
+      "text": "Start at −19. The minus 6 moves you 6 to the left. You land at −25, farther from 0 than where you started."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 155\" width=\"360\" height=\"155\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"155\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"180.0\" y=\"34.0\" font-size=\"16.0\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">Sign first, then the size</text><text x=\"118.2\" y=\"70.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">19</text><text x=\"152.1\" y=\"70.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">+</text><text x=\"173.3\" y=\"70.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"193.9\" y=\"70.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"215.1\" y=\"70.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">25</text><text x=\"104.2\" y=\"105.2\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">−19</text><text x=\"152.1\" y=\"105.2\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">−</text><text x=\"173.3\" y=\"105.2\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">6</text><text x=\"193.9\" y=\"105.2\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">=</text><text x=\"215.1\" y=\"105.2\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#13212B\">−25</text><text x=\"180.0\" y=\"126.8\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">Add the two sizes. Keep the minus sign.</text></svg>",
+      "alt": "Two lines: 19 plus 6 equals 25, then negative 19 minus 6 equals negative 25, with a note to add the sizes and keep the minus sign.",
+      "text": "Sign first: you start below 0 and move left, so the answer is negative. Size next: you were 19 below and went 6 more, so add 19 and 6."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 215\" width=\"360\" height=\"215\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"215\" rx=\"12\" fill=\"#FFFFFF\"/><text x=\"180.0\" y=\"34.0\" font-size=\"16.0\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">Two traps to watch for</text><text x=\"165.9\" y=\"70.4\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">13</text><text x=\"180.0\" y=\"92.0\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">Not 13: that is 19 − 6, the gap between the</text><text x=\"180.0\" y=\"110.2\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">sizes.</text><text x=\"165.9\" y=\"147.6\" font-size=\"24.0\" text-anchor=\"start\" fill=\"#B9470B\" font-weight=\"700\">25</text><text x=\"180.0\" y=\"169.2\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">Not 25: the answer is below 0, so it needs the</text><text x=\"180.0\" y=\"187.4\" font-size=\"14.0\" text-anchor=\"middle\" fill=\"#4E5F69\">minus sign.</text></svg>",
+      "alt": "Two wrong answers shown in orange: 13, which is the gap between the sizes, and 25 without a minus sign.",
+      "text": "Two ways to slip: subtracting the sizes, or dropping the minus sign. Check every answer: did you end up farther from 0, and below it?"
+     }
+    ],
+    "example": {
+     "q": "On a winter night in Alaska the temperature is −19°F. By morning it has dropped 6 more degrees. What is the temperature in the morning?",
+     "steps": [
+      "It starts below 0 and drops, so the answer is negative.",
+      "Size: 19 + 6 = 25.",
+      "−19 − 6 = −25"
+     ],
+     "answer": "−25°F"
+    }
+   }
+  },
+  {
+   "name": "Part C: Mixed signs",
+   "desc": "Decide the sign first: where do you start, and which way do you move?",
+   "items": [
+    {
+     "id": "q11",
+     "q": "Same numbers, different signs. Decide the sign of each answer first.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "5"
+       },
+       "label": "a",
+       "prompt": "−4 + 9",
+       "tests": {
+        "ok": [
+         "5"
+        ],
+        "no": [
+         "-13",
+         "-5",
+         "13"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-13"
+       },
+       "label": "b",
+       "prompt": "−4 − 9",
+       "tests": {
+        "ok": [
+         "-13",
+         "−13"
+        ],
+        "no": [
+         "-5",
+         "13",
+         "5"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-5"
+       },
+       "label": "c",
+       "prompt": "4 − 9",
+       "tests": {
+        "ok": [
+         "-5",
+         "−5"
+        ],
+        "no": [
+         "5",
+         "13"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) −4 + 9 = 5",
+      "b) −4 − 9 = −13",
+      "c) 4 − 9 = −5",
+      "Answers: a) 5, b) −13, c) −5"
+     ],
+     "skill": "int-addsub",
+     "hint": "Plus moves right, minus moves left. Where does each one start?",
+     "min": 3
+    },
+    {
+     "id": "q12",
+     "q": "Decide the sign first, then find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-7"
+       },
+       "label": "a",
+       "prompt": "−10 + 3",
+       "tests": {
+        "ok": [
+         "-7",
+         "−7"
+        ],
+        "no": [
+         "-13",
+         "7",
+         "13"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-13"
+       },
+       "label": "b",
+       "prompt": "−10 − 3",
+       "tests": {
+        "ok": [
+         "-13",
+         "−13"
+        ],
+        "no": [
+         "7",
+         "-7",
+         "13"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "7"
+       },
+       "label": "c",
+       "prompt": "10 − 3",
+       "tests": {
+        "ok": [
+         "7"
+        ],
+        "no": [
+         "-7",
+         "13"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) −10 + 3 = −7",
+      "b) −10 − 3 = −13",
+      "c) 10 − 3 = 7",
+      "Answers: a) −7, b) −13, c) 7"
+     ],
+     "skill": "int-addsub",
+     "hint": "For a), you start at −10 and move only 3 to the right. Do you reach 0?",
+     "min": 3
+    },
+    {
+     "id": "q13",
+     "q": "Find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-30"
+       },
+       "label": "a",
+       "prompt": "−15 − 15",
+       "tests": {
+        "ok": [
+         "-30",
+         "−30"
+        ],
+        "no": [
+         "0",
+         "30"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "0"
+       },
+       "label": "b",
+       "prompt": "−15 + 15",
+       "tests": {
+        "ok": [
+         "0"
+        ],
+        "no": [
+         "-30",
+         "30"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-15"
+       },
+       "label": "c",
+       "prompt": "15 − 30",
+       "tests": {
+        "ok": [
+         "-15",
+         "−15"
+        ],
+        "no": [
+         "15",
+         "45"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) −15 − 15 = −30",
+      "b) −15 + 15 = 0",
+      "c) 15 − 30 = −15",
+      "Answers: a) −30, b) 0, c) −15"
+     ],
+     "skill": "int-addsub",
+     "hint": "For a), you start below 0 and move farther left. For c), you start at 15 and take away more than you have.",
+     "min": 3
+    },
+    {
+     "id": "q14",
+     "q": "Which is less: −8 − 3 or −8 + 3?",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "−8 + 3",
+         "−8 − 3",
+         "They are equal"
+        ],
+        "correct": 1
+       }
+      }
+     ],
+     "a": [
+      "−8 − 3 = −11",
+      "−8 + 3 = −5",
+      "−11 is farther left on the number line, so it is less.",
+      "Answer: −8 − 3"
+     ],
+     "skill": "int-sign",
+     "hint": "Work out both. On a number line, the number farther left is less.",
+     "min": 2
+    },
+    {
+     "id": "q15",
+     "q": "Find the missing number.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "7"
+       },
+       "label": "a",
+       "prompt": "−5 − ? = −12",
+       "tests": {
+        "ok": [
+         "7"
+        ],
+        "no": [
+         "17",
+         "-7",
+         "−7",
+         "-17"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-4"
+       },
+       "label": "b",
+       "prompt": "? − 6 = −10",
+       "tests": {
+        "ok": [
+         "-4",
+         "−4"
+        ],
+        "no": [
+         "4",
+         "-16",
+         "16",
+         "-6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) From −5 to −12 is 7 more to the left, so ? = 7.",
+      "Check: −5 − 7 = −12",
+      "b) Moving 6 left lands on −10, so the start is 6 to the right of −10, which is −4.",
+      "Check: −4 − 6 = −10",
+      "Answers: a) 7, b) −4"
+     ],
+     "skill": "int-addsub",
+     "hint": "Draw a number line. How far apart are the two numbers you know?",
+     "min": 3
+    }
+   ]
+  },
+  {
+   "name": "Part D: Word problems",
+   "desc": "Drops, dives, falls and lowers mean subtract. Rises and raises mean add.",
+   "items": [
+    {
+     "id": "q16",
+     "q": "At 6 in the morning the temperature was −3°F. By midnight it had dropped 9 degrees. What was the temperature at midnight?",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-12"
+       },
+       "prompt": "Temperature at midnight (type it as a number)",
+       "unit": "°F",
+       "tests": {
+        "ok": [
+         "-12",
+         "−12"
+        ],
+        "no": [
+         "-6",
+         "12",
+         "6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Dropping 9 degrees means subtract 9.",
+      "−3 − 9 = −12",
+      "Answer: −12°F"
+     ],
+     "skill": "int-addsub",
+     "hint": "It was already below 0. Does dropping make it colder or warmer?",
+     "min": 2
+    },
+    {
+     "id": "q17",
+     "q": "A submarine is at −40 meters, which means 40 meters below the surface. It dives down 25 more meters. Where is it now?",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-65"
+       },
+       "prompt": "Its position now (type it as a number)",
+       "unit": "meters",
+       "tests": {
+        "ok": [
+         "-65",
+         "−65"
+        ],
+        "no": [
+         "15",
+         "-15",
+         "65"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Diving down means subtract.",
+      "−40 − 25 = −65",
+      "Answer: −65 meters"
+     ],
+     "skill": "int-addsub",
+     "hint": "Going down from below the surface takes it farther below.",
+     "min": 2
+    },
+    {
+     "id": "q18",
+     "q": "In a tall building, the ground floor is floor 0 and the parking floors below it are −1, −2, −3, and so on. An elevator is on floor −2.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-5"
+       },
+       "label": "a",
+       "prompt": "It goes down 3 floors. Which floor is it on now?",
+       "tests": {
+        "ok": [
+         "-5",
+         "−5"
+        ],
+        "no": [
+         "1",
+         "-1",
+         "5",
+         "−1"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "4"
+       },
+       "label": "b",
+       "prompt": "From there it goes up 9 floors. Which floor is it on now?",
+       "tests": {
+        "ok": [
+         "4"
+        ],
+        "no": [
+         "-4",
+         "−4",
+         "14",
+         "-14"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) −2 − 3 = −5",
+      "b) −5 + 9 = 4",
+      "Answers: a) −5, b) 4"
+     ],
+     "skill": "int-addsub",
+     "hint": "Down means subtract and up means add. Picture the floors as a number line standing up.",
+     "min": 3
+    },
+    {
+     "id": "q19",
+     "q": "A lake is 6 inches below its normal level, so its level is −6 inches.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-10"
+       },
+       "label": "a",
+       "prompt": "A dry month lowers it 4 more inches. What is its level now?",
+       "unit": "inches",
+       "tests": {
+        "ok": [
+         "-10",
+         "−10"
+        ],
+        "no": [
+         "-2",
+         "−2",
+         "10",
+         "2"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-3"
+       },
+       "label": "b",
+       "prompt": "Then rain raises it 7 inches. What is its level now?",
+       "unit": "inches",
+       "tests": {
+        "ok": [
+         "-3",
+         "−3"
+        ],
+        "no": [
+         "3",
+         "-17",
+         "17",
+         "1"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) −6 − 4 = −10",
+      "b) −10 + 7 = −3",
+      "Answers: a) −10 inches, b) −3 inches"
+     ],
+     "skill": "int-addsub",
+     "hint": "Lowers means subtract, raises means add. For b), 7 inches up is not enough to get back to 0.",
+     "min": 3
+    },
+    {
+     "id": "q20",
+     "q": "At noon the temperature was 5°C. It fell 8 degrees by evening, then fell 6 more degrees overnight.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-3"
+       },
+       "label": "a",
+       "prompt": "What was the temperature in the evening?",
+       "unit": "°C",
+       "tests": {
+        "ok": [
+         "-3",
+         "−3"
+        ],
+        "no": [
+         "3",
+         "13",
+         "-13"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-9"
+       },
+       "label": "b",
+       "prompt": "What was the temperature by morning?",
+       "unit": "°C",
+       "tests": {
+        "ok": [
+         "-9",
+         "−9"
+        ],
+        "no": [
+         "3",
+         "-3",
+         "9",
+         "−3"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 5 − 8 = −3",
+      "b) −3 − 6 = −9",
+      "Answers: a) −3°C, b) −9°C"
+     ],
+     "skill": "int-addsub",
+     "hint": "For b), start from your answer to a). It was already below 0 and it kept falling.",
+     "min": 3
+    }
+   ]
+  },
+  {
+   "name": "Part E: Stretch",
+   "desc": "Longer chains. One step at a time.",
+   "items": [
+    {
+     "id": "q21",
+     "q": "Work from left to right. Find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-12"
+       },
+       "label": "a",
+       "prompt": "−3 − 4 − 5",
+       "tests": {
+        "ok": [
+         "-12",
+         "−12"
+        ],
+        "no": [
+         "-4",
+         "4",
+         "12",
+         "−4"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-16"
+       },
+       "label": "b",
+       "prompt": "−10 − 2 − 2 − 2",
+       "tests": {
+        "ok": [
+         "-16",
+         "−16"
+        ],
+        "no": [
+         "-4",
+         "16",
+         "−4",
+         "-8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-8"
+       },
+       "label": "c",
+       "prompt": "1 − 2 − 3 − 4",
+       "tests": {
+        "ok": [
+         "-8",
+         "−8"
+        ],
+        "no": [
+         "8",
+         "-10",
+         "2",
+         "10"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) −3 − 4 = −7, then −7 − 5 = −12",
+      "b) −10 − 2 = −12, then −12 − 2 = −14, then −14 − 2 = −16",
+      "c) 1 − 2 = −1, then −1 − 3 = −4, then −4 − 4 = −8",
+      "Answers: a) −12, b) −16, c) −8"
+     ],
+     "skill": "int-addsub",
+     "hint": "One step at a time. After the first step, you are subtracting from a negative number.",
+     "stretch": true,
+     "min": 4
+    },
+    {
+     "id": "q22",
+     "q": "Use the order of operations. Find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-4"
+       },
+       "label": "a",
+       "prompt": "2 × 3 − 10",
+       "tests": {
+        "ok": [
+         "-4",
+         "−4"
+        ],
+        "no": [
+         "4",
+         "-14",
+         "−14",
+         "-24"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-14"
+       },
+       "label": "b",
+       "prompt": "−4 − 2 × 5",
+       "tests": {
+        "ok": [
+         "-14",
+         "−14"
+        ],
+        "no": [
+         "-30",
+         "6",
+         "14",
+         "-6"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-16"
+       },
+       "label": "c",
+       "prompt": "20 − 6²",
+       "tests": {
+        "ok": [
+         "-16",
+         "−16"
+        ],
+        "no": [
+         "8",
+         "16",
+         "-8",
+         "56"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2 × 3 = 6, then 6 − 10 = −4",
+      "b) 2 × 5 = 10 first, then −4 − 10 = −14",
+      "c) 6² = 36, then 20 − 36 = −16",
+      "Answers: a) −4, b) −14, c) −16"
+     ],
+     "skill": "int-addsub",
+     "hint": "Multiply or find the power first. Then subtract, using what you know about going below 0.",
+     "stretch": true,
+     "min": 4
+    },
+    {
+     "id": "q23",
+     "q": "Start at 0 and keep subtracting 7: 0, −7, −14, and so on. 0 is the 1st number in the list. What is the 10th number?",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-63"
+       },
+       "tests": {
+        "ok": [
+         "-63",
+         "−63"
+        ],
+        "no": [
+         "-70",
+         "−70",
+         "63",
+         "-56"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "From the 1st number to the 10th number there are 9 steps of 7.",
+      "9 × 7 = 63, so the 10th number is 63 below 0.",
+      "Answer: −63"
+     ],
+     "skill": "int-addsub",
+     "hint": "Count the steps between the 1st number and the 10th, not the numbers themselves.",
+     "stretch": true,
+     "min": 4
+    },
+    {
+     "id": "q24",
+     "q": "A diver goes from −12 meters to −30 meters. How far down did she go? Type the distance in meters.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "18"
+       },
+       "unit": "meters",
+       "tests": {
+        "ok": [
+         "18"
+        ],
+        "no": [
+         "42",
+         "-18",
+         "−18",
+         "-42"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "From −12 down to −30: how many steps left on the number line?",
+      "From −12 to −30 is 30 − 12 = 18 steps.",
+      "Check: −12 − 18 = −30",
+      "Answer: 18 meters"
+     ],
+     "skill": "int-addsub",
+     "hint": "Both numbers are below 0. How far apart are they on the number line?",
+     "stretch": true,
+     "min": 2
+    }
+   ]
+  }
+ ],
+ "note": "Sign first, then the size. A negative number minus a positive number is always negative: add the two sizes and keep the minus sign."
+}

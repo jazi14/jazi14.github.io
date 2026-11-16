@@ -1,0 +1,205 @@
+{
+ "schema": 1,
+ "id": "C001",
+ "kind": "comp",
+ "title": "The Scholar Who Tested Light",
+ "genre": "Biography",
+ "topic": "Ibn al-Haytham and how we see",
+ "passage": [
+  "For more than a thousand years, many of the world's best thinkers believed that seeing worked a little like a flashlight. The Greek mathematician Euclid taught that the eye sends out invisible rays. When those rays touched a tree or a face, a person saw it. The idea sounded reasonable, and great scholars repeated it for centuries. Other thinkers disagreed, but no one could prove who was right. Then, around the year 1000, a scholar named Ibn al-Haytham decided to put it to a test.",
+  "Ibn al-Haytham was born around 965 in Basra, a busy port city in what is now Iraq. As a young man he studied mathematics, astronomy, and the writings of Greek scientists, which had been translated into Arabic. Later he moved to Cairo, in Egypt. A famous story says that Egypt's ruler asked him to find a way to control the yearly floods of the Nile River. When Ibn al-Haytham saw how enormous the river was, he realized the plan could not work. According to the story, he was afraid of the ruler's anger, so he pretended to have lost his mind, and the ruler kept him shut in his house for years. Historians are not sure how much of this story is true. What historians do know is that he spent many years in Cairo writing, and that his most important work was about light.",
+  "Ibn al-Haytham noticed problems with the flashlight idea. If the eye sends out rays, why does looking straight at the sun hurt? Why can we see distant stars the moment we open our eyes, when rays from the eye would need time to travel that far? It seemed more likely that light traveled from objects into the eye, not the other way around.",
+  "Asking good questions was only a beginning. He wanted proof that anyone could see. He used a dark room with a small hole in one wall. Light from outside passed through the hole and made spots of light on the opposite wall. When he set several lamps outside the hole, each lamp made its own spot of light on the wall. When he covered one lamp, only its spot disappeared. To him, this showed that light moves in straight lines, from each object, through the opening, to the wall. A room like this came to be called a camera obscura, which means \"dark room\" in Latin. Centuries later, the same idea was used to build the first cameras.",
+  "He worked this way again and again. He would state an idea, design a test, watch carefully, and only then decide whether the idea held up. He also warned his readers not to trust an idea just because a famous person had said it. Anyone who wants the truth, he wrote, should question everything he reads, and should question his own thinking too.",
+  "His Book of Optics, written over about ten years in the early 1000s, filled seven volumes, or separate books. About two hundred years later it was translated into Latin, and scholars in Europe studied it for centuries. In 2015, when the United Nations held the International Year of Light, one of the anniversaries it celebrated was a thousand years since his Book of Optics."
+ ],
+ "words": 538,
+ "gist": {
+  "model": "Ibn al-Haytham questioned an old idea about how people see and used careful experiments with light to find a better answer, and his way of testing ideas was studied for centuries.",
+  "look": "names Ibn al-Haytham, says that he tested ideas about light with experiments, and covers the whole passage instead of one detail such as the flood story."
+ },
+ "questions": [
+  {
+   "id": "q1",
+   "type": "main",
+   "q": "Which sentence best tells what the whole passage is mostly about?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Ibn al-Haytham pretended to be ill for years so that the ruler of Egypt would not punish him for failing.",
+     "Euclid's idea that the eye sends out invisible rays was believed for over a thousand years.",
+     "Ibn al-Haytham tested old ideas about light with experiments and changed how people understood seeing.",
+     "The camera obscura was the first real camera, invented in Cairo around the year 1000."
+    ],
+    "correct": 2
+   },
+   "hint": "Pick the answer that covers every paragraph, not just one part.",
+   "why": "Each paragraph adds to the story of how he tested ideas about light. The other choices are single details, and the camera obscura was a dark room, not a camera."
+  },
+  {
+   "id": "q2",
+   "type": "vocab",
+   "q": "In paragraph 1, the word reasonable most nearly means",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "sensible enough to believe",
+     "hard for anyone to understand",
+     "very old",
+     "easy to measure"
+    ],
+    "correct": 0
+   },
+   "hint": "Reread the sentence. Great scholars repeated the idea for centuries. Why would they do that?",
+   "why": "The idea seemed sensible, which is why scholars kept repeating it, even though it was wrong.",
+   "para": [
+    1
+   ]
+  },
+  {
+   "id": "q3",
+   "type": "purpose",
+   "q": "In paragraph 3, why does the author include the question about looking straight at the sun?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "To explain how the sun makes the light that reaches our eyes",
+     "To show that Ibn al-Haytham had trouble seeing bright things",
+     "To warn readers that looking straight at the sun can hurt their eyes",
+     "To show a problem with the idea that the eye sends out rays"
+    ],
+    "correct": 3
+   },
+   "hint": "Read the first sentence of paragraph 3. What is the whole paragraph listing?",
+   "why": "Paragraph 3 begins by saying he noticed problems with the flashlight idea. The sun question is one of those problems: light coming into the eye explains why bright light hurts.",
+   "para": [
+    3
+   ]
+  },
+  {
+   "id": "q4",
+   "type": "evidence",
+   "q": "Which two sentences from paragraph 4 best support the idea that light travels in straight lines from each object?",
+   "ans": {
+    "type": "multi",
+    "options": [
+     "When he set several lamps outside the hole, each lamp made its own spot of light on the wall.",
+     "When he covered one lamp, only its spot disappeared.",
+     "Centuries later, the same idea was used to build the first cameras.",
+     "He used a dark room with a small hole in one wall."
+    ],
+    "correct": [
+     0,
+     1
+    ]
+   },
+   "hint": "Look for the sentences that describe what happened in the test, not how it was set up or what came later.",
+   "why": "Each lamp made its own spot, and covering a lamp removed only its spot. That is what you would see if light from each lamp travels in its own straight line.",
+   "para": [
+    4
+   ]
+  },
+  {
+   "id": "q5",
+   "type": "infer",
+   "q": "Paragraph 2 says historians are not sure how much of the flood story is true. Why does the author include that sentence?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "To explain why the Nile River floods its banks every year",
+     "To show that Ibn al-Haytham was not honest with the ruler of Egypt",
+     "To prove that the flood story about the Nile is completely false",
+     "To show which parts of his life story are certain and which may not be"
+    ],
+    "correct": 3
+   },
+   "hint": "How is that sentence different from the flood story around it?",
+   "why": "The author separates a story that may not be true from facts that are known. That tells readers which parts they can trust.",
+   "para": [
+    2
+   ]
+  },
+  {
+   "id": "q6",
+   "type": "structure",
+   "q": "How does paragraph 5 connect to paragraph 4?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Paragraph 5 gives the results of the experiment that paragraph 4 describes.",
+     "Paragraph 4 describes one experiment, and paragraph 5 says he worked that way again and again.",
+     "Paragraph 5 argues that the experiment described in paragraph 4 was done the wrong way and failed.",
+     "Paragraph 5 tells what Ibn al-Haytham did before the experiment in paragraph 4."
+    ],
+    "correct": 1
+   },
+   "hint": "Read the first sentence of paragraph 5. What does \"this way\" point back to?",
+   "why": "\"He worked this way again and again\" takes the single experiment in paragraph 4 and shows it was his usual method.",
+   "para": [
+    4,
+    5
+   ]
+  },
+  {
+   "id": "q7",
+   "type": "vocab",
+   "q": "According to paragraph 4, what do the Latin words camera obscura mean? Type the two English words.",
+   "ans": {
+    "type": "text",
+    "accept": [
+     "dark room",
+     "a dark room",
+     "the dark room",
+     "\"dark room\"",
+     "“dark room”",
+     "dark-room",
+     "darkroom",
+     "dark rooms"
+    ]
+   },
+   "hint": "Find the sentence in paragraph 4 that says \"which means\".",
+   "why": "Paragraph 4 says camera obscura means \"dark room\" in Latin.",
+   "para": [
+    4
+   ]
+  },
+  {
+   "id": "q8",
+   "type": "infer",
+   "q": "A student says, \"It must be true, because a famous scientist said it.\" Based on paragraph 5, what would Ibn al-Haytham most likely tell the student?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Check the evidence or test it yourself before you believe it.",
+     "Famous scientists are always right, so you can trust them.",
+     "Once an idea is written in a book, there is no need to question it.",
+     "Only believe ideas that were first written down in Greek."
+    ],
+    "correct": 0
+   },
+   "hint": "What did he warn his readers about in paragraph 5?",
+   "why": "He warned readers not to trust an idea just because a famous person said it, and to question everything they read.",
+   "para": [
+    5
+   ]
+  }
+ ],
+ "write": {
+  "kind": "paragraph",
+  "prompt": "What made Ibn al-Haytham's way of finding answers different from the way thinkers before him found answers? Write a paragraph. Use two details from the passage and explain how each detail shows the difference.",
+  "plan": [
+   "Your answer in one sentence: how was his way different?",
+   "Detail 1 from the passage, about the thinkers before him or about his questions.",
+   "Detail 2 from the passage, about his experiment or his advice to readers.",
+   "Explain how each detail shows the difference.",
+   "A closing sentence that sums up your answer in new words."
+  ],
+  "minWords": 80,
+  "model": "Ibn al-Haytham was different because he tested ideas instead of trusting them just because famous thinkers had said them. For centuries, scholars repeated Euclid's idea that the eye sends out rays, but Ibn al-Haytham asked questions about it, such as why looking at the sun hurts if the eye is the one sending out the light. Then he looked for proof that anyone could see. In a dark room with a small hole, he set lamps outside and when he covered one lamp, only that lamp's spot disappeared. That result showed him that light travels in straight lines from objects. The thinkers before him passed an idea along, but he let careful tests decide what was true.",
+  "look": [
+   "answers how his way was different in the first sentence",
+   "uses one detail about the old idea or his questions and one about his test or his advice",
+   "explains how each detail shows testing instead of trusting"
+  ]
+ }
+}

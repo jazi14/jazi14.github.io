@@ -389,6 +389,32 @@ button[data-n]{min-width:44px}
 .acu{font-size:.9rem;margin:2px 0;padding:6px 10px;border-radius:8px;background:var(--hl);color:#13212B}
 .acu.ok{background:var(--good-soft);color:var(--good)}
 
+/* Read and write module (write.js). Tokens come from styles.base.css. */
+.cw-pass .pn{display:inline-block;min-width:1.6em;margin-right:.35em;font-family:var(--f-ui);font-size:.72rem;font-weight:700;color:var(--muted);vertical-align:.2em}
+.cw-src{margin-top:.8em}
+.cw-steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.cw-steps li{font-size:.78rem;font-weight:700;border:1px solid var(--rule);border-radius:999px;padding:3px 10px;color:var(--muted);background:var(--card)}
+.cw-steps li.done{color:var(--good);border-color:var(--good)}
+.cw-steps li.now{color:var(--action-ink);background:var(--action);border-color:var(--action)}
+.cw-write{min-height:260px;font-family:var(--f-read);font-size:1.12rem;line-height:1.6}
+#cwGist{font-family:var(--f-read);font-size:1.12rem;line-height:1.55}
+.cw-msg:empty{display:none}
+.cw-msg{color:var(--warn);font-weight:700}
+.cw-plan{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px;font-family:var(--f-read);font-size:1.02rem}
+.cw-three{flex-wrap:wrap}
+.cw-three .btn[aria-pressed="true"]{background:var(--action);color:var(--action-ink)}
+.cw-marks{display:flex;flex-direction:column;gap:6px}
+.cw-mrow{display:flex;flex-direction:column;gap:2px}
+.cw-rrow{display:flex;flex-direction:column;gap:6px;padding-top:10px;border-top:1px dashed var(--rule)}
+.cw-lab{font-weight:700;font-size:.9rem;color:var(--ink-2)}
+.cw-aq{padding-top:8px;border-top:1px dashed var(--rule)}
+.cw-aq:first-of-type{border-top:0}
+.cw-good{color:var(--good)} .cw-bad{color:var(--bad)}
+.cw-para{white-space:pre-wrap}
+.cw-copy{font-size:1.15rem;line-height:1.6;user-select:none;-webkit-user-select:none}
+#spType{font-family:var(--f-read);font-size:1.1rem}
+#v-write .passage{min-width:0}
+
 /* Hosted version only: sign-in screens, account button, People card. */
 .gate{position:fixed;inset:0;z-index:1000;background:var(--paper);display:flex;align-items:flex-start;justify-content:center;padding:max(24px,8vh) 16px 24px;overflow:auto}
 .gate-card{width:100%;max-width:420px}
@@ -429,6 +455,7 @@ html.gated .wrap{visibility:hidden}
   <section class="view" id="v-parent" hidden></section>
   <section class="view" id="v-lesson" hidden></section>
   <section class="view" id="v-activity" hidden></section>
+  <section class="view" id="v-write" hidden></section>
   <section class="view" id="v-answers" hidden></section>
 </div>
 <div class="toast" id="hubToast" hidden role="status"></div>
@@ -1526,11 +1553,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   var DEFAULT_PLAN = {
     label: 'Q1', start: '2026-09-21', end: '2026-11-27', mathMinutes: 35,
     days: {
-      mon: ['math', 'fluency', 'maze', 'wordly', 'indep'],
-      tue: ['math', 'fluency', 'maze', 'readpkg', 'indep'],
-      wed: ['math', 'fluency', 'maze', 'wordly', 'indep'],
-      thu: ['math', 'fluency', 'maze', 'readpkg', 'indep'],
-      fri: ['math', 'fluency', 'wordly', 'spelling', 'indep'],
+      mon: ['math', 'fluency', 'maze', 'wordly', 'typing', 'speed', 'indep'],
+      tue: ['math', 'fluency', 'maze', 'comp', 'indep'],
+      wed: ['math', 'fluency', 'maze', 'wordly', 'typing', 'indep'],
+      thu: ['math', 'fluency', 'maze', 'comp', 'indep'],
+      fri: ['math', 'fluency', 'wordly', 'spelling', 'typing', 'indep'],
       sat: ['seerah', 'roots', 'indep'],
       sun: []
     },
@@ -1541,6 +1568,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       wordly: { kind: 'book', label: 'Wordly Wise', short: 'Wordly Wise', hint: 'About 15 minutes from the book', ask: ['detail', 'score'], detailLabel: 'Lesson and exercises' },
       spelling: { kind: 'book', label: 'Spelling Workout', short: 'Spelling', hint: 'One lesson and the spelling check', ask: ['detail', 'score'], detailLabel: 'Lesson' },
       readpkg: { kind: 'book', label: 'Reading package', short: 'Reading pkg', hint: 'Part 1 on Tuesday, part 2 on Thursday', ask: ['detail', 'score'], detailLabel: 'Title and part' },
+      comp: { kind: 'comp', label: 'Read and write', short: 'Read + write' },
+      typing: { kind: 'book', label: 'Typing practice', short: 'Typing', hint: '10 minutes of touch-typing practice', ask: ['minutes'], minutes: 10 },
+      speed: { kind: 'speed', label: 'Speed check', short: 'Speed check' },
       roots: { kind: 'book', label: 'Roots packet', short: 'Roots', hint: 'One page', ask: ['detail'], detailLabel: 'Page' },
       seerah: { kind: 'book', label: 'Seerah', short: 'Seerah', hint: 'One package, full sheet', ask: ['detail', 'score'], detailLabel: 'Package title' },
       indep: { kind: 'book', label: 'Independent reading', short: 'Own reading', hint: '20 minutes from his own book', ask: ['detail', 'minutes'], detailLabel: 'Book', minutes: 20 }
@@ -1701,6 +1731,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var list = el('div', { class: 'tlist' }), done = 0, counted = 0;
     tasks.forEach(function (t) {
       var s = H.tasks.status(t, today);
+      if (s.hide) return;
       if (s.state !== 'none') { counted++; if (s.state === 'done') done++; }
       var row = el('div', { class: 'trow ' + (s.state === 'done' ? 'done' : s.state === 'doing' ? 'doing' : ''), 'data-task': t.id },
         el('span', { class: 'mark', 'aria-hidden': 'true', text: s.state === 'done' ? '✓' : '' }),
@@ -2726,10 +2757,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     built.forEach(function (p) { seen[p.id] = 1; });
     Hub.store.col('passages').forEach(function (d, id) {
       var pid = d.id || id;
-      if ((d.kind || String(pid).charAt(0)) === kind && !seen[pid] && d.text) extra.push({ id: pid, title: d.title || pid, genre: d.genre || '', text: d.text });
+      if ((d.kind || String(pid).charAt(0)) === kind && !seen[pid] && d.text) extra.push({ id: pid, title: d.title || pid, genre: d.genre || '', text: d.text, first: !!d.first });
     });
     extra.sort(function (a, b) { return String(a.id).localeCompare(String(b.id), undefined, { numeric: true }); });
-    return built.concat(extra);
+    // passages marked first (the longer, harder Maze passages) run before the built-in bank
+    return extra.filter(function (p) { return p.first; }).concat(built, extra.filter(function (p) { return !p.first; }));
   }
   function S() {
     if (cache) return cache;
@@ -2740,7 +2772,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     sc.sort(function (a, b) { return String(a.date).localeCompare(String(b.date)); });
     var reads = ss.filter(function (s) { return s.kind === 'read'; });
     cache = {
-      cfg: cfg(), sessions: ss, scores: sc, F: bank('F'), M: bank('M'), reads: reads,
+      cfg: cfg(), sessions: ss.filter(function (s) { return s.kind === 'read' || s.kind === 'maze'; }), scores: sc, F: bank('F'), M: bank('M'), reads: reads,
       cold: reads.filter(function (s) { return s.mode === 'cold'; }),
       hot: reads.filter(function (s) { return s.mode === 'hot'; }),
       mazeAll: ss.filter(function (s) { return s.kind === 'maze'; }),
@@ -2974,6 +3006,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       el('div', { class: 'card' },
         el('div', { class: 'row rd-split' }, el('h2', { text: 'Next up' }), el('span', { class: 'small muted', text: 'One step a day in each queue' })),
         el('div', { class: 'tasks', id: 'rdNext' }), picker),
+      el('div', { class: 'card', id: 'rdWrite' }),
       el('div', { class: 'card' },
         el('div', { class: 'row rd-split' }, el('h2', { text: 'Where he stands' }), el('span', { class: 'small muted', text: 'Goals are the top band (Above Benchmark)' })),
         el('div', { class: 'board', id: 'rdBoard' })),
@@ -3221,6 +3254,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         : days === 0 ? 'School check today' : 'The ' + fmtDate(c.checkDate) + ' school check has passed. Add the scores under School scores.';
     }
     nextTiles(st); paintPickers(st); paintBoard(st, t);
+    var wbox = $('#rdWrite'); if (wbox) { wbox.hidden = !Hub.write; if (Hub.write) Hub.write.card(wbox); }
     var notes = $('#rdNotes'); notes.replaceChildren();
     coaching(st, t).forEach(function (n) { notes.append(el('div', { class: 'note ' + n.tone }, el('h3', { text: n.title }), el('p', { class: 'small rd-ink2', text: n.body }))); });
     paintCharts(st); paintTables(st); paintPlan(st, t);
@@ -3556,6 +3590,726 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     next: function () { var st = S(); return { read: readQueue(st), maze: mazeQueue(st) }; },
     status: { fluency: fluencyStatus, maze: mazeStatus }
   };
+})();
+
+</script>
+<script>
+/* Read and write: comprehension sets (a harder passage, the main idea from memory, questions answered from memory first,
+   a paragraph drafted by hand and typed as a final copy), the parent or tutor's marks, the fix-it step at the start of
+   the next set, and the monthly speed check (one minute typing, one minute copying by hand).
+   Sets: meta in passages/<id> with kind 'C'; content in content/<id> (a static file next to the page when hosted).
+   His work: reading/comp-<id> (kind 'comp'). Speed checks: reading/<generated> (kind 'speed'). */
+(function () {
+  'use strict';
+  var H = window.Hub, el = H.el, C = window.NLHCheck;
+  var TOPS = ['today', 'math', 'reading', 'progress', 'parent'];
+  var QT = {
+    main: 'Main idea', infer: 'Reading between the lines', vocab: 'Word meaning', evidence: 'Finding the proof',
+    structure: 'How it is built', purpose: 'Why the author wrote it', detail: 'Key detail', sequence: 'Order of events',
+    character: 'Character', theme: 'Theme', compare: 'Comparing'
+  };
+  var ROWS = [
+    { k: 'answer', name: 'Answers the question', d: ['Does not answer the question yet.', 'The answer is unclear or only partly about the question.', 'Answers the question.', 'Answers the question clearly, right at the start.'] },
+    { k: 'evidence', name: 'Details from the passage', d: ['No details from the passage.', 'One detail, or details that do not fit the answer.', 'Two details from the passage that fit.', 'Two or more well-chosen details, quoted or put in his own words correctly.'] },
+    { k: 'explain', name: 'Explains how the details prove it', d: ['No explanation.', 'Repeats the details without explaining them.', 'Explains how most of the details support the answer.', 'Explains clearly how each detail supports the answer.'] },
+    { k: 'conventions', name: 'Clear sentences and spelling', d: ['Errors make it hard to read.', 'Many errors, but it can be read.', 'A few errors that do not get in the way.', 'Complete sentences with few or no errors.'] }
+  ];
+  var GIST = ['Missed the main idea', 'Partly', 'Got the main idea'];
+  var STEPS = ['Read', 'Main idea', 'Questions', 'Check your main idea', 'Write'];
+  var COPY = [   // speed check texts: easy words, so the check measures hand and keyboard speed, not reading
+    'The rain started just after lunch. At first it was only a few drops on the window, but soon the street was full of puddles. My little sister pressed her nose to the glass and counted the people running past with their coats over their heads. One man had a newspaper on his head. A dog trotted by as if nothing had changed at all. When the sun came out again, the whole street smelled clean and new, and the puddles shone like mirrors.',
+    'Every spring my grandfather plants tomatoes along the back fence. He digs each hole with an old blue trowel and drops in a spoonful of crushed eggshells first. He says the shells make the plants strong. I carry the water can and he tells me stories about the farm where he grew up, where the summers were so hot that the cows stood in the river all afternoon. By August we have more tomatoes than we can eat, so we give bags of them to every house on our street.',
+    'The bus was late again, so we stood at the corner and watched our breath turn into small clouds. Sam had brought a ball, and we kicked it back and forth along the sidewalk to stay warm. A woman with a stroller smiled at us and stepped around the ball. When the bus finally came around the bend, the driver waved as if to say sorry. We climbed on, found two seats near the back, and spent the whole ride guessing what the surprise in science class would be.',
+    'Our class keeps a small garden next to the playground. Each group takes care of one bed for a month. My group has the bed with the sunflowers, which are now taller than our teacher. We pull the weeds on Mondays and check the soil on Thursdays. If the dirt feels dry two knuckles down, we water it. Last week a bird landed on the tallest flower and pecked out a few seeds. Nobody minded. We decided the garden was for the birds too.'
+  ];
+
+  // ---------- small helpers ----------
+  function nowISO() { return H.now().toISOString(); }
+  function words(s) { var m = String(s || '').trim().match(/\S+/g); return m ? m.length : 0; }
+  function dayOf(iso) { try { return H.iso(new Date(iso)); } catch (e) { return ''; } }
+  function adult() {
+    if (window.HUB_CFG) { var r = (window.HUB_ME || {}).role; return r === 'parent' || r === 'tutor'; }
+    var pin = (H.store.col('config').get('parent') || {}).pin;
+    return !pin || H.parent.unlocked;
+  }
+  function me() { var m = window.HUB_ME || {}; return { by: m.name || 'Parent', role: m.role || 'parent' }; }
+  function fromView() { var v = H.views.current; return TOPS.indexOf(v) >= 0 ? v : 'reading'; }
+  function numCmp(a, b) { return String(a).localeCompare(String(b), undefined, { numeric: true }); }
+
+  // ---------- sets and his work ----------
+  function sets() {
+    var out = [];
+    H.store.col('passages').forEach(function (d, id) {
+      if (d && (d.kind === 'C') && d.status !== 'archived') out.push(Object.assign({ id: d.id || id }, d));
+    });
+    out.sort(function (a, b) { var x = (a.order == null ? 1e9 : a.order) - (b.order == null ? 1e9 : b.order); return x || numCmp(a.id, b.id); });
+    return out;
+  }
+  function work(id) { return H.store.col('reading').get('comp-' + id) || null; }
+  function works() {
+    var out = [];
+    H.store.col('reading').forEach(function (d, id) { if (d && d.kind === 'comp') out.push(Object.assign({ _id: id }, d)); });
+    out.sort(function (a, b) { return String(a.startedAt || '').localeCompare(String(b.startedAt || '')); });
+    return out;
+  }
+  function queue() {
+    var all = sets();
+    for (var i = 0; i < all.length; i++) {
+      var w = work(all[i].id);
+      if (!w || !w.finishedAt) return { meta: all[i], work: w, index: i, total: all.length };
+    }
+    return null;
+  }
+  function marksOf(w) {
+    var m = w && w.marks;
+    if (!m) return null;
+    if (m.adult && m.adult.scores) return { src: 'adult', scores: m.adult.scores, note: m.adult.note || '', gist: m.adult.gist, by: m.adult.by, at: m.adult.at, claude: m.claude || null };
+    if (m.claude && m.claude.scores) return { src: 'claude', scores: m.claude.scores, note: m.claude.fix || '', gist: m.claude.gist, at: m.claude.at, claude: m.claude };
+    return null;
+  }
+  function fixNote(w) { var m = marksOf(w); return m ? m.note : ''; }
+  // The newest finished paragraph that has feedback and no rewrite yet.
+  function pendingFix() {
+    var list = works().filter(function (w) { return w.finishedAt && w.write && w.write.text; });
+    list.sort(function (a, b) { return String(a.finishedAt).localeCompare(String(b.finishedAt)); });
+    var w = list[list.length - 1];
+    if (!w || w.revision || !fixNote(w)) return null;
+    return w;
+  }
+  function speedDocs() {
+    var out = [];
+    H.store.col('reading').forEach(function (d, id) { if (d && d.kind === 'speed') out.push(Object.assign({ _id: id }, d)); });
+    out.sort(function (a, b) { return String(a.createdAt || a.date || '').localeCompare(String(b.createdAt || b.date || '')); });
+    return out;
+  }
+  function speedNow() {
+    var hand = null, typed = null;
+    speedDocs().forEach(function (s) { if (s.hand && s.hand.wpm != null) hand = s.hand; if (s.typed && s.typed.wpm != null) typed = s.typed; });
+    return { hand: hand, typed: typed, keyboard: !!(hand && typed && typed.wpm >= hand.wpm && hand.wpm > 0) };
+  }
+  function doneLine(w) {
+    var s = w.qsum || {}, bits = [];
+    if (s.total) bits.push(s.right + ' of ' + s.total + ' questions right the first time');
+    if (w.write && w.write.words) bits.push('paragraph of ' + w.write.words + ' words');
+    return bits.join(' · ');
+  }
+
+  var CONTENT = {};
+  function loadSet(id) {
+    if (CONTENT[id]) return Promise.resolve(CONTENT[id]);
+    return H.store.get('content/' + id).then(function (d) { if (d && d.passage) CONTENT[id] = d; return d && d.passage ? d : null; });
+  }
+
+  // ---------- Today task providers ----------
+  H.tasks.register('comp', {
+    status: function (task, date) {
+      var label = (task && task.label) || 'Read and write';
+      var fin = works().filter(function (w) { return w.finishedAt && dayOf(w.finishedAt) === date; });
+      if (fin.length) { var w = fin[fin.length - 1]; return { state: 'done', title: label + ': ' + (w.title || ''), line: doneLine(w) }; }
+      if (date !== H.today()) return { state: 'todo', title: label, line: '' };
+      var q = queue(), fix = pendingFix();
+      if (!q && !fix) return { state: 'none', title: label, line: 'No set waiting. More arrive with the next build.' };
+      if (!q) return { state: 'todo', title: label + ': fix your last paragraph', line: 'About 10 minutes. The next set arrives with the next build.', action: { label: 'Start', run: function () { H.go('write', { fixOnly: true, from: fromView() }); } } };
+      var started = !!(q.work && q.work.startedAt);
+      return {
+        state: started ? 'doing' : 'todo', title: label + ': ' + q.meta.title,
+        line: (fix ? 'First fix your last paragraph. Then read' : 'Read') + ', answer questions from memory, and write a paragraph. About ' + (q.meta.estMin || 35) + ' minutes.',
+        action: { label: started ? 'Continue' : 'Start', run: function () { H.go('write', { set: q.meta.id, from: fromView() }); } }
+      };
+    }
+  });
+  H.tasks.register('speed', {
+    status: function (task, date) {
+      var label = (task && task.label) || 'Speed check', list = speedDocs();
+      var todays = list.filter(function (s) { return s.date === date; });
+      if (todays.length) return { state: 'done', title: label, line: speedLine(todays[todays.length - 1]) };
+      if (date !== H.today()) return { state: 'none', hide: true, title: label, line: '' };
+      var lastS = list[list.length - 1];
+      if (lastS && H.addDays(lastS.date, 28) > date) return { state: 'none', hide: true, title: label, line: '' };
+      return {
+        state: 'todo', title: label + ' (once a month)', line: 'One minute of typing on his own, then one minute copying by hand while a parent times it. About 5 minutes.',
+        action: { label: 'Start', run: function () { H.go('write', { mode: 'speed', from: fromView() }); } }
+      };
+    }
+  });
+  function speedLine(s) {
+    var b = [];
+    if (s.typed && s.typed.wpm != null) b.push('typing ' + s.typed.wpm + ' words a minute');
+    if (s.hand && s.hand.wpm != null) b.push('by hand ' + s.hand.wpm);
+    return b.join(' · ') || 'Saved';
+  }
+
+  // ---------- the view ----------
+  var root = null, W = null, saveTimer = null;
+  function stopTimers() { clearTimeout(saveTimer); saveTimer = null; if (W && W.raf) { clearTimeout(W.raf); W.raf = null; } H.wake.release(); }
+  function leave() { flushDraft(); stopTimers(); H.go((W && W.from) || 'reading'); }
+  function head(title) {
+    var b = el('button', { class: 'btn quiet', type: 'button', id: 'cwExit', text: 'Exit' });
+    b.addEventListener('click', function () {
+      if (W && W.mode === 'speed' && W.run && !b.classList.contains('confirm')) {
+        b.classList.add('confirm'); b.textContent = 'Leave without saving? Tap again';
+        setTimeout(function () { b.classList.remove('confirm'); b.textContent = 'Exit'; }, 4000); return;
+      }
+      leave();
+    });
+    return el('div', { class: 'rd-acthead' }, el('span', { class: 'what', text: title }), b);
+  }
+  function show(kids) { root.replaceChildren.apply(root, kids.filter(Boolean)); window.scrollTo(0, 0); }
+  function msg(text) { return el('p', { class: 'small cw-msg', role: 'status', text: text || '' }); }
+
+  function passageNode(L, id) {
+    var a = el('article', { class: 'passage cw-pass', id: id || null });
+    a.append(el('p', { class: 'ttl', text: L.title }));
+    (L.passage || []).forEach(function (par, i) { a.append(el('p', {}, el('span', { class: 'pn', 'aria-label': 'Paragraph ' + (i + 1), text: String(i + 1) }), par)); });
+    if (L.source) a.append(el('p', { class: 'small muted cw-src', text: L.source }));
+    return a;
+  }
+  function stepBar(n) {
+    var bar = el('ol', { class: 'cw-steps', 'aria-label': 'Steps' });
+    STEPS.forEach(function (s, i) { bar.append(el('li', { class: i < n ? 'done' : i === n ? 'now' : '', 'aria-current': i === n ? 'step' : null, text: s })); });
+    return bar;
+  }
+
+  // ----- time and saving -----
+  function stepTime() { var s = (H.ms() - W.t0) / 1000; W.t0 = H.ms(); return Math.round(Math.min(s, 1800)); }
+  function save(patch) {
+    patch.updatedAt = nowISO();
+    H.merge(W.A, H.clone(patch));
+    return H.store.patch('reading/comp-' + W.id, patch);
+  }
+  function addTime(key, secs) {
+    var p = { activeSec: (W.A.activeSec || 0) + secs, sec: {} };
+    p.sec[key] = ((W.A.sec || {})[key] || 0) + secs;
+    return p;
+  }
+  function queueDraft(field, text) {
+    W.drafts = W.drafts || {}; W.drafts[field] = text;
+    clearTimeout(saveTimer); saveTimer = setTimeout(flushDraft, 4000);
+  }
+  function flushDraft() {
+    clearTimeout(saveTimer); saveTimer = null;
+    if (!W || !W.drafts || !W.id || W.mode) return;
+    var d = W.drafts; W.drafts = null;
+    var p = { drafts: {} }; Object.keys(d).forEach(function (k) { p.drafts[k] = d[k]; });
+    save(p);
+  }
+
+  // ----- start a set -----
+  function startSet(arg) {
+    var q = queue(), id = arg.set || (q && q.meta.id) || null;
+    var fix = pendingFix();
+    if (fix && id && fix.setId === id) fix = null;
+    if (arg.fixOnly) id = null;
+    W = { from: TOPS.indexOf(arg.from) >= 0 ? arg.from : 'reading', id: id, t0: H.ms(), fix: fix ? { w: fix, done: false } : null };
+    show([head('Read and write'), el('div', { class: 'empty' }, el('p', { text: 'Opening' }))]);
+    var jobs = [id ? loadSet(id) : Promise.resolve(null), fix ? loadSet(fix.setId) : Promise.resolve(null)];
+    Promise.all(jobs).then(function (r) {
+      if (!W) return;
+      W.L = r[0]; if (W.fix) W.fix.L = r[1];
+      if (id && !W.L) { show([head('Read and write'), el('div', { class: 'empty' }, el('p', { text: 'This set did not load.' }), el('p', { class: 'small', text: 'Check the connection, then open it again from Today or the Reading tab.' }))]); return; }
+      if (!id && !W.fix) { show([head('Read and write'), el('div', { class: 'empty' }, el('p', { text: 'Nothing is waiting right now.' }), el('p', { class: 'small', text: 'The next set arrives with the next build.' }))]); return; }
+      if (id) {
+        W.meta = sets().filter(function (s) { return s.id === id; })[0] || { id: id, title: W.L.title };
+        var cur = work(id);
+        if (cur) W.A = H.clone(cur);
+        else {
+          W.A = { kind: 'comp', setId: id, title: W.L.title, date: H.today(), startedAt: nowISO(), updatedAt: nowISO(), step: 'read', activeSec: 0, sec: {}, q: {} };
+          H.store.put('reading/comp-' + id, H.clone(W.A));
+        }
+      }
+      route();
+    }, function () { show([head('Read and write'), el('div', { class: 'empty' }, el('p', { text: 'This set did not load. Check the connection and try again.' }))]); });
+  }
+  function route() {
+    W.t0 = H.ms();
+    if (W.fix && !W.fix.done) return stepFix();
+    if (!W.id) return show([head('Read and write'), el('div', { class: 'card' }, el('h2', { text: 'Saved' }), el('p', { text: 'Your rewrite is saved. The next set arrives with the next build.' }), el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwBack', text: 'Done', onclick: leave })))]);
+    var st = W.A.step || 'read';
+    if (W.A.finishedAt) st = 'done';
+    ({ read: stepRead, gist: stepGist, qs: stepQs, compare: stepCompare, write: stepWrite, done: stepDone }[st] || stepRead)();
+  }
+  function title() { return 'Read and write: ' + ((W.L && W.L.title) || ''); }
+
+  // ----- step 0: fix last paragraph -----
+  function stepFix() {
+    var w = W.fix.w, L = W.fix.L, m = marksOf(w);
+    var ta = el('textarea', { id: 'cwFixText', class: 'cw-write', rows: '12', 'aria-label': 'Your rewritten paragraph' });
+    ta.value = (w.drafts && w.drafts.fix) || w.write.text;
+    var count = el('span', { class: 'small muted num', id: 'cwFixCount', text: words(ta.value) + ' words' });
+    var note = msg();
+    ta.addEventListener('input', function () { count.textContent = words(ta.value) + ' words'; });
+    var marks = el('div', { class: 'cw-marks' });
+    if (m) ROWS.forEach(function (r) { var s = m.scores[r.k]; if (s) marks.append(el('div', { class: 'cw-mrow' }, el('b', { text: r.name + ': ' + s + ' of 4' }), el('span', { class: 'small', text: r.d[s - 1] }))); });
+    show([head('Fix your last paragraph'),
+      el('div', { class: 'card' },
+        el('h2', { text: 'First: fix your last paragraph' }),
+        el('p', { class: 'hint', text: 'From "' + (w.title || '') + '". The question was:' }),
+        el('p', { class: 'qtext', text: (L && L.write && L.write.prompt) || '' }),
+        el('div', { class: 'sol' }, el('span', { class: 'label', text: 'One thing to fix' }), el('p', { class: 'qtext cw-fix', id: 'cwFixNote', text: m.note })),
+        marks,
+        el('p', { text: 'Rewrite your paragraph with that fix. Change whatever you need to; the whole paragraph is here for you to work on.' }),
+        ta, count, note,
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwFixSave', text: 'Save my rewrite', onclick: function () {
+          var t = ta.value.trim();
+          if (words(t) < 20) { note.textContent = 'Rewrite the whole paragraph, not just one line.'; return; }
+          if (t === w.write.text.trim()) { note.textContent = 'Nothing has changed yet. Make the fix, then save.'; return; }
+          var secs = stepTime();
+          H.store.patch('reading/comp-' + w.setId, { revision: { text: t, words: words(t), sec: secs, at: nowISO() }, updatedAt: nowISO() });
+          W.fix.done = true;
+          showModel(w, L);
+        } })))]);
+    ta.addEventListener('input', function () { clearTimeout(saveTimer); saveTimer = setTimeout(function () { H.store.patch('reading/comp-' + w.setId, { drafts: { fix: ta.value } }); }, 4000); });
+  }
+  function showModel(w, L) {
+    var model = L && L.write && L.write.model;
+    show([head('Fix your last paragraph'),
+      el('div', { class: 'card' },
+        el('h2', { text: 'Rewrite saved' }),
+        model ? el('div', { class: 'sol' }, el('span', { class: 'label', text: 'One strong answer to compare with yours' }), el('p', { class: 'qtext', id: 'cwModel', text: model })) : null,
+        model ? el('p', { class: 'hint', text: 'Look for how it answers the question in the first sentence, which details it picks, and how it explains them.' }) : null,
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwFixNext', text: W.id ? 'Go on to today\'s set' : 'Done', onclick: function () { if (W.id) route(); else leave(); } })))]);
+  }
+
+  // ----- step 1: read -----
+  function stepRead() {
+    var minSec = Math.max(30, Math.round(words((W.L.passage || []).join(' ')) / 400 * 60)), tapped = false;
+    var note = msg();
+    show([head(title()), stepBar(0),
+      el('div', { class: 'card' },
+        el('h2', { text: 'Step 1: Read' }),
+        el('div', { class: 'howto' },
+          el('p', { text: 'Read the whole passage carefully.' }),
+          el('p', { text: 'In the next step the passage closes and you tell the main idea from memory, so read to understand it, not to finish fast.' }),
+          el('p', { text: 'Reread any part that is not clear.' }))),
+      passageNode(W.L, 'cwPassage'),
+      el('div', { class: 'card' }, note,
+        el('div', { class: 'row' }, el('button', { class: 'btn big', type: 'button', id: 'cwReadDone', text: 'I have read it', onclick: function () {
+          var secs = (H.ms() - W.t0) / 1000;
+          if (secs < minSec && !tapped) { tapped = true; note.textContent = 'That was quick. Read it once more, all the way through, then tap again.'; return; }
+          var t = stepTime(), p = addTime('read', t); p.step = 'gist'; p.read = { sec: ((W.A.read || {}).sec || 0) + t, quick: secs < minSec };
+          save(p); route();
+        } })))]);
+  }
+
+  // ----- step 2: main idea from memory -----
+  function stepGist() {
+    var ta = el('textarea', { id: 'cwGist', rows: '4', maxlength: '600', 'aria-label': 'The main idea in your words' });
+    ta.value = (W.A.drafts && W.A.drafts.gist) || '';
+    var note = msg();
+    ta.addEventListener('input', function () { queueDraft('gist', ta.value); });
+    show([head(title()), stepBar(1),
+      el('div', { class: 'card' },
+        el('h2', { text: 'Step 2: The main idea, from memory' }),
+        el('p', { class: 'qtext', text: 'The passage is closed. In your notebook, write one or two sentences: what is this passage mostly about?' }),
+        el('p', { class: 'hint', text: 'Not one detail. Tell the big idea of the whole passage, the way you would explain it to a friend who has not read it.' }),
+        el('p', { text: 'Then type it here.' }),
+        ta, note,
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwGistSave', text: 'Save and go on', onclick: function () {
+          var t = ta.value.trim();
+          if (words(t) < 6) { note.textContent = 'Write a full sentence or two about the whole passage.'; return; }
+          var secs = stepTime(), p = addTime('gist', secs);
+          p.step = 'qs'; p.gist = { text: t, words: words(t), sec: secs, at: nowISO() };
+          W.drafts = null; save(p); route();
+        } })))]);
+  }
+
+  // ----- step 3: questions -----
+  function qState(q) { return (W.A.q || {})[q.id] || null; }
+  function qResolved(s) { return !!s && (s.st === 'ok' || s.st === 'out'); }
+  function stepQs() {
+    var qs = W.L.questions || [], i = 0;
+    while (i < qs.length && qResolved(qState(qs[i]))) i++;
+    if (W.qi != null && W.qi < qs.length && W.qi <= i) i = W.qi;
+    if (i >= qs.length) { finishQs(); return; }
+    W.qi = i; paintQ();
+  }
+  function paintQ() {
+    var qs = W.L.questions, q = qs[W.qi], s = qState(q), ans = q.ans, resolved = qResolved(s);
+    var sel = s && s.v != null ? s.v : (ans.type === 'multi' ? [] : ans.type === 'choice' ? null : '');
+    if (W.pick && W.pick.qid === q.id && !resolved) sel = W.pick.v;
+    if (W.qStart == null || W.qStartId !== q.id) { W.qStart = H.ms(); W.qStartId = q.id; W.lookOpen = false; }
+    var row = el('div', { class: 'prow' + (resolved ? (s.st === 'ok' ? ' ok' : ' out') : (s && s.st === 'no' ? ' no' : '')) });
+    var control;
+    if (ans.type === 'choice' || ans.type === 'multi') {
+      control = el('div', { class: 'opts', role: 'group', 'aria-label': 'Choices' });
+      ans.options.forEach(function (o, k) {
+        var on = ans.type === 'multi' ? (Array.isArray(sel) && sel.indexOf(k) >= 0) : sel === k;
+        var b = el('button', { type: 'button', 'aria-pressed': on ? 'true' : 'false', text: String(o), disabled: resolved, 'data-k': String(k) });
+        if (resolved && s.st === 'out' && (ans.type === 'multi' ? ans.correct.indexOf(k) >= 0 : ans.correct === k)) b.classList.add('key');
+        b.addEventListener('click', function () {
+          if (ans.type === 'multi') { sel = Array.isArray(sel) ? sel.slice() : []; var j = sel.indexOf(k); if (j >= 0) sel.splice(j, 1); else sel.push(k); }
+          else sel = k;
+          W.pick = { qid: q.id, v: sel };
+          H.$$('button', control).forEach(function (bb, bi) { bb.setAttribute('aria-pressed', (ans.type === 'multi' ? sel.indexOf(bi) >= 0 : sel === bi) ? 'true' : 'false'); });
+        });
+        control.append(b);
+      });
+    } else {
+      control = el('div', { class: 'ansline' });
+      var inp = el('input', { class: 'ans', id: 'cwAns', type: 'text', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false', disabled: resolved, 'aria-label': 'Your answer', placeholder: 'word or short phrase' });
+      inp.value = String(sel == null ? '' : sel);
+      inp.addEventListener('input', function () { sel = inp.value; W.pick = { qid: q.id, v: sel }; });
+      inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); check(); } });
+      control.append(inp);
+    }
+    row.append(control);
+    if (s && s.st) {
+      var v = s.st === 'ok' ? ((s.tries || 1) <= 1 ? 'Correct' : 'Correct on the second try') : s.st === 'no' ? 'Not yet' : 'Not this time';
+      row.append(el('span', { class: 'verdict', id: 'cwVerdict', text: v }));
+      if (s.st === 'no' && q.hint) row.append(el('p', { class: 'hint', id: 'cwHint', text: q.hint }));
+      if (s.st === 'out') row.append(el('span', { class: 'pmsg', text: 'Answer: ' + C.show(ans) }));
+    }
+    var why = resolved && q.why ? el('div', { class: 'sol', id: 'cwWhy' }, el('span', { class: 'label', text: 'Why' }), el('p', { class: 'qtext cw-why', text: q.why })) : null;
+    var look = el('div', { id: 'cwLook', hidden: !W.lookOpen }, passageNode(W.L));
+    var lookBtn = el('button', { class: 'btn ghost', type: 'button', id: 'cwLookBtn', text: W.lookOpen ? 'Close the passage' : 'Look back at the passage', onclick: function () {
+      W.lookOpen = !W.lookOpen; look.hidden = !W.lookOpen; lookBtn.textContent = W.lookOpen ? 'Close the passage' : 'Look back at the passage';
+      if (W.lookOpen && !qResolved(qState(q)) && !(qState(q) || {}).v1) { W.looked = W.looked || {}; W.looked[q.id] = true; }
+    } });
+    var note = msg();
+    function check() {
+      var cur = qState(q) || { tries: 0 };
+      if (qResolved(cur)) return;
+      if (ans.type === 'multi' ? !(Array.isArray(sel) && sel.length) : (sel == null || sel === '')) { note.textContent = ans.type === 'text' ? 'Type your answer first.' : 'Pick an answer first.'; return; }
+      var r = C.check(ans, ans.type === 'choice' || ans.type === 'multi' ? sel : String(sel));
+      if (r.status === 'bad' || r.status === 'empty') { note.textContent = r.msg || 'Check what you typed.'; return; }
+      var right = r.status === 'ok', tries = (cur.tries || 0) + 1;
+      var rec = { v: H.clone(sel), tries: tries, at: nowISO() };
+      if (tries === 1) { rec.v1 = H.clone(sel); rec.first = right; rec.looked = !!(W.looked && W.looked[q.id]); }
+      rec.st = right ? 'ok' : (tries >= 2 ? 'out' : 'no');
+      if (qResolved(rec)) rec.sec = Math.round(Math.min((H.ms() - W.qStart) / 1000, 900));
+      var p = { q: {} }; p.q[q.id] = rec;
+      if (qResolved(rec)) { var t = stepTime(); Object.assign(p, addTime('qs', t)); W.qStart = null; }
+      W.pick = null; save(p); paintQ();
+    }
+    var resolvedNow = resolved;
+    var buttons = el('div', { class: 'row' });
+    if (!resolvedNow) buttons.append(el('button', { class: 'btn', type: 'button', id: 'cwCheck', text: s && s.st === 'no' ? 'Check again' : 'Check', onclick: check }));
+    else buttons.append(el('button', { class: 'btn', type: 'button', id: 'cwNext', text: W.qi + 1 < qs.length ? 'Next question' : 'Go on', onclick: function () { W.qi++; if (W.qi >= qs.length) finishQs(); else paintQ(); } }));
+    show([head(title()), stepBar(2),
+      el('div', { class: 'card' },
+        el('div', { class: 'row rd-split' }, el('h2', { text: 'Step 3: Question ' + (W.qi + 1) + ' of ' + qs.length }), el('span', { class: 'chip at', text: QT[q.type] || 'Question' })),
+        W.qi === 0 && !s ? el('p', { class: 'hint', text: 'Answer from memory first. If you are not sure, look back at the passage before you check. Your first answer is your score.' }) : null,
+        el('p', { class: 'qtext', id: 'cwQ', text: q.q }),
+        row, note, why, buttons, lookBtn),
+      look]);
+  }
+  function finishQs() {
+    var qs = W.L.questions || [], sum = { right: 0, total: qs.length, looked: 0, byType: {} };
+    qs.forEach(function (q) {
+      var s = qState(q) || {}, t = q.type || 'other';
+      sum.byType[t] = sum.byType[t] || [0, 0]; sum.byType[t][1]++;
+      if (s.first) { sum.right++; sum.byType[t][0]++; }
+      if (s.looked) sum.looked++;
+    });
+    save({ step: 'compare', qsum: sum }); W.qi = null; route();
+  }
+
+  // ----- step 4: compare the main idea -----
+  function stepCompare() {
+    var g = W.A.gist || {};
+    show([head(title()), stepBar(3),
+      el('div', { class: 'card' },
+        el('h2', { text: 'Step 4: Check your main idea' }),
+        el('div', { class: 'sol' }, el('span', { class: 'label', text: 'Your main idea' }), el('p', { class: 'qtext', id: 'cwMyGist', text: g.text || '' })),
+        el('div', { class: 'sol' }, el('span', { class: 'label', text: 'A strong main idea for this passage' }), el('p', { class: 'qtext', id: 'cwModelGist', text: (W.L.gist && W.L.gist.model) || '' })),
+        W.L.gist && W.L.gist.look ? el('p', { class: 'hint', text: 'A strong main idea ' + W.L.gist.look }) : null,
+        el('p', { class: 'qtext', text: 'Does yours say the same big idea?' }),
+        el('div', { class: 'row cw-three' }, [['yes', 'Yes'], ['partly', 'Partly'], ['no', 'No, I missed it']].map(function (x) {
+          return el('button', { class: 'btn ghost', type: 'button', 'data-self': x[0], text: x[1], onclick: function () {
+            var p = addTime('compare', stepTime()); p.step = 'write'; p.gist = { self: x[0] }; save(p); route();
+          } });
+        })))]);
+  }
+
+  // ----- step 5: write -----
+  function stepWrite() {
+    var wr = W.L.write || {}, A = W.A, sp = speedNow(), drafted = !!(A.write && A.write.draftAt) || sp.keyboard;
+    var minW = wr.minWords || 80, typedFrom = null, keys = 0, warned = false;
+    var ta = el('textarea', { id: 'cwPara', class: 'cw-write', rows: '14', 'aria-label': 'Your paragraph', hidden: !drafted });
+    ta.value = (A.drafts && A.drafts.para) || '';
+    var count = el('span', { class: 'small muted num', id: 'cwCount', text: words(ta.value) + ' words', hidden: !drafted });
+    var note = msg();
+    ta.addEventListener('input', function () { if (typedFrom == null) typedFrom = H.ms(); keys++; count.textContent = words(ta.value) + ' words'; queueDraft('para', ta.value); warned = false; });
+    var look = el('div', { id: 'cwLook', hidden: true }, passageNode(W.L));
+    var lookBtn = el('button', { class: 'btn ghost', type: 'button', id: 'cwLookBtn', text: 'Look back at the passage', onclick: function () { look.hidden = !look.hidden; lookBtn.textContent = look.hidden ? 'Look back at the passage' : 'Close the passage'; } });
+    var plan = el('ol', { class: 'cw-plan' });
+    (wr.plan && wr.plan.length ? wr.plan : ['Your answer to the question, in one sentence.', 'A detail from the passage that supports it.', 'Another detail from the passage.', 'How those details prove your answer.', 'A closing sentence.']).forEach(function (x) { plan.append(el('li', { text: x })); });
+    var draftBtn = el('button', { class: 'btn', type: 'button', id: 'cwDraftDone', text: 'My notebook draft is done', hidden: drafted, onclick: function () {
+      var t = stepTime(); var p = addTime('draft', t); p.write = { draftAt: nowISO(), draftSec: t }; save(p);
+      draftBtn.hidden = true; ta.hidden = false; count.hidden = false; hand.hidden = false; typeHow.hidden = false; ta.focus();
+    } });
+    var typeHow = el('p', { class: 'hint', hidden: !drafted, text: sp.keyboard ? 'Your typing has caught up with your handwriting, so you can plan on paper and write your paragraph right here.' : 'Now type your final copy from your notebook. Fix anything you want to improve as you go.' });
+    var hand = el('div', { class: 'row', hidden: !drafted }, el('button', { class: 'btn', type: 'button', id: 'cwHandIn', text: 'Hand in my paragraph', onclick: function () {
+      var t = ta.value.trim(), n = words(t);
+      if (n < 15) { note.textContent = 'Type your whole paragraph first.'; return; }
+      if (n < minW && !warned) { warned = true; note.textContent = 'Your paragraph has ' + n + ' words. A full answer to this question needs about ' + minW + '. Add a detail or explain more, or tap Hand in again to hand it in as it is.'; return; }
+      var secs = stepTime(), p = addTime('write', secs), typedSec = typedFrom == null ? null : Math.round((H.ms() - typedFrom) / 1000);
+      p.write = { text: t, words: n, sec: secs, typedSec: typedSec, at: nowISO(), keyboardDraft: sp.keyboard };
+      p.step = 'done'; p.finishedAt = nowISO(); p.drafts = { para: '' };
+      W.drafts = null; save(p); route();
+    } }));
+    show([head(title()), stepBar(4),
+      el('div', { class: 'card' },
+        el('h2', { text: 'Step 5: Write' }),
+        el('p', { class: 'qtext', id: 'cwPrompt', text: wr.prompt || '' }),
+        el('div', { class: 'sol' }, el('span', { class: 'label', text: 'Plan it in your notebook' }), plan),
+        el('p', { text: sp.keyboard ? 'Plan in your notebook, then write here. Look back at the passage as often as you like.' : 'Plan and write your paragraph in your notebook first. Look back at the passage as often as you like.' }),
+        el('div', { class: 'row' }, draftBtn),
+        typeHow, ta, count, note, hand, lookBtn),
+      look]);
+  }
+
+  // ----- done -----
+  function stepDone() {
+    var s = W.A.qsum || {}, wr = W.A.write || {};
+    show([head(title()),
+      el('div', { class: 'card' },
+        el('h2', { text: 'Set finished' }),
+        el('div', { class: 'result' },
+          el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Questions right the first time' }), el('span', { class: 'v num', text: (s.right || 0) + ' of ' + (s.total || 0) })),
+          el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Your paragraph' }), el('span', { class: 'v num', text: (wr.words || 0) + ' words' })),
+          el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Time' }), el('span', { class: 'v num', text: H.fmt.mins(W.A.activeSec || 0) }))),
+        el('p', { text: 'Your paragraph goes to a parent or your tutor for marks. Next time you start with one thing to fix.' }),
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwBack', text: 'Done', onclick: leave })))]);
+  }
+
+  // ---------- marking (parent or tutor) ----------
+  function startMark(arg) {
+    W = { mode: 'mark', from: TOPS.indexOf(arg.from) >= 0 ? arg.from : 'reading', setId: arg.set };
+    if (!adult()) { show([head('Marks'), el('div', { class: 'empty' }, el('p', { text: 'Marks are for a parent or the tutor.' }))]); return; }
+    show([head('Marks'), el('div', { class: 'empty' }, el('p', { text: 'Opening' }))]);
+    loadSet(arg.set).then(function (L) { if (W && W.mode === 'mark') paintMark(L); });
+  }
+  function paintMark(L) {
+    var w = work(W.setId);
+    if (!w || !L) { show([head('Marks'), el('div', { class: 'empty' }, el('p', { text: 'That set has no work saved yet.' }))]); return; }
+    var mk = marksOf(w), cl = (w.marks && w.marks.claude) || null, ad = (w.marks && w.marks.adult) || null;
+    var picked = {}; ROWS.forEach(function (r) { picked[r.k] = (ad && ad.scores && ad.scores[r.k]) || (cl && cl.scores && cl.scores[r.k]) || null; });
+    var gistPick = ad && ad.gist != null ? ad.gist : (cl && cl.gist != null ? cl.gist : null);
+    var kids = [head('Marks: ' + (w.title || L.title))];
+    // questions
+    var qc = el('div', { class: 'card' }, el('h2', {}, 'Questions ', el('small', { text: (w.qsum ? w.qsum.right + ' of ' + w.qsum.total + ' right the first time' : '') })));
+    (L.questions || []).forEach(function (q, i) {
+      var s = (w.q || {})[q.id] || {}, first = s.v1 != null ? showVal(q.ans, s.v1) : 'not answered';
+      qc.append(el('div', { class: 'cw-aq' },
+        el('p', {}, el('b', { text: (i + 1) + '. ' + (QT[q.type] || '') + ': ' }), q.q),
+        el('p', { class: 'small' + (s.first ? ' cw-good' : ' cw-bad') }, (s.first ? 'Right the first time: ' : 'First answer: ') + first + (s.first ? '' : ' · Answer: ' + C.show(q.ans)) + (s.looked ? ' · looked back first' : ' · from memory'))));
+    });
+    kids.push(qc);
+    // main idea
+    var gp = el('div', { class: 'row cw-three' });
+    GIST.forEach(function (g, gi) {
+      var b = el('button', { class: 'btn ghost', type: 'button', 'data-gist': String(gi), 'aria-pressed': gistPick === gi ? 'true' : 'false', text: g });
+      b.addEventListener('click', function () { gistPick = gi; H.$$('button', gp).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); });
+      gp.append(b);
+    });
+    kids.push(el('div', { class: 'card' }, el('h2', { text: 'Main idea from memory' }),
+      el('div', { class: 'sol' }, el('span', { class: 'label', text: 'His main idea' + (w.gist && w.gist.self ? ' (he said: ' + ({ yes: 'same as the model', partly: 'partly the same', no: 'missed it' }[w.gist.self] || w.gist.self) + ')' : '') }), el('p', { class: 'qtext', text: (w.gist && w.gist.text) || '' })),
+      el('div', { class: 'sol' }, el('span', { class: 'label', text: 'Model' }), el('p', { class: 'qtext', text: (L.gist && L.gist.model) || '' })),
+      gp));
+    // paragraph
+    var wr = w.write || {};
+    var pc = el('div', { class: 'card' }, el('h2', { text: 'His paragraph' }),
+      el('p', { class: 'hint', text: (L.write && L.write.prompt) || '' }),
+      el('div', { class: 'sol' }, el('span', { class: 'label', text: (wr.words || 0) + ' words' + (wr.typedSec ? ', typed in ' + H.fmt.mmss(wr.typedSec) : '') }), el('p', { class: 'qtext cw-para', id: 'cwMarkPara', text: wr.text || '' })));
+    if (w.revision) pc.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: 'His rewrite (' + w.revision.words + ' words)' }), el('p', { class: 'qtext cw-para', text: w.revision.text })));
+    if (L.write && L.write.model) pc.append(el('details', {}, el('summary', { text: 'Model paragraph' }), el('p', { class: 'qtext', text: L.write.model })));
+    if (cl) pc.append(el('div', { class: 'anote', id: 'cwClaude' }, el('div', { class: 'small muted', text: 'Claude\'s draft marks, ' + H.fmt.date(dayOf(cl.at)) }), el('p', { text: (cl.comment ? cl.comment + ' ' : '') + (cl.fix ? 'Fix: ' + cl.fix : '') })));
+    kids.push(pc);
+    // rubric
+    var rc = el('div', { class: 'card' }, el('h2', { text: 'Marks' }), el('p', { class: 'hint', text: ad ? 'Saved by ' + ad.by + ', ' + H.fmt.date(dayOf(ad.at)) + '. Change any row and save again.' : cl ? 'Claude\'s draft marks are filled in. Change any row, then save. Until someone saves, Claude\'s marks stand.' : 'Pick 1 to 4 for each row.' }));
+    ROWS.forEach(function (r) {
+      var desc = el('p', { class: 'small muted', text: picked[r.k] ? r.d[picked[r.k] - 1] : '' });
+      var seg = el('div', { class: 'seg', role: 'group', 'aria-label': r.name, 'data-row': r.k });
+      [1, 2, 3, 4].forEach(function (n) {
+        var b = el('button', { type: 'button', 'data-n': String(n), 'aria-pressed': picked[r.k] === n ? 'true' : 'false', text: String(n) });
+        b.addEventListener('click', function () { picked[r.k] = n; desc.textContent = r.d[n - 1]; H.$$('button', seg).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); });
+        seg.append(b);
+      });
+      rc.append(el('div', { class: 'cw-rrow' }, el('b', { text: r.name }), seg, desc));
+    });
+    var fix = el('textarea', { id: 'cwMarkFix', rows: '3', 'aria-label': 'One thing to fix next time' });
+    fix.value = (ad && ad.note) || (cl && cl.fix) || '';
+    var note = msg();
+    rc.append(el('label', { class: 'cw-lab', 'for': 'cwMarkFix', text: 'One thing to fix next time (he sees this)' }), fix, note,
+      el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwMarkSave', text: 'Save marks', onclick: function () {
+        var miss = ROWS.filter(function (r) { return !picked[r.k]; });
+        if (miss.length) { note.textContent = 'Pick a mark for: ' + miss.map(function (r) { return r.name; }).join(', ') + '.'; return; }
+        if (!fix.value.trim()) { note.textContent = 'Write one thing for him to fix. He rewrites his paragraph with it next time.'; return; }
+        var who = me(), sc = {}; ROWS.forEach(function (r) { sc[r.k] = picked[r.k]; });
+        H.store.patch('reading/comp-' + W.setId, { marks: { adult: { scores: sc, gist: gistPick, note: fix.value.trim().slice(0, 600), by: who.by, role: who.role, at: new Date().toISOString() } } })
+          .then(function () { H.toast('Marks saved.'); }, function () { H.toast('Could not save. Try again.', 'warn'); });
+        note.textContent = 'Saved.';
+      } })));
+    kids.push(rc);
+    kids.push(el('details', {}, el('summary', { text: 'The passage' }), passageNode(L)));
+    show(kids);
+  }
+  function showVal(ans, v) {
+    if (ans.type === 'choice') return String(ans.options[v]);
+    if (ans.type === 'multi') return (v || []).map(function (i) { return ans.options[i]; }).join('; ');
+    return String(v);
+  }
+
+  // ---------- speed check ----------
+  function startSpeed(arg) {
+    var n = speedDocs().length;
+    W = { mode: 'speed', from: TOPS.indexOf(arg.from) >= 0 ? arg.from : 'reading', textT: COPY[n % COPY.length], textH: COPY[(n + 1) % COPY.length], typed: null, hand: null, run: null };
+    paintSpeedType();
+  }
+  function scoreTyping(src, typed) {
+    var a = src.split(/\s+/), b = String(typed || '').trim().split(/\s+/).filter(Boolean), right = 0;
+    function norm(x) { return String(x).toLowerCase().replace(/[^a-z0-9']/g, ''); }
+    for (var i = 0; i < b.length && i < a.length; i++) if (norm(a[i]) === norm(b[i]) && norm(a[i])) right++;
+    return { typed: b.length, right: right };
+  }
+  function clockNode() { return el('span', { class: 'clock', id: 'spClock', text: '1:00' }); }
+  function tick(done) {
+    var left = Math.max(0, 60 - (H.ms() - W.run.t0) / 1000), c = H.$('#spClock');
+    if (c) { c.textContent = H.fmt.mmss(Math.ceil(left)); c.classList.toggle('low', left <= 10); }
+    if (left <= 0) { W.raf = null; done(); return; }
+    W.raf = setTimeout(function () { tick(done); }, 100);
+  }
+  function paintSpeedType() {
+    var ta = el('textarea', { id: 'spType', rows: '8', disabled: true, autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false', 'aria-label': 'Type the text here' });
+    var go = el('button', { class: 'btn big', type: 'button', id: 'spTypeGo', text: 'Start 1:00' });
+    var out = el('div', { id: 'spTypeOut' });
+    go.addEventListener('click', function () {
+      H.sound(); go.hidden = true; ta.disabled = false; ta.focus(); W.run = { t0: H.ms() }; H.wake.hold();
+      tick(function () {
+        ta.disabled = true; H.beep(); H.wake.release();
+        var r = scoreTyping(W.textT, ta.value); W.run = null;
+        W.typed = { wpm: r.right, typed: r.typed, right: r.right };
+        out.replaceChildren(el('p', { class: 'qtext', text: 'Typing: ' + r.right + ' words right in one minute.' }),
+          el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'spTypeNext', text: 'Next: copy by hand', onclick: paintSpeedHand })));
+      });
+    });
+    show([head('Speed check'),
+      el('div', { class: 'card' },
+        el('h2', { text: 'Part 1 of 2: Typing' }),
+        el('p', { text: 'Type the text below as fast as you can without mistakes. Start at the beginning. The clock runs for one minute.' }),
+        el('div', { class: 'passage cw-copy', id: 'spTextT', text: W.textT }),
+        el('div', { class: 'row' }, clockNode(), go), ta, out)]);
+  }
+  function paintSpeedHand() {
+    var go = el('button', { class: 'btn big', type: 'button', id: 'spHandGo', text: 'Start 1:00' });
+    var out = el('div', { id: 'spHandOut' });
+    go.addEventListener('click', function () {
+      H.sound(); go.hidden = true; W.run = { t0: H.ms() }; H.wake.hold();
+      tick(function () {
+        H.beep(); H.wake.release(); W.run = null;
+        var inp = el('input', { type: 'number', inputmode: 'numeric', id: 'spHandN', min: '0', max: '200', 'aria-label': 'Words copied correctly' });
+        var note = msg();
+        out.replaceChildren(el('p', { text: 'Stop. Count the words he copied correctly (skip any word that is wrong or cannot be read) and enter the number.' }),
+          el('label', { class: 'cw-lab', 'for': 'spHandN', text: 'Words copied correctly' }), inp, note,
+          el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'spSave', text: 'Save the speed check', onclick: function () {
+            var v = Number(inp.value);
+            if (inp.value === '' || !isFinite(v) || v < 0 || v > 200) { note.textContent = 'Enter the number of words, from 0 to 200.'; return; }
+            W.hand = { wpm: Math.round(v) };
+            var doc = { kind: 'speed', date: H.today(), createdAt: nowISO(), typed: W.typed, hand: W.hand };
+            H.store.add('reading', doc).then(function () { paintSpeedDone(); }, function () { note.textContent = 'Could not save. Check the connection and tap Save again.'; });
+          } })));
+      });
+    });
+    show([head('Speed check'),
+      el('div', { class: 'card' },
+        el('h2', { text: 'Part 2 of 2: Copying by hand' }),
+        el('p', { text: 'A parent runs this part. He copies the text below into his notebook in his normal handwriting, neat enough to read, for one minute.' }),
+        el('div', { class: 'passage cw-copy', id: 'spTextH', text: W.textH }),
+        el('div', { class: 'row' }, clockNode(), go), out)]);
+  }
+  function paintSpeedDone() {
+    var t = W.typed ? W.typed.wpm : 0, h = W.hand ? W.hand.wpm : 0;
+    show([head('Speed check'),
+      el('div', { class: 'card' },
+        el('h2', { text: 'Speed check saved' }),
+        el('div', { class: 'result' },
+          el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Typing' }), el('span', { class: 'v num', text: t + ' words a minute' })),
+          el('div', { class: 'stat' }, el('span', { class: 'label', text: 'By hand' }), el('span', { class: 'v num', text: h + ' words a minute' }))),
+        el('p', { text: t >= h && h > 0 ? 'His typing has caught up with his handwriting. From now on he can write his paragraph drafts straight on the keyboard.' : 'He keeps drafting by hand and typing the final copy. Typing practice closes the gap; the next check is in about a month.' }),
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwBack', text: 'Done', onclick: leave })))]);
+  }
+
+  H.views.register('write', {
+    render: function (r) { root = r; },
+    show: function (arg) {
+      stopTimers(); W = null; arg = arg || {};
+      if (arg.mode === 'speed') return startSpeed(arg);
+      if (arg.mode === 'mark') return startMark(arg);
+      startSet(arg);
+    },
+    refresh: function () { /* never rebuild while he reads or types */ },
+    hide: function () { flushDraft(); stopTimers(); }
+  });
+
+  // ---------- Reading tab card ----------
+  function avg(list) { return list.length ? list.reduce(function (a, b) { return a + b; }, 0) / list.length : null; }
+  function card(box) {
+    if (!box) return;
+    var q = queue(), fix = pendingFix(), all = works().filter(function (w) { return w.finishedAt; }), big = adult();
+    var kids = [el('div', { class: 'row rd-split' }, el('h2', { text: 'Read and write' }), el('span', { class: 'small muted', text: 'Tuesday and Thursday' }))];
+    var nx = el('div', { class: 'task', id: 'cwNext' });
+    if (q) {
+      var started = !!(q.work && q.work.startedAt);
+      nx.append(el('span', { class: 'label', text: q.meta.title }), el('span', { class: 'when', text: 'Set ' + (q.index + 1) + ' of ' + q.total + (fix ? ' · starts with a rewrite of the last paragraph' : '') }),
+        el('p', { text: 'Read a harder passage, tell the main idea from memory, answer questions, then write a paragraph: drafted in the notebook, final copy typed here.' }),
+        el('button', { class: 'btn', type: 'button', id: 'cwStart', text: started ? 'Continue' : 'Start', onclick: function () { H.go('write', { set: q.meta.id, from: 'reading' }); } }));
+    } else if (fix) {
+      nx.append(el('span', { class: 'label', text: 'Fix the last paragraph' }), el('p', { text: 'The feedback is in. The next set arrives with the next build.' }),
+        el('button', { class: 'btn', type: 'button', id: 'cwStart', text: 'Start', onclick: function () { H.go('write', { fixOnly: true, from: 'reading' }); } }));
+    } else nx.append(el('span', { class: 'label', text: sets().length ? 'All sets done' : 'No set loaded yet' }), el('p', { text: 'More arrive with the next build.' }));
+    kids.push(nx);
+    if (all.length) {
+      // comprehension by kind of question, last 6 sets
+      var recent = all.slice(-6), by = {}, memR = 0, memT = 0;
+      recent.forEach(function (w) {
+        Object.keys((w.qsum || {}).byType || {}).forEach(function (t) { by[t] = by[t] || [0, 0]; by[t][0] += w.qsum.byType[t][0]; by[t][1] += w.qsum.byType[t][1]; });
+        Object.keys(w.q || {}).forEach(function (k) { var s = w.q[k]; if (s.v1 != null && !s.looked) { memT++; if (s.first) memR++; } });
+      });
+      var tb = el('table', { id: 'cwTypes' }, el('thead', {}, el('tr', {}, el('th', { text: 'Kind of question' }), el('th', { class: 'n', text: 'Right the first time' }))));
+      var body = el('tbody');
+      Object.keys(by).sort(function (a, b) { return (by[a][0] / by[a][1]) - (by[b][0] / by[b][1]); }).forEach(function (t) {
+        body.append(el('tr', {}, el('td', { text: QT[t] || t }), el('td', { class: 'n', text: by[t][0] + ' of ' + by[t][1] })));
+      });
+      tb.append(body);
+      kids.push(el('p', { class: 'small rd-strong', text: 'Understanding, last ' + recent.length + ' set' + (recent.length > 1 ? 's' : '') + ' (weakest first)' }), el('div', { class: 'tablewrap' }, tb));
+      if (memT) kids.push(el('p', { class: 'small muted', text: 'Answered from memory: ' + memR + ' of ' + memT + ' right the first time.' }));
+      // writing marks
+      var marked = all.map(function (w) { return { w: w, m: marksOf(w) }; }).filter(function (x) { return x.m; }).slice(-5);
+      if (marked.length) {
+        var mt = el('table', { id: 'cwMarksT' }), mh = el('tr', {}, el('th', { text: 'Paragraph' }));
+        ROWS.forEach(function (r) { mh.append(el('th', { class: 'n', text: r.name })); });
+        mt.append(el('thead', {}, mh));
+        var mb = el('tbody');
+        marked.forEach(function (x) {
+          var tr = el('tr', {}, el('td', { text: (x.w.title || '') + (x.m.src === 'claude' ? ' (Claude\'s draft)' : '') }));
+          ROWS.forEach(function (r) { tr.append(el('td', { class: 'n', text: x.m.scores[r.k] != null ? String(x.m.scores[r.k]) : '' })); });
+          mb.append(tr);
+        });
+        mt.append(mb);
+        kids.push(el('p', { class: 'small rd-strong', text: 'Writing marks (1 to 4)' }), el('div', { class: 'tablewrap' }, mt));
+        var ok3 = marked.slice(-3).filter(function (x) { return ROWS.every(function (r) { return (x.m.scores[r.k] || 0) >= 3; }); }).length;
+        kids.push(el('p', { class: 'small muted', text: ok3 >= 3 ? 'Three solid paragraphs in a row (every row 3 or 4): ready for the next writing step.' : 'Next writing step after three solid paragraphs in a row (every row 3 or 4). Solid so far in the last three: ' + ok3 + '.' }));
+      }
+      if (big) {
+        var need = all.filter(function (w) { return !(w.marks && w.marks.adult); }).slice(-6).reverse();
+        if (need.length) {
+          var list = el('div', { class: 'tasks' });
+          need.forEach(function (w) {
+            list.append(el('div', { class: 'task' }, el('span', { class: 'label', text: w.title || w.setId }), el('span', { class: 'when', text: (w.marks && w.marks.claude ? 'Claude\'s draft marks are in' : 'Waiting for marks') + ' · ' + H.fmt.date(dayOf(w.finishedAt)) }),
+              el('button', { class: 'btn ghost', type: 'button', 'data-mark': w.setId, text: 'Read and mark', onclick: function () { H.go('write', { mode: 'mark', set: w.setId, from: 'reading' }); } })));
+          });
+          kids.push(el('p', { class: 'small rd-strong', text: 'Paragraphs to mark (about 2 minutes each)' }), list);
+        }
+      }
+    }
+    var sp = speedNow();
+    if (sp.hand || sp.typed) kids.push(el('p', { class: 'small muted', id: 'cwSpeed', text: 'Last speed check: typing ' + (sp.typed ? sp.typed.wpm : '?') + ', by hand ' + (sp.hand ? sp.hand.wpm : '?') + ' words a minute. ' + (sp.keyboard ? 'He drafts on the keyboard now.' : 'He drafts by hand until typing catches up.') }));
+    else kids.push(el('p', { class: 'small muted', id: 'cwSpeed' }, 'No speed check yet. ', el('button', { class: 'linkbtn', type: 'button', id: 'cwSpeedGo', text: 'Run one now', onclick: function () { H.go('write', { mode: 'speed', from: 'reading' }); } }), ' (about 5 minutes).'));
+    box.replaceChildren.apply(box, kids);
+  }
+
+  H.write = { card: card, queue: queue, pendingFix: pendingFix, speed: speedNow, ROWS: ROWS, QT: QT };
 })();
 
 </script>

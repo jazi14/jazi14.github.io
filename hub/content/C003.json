@@ -1,0 +1,204 @@
+{
+ "schema": 1,
+ "id": "C003",
+ "kind": "comp",
+ "title": "The Builders in the Stream",
+ "genre": "Informational",
+ "topic": "beavers and the places they change",
+ "passage": [
+  "Few animals change the land as much as people do. One of them weighs about as much as a seven-year-old child and has bright orange teeth. The North American beaver, the largest rodent on the continent, can turn a quick, shallow stream into a deep pond and a sprawling wetland within a year or two.",
+  "A beaver's teeth are its tools. The front teeth never stop growing, and their orange color comes from iron, which makes the outer layer extra hard. A beaver can cut through a young tree in a few minutes. It drags branches into the stream, wedges them against the bottom, and packs the gaps with mud and stones. Night after night it adds more, until the dam holds back a pond deep enough that the water will not freeze all the way to the bottom in winter. Often, in the middle of the pond, the beaver builds a lodge of sticks and mud whose entrances are hidden underwater, where wolves and coyotes cannot follow.",
+  "The beaver builds for its own safety, but other living things move in. A dam slows the water, so mud and bits of plants sink to the bottom instead of washing away. Water soaks into the ground around the pond and keeps the soil damp long into the dry season. Soon there are frogs, ducks, dragonflies, and fish that need calm water. For this reason, scientists call the beaver an ecosystem engineer: a living thing that creates a whole habitat that many other species depend on.",
+  "Beaver ponds can even help during wildfires. Researchers studying fires in the western United States have found that streams with beaver dams often stay green and wet while the land around them burns. Animals take shelter there, and the soaked ground can slow the fire down.",
+  "Yet North America almost lost its beavers. From the 1600s to the 1800s, beaver fur was in great demand in Europe, where it was pressed into felt, a thick cloth, for fashionable hats. Trappers caught beavers by the millions. By about 1900, beavers had disappeared from much of the land where they had once been common. Their numbers climbed again only after hunting was limited and some beavers were moved to new areas.",
+  "Not everyone is happy to see them back. A beaver does not know where a farmer's field ends or where a road begins. Beaver ponds can flood basements, back water up through drainpipes, and drown crops. Beavers also chew down trees that people have planted in their yards. In some towns, workers remove the animals or tear out their dams, only to find a new dam a few weeks later.",
+  "Some communities are trying a middle path. One solution is a pond leveler, a pipe that runs through a dam and lets extra water drain away, so the pond stays at a safe height. Wire fencing wrapped around the bottoms of tree trunks keeps beavers from cutting down favorite trees. In a few dry regions, people have gone further and built simple dams of wooden posts and branches, hoping to make streams slow enough that beavers will move back in and take over the work."
+ ],
+ "words": 528,
+ "gist": {
+  "model": "Beavers build dams that turn streams into ponds and wetlands that help many other living things, but their dams can also cause problems for people, so communities look for ways to live with them.",
+  "look": "says what beavers do to streams, why that helps other living things, and that it can also cause problems for people."
+ },
+ "questions": [
+  {
+   "id": "q1",
+   "type": "main",
+   "q": "Which sentence best tells the main idea of the whole passage?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Beavers cause so many floods that towns should remove them from every stream.",
+     "A beaver uses its hard orange teeth to cut down young trees and build its dams and its lodges.",
+     "Beavers were trapped for their fur until they almost disappeared from North America.",
+     "Beavers change streams in ways that help many living things, but their dams can also cause problems."
+    ],
+    "correct": 3
+   },
+   "hint": "The answer should fit the paragraphs about how beavers help and the paragraphs about the problems.",
+   "why": "The passage explains how beaver dams create habitat, then describes the conflicts with people and some solutions. The teeth and fur-trade choices are single details, and the passage never says beavers should be removed everywhere."
+  },
+  {
+   "id": "q2",
+   "type": "vocab",
+   "q": "In paragraph 3, the author explains the term ecosystem engineer. What is an ecosystem engineer?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "An animal that builds a lodge with entrances hidden underwater",
+     "A living thing that creates a habitat that many other species depend on",
+     "A person whose job is designing dams and pipes for towns",
+     "A scientist who studies how water flows through rivers and streams"
+    ],
+    "correct": 1
+   },
+   "hint": "Look for the colon in the last sentence of paragraph 3. What comes right after it?",
+   "why": "The author defines the term right after the colon: a living thing that creates a whole habitat that many other species depend on.",
+   "para": [
+    3
+   ]
+  },
+  {
+   "id": "q3",
+   "type": "evidence",
+   "q": "Which two details best support the idea that beaver dams help other living things?",
+   "ans": {
+    "type": "multi",
+    "options": [
+     "Beavers also chew down trees that people have planted in their yards.",
+     "Animals take shelter there, and the soaked ground can slow the fire down.",
+     "Soon there are frogs, ducks, dragonflies, and fish that need calm water.",
+     "A beaver can cut through a young tree in a few minutes."
+    ],
+    "correct": [
+     1,
+     2
+    ]
+   },
+   "hint": "Which sentences name living things, other than the beaver, that are better off because of a dam?",
+   "why": "The frogs, ducks, dragonflies, and fish live in the calm water a dam creates, and animals shelter in beaver wetlands during fires. The other two sentences are about what beavers do to trees.",
+   "para": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": "q4",
+   "type": "structure",
+   "q": "How is paragraph 5 organized?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "It tells events in time order, from the fur trade to the beavers' return.",
+     "It describes a problem with beavers and then argues against one solution.",
+     "It explains the steps a beaver follows to build a dam.",
+     "It compares beavers with other animals that were hunted for fur."
+    ],
+    "correct": 0
+   },
+   "hint": "Look at the time words: \"From the 1600s to the 1800s,\" \"By about 1900,\" \"climbed again.\"",
+   "why": "The time words show the paragraph moves through history in order: heavy trapping, near disappearance, then recovery.",
+   "para": [
+    5
+   ]
+  },
+  {
+   "id": "q5",
+   "type": "infer",
+   "q": "Why does the author include paragraph 6?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "To explain how beavers protect themselves and their lodges from wolves",
+     "To describe how wildfires start and spread near streams",
+     "To show that beavers can cause real problems for people, not only benefits",
+     "To prove that beavers are dangerous animals that attack people"
+    ],
+    "correct": 2
+   },
+   "hint": "Read the first sentence of paragraph 6. What is the author turning to?",
+   "why": "\"Not everyone is happy to see them back\" turns from the benefits to the problems. The paragraph describes flooding and damage, not danger to people.",
+   "para": [
+    6
+   ]
+  },
+  {
+   "id": "q6",
+   "type": "vocab",
+   "q": "In paragraph 1, the word sprawling most nearly means",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "spread out over a large area",
+     "dry and dusty",
+     "full of loud animals",
+     "dangerous for animals to cross"
+    ],
+    "correct": 0
+   },
+   "hint": "A beaver turns a stream into a deep pond and a sprawling wetland. What would a stream become as water spreads?",
+   "why": "A wetland that is sprawling spreads out widely, much larger than the stream it came from.",
+   "para": [
+    1
+   ]
+  },
+  {
+   "id": "q7",
+   "type": "infer",
+   "q": "Why do some workers find a new dam \"a few weeks later\" after removing one?",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "Heavy rain carries sticks and mud downstream until they pile up in the same spot again.",
+     "The workers left part of the old dam standing in the stream.",
+     "Fallen trees along the bank form a new dam by themselves.",
+     "Beavers still living nearby rebuild, so tearing out a dam does not last."
+    ],
+    "correct": 3
+   },
+   "hint": "Reread the end of paragraph 6. Who builds dams?",
+   "why": "If beavers are still nearby, they simply build again. That is one reason some towns try a middle path in paragraph 7.",
+   "para": [
+    6,
+    7
+   ]
+  },
+  {
+   "id": "q8",
+   "type": "detail",
+   "q": "What does a pond leveler do? Choose the best answer.",
+   "ans": {
+    "type": "choice",
+    "options": [
+     "It traps beavers so that workers can move them to a new stream.",
+     "It lets extra water drain through a dam so the pond stays at a safe height.",
+     "It makes the water in a stream flow faster so mud washes away.",
+     "It wraps around the bottoms of tree trunks so beavers cannot cut them down."
+    ],
+    "correct": 1
+   },
+   "hint": "Find the sentence in paragraph 7 that names the pond leveler.",
+   "why": "A pond leveler is a pipe through the dam that lets extra water drain away. Wire fencing is what protects trees.",
+   "para": [
+    7
+   ]
+  }
+ ],
+ "write": {
+  "kind": "paragraph",
+  "prompt": "Should a town protect the beavers in a stream nearby, or remove them? Write a paragraph that gives your opinion. Support it with two details from the passage, and explain how each detail supports your opinion.",
+  "plan": [
+   "Your opinion in one sentence.",
+   "Detail 1 from the passage that supports your opinion.",
+   "Detail 2 from the passage that supports your opinion.",
+   "Explain how each detail supports your opinion.",
+   "A closing sentence that sums up your opinion in new words."
+  ],
+  "minWords": 80,
+  "model": "A town should protect the beavers in a nearby stream and use smart tools to keep them from causing damage. Beaver dams slow the water so that mud settles and the ground stays damp, and soon frogs, ducks, dragonflies, and fish move in. Removing the beavers would take away a home that many other living things need. The passage also explains that pond levelers can drain extra water through a dam so the pond stays at a safe height, and that fencing can protect favorite trees. These tools solve the flooding and tree problems without getting rid of the beavers. Since removing beavers in some towns has led to a new dam weeks later anyway, protecting them with these tools makes more sense.",
+  "look": [
+   "states a clear opinion in the first sentence",
+   "uses two details from the passage that fit the opinion",
+   "explains how each detail supports the opinion"
+  ]
+ }
+}
