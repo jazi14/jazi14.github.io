@@ -1,0 +1,477 @@
+{
+ "schema": 1,
+ "id": "CU-2026-11-16",
+ "kind": "catchup",
+ "subject": "math",
+ "strand": "Mixed",
+ "title": "6 questions from earlier lessons",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a fraction like 3/4, a mixed number like 2 1/2, and a power like 3^4.",
+ "skills": {
+  "int-addsub": "Add and subtract integers",
+  "ooo": "Order of operations",
+  "ooo-exp": "Order of operations with exponents"
+ },
+ "sections": [
+  {
+   "name": "Catch-up",
+   "desc": "Questions you missed before, with new numbers or a new story. Right on the first try takes one off your list.",
+   "items": [
+    {
+     "id": "c1",
+     "q": "Find each answer. Think of a number line: adding moves right and subtracting moves left.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-13"
+       },
+       "label": "a",
+       "prompt": "3 − 16",
+       "tests": {
+        "ok": [
+         "-13",
+         "−13"
+        ],
+        "no": [
+         "13",
+         "19"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-15"
+       },
+       "label": "b",
+       "prompt": "−7 − 8",
+       "tests": {
+        "ok": [
+         "-15",
+         "−15"
+        ],
+        "no": [
+         "15",
+         "1",
+         "-1"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-10"
+       },
+       "label": "c",
+       "prompt": "At the school book fair, Amira's account shows −4 dollars, which means she owes 4 dollars. She pays in 13 dollars. Then she buys a book that costs 19 dollars. What number shows her account now, in dollars?",
+       "unit": "dollars",
+       "tests": {
+        "ok": [
+         "-10",
+         "−10",
+         "-10 dollars",
+         "−10 dollars"
+        ],
+        "no": [
+         "10",
+         "-2",
+         "-36",
+         "36"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 3 − 16 = −13",
+      "b) −7 − 8 = −15",
+      "c) −4 + 13 = 9 after paying in",
+      "9 − 19 = −10 after buying the book",
+      "Answers: a) −13, b) −15, c) −10 dollars"
+     ],
+     "skill": "int-addsub",
+     "hint": "Before you type, decide which side of 0 you land on. If you end up left of 0, your answer needs a minus sign.",
+     "min": 4,
+     "from": "L036/q1",
+     "round": 4,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c2",
+     "q": "Work out the value of each expression.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "32"
+       },
+       "label": "a",
+       "prompt": "35 − 15 ÷ 5",
+       "tests": {
+        "ok": [
+         "32"
+        ],
+        "no": [
+         "4"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "100"
+       },
+       "label": "b",
+       "prompt": "7 × 4 + 8 × 9",
+       "tests": {
+        "ok": [
+         "100"
+        ],
+        "no": [
+         "324",
+         "36"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "13"
+       },
+       "label": "c",
+       "prompt": "50 − 8 × 5 + 3",
+       "tests": {
+        "ok": [
+         "13"
+        ],
+        "no": [
+         "7",
+         "213"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 15 ÷ 5 = 3",
+      "35 − 3 = 32",
+      "b) 7 × 4 = 28",
+      "8 × 9 = 72",
+      "28 + 72 = 100",
+      "c) 8 × 5 = 40",
+      "50 − 40 = 10",
+      "10 + 3 = 13",
+      "Answers: a) 32, b) 100, c) 13"
+     ],
+     "skill": "ooo",
+     "hint": "Do every multiplication and division first. Then add and subtract from left to right, one step at a time.",
+     "min": 3,
+     "from": "L036/q21",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c3",
+     "q": "When two signs have the same rank, work from left to right. Find each value.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "23"
+       },
+       "label": "a",
+       "prompt": "25 − 9 + 7",
+       "tests": {
+        "ok": [
+         "23"
+        ],
+        "no": [
+         "9"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "5"
+       },
+       "label": "b",
+       "prompt": "90 ÷ 3 ÷ 6",
+       "tests": {
+        "ok": [
+         "5"
+        ],
+        "no": [
+         "180"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "100"
+       },
+       "label": "c",
+       "prompt": "14 × 10 ÷ 7 × 5",
+       "tests": {
+        "ok": [
+         "100"
+        ],
+        "no": [
+         "4"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 25 − 9 = 16",
+      "16 + 7 = 23",
+      "b) 90 ÷ 3 = 30",
+      "30 ÷ 6 = 5",
+      "c) 14 × 10 = 140",
+      "140 ÷ 7 = 20",
+      "20 × 5 = 100",
+      "Answers: a) 23, b) 5, c) 100"
+     ],
+     "skill": "ooo",
+     "hint": "Do one sign at a time and write the new, shorter line before you do the next sign.",
+     "min": 3,
+     "from": "L036/q22",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c4",
+     "q": "What is the value of each expression?",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "48"
+       },
+       "label": "a",
+       "prompt": "3 × 4²",
+       "tests": {
+        "ok": [
+         "48"
+        ],
+        "no": [
+         "144",
+         "24"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "144"
+       },
+       "label": "b",
+       "prompt": "(3 × 4)²",
+       "tests": {
+        "ok": [
+         "144"
+        ],
+        "no": [
+         "48",
+         "24"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "15"
+       },
+       "label": "c",
+       "prompt": "6² − 3 × 7",
+       "tests": {
+        "ok": [
+         "15"
+        ],
+        "no": [
+         "231",
+         "-9"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 4² = 16",
+      "3 × 16 = 48",
+      "b) 3 × 4 = 12",
+      "12² = 144",
+      "c) 6² = 36",
+      "3 × 7 = 21",
+      "36 − 21 = 15",
+      "Answers: a) 48, b) 144, c) 15"
+     ],
+     "skill": "ooo-exp",
+     "hint": "An exponent belongs to the number right under it. Parentheses make the whole group the base.",
+     "min": 4,
+     "from": "L036/q26",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c5",
+     "q": "Compute each expression.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "15"
+       },
+       "label": "a",
+       "prompt": "90 − 5² × 3",
+       "tests": {
+        "ok": [
+         "15"
+        ],
+        "no": [
+         "195",
+         "60"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "66"
+       },
+       "label": "b",
+       "prompt": "(9 − 5)³ + 10 ÷ 5",
+       "tests": {
+        "ok": [
+         "66"
+        ],
+        "no": [
+         "14",
+         "38"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "185"
+       },
+       "label": "c",
+       "prompt": "3³ × 7 − 6² ÷ 9",
+       "tests": {
+        "ok": [
+         "185"
+        ],
+        "no": [
+         "17",
+         "61"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 5² = 25",
+      "25 × 3 = 75",
+      "90 − 75 = 15",
+      "b) 9 − 5 = 4",
+      "4³ = 64",
+      "10 ÷ 5 = 2",
+      "64 + 2 = 66",
+      "c) 3³ = 27",
+      "6² = 36",
+      "27 × 7 = 189",
+      "36 ÷ 9 = 4",
+      "189 − 4 = 185",
+      "Answers: a) 15, b) 66, c) 185"
+     ],
+     "skill": "ooo-exp",
+     "hint": "First the parentheses, then the powers. Rewrite the line with those values, then multiply and divide before you add or subtract.",
+     "min": 4,
+     "from": "L036/q27",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c6",
+     "q": "Evaluate each expression.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "4300"
+       },
+       "label": "a",
+       "prompt": "4 × 10³ + 3 × 10²",
+       "tests": {
+        "ok": [
+         "4300",
+         "4,300"
+        ],
+        "no": [
+         "180",
+         "43000"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "15"
+       },
+       "label": "b",
+       "prompt": "(3 + 5)² − 7²",
+       "tests": {
+        "ok": [
+         "15"
+        ],
+        "no": [
+         "50",
+         "1"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "28"
+       },
+       "label": "c",
+       "prompt": "12² ÷ 2³ + 10¹",
+       "tests": {
+        "ok": [
+         "28"
+        ],
+        "no": [
+         "18",
+         "19",
+         "14"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 10³ = 1,000",
+      "10² = 100",
+      "4 × 1,000 = 4,000",
+      "3 × 100 = 300",
+      "4,000 + 300 = 4,300",
+      "b) 3 + 5 = 8",
+      "8² = 64",
+      "7² = 49",
+      "64 − 49 = 15",
+      "c) 12² = 144",
+      "2³ = 8",
+      "144 ÷ 8 = 18",
+      "10¹ = 10",
+      "18 + 10 = 28",
+      "Answers: a) 4,300, b) 15, c) 28"
+     ],
+     "skill": "ooo-exp",
+     "hint": "A small raised 2 means a number times itself, not the number times 2. Replace every power with its value first.",
+     "min": 4,
+     "from": "L036/q29",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    }
+   ]
+  }
+ ]
+}
