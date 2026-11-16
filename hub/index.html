@@ -415,6 +415,26 @@ button[data-n]{min-width:44px}
 #spType{font-family:var(--f-read);font-size:1.1rem}
 #v-write .passage{min-width:0}
 
+/* Research module (research.js). Tokens come from styles.base.css. */
+.rs-read{font-family:var(--f-read);font-size:1.06rem;line-height:1.6;margin:.5em 0}
+.rs-exs{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.rs-ex{border-left:3px solid var(--action);padding:4px 0 4px 12px}
+.rs-ex .label{font-weight:700;font-size:.85rem;color:var(--ink-2)}
+.rs-ex .rs-read{margin:.2em 0}
+.rs-pick{flex-direction:column;align-items:stretch}
+.rs-pick button{text-align:left;white-space:normal;line-height:1.35}
+.rs-opt{color:var(--ink-2)}
+.rs-box{min-height:120px}
+.rs-line{width:100%;box-sizing:border-box}
+.rs-own{font:inherit;font-size:1.05rem;padding:10px 12px;border:1.5px solid var(--rule);border-radius:10px;background:var(--card);color:var(--ink);min-height:44px;width:100%;box-sizing:border-box;margin-bottom:6px}
+.rs-exd{margin:8px 0;border:1px dashed var(--rule);border-radius:10px;padding:6px 12px}
+.rs-exd summary{cursor:pointer;font-weight:700;min-height:36px;display:flex;align-items:center}
+.rs-ladder{list-style:none;margin:6px 0 10px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.rs-ladder li{font-size:.78rem;font-weight:700;border:1px solid var(--rule);border-radius:999px;padding:3px 10px;color:var(--muted);background:var(--card)}
+.rs-ladder li.done{color:var(--good);border-color:var(--good)}
+.rs-ladder li.now{color:var(--action-ink);background:var(--action);border-color:var(--action)}
+#v-research .cw-steps li{max-width:100%}
+
 /* Hosted version only: sign-in screens, account button, People card. */
 .gate{position:fixed;inset:0;z-index:1000;background:var(--paper);display:flex;align-items:flex-start;justify-content:center;padding:max(24px,8vh) 16px 24px;overflow:auto}
 .gate-card{width:100%;max-width:420px}
@@ -456,6 +476,7 @@ html.gated .wrap{visibility:hidden}
   <section class="view" id="v-lesson" hidden></section>
   <section class="view" id="v-activity" hidden></section>
   <section class="view" id="v-write" hidden></section>
+  <section class="view" id="v-research" hidden></section>
   <section class="view" id="v-answers" hidden></section>
 </div>
 <div class="toast" id="hubToast" hidden role="status"></div>
@@ -1556,7 +1577,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       mon: ['math', 'fluency', 'maze', 'wordly', 'typing', 'speed', 'indep'],
       tue: ['math', 'fluency', 'maze', 'comp', 'indep'],
       wed: ['math', 'fluency', 'maze', 'wordly', 'typing', 'indep'],
-      thu: ['math', 'fluency', 'maze', 'comp', 'indep'],
+      thu: ['math', 'fluency', 'maze', 'comp', 'research', 'indep'],
       fri: ['math', 'fluency', 'wordly', 'spelling', 'typing', 'indep'],
       sat: ['seerah', 'roots', 'indep'],
       sun: []
@@ -1569,6 +1590,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       spelling: { kind: 'book', label: 'Spelling Workout', short: 'Spelling', hint: 'One lesson and the spelling check', ask: ['detail', 'score'], detailLabel: 'Lesson' },
       readpkg: { kind: 'book', label: 'Reading package', short: 'Reading pkg', hint: 'Part 1 on Tuesday, part 2 on Thursday', ask: ['detail', 'score'], detailLabel: 'Title and part' },
       comp: { kind: 'comp', label: 'Read and write', short: 'Read + write' },
+      research: { kind: 'research', label: 'Research', short: 'Research' },
       typing: { kind: 'book', label: 'Typing practice', short: 'Typing', hint: '10 minutes of touch-typing practice', ask: ['minutes'], minutes: 10 },
       speed: { kind: 'speed', label: 'Speed check', short: 'Speed check' },
       roots: { kind: 'book', label: 'Roots packet', short: 'Roots', hint: 'One page', ask: ['detail'], detailLabel: 'Page' },
@@ -3007,6 +3029,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         el('div', { class: 'row rd-split' }, el('h2', { text: 'Next up' }), el('span', { class: 'small muted', text: 'One step a day in each queue' })),
         el('div', { class: 'tasks', id: 'rdNext' }), picker),
       el('div', { class: 'card', id: 'rdWrite' }),
+      el('div', { class: 'card', id: 'rdResearch' }),
       el('div', { class: 'card' },
         el('div', { class: 'row rd-split' }, el('h2', { text: 'Where he stands' }), el('span', { class: 'small muted', text: 'Goals are the top band (Above Benchmark)' })),
         el('div', { class: 'board', id: 'rdBoard' })),
@@ -3255,6 +3278,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
     nextTiles(st); paintPickers(st); paintBoard(st, t);
     var wbox = $('#rdWrite'); if (wbox) { wbox.hidden = !Hub.write; if (Hub.write) Hub.write.card(wbox); }
+    var rbox = $('#rdResearch'); if (rbox) { rbox.hidden = !Hub.research; if (Hub.research) Hub.research.card(rbox); }
     var notes = $('#rdNotes'); notes.replaceChildren();
     coaching(st, t).forEach(function (n) { notes.append(el('div', { class: 'note ' + n.tone }, el('h3', { text: n.title }), el('p', { class: 'small rd-ink2', text: n.body }))); });
     paintCharts(st); paintTables(st); paintPlan(st, t);
@@ -3704,6 +3728,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   H.tasks.register('comp', {
     status: function (task, date) {
       var label = (task && task.label) || 'Read and write';
+      if (H.research && H.research.claims(date)) return { state: 'none', hide: true, title: label, line: '' };   // research takes this Thursday
       var fin = works().filter(function (w) { return w.finishedAt && dayOf(w.finishedAt) === date; });
       if (fin.length) { var w = fin[fin.length - 1]; return { state: 'done', title: label + ': ' + (w.title || ''), line: doneLine(w) }; }
       if (date !== H.today()) return { state: 'todo', title: label, line: '' };
@@ -4310,6 +4335,445 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   }
 
   H.write = { card: card, queue: queue, pendingFix: pendingFix, speed: speedNow, ROWS: ROWS, QT: QT };
+})();
+
+</script>
+<script>
+/* Research: a strand that trains him to ask good questions and build up to a short research paper (Taimoor, 16 Nov 2026).
+   Ladder: 1 questions worth researching, 2 sources and notes (AI checked like any other source), 3 a one-page report
+   from two sources, 4 a small study of his own, 5 a short research paper. It takes every other Thursday from Read and write.
+   Units: meta in passages/<id> with kind 'R'; content in content/<id> (a static file next to the page when hosted).
+   His work: reading/research-<id> (kind 'research'). Marks: marks.claude (draft) and marks.adult (wins), like Read and write.
+   Unit content: {id, kind:'research', stage, stageName, title, estMin, why:[...], ai, steps:[learn|quiz|pick|write], marks:{rows}, next}. */
+(function () {
+  'use strict';
+  var H = window.Hub, el = H.el, C = window.NLHCheck;
+  var TOPS = ['today', 'math', 'reading', 'progress', 'parent'];
+  var LADDER = ['Questions worth researching', 'Sources and notes', 'A one-page report', 'A study of his own', 'A short research paper'];
+  var ANCHOR = '2026-11-19';   // first research Thursday; then every 14 days (config/plan researchFrom overrides)
+
+  function nowISO() { return H.now().toISOString(); }
+  function words(s) { var m = String(s || '').trim().match(/\S+/g); return m ? m.length : 0; }
+  function dayOf(iso) { try { return H.iso(new Date(iso)); } catch (e) { return ''; } }
+  function adult() {
+    if (window.HUB_CFG) { var r = (window.HUB_ME || {}).role; return r === 'parent' || r === 'tutor'; }
+    var pin = (H.store.col('config').get('parent') || {}).pin;
+    return !pin || H.parent.unlocked;
+  }
+  function me() { var m = window.HUB_ME || {}; return { by: m.name || 'Parent', role: m.role || 'parent' }; }
+  function fromView() { var v = H.views.current; return TOPS.indexOf(v) >= 0 ? v : 'reading'; }
+  function numCmp(a, b) { return String(a).localeCompare(String(b), undefined, { numeric: true }); }
+
+  // ---------- units and his work ----------
+  function units() {
+    var out = [];
+    H.store.col('passages').forEach(function (d, id) { if (d && d.kind === 'R' && d.status !== 'archived') out.push(Object.assign({ id: d.id || id }, d)); });
+    out.sort(function (a, b) { var x = (a.order == null ? 1e9 : a.order) - (b.order == null ? 1e9 : b.order); return x || numCmp(a.id, b.id); });
+    return out;
+  }
+  function work(id) { return H.store.col('reading').get('research-' + id) || null; }
+  function works() {
+    var out = [];
+    H.store.col('reading').forEach(function (d, id) { if (d && d.kind === 'research') out.push(Object.assign({ _id: id }, d)); });
+    out.sort(function (a, b) { return String(a.startedAt || '').localeCompare(String(b.startedAt || '')); });
+    return out;
+  }
+  function queue() {
+    var all = units();
+    for (var i = 0; i < all.length; i++) { var w = work(all[i].id); if (!w || !w.finishedAt) return { meta: all[i], work: w, index: i, total: all.length }; }
+    return null;
+  }
+  function marksOf(w) {
+    var m = w && w.marks;
+    if (!m) return null;
+    if (m.adult && m.adult.scores) return { src: 'adult', scores: m.adult.scores, note: m.adult.note || '', by: m.adult.by, at: m.adult.at };
+    if (m.claude && m.claude.scores) return { src: 'claude', scores: m.claude.scores, note: m.claude.fix || '', comment: m.claude.comment || '', at: m.claude.at };
+    return null;
+  }
+  function lastFix() {
+    var fin = works().filter(function (w) { return w.finishedAt; });
+    for (var i = fin.length - 1; i >= 0; i--) { var m = marksOf(fin[i]); if (m && m.note) return { w: fin[i], note: m.note }; }
+    return null;
+  }
+  function anchor() { var p = H.store.col('config').get('plan') || {}; return p.researchFrom || ANCHOR; }
+  function isWeek(date) {   // a research Thursday: every 14 days from the anchor
+    if (H.dowKey(date) !== 'thu') return false;
+    var d = Math.round((H.parseISO(date) - H.parseISO(anchor())) / 864e5);
+    return d >= 0 && d % 14 === 0;
+  }
+  // Research takes the Thursday Read and write slot on research weeks, as long as there is research to do that day.
+  function claims(date) {
+    if (!isWeek(date)) return false;
+    if (works().some(function (w) { return w.finishedAt && dayOf(w.finishedAt) === date; })) return true;
+    return date === H.today() ? !!queue() : units().length > 0;
+  }
+
+  var CONTENT = {};
+  function loadUnit(id) {
+    if (CONTENT[id]) return Promise.resolve(CONTENT[id]);
+    return H.store.get('content/' + id).then(function (d) { if (d && d.steps) CONTENT[id] = d; return d && d.steps ? d : null; });
+  }
+
+  // ---------- Today ----------
+  H.tasks.register('research', {
+    status: function (task, date) {
+      var label = (task && task.label) || 'Research';
+      if (!claims(date)) return { state: 'none', hide: true, title: label, line: '' };
+      var fin = works().filter(function (w) { return w.finishedAt && dayOf(w.finishedAt) === date; });
+      if (fin.length) { var w = fin[fin.length - 1]; return { state: 'done', title: label + ': ' + (w.title || ''), line: 'Handed in · ' + H.fmt.mins(w.activeSec || 0) }; }
+      if (date !== H.today()) return { state: 'todo', title: label, line: '' };
+      var q = queue(), started = !!(q.work && q.work.startedAt);
+      return {
+        state: started ? 'doing' : 'todo', title: label + ': ' + q.meta.title,
+        line: 'Stage ' + (q.meta.stage || 1) + ' of 5: ' + (LADDER[(q.meta.stage || 1) - 1] || '') + '. About ' + (q.meta.estMin || 40) + ' minutes. This Thursday replaces Read and write.',
+        action: { label: started ? 'Continue' : 'Start', run: function () { H.go('research', { unit: q.meta.id, from: fromView() }); } }
+      };
+    }
+  });
+
+  // ---------- the view ----------
+  var root = null, R = null, saveTimer = null;
+  function leave() { flush(); H.go((R && R.from) || 'reading'); }
+  function head(title) {
+    return el('div', { class: 'rd-acthead' }, el('span', { class: 'what', text: title }), el('button', { class: 'btn quiet', type: 'button', id: 'rsExit', text: 'Exit', onclick: leave }));
+  }
+  function show(kids) { root.replaceChildren.apply(root, kids.filter(Boolean)); window.scrollTo(0, 0); }
+  function msg(text) { return el('p', { class: 'small cw-msg', role: 'status', text: text || '' }); }
+  function paras(list, cls) { return (list || []).map(function (t) { return el('p', { class: cls || 'rs-read', text: t }); }); }
+  function stepBar() {
+    var bar = el('ol', { class: 'cw-steps', 'aria-label': 'Steps' }), cur = R.A.step || 0;
+    R.L.steps.forEach(function (s, i) { bar.append(el('li', { class: i < cur ? 'done' : i === cur ? 'now' : '', 'aria-current': i === cur ? 'step' : null, text: (i + 1) + '. ' + (s.short || s.title) })); });
+    return bar;
+  }
+  function stepTime() { var s = (H.ms() - R.t0) / 1000; R.t0 = H.ms(); return Math.round(Math.min(s, 1800)); }
+  function save(patch) {
+    patch.updatedAt = nowISO();
+    H.merge(R.A, H.clone(patch));
+    return H.store.patch('reading/research-' + R.id, patch);
+  }
+  function addTime(key, secs, p) {
+    p = p || {}; p.activeSec = (R.A.activeSec || 0) + secs; p.sec = {}; p.sec[key] = ((R.A.sec || {})[key] || 0) + secs; return p;
+  }
+  function draft(field, text) { R.drafts = R.drafts || {}; R.drafts[field] = text; clearTimeout(saveTimer); saveTimer = setTimeout(flush, 3000); }
+  function flush() {
+    clearTimeout(saveTimer); saveTimer = null;
+    if (!R || !R.drafts || R.mode) return;
+    var d = R.drafts; R.drafts = null; save({ ans: d });
+  }
+  function title() { return 'Research: ' + R.L.title; }
+
+  function startUnit(arg) {
+    var q = queue(), id = arg.unit || (q && q.meta.id) || null;
+    R = { from: TOPS.indexOf(arg.from) >= 0 ? arg.from : 'reading', id: id, t0: H.ms() };
+    if (!id) { show([head('Research'), el('div', { class: 'empty' }, el('p', { text: 'Nothing is waiting right now.' }), el('p', { class: 'small', text: 'The next unit arrives with the next build.' }))]); return; }
+    show([head('Research'), el('div', { class: 'empty' }, el('p', { text: 'Opening' }))]);
+    var jobs = [loadUnit(id)], prevSets = {};
+    Promise.all(jobs).then(function (r) {
+      if (!R || R.id !== id) return;
+      R.L = r[0];
+      if (!R.L) { show([head('Research'), el('div', { class: 'empty' }, el('p', { text: 'This unit did not load.' }), el('p', { class: 'small', text: 'Check the connection, then open it again from Today or the Reading tab.' }))]); return; }
+      R.L.steps.forEach(function (s) { (s.prev || []).forEach(function (p) { prevSets[p.set] = 1; }); });
+      var cur = work(id);
+      if (cur) R.A = H.clone(cur);
+      else {
+        R.A = { kind: 'research', setId: id, title: R.L.title, stage: R.L.stage || 1, date: H.today(), startedAt: nowISO(), updatedAt: nowISO(), step: 0, activeSec: 0, sec: {}, q: {}, ans: {} };
+        H.store.put('reading/research-' + id, H.clone(R.A));
+      }
+      route();
+    }, function () { show([head('Research'), el('div', { class: 'empty' }, el('p', { text: 'This unit did not load. Check the connection and try again.' }))]); });
+  }
+  function route() {
+    R.t0 = H.ms();
+    if (R.A.finishedAt) return paintDone();
+    if (!R.A.introSeen) return paintIntro();
+    var s = R.L.steps[R.A.step || 0];
+    if (!s) return paintHandIn();
+    ({ learn: paintLearn, quiz: paintQuiz, pick: paintPick, write: paintWrite }[s.type] || paintLearn)(s);
+  }
+  function nextStep(s, extra) {
+    var p = addTime(s.id, stepTime(), extra || {}); p.step = (R.A.step || 0) + 1; save(p); route();
+  }
+
+  // ----- intro: why this matters, last time's fix, the AI rule -----
+  function paintIntro() {
+    var fx = lastFix(), L = R.L;
+    show([head(title()),
+      el('div', { class: 'card' },
+        el('div', { class: 'row rd-split' }, el('h2', { text: L.title }), el('span', { class: 'chip at', text: 'Stage ' + (L.stage || 1) + ' of 5' })),
+        el('p', { class: 'small muted', text: LADDER[(L.stage || 1) - 1] || '' }),
+        el('div', { class: 'sol', id: 'rsWhyBox' }, [el('span', { class: 'label', text: 'Why researchers do this' })].concat(paras(L.why))),
+        fx ? el('div', { class: 'anote', id: 'rsFix' }, el('div', { class: 'small muted', text: 'One thing to work on from last time (' + (fx.w.title || '') + ')' }), el('p', { text: fx.note })) : null,
+        L.ai ? el('div', { class: 'note', id: 'rsAi' }, el('h3', { text: 'Using AI in this unit' }), el('p', { class: 'small rd-ink2', text: L.ai })) : null,
+        el('p', { class: 'hint', text: 'Keep your notebook open. Plan on paper, then type your answers here. Everything saves as you go.' }),
+        el('div', { class: 'row' }, el('button', { class: 'btn big', type: 'button', id: 'rsBegin', text: 'Begin', onclick: function () { var p = addTime('intro', stepTime()); p.introSeen = true; save(p); route(); } })))]);
+  }
+
+  // ----- learn -----
+  function paintLearn(s) {
+    var ex = (s.examples || []).map(function (e) { return el('div', { class: 'rs-ex' }, el('span', { class: 'label', text: e.label }), el('p', { class: 'rs-read', text: e.text })); });
+    show([head(title()), stepBar(),
+      el('div', { class: 'card' }, [el('h2', { text: s.title })].concat(paras(s.text), ex.length ? [el('div', { class: 'rs-exs' }, ex)] : [],
+        [el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'rsLearnDone', text: 'I have read this', onclick: function () { nextStep(s); } }))]))]);
+  }
+
+  // ----- quiz: first answer is the score, a hint, one more try, then the answer and why -----
+  function qState(q) { return (R.A.q || {})[q.id] || null; }
+  function resolved(st) { return !!st && (st.st === 'ok' || st.st === 'out'); }
+  function paintQuiz(s) {
+    var qs = s.questions, i = 0;
+    while (i < qs.length && resolved(qState(qs[i]))) i++;
+    if (R.qi != null && R.qiStep === s.id && R.qi <= i) i = R.qi;
+    if (i >= qs.length) return finishQuiz(s);
+    R.qi = i; R.qiStep = s.id;
+    var q = qs[i], st = qState(q), ans = q.ans, done = resolved(st), sel = st && st.v != null ? st.v : null;
+    if (R.qStartId !== q.id) { R.qStart = H.ms(); R.qStartId = q.id; }
+    var row = el('div', { class: 'prow' + (done ? (st.st === 'ok' ? ' ok' : ' out') : (st && st.st === 'no' ? ' no' : '')) });
+    var opts = el('div', { class: 'opts', role: 'group', 'aria-label': 'Choices' });
+    ans.options.forEach(function (o, k) {
+      var b = el('button', { type: 'button', 'aria-pressed': sel === k ? 'true' : 'false', text: String(o), disabled: done, 'data-k': String(k) });
+      if (done && st.st === 'out' && ans.correct === k) b.classList.add('key');
+      b.addEventListener('click', function () { sel = k; H.$$('button', opts).forEach(function (bb, bi) { bb.setAttribute('aria-pressed', bi === k ? 'true' : 'false'); }); });
+      opts.append(b);
+    });
+    row.append(opts);
+    if (st && st.st) {
+      row.append(el('span', { class: 'verdict', id: 'rsVerdict', text: st.st === 'ok' ? ((st.tries || 1) <= 1 ? 'Correct' : 'Correct on the second try') : st.st === 'no' ? 'Not yet' : 'Not this time' }));
+      if (st.st === 'no' && q.hint) row.append(el('p', { class: 'hint', id: 'rsHint', text: q.hint }));
+      if (st.st === 'out') row.append(el('span', { class: 'pmsg', text: 'Answer: ' + C.show(ans) }));
+    }
+    var note = msg();
+    function check() {
+      var cur = qState(q) || { tries: 0 };
+      if (resolved(cur)) return;
+      if (sel == null) { note.textContent = 'Pick an answer first.'; return; }
+      var right = C.check(ans, sel).status === 'ok', tries = (cur.tries || 0) + 1, rec = { v: sel, tries: tries, at: nowISO() };
+      if (tries === 1) { rec.v1 = sel; rec.first = right; }
+      rec.st = right ? 'ok' : (tries >= 2 ? 'out' : 'no');
+      if (resolved(rec)) rec.sec = Math.round(Math.min((H.ms() - R.qStart) / 1000, 900));
+      var p = { q: {} }; p.q[q.id] = rec; save(p); paintQuiz(s);
+    }
+    var btns = el('div', { class: 'row' });
+    if (!done) btns.append(el('button', { class: 'btn', type: 'button', id: 'rsCheck', text: st && st.st === 'no' ? 'Check again' : 'Check', onclick: check }));
+    else btns.append(el('button', { class: 'btn', type: 'button', id: 'rsNext', text: i + 1 < qs.length ? 'Next question' : 'Go on', onclick: function () { R.qi = i + 1; paintQuiz(s); } }));
+    show([head(title()), stepBar(),
+      el('div', { class: 'card' },
+        el('div', { class: 'row rd-split' }, el('h2', { text: s.title }), el('span', { class: 'chip at', text: (i + 1) + ' of ' + qs.length })),
+        i === 0 && !st && s.intro ? el('p', { class: 'hint', text: s.intro }) : null,
+        el('p', { class: 'qtext', id: 'rsQ', text: q.q }),
+        row, note,
+        done && q.why ? el('div', { class: 'sol', id: 'rsWhy' }, el('span', { class: 'label', text: 'Why' }), el('p', { class: 'qtext', text: q.why })) : null,
+        btns)]);
+  }
+  function finishQuiz(s) {
+    var sum = { right: 0, total: 0 };
+    s.questions.forEach(function (q) { sum.total++; if ((qState(q) || {}).first) sum.right++; });
+    var qsum = H.clone(R.A.qsum || {}); qsum[s.id] = sum;
+    var tot = { right: 0, total: 0 }; Object.keys(qsum).forEach(function (k) { if (qsum[k] && qsum[k].total != null && k !== 'all') { tot.right += qsum[k].right; tot.total += qsum[k].total; } });
+    qsum.all = tot; R.qi = null;
+    nextStep(s, { qsum: qsum });
+  }
+
+  // ----- pick: a topic from a menu, or his own -----
+  function paintPick(s) {
+    var cur = (R.A.ans || {})[s.field] || '', own = (R.A.ans || {})[s.field + 'Own'] || '';
+    var chosen = cur, note = msg();
+    var list = el('div', { class: 'opts rs-pick', role: 'group', 'aria-label': 'Topics' });
+    var ownBox = el('input', { type: 'text', id: 'rsOwn', class: 'rs-own', autocomplete: 'off', maxlength: '120', 'aria-label': 'My own topic', placeholder: s.ownLabel || 'My own topic' });
+    ownBox.value = own;
+    ownBox.addEventListener('input', function () { chosen = '__own'; mark(); });
+    function mark() { H.$$('button', list).forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-t') === chosen ? 'true' : 'false'); }); }
+    s.options.concat(s.own ? [{ label: s.ownLabel || 'My own topic', text: 'Something you have wondered about. Type it below.', own: true }] : []).forEach(function (o) {
+      var t = o.own ? '__own' : o.label;
+      var b = el('button', { type: 'button', 'data-t': t, 'aria-pressed': chosen === t || (o.own && cur && !s.options.some(function (x) { return x.label === cur; })) ? 'true' : 'false' },
+        el('b', { text: o.label }), el('span', { class: 'small rs-opt', text: ' ' + o.text }));
+      b.addEventListener('click', function () { chosen = t; mark(); if (o.own) ownBox.focus(); });
+      list.append(b);
+    });
+    if (cur && !s.options.some(function (x) { return x.label === cur; })) chosen = '__own';
+    show([head(title()), stepBar(),
+      el('div', { class: 'card' }, [el('h2', { text: s.title })].concat(paras(s.text),
+        [list, s.own ? el('label', { class: 'cw-lab', 'for': 'rsOwn', text: s.ownLabel || 'My own topic' }) : null, s.own ? ownBox : null, note,
+          el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'rsPickSave', text: 'Choose and go on', onclick: function () {
+            var val = chosen === '__own' ? ownBox.value.trim() : chosen;
+            if (!val) { note.textContent = chosen === '__own' ? 'Type your topic first.' : 'Pick a topic first.'; return; }
+            var a = {}; a[s.field] = val; if (chosen === '__own') a[s.field + 'Own'] = val;
+            nextStep(s, { ans: a });
+          } }))]))]);
+  }
+
+  // ----- write: one or more boxes -----
+  function prevValue(p) { var w = work(p.set); return w && w.ans ? w.ans[p.field] : null; }
+  function paintWrite(s) {
+    var A = R.A.ans || {}, boxes = [], note = msg();
+    var prev = (s.prev || []).map(function (p) { var v = prevValue(p); return v ? el('div', { class: 'sol rs-prev' }, el('span', { class: 'label', text: p.label }), el('p', { class: 'qtext cw-para', text: v })) : null; }).filter(Boolean);
+    var topic = s.showTopic && A.topic ? el('div', { class: 'sol rs-prev' }, el('span', { class: 'label', text: 'Your topic' }), el('p', { class: 'qtext', id: 'rsTopic', text: A.topic })) : null;
+    var kids = [];
+    s.boxes.forEach(function (b) {
+      var ta = el(b.rows && b.rows <= 2 ? 'input' : 'textarea', { id: 'rs_' + b.id, class: b.rows && b.rows <= 2 ? 'ans rs-line' : 'cw-write rs-box', rows: b.rows ? String(b.rows) : null, type: b.rows && b.rows <= 2 ? 'text' : null, autocomplete: 'off', 'aria-label': b.label });
+      ta.value = A[b.id] || (R.drafts && R.drafts[b.id]) || '';
+      ta.addEventListener('input', function () { draft(b.id, ta.value); });
+      boxes.push({ b: b, ta: ta });
+      kids.push(el('label', { class: 'cw-lab', 'for': 'rs_' + b.id, text: b.label }));
+      if (b.help) kids.push(el('p', { class: 'small muted', text: b.help }));
+      kids.push(ta);
+    });
+    var ex = s.example ? el('details', { class: 'rs-exd', id: 'rsExample' }, el('summary', { text: s.example.label || 'See an example' }), el('div', {}, (s.example.lines || []).map(function (t) { return el('p', { class: 'rs-read', text: t }); }))) : null;
+    show([head(title()), stepBar(),
+      el('div', { class: 'card' }, [el('h2', { text: s.title })].concat(paras(s.text), prev, topic ? [topic] : [], ex ? [ex] : [], kids, [note,
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'rsWriteSave', text: 'Save and go on', onclick: function () {
+          var a = {}, empty = [];
+          boxes.forEach(function (x) { var v = x.ta.value.trim(); a[x.b.id] = v; if (!v && !x.b.optional) empty.push(x.b.label); });
+          if (empty.length) { note.textContent = 'Fill in: ' + empty[0] + (empty.length > 1 ? ' (and ' + (empty.length - 1) + ' more)' : ''); return; }
+          clearTimeout(saveTimer); R.drafts = null;
+          nextStep(s, { ans: a });
+        } }))]))]);
+  }
+
+  // ----- hand in and done -----
+  function paintHandIn() {
+    var A = R.A.ans || {};
+    var list = el('div', {});
+    R.L.steps.forEach(function (s) {
+      if (s.type === 'pick' && A[s.field]) list.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: s.title }), el('p', { class: 'qtext', text: A[s.field] })));
+      if (s.type === 'write') s.boxes.forEach(function (b) { if (A[b.id]) list.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: b.label }), el('p', { class: 'qtext cw-para', text: A[b.id] }))); });
+    });
+    show([head(title()),
+      el('div', { class: 'card' }, el('h2', { text: 'Read it over, then hand it in' }),
+        el('p', { text: 'Check each answer once. If you want to change one, tap Back to that step.' }), list,
+        el('div', { class: 'row' },
+          el('button', { class: 'btn ghost', type: 'button', id: 'rsBack', text: 'Back one step', onclick: function () { save({ step: Math.max(0, (R.A.step || 1) - 1) }); route(); } }),
+          el('button', { class: 'btn', type: 'button', id: 'rsHandIn', text: 'Hand it in', onclick: function () { var p = addTime('handin', stepTime()); p.finishedAt = nowISO(); save(p); route(); } })))]);
+  }
+  function paintDone() {
+    var s = (R.A.qsum || {}).all || {};
+    show([head(title()),
+      el('div', { class: 'card' }, el('h2', { text: 'Handed in' }),
+        el('div', { class: 'result' },
+          s.total ? el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Questions right the first time' }), el('span', { class: 'v num', text: s.right + ' of ' + s.total })) : null,
+          el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Time' }), el('span', { class: 'v num', text: H.fmt.mins(R.A.activeSec || 0) }))),
+        el('p', { text: 'A parent or your tutor reads your work and picks one thing to work on next time. ' + (R.L.next || '') }),
+        models(),
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'rsDone', text: 'Done', onclick: leave })))]);
+  }
+  function models() {   // after hand-in: his answer beside one strong answer, for the boxes that have a model
+    var A = R.A.ans || {}, box = el('div', { id: 'rsModels' }), n = 0;
+    R.L.steps.forEach(function (s) {
+      if (s.type !== 'write') return;
+      s.boxes.forEach(function (b) {
+        if (!b.model) return; n++;
+        box.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: b.label }),
+          el('p', { class: 'qtext cw-para', text: 'Yours: ' + (A[b.id] || '') }), el('p', { class: 'qtext rs-model', text: 'One strong answer: ' + b.model })));
+      });
+    });
+    return n ? el('div', {}, el('h3', { text: 'Compare with strong answers' }), box) : null;
+  }
+
+  // ---------- marking (parent or tutor) ----------
+  function startMark(arg) {
+    R = { mode: 'mark', from: TOPS.indexOf(arg.from) >= 0 ? arg.from : 'reading', id: arg.unit };
+    if (!adult()) { show([head('Marks'), el('div', { class: 'empty' }, el('p', { text: 'Marks are for a parent or the tutor.' }))]); return; }
+    show([head('Marks'), el('div', { class: 'empty' }, el('p', { text: 'Opening' }))]);
+    loadUnit(arg.unit).then(function (L) { if (R && R.mode === 'mark') paintMark(L); });
+  }
+  function paintMark(L) {
+    var w = work(R.id);
+    if (!w || !L) { show([head('Marks'), el('div', { class: 'empty' }, el('p', { text: 'That unit has no work saved yet.' }))]); return; }
+    var rows = (L.marks && L.marks.rows) || [], cl = (w.marks && w.marks.claude) || null, ad = (w.marks && w.marks.adult) || null, A = w.ans || {};
+    var picked = {}; rows.forEach(function (r) { picked[r.k] = (ad && ad.scores && ad.scores[r.k]) || (cl && cl.scores && cl.scores[r.k]) || null; });
+    var kids = [head('Marks: ' + (w.title || L.title))];
+    var qa = (w.qsum || {}).all;
+    var wc = el('div', { class: 'card' }, el('h2', {}, 'His work ', el('small', { text: qa && qa.total ? qa.right + ' of ' + qa.total + ' sorting questions right the first time' : '' })));
+    L.steps.forEach(function (s) {
+      if (s.type === 'quiz') s.questions.forEach(function (q) {
+        var st = (w.q || {})[q.id] || {};
+        if (!st.first && st.v1 != null) wc.append(el('p', { class: 'small cw-bad' }, q.q + ' · first answer: ' + (st.v1 != null ? q.ans.options[st.v1] : 'not answered') + ' · answer: ' + C.show(q.ans)));
+      });
+      if (s.type === 'pick' && A[s.field]) wc.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: s.title }), el('p', { class: 'qtext', text: A[s.field] })));
+      if (s.type === 'write') s.boxes.forEach(function (b) {
+        wc.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: b.label }), el('p', { class: 'qtext cw-para', text: A[b.id] || '' })));
+        if (b.model) wc.append(el('details', {}, el('summary', { text: 'A strong answer' }), el('p', { class: 'qtext', text: b.model })));
+      });
+    });
+    if (cl) wc.append(el('div', { class: 'anote', id: 'rsClaude' }, el('div', { class: 'small muted', text: 'Claude\'s draft marks, ' + H.fmt.date(dayOf(cl.at)) }), el('p', { text: (cl.comment ? cl.comment + ' ' : '') + (cl.fix ? 'Fix: ' + cl.fix : '') })));
+    kids.push(wc);
+    var rc = el('div', { class: 'card' }, el('h2', { text: 'Marks' }), el('p', { class: 'hint', text: ad ? 'Saved by ' + ad.by + ', ' + H.fmt.date(dayOf(ad.at)) + '. Change any row and save again.' : cl ? 'Claude\'s draft marks are filled in. Change any row, then save. Until someone saves, Claude\'s marks stand.' : 'Pick 1 to 4 for each row.' }));
+    rows.forEach(function (r) {
+      var desc = el('p', { class: 'small muted', text: picked[r.k] ? r.d[picked[r.k] - 1] : '' });
+      var seg = el('div', { class: 'seg', role: 'group', 'aria-label': r.name, 'data-row': r.k });
+      [1, 2, 3, 4].forEach(function (n) {
+        var b = el('button', { type: 'button', 'data-n': String(n), 'aria-pressed': picked[r.k] === n ? 'true' : 'false', text: String(n) });
+        b.addEventListener('click', function () { picked[r.k] = n; desc.textContent = r.d[n - 1]; H.$$('button', seg).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); });
+        seg.append(b);
+      });
+      rc.append(el('div', { class: 'cw-rrow' }, el('b', { text: r.name }), seg, desc));
+    });
+    var fix = el('textarea', { id: 'rsMarkFix', rows: '3', 'aria-label': 'One thing to work on next time' });
+    fix.value = (ad && ad.note) || (cl && cl.fix) || '';
+    var note = msg();
+    rc.append(el('label', { class: 'cw-lab', 'for': 'rsMarkFix', text: 'One thing to work on next time (he sees this at the start of the next unit)' }), fix, note,
+      el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'rsMarkSave', text: 'Save marks', onclick: function () {
+        var miss = rows.filter(function (r) { return !picked[r.k]; });
+        if (miss.length) { note.textContent = 'Pick a mark for: ' + miss.map(function (r) { return r.name; }).join(', ') + '.'; return; }
+        if (!fix.value.trim()) { note.textContent = 'Write one thing for him to work on next time.'; return; }
+        var who = me(), sc = {}; rows.forEach(function (r) { sc[r.k] = picked[r.k]; });
+        H.store.patch('reading/research-' + R.id, { marks: { adult: { scores: sc, note: fix.value.trim().slice(0, 600), by: who.by, role: who.role, at: new Date().toISOString() } } })
+          .then(function () { H.toast('Marks saved.'); }, function () { H.toast('Could not save. Try again.', 'warn'); });
+        note.textContent = 'Saved.';
+      } })));
+    kids.push(rc);
+    show(kids);
+  }
+
+  H.views.register('research', {
+    render: function (r) { root = r; },
+    show: function (arg) { flush(); R = null; arg = arg || {}; if (arg.mode === 'mark') return startMark(arg); startUnit(arg); },
+    refresh: function () { /* never rebuild while he types */ },
+    hide: function () { flush(); }
+  });
+
+  // ---------- Reading tab card ----------
+  function card(box) {
+    if (!box) return;
+    var q = queue(), all = works().filter(function (w) { return w.finishedAt; }), big = adult();
+    var stage = q ? (q.meta.stage || 1) : (all.length ? (all[all.length - 1].stage || 1) : 1);
+    var kids = [el('div', { class: 'row rd-split' }, el('h2', { text: 'Research' }), el('span', { class: 'small muted', text: 'Every other Thursday' }))];
+    var lad = el('ol', { class: 'rs-ladder', id: 'rsLadder', 'aria-label': 'Research ladder' });
+    LADDER.forEach(function (t, i) { lad.append(el('li', { class: i + 1 < stage ? 'done' : i + 1 === stage ? 'now' : '', text: (i + 1) + '. ' + t })); });
+    kids.push(lad);
+    var nx = el('div', { class: 'task', id: 'rsNext' });
+    if (q) {
+      var started = !!(q.work && q.work.startedAt), today = H.today();
+      var doneToday = works().some(function (w) { return w.finishedAt && dayOf(w.finishedAt) === today; });
+      var from = doneToday ? H.addDays(today, 1) : today, nextThu = from;
+      for (var k = 0; k < 15 && !isWeek(nextThu); k++) nextThu = H.addDays(from, k + 1);
+      nx.append(el('span', { class: 'label', text: q.meta.title }), el('span', { class: 'when', text: 'Unit ' + (q.index + 1) + ' of ' + q.total + (isWeek(nextThu) ? ' · next research day ' + H.fmt.dow(nextThu).slice(0, 3) + ' ' + H.fmt.date(nextThu) : '') }),
+        el('button', { class: 'btn', type: 'button', id: 'rsStart', text: started ? 'Continue' : 'Start', onclick: function () { H.go('research', { unit: q.meta.id, from: 'reading' }); } }));
+    } else nx.append(el('span', { class: 'label', text: units().length ? 'All units done' : 'No unit loaded yet' }), el('p', { text: 'More arrive with the next build.' }));
+    kids.push(nx);
+    var marked = all.map(function (w) { return { w: w, m: marksOf(w) }; }).filter(function (x) { return x.m; }).slice(-4);
+    if (marked.length) {
+      var t = el('div', { class: 'tasks' });
+      marked.forEach(function (x) {
+        var sc = x.m.scores, ks = Object.keys(sc), avg = ks.length ? ks.reduce(function (a, k) { return a + (sc[k] || 0); }, 0) / ks.length : 0;
+        t.append(el('div', { class: 'task' }, el('span', { class: 'label', text: x.w.title + (x.m.src === 'claude' ? ' (Claude\'s draft)' : '') }), el('span', { class: 'when', text: 'Average mark ' + H.fmt.n1(avg) + ' of 4' + (x.m.note ? ' · next: ' + x.m.note : '') })));
+      });
+      kids.push(el('p', { class: 'small rd-strong', text: 'Research marks' }), t);
+    }
+    if (big) {
+      var need = all.filter(function (w) { return !(w.marks && w.marks.adult); }).slice(-6).reverse();
+      if (need.length) {
+        var list = el('div', { class: 'tasks' });
+        need.forEach(function (w) {
+          list.append(el('div', { class: 'task' }, el('span', { class: 'label', text: w.title || w.setId }), el('span', { class: 'when', text: (w.marks && w.marks.claude ? 'Claude\'s draft marks are in' : 'Waiting for marks') + ' · ' + H.fmt.date(dayOf(w.finishedAt)) }),
+            el('button', { class: 'btn ghost', type: 'button', 'data-rmark': w.setId, text: 'Read and mark', onclick: function () { H.go('research', { mode: 'mark', unit: w.setId, from: 'reading' }); } })));
+        });
+        kids.push(el('p', { class: 'small rd-strong', text: 'Research to mark (about 3 minutes each)' }), list);
+      }
+    }
+    box.replaceChildren.apply(box, kids);
+  }
+
+  H.research = { card: card, queue: queue, claims: claims, isWeek: isWeek, LADDER: LADDER };
 })();
 
 </script>

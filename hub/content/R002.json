@@ -1,0 +1,343 @@
+{
+ "schema": 1,
+ "id": "R002",
+ "kind": "research",
+ "stage": 1,
+ "stageName": "Questions worth researching",
+ "title": "From a Topic to a Sharp Question",
+ "estMin": 40,
+ "why": [
+  "A topic is a place to look. A question is a job to do. Researchers spend real time sharpening their question before they start, because a sharp question tells them which facts matter and which they can skip.",
+  "A good question also points to how you could find the answer: by reading, by asking people, or by measuring something yourself. Later on this ladder you will do all three."
+ ],
+ "ai": "Not in this unit. You are still practicing questions. From Stage 2 you may ask an AI, then check what it says in two other places.",
+ "steps": [
+  {
+   "id": "s1",
+   "type": "learn",
+   "short": "Funnel",
+   "title": "The question funnel",
+   "text": [
+    "Start wide and get narrower in three steps: a topic, one part of the topic, then a question about that part.",
+    "Each step leaves things out on purpose. That is what makes the question possible to answer."
+   ],
+   "examples": [
+    {
+     "label": "Topic",
+     "text": "Weather"
+    },
+    {
+     "label": "One part",
+     "text": "Lightning"
+    },
+    {
+     "label": "A sharp question",
+     "text": "Why does lightning strike tall things, like trees and towers, more often than the ground around them?"
+    },
+    {
+     "label": "Smaller questions",
+     "text": "What is lightning? How does it pick a path to the ground? How does a lightning rod protect a building?"
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "type": "learn",
+   "short": "Words",
+   "title": "Question starters that open research",
+   "text": [
+    "Some ways of starting a question lead to research more often than others. Try these when a question feels flat."
+   ],
+   "examples": [
+    {
+     "label": "How does ... work?",
+     "text": "How does a lightning rod keep a building safe?"
+    },
+    {
+     "label": "Why does ... happen?",
+     "text": "Why do honeybees sometimes leave their hive and start a new one?"
+    },
+    {
+     "label": "What changed when ...?",
+     "text": "What changed for farmers when tractors replaced horses?"
+    },
+    {
+     "label": "How are ... and ... different?",
+     "text": "How are the lives of frogs and toads different?"
+    },
+    {
+     "label": "What happens if ...?",
+     "text": "What happens to a bean plant's growth if it gets only half as much light?"
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "type": "quiz",
+   "short": "Sharpest",
+   "title": "Find the sharpest question",
+   "intro": "Your first answer is your score.",
+   "questions": [
+    {
+     "id": "c1",
+     "q": "Which question is the sharpest?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "What do you know about the ocean?",
+       "How do sea turtles find the beach where they hatched?",
+       "What lives in the ocean?"
+      ],
+      "correct": 1
+     },
+     "hint": "Which one names one thing and one puzzle?",
+     "why": "It names one animal and one puzzle. The other two are so wide that you would not know where to start."
+    },
+    {
+     "id": "c2",
+     "q": "Which question is the sharpest?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "What were the Olympics like long ago?",
+       "Tell me about sports.",
+       "Why did ancient Greek cities agree to stop fighting during the Olympic Games, and did it work?"
+      ],
+      "correct": 2
+     },
+     "hint": "Which one could you finish answering?",
+     "why": "It names one custom and asks why and what happened. The others cover too much ground."
+    },
+    {
+     "id": "c3",
+     "q": "Which question is the sharpest?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "How does freezing keep food from going bad?",
+       "What is food?",
+       "What foods are there in the world?"
+      ],
+      "correct": 0
+     },
+     "hint": "Which one could you finish answering in a few weeks?",
+     "why": "It asks how one thing works. The others have no edge."
+    },
+    {
+     "id": "c4",
+     "q": "Which question could you answer by measuring something yourself?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Who invented the thermometer?",
+       "Is summer the best season?",
+       "Is our classroom warmer near the window than near the door during the school day?"
+      ],
+      "correct": 2
+     },
+     "hint": "Which one could you check yourself with a tool, at school?",
+     "why": "You could take readings in both places at the same times and compare them."
+    },
+    {
+     "id": "c5",
+     "q": "Which question would you answer mostly by asking people?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "How fast does sound travel?",
+       "What games do students at my school play most at recess?",
+       "How deep is the Pacific Ocean?"
+      ],
+      "correct": 1
+     },
+     "hint": "Which answer could you not find in a book?",
+     "why": "Only the students can tell you what they play, so you would ask them."
+    },
+    {
+     "id": "c6",
+     "q": "Which question would you answer mostly by reading books and articles?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "What did people use to keep food cold before refrigerators?",
+       "How many steps do I take on a school day?",
+       "Which snack do my friends like most?"
+      ],
+      "correct": 0
+     },
+     "hint": "For which one are the people who know the answer hardest to reach today?",
+     "why": "It is about the past, so books and articles are the main place to look, though an older relative might remember too. The other two you would measure or ask."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "type": "learn",
+   "short": "Test",
+   "title": "The question test",
+   "text": [
+    "Before you keep a question, give it four checks."
+   ],
+   "examples": [
+    {
+     "label": "1. Can I find out?",
+     "text": "There are books, people or things to measure that could answer it."
+    },
+    {
+     "label": "2. Is it more than one fact?",
+     "text": "The answer takes a few sentences, not one word."
+    },
+    {
+     "label": "3. Is it the right size?",
+     "text": "I could answer it in a few weeks, not a lifetime."
+    },
+    {
+     "label": "4. Do I care?",
+     "text": "I want to know, so I will keep going when it gets hard."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "type": "write",
+   "short": "Your funnel",
+   "title": "Build your funnel",
+   "prev": [
+    {
+     "set": "R001",
+     "field": "topic",
+     "label": "Your topic from last time"
+    },
+    {
+     "set": "R001",
+     "field": "best",
+     "label": "Your best question from last time"
+    }
+   ],
+   "text": [
+    "Use your topic from last time, or a new one if you want. Your best question from last time may already be a sharp question. Put it through the funnel: does it come from one part of your topic? Sharpen it, or start fresh. Build the funnel in your notebook first."
+   ],
+   "example": {
+    "label": "See an example",
+    "lines": [
+     "Topic: Bread",
+     "One part: Why bread rises",
+     "Sharp question: How does yeast make bread dough rise, and why does warm dough rise faster than cold dough?",
+     "How I could find out: read two articles about yeast, ask a baker, and time two bowls of dough, one warm and one cool."
+    ]
+   },
+   "boxes": [
+    {
+     "id": "topic2",
+     "label": "Topic",
+     "rows": 2
+    },
+    {
+     "id": "part",
+     "label": "One part of the topic",
+     "rows": 2
+    },
+    {
+     "id": "question",
+     "label": "My sharp question",
+     "rows": 3
+    },
+    {
+     "id": "how",
+     "label": "How I could find the answer",
+     "rows": 4,
+     "help": "Reading, asking people, measuring, or a mix. Say what you would read, who you would ask, or what you would measure."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "type": "write",
+   "short": "Check",
+   "title": "Test your question",
+   "prev": [
+    {
+     "set": "R002",
+     "field": "question",
+     "label": "Your sharp question"
+    }
+   ],
+   "text": [
+    "Give your sharp question the four checks. For each one, write yes or no and a few words on why."
+   ],
+   "boxes": [
+    {
+     "id": "t1",
+     "label": "1. Can I find out?",
+     "rows": 2
+    },
+    {
+     "id": "t2",
+     "label": "2. Is it more than one fact?",
+     "rows": 2
+    },
+    {
+     "id": "t3",
+     "label": "3. Is it the right size?",
+     "rows": 2
+    },
+    {
+     "id": "t4",
+     "label": "4. Do I care?",
+     "rows": 2
+    },
+    {
+     "id": "final",
+     "label": "My question after the test",
+     "rows": 3,
+     "help": "If it failed a check, write the fixed question. If it passed all four, write it again."
+    }
+   ]
+  }
+ ],
+ "marks": {
+  "rows": [
+   {
+    "k": "researchable",
+    "name": "A research question",
+    "d": [
+     "It is a look-up or an opinion question.",
+     "Close: it asks how or why, but one fact or one source would almost answer it.",
+     "A research question: it needs facts from more than one place.",
+     "A clear research question that asks how, why or what changed, and needs facts from several places."
+    ]
+   },
+   {
+    "k": "size",
+    "name": "The funnel narrows",
+    "d": [
+     "No funnel: the question is as wide as the topic.",
+     "The funnel narrows a little, but the question is still too wide.",
+     "Each step is narrower, ending in a question he could answer in a few weeks.",
+     "Each step leaves something out, and the question names one thing and one puzzle."
+    ]
+   },
+   {
+    "k": "method",
+    "name": "How to find out",
+    "d": [
+     "No plan.",
+     "A plan that would not answer the question.",
+     "A plan that could answer it but is vague about what or whom.",
+     "A plan that fits the question and names exactly what to read, who to ask or what to measure."
+    ]
+   },
+   {
+    "k": "checks",
+    "name": "Question test",
+    "d": [
+     "The checks are skipped.",
+     "Checks answered without reasons.",
+     "All four checks with short reasons.",
+     "All four checks with reasons, and the question fixed where a check failed (or, if all four passed, reasons that show why)."
+    ]
+   }
+  ]
+ },
+ "next": "Next: Stage 2, sources and notes. You will learn which sources to trust, including how to check what an AI tells you."
+}

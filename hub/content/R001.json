@@ -1,0 +1,440 @@
+{
+ "schema": 1,
+ "id": "R001",
+ "kind": "research",
+ "stage": 1,
+ "stageName": "Questions worth researching",
+ "title": "Questions Worth Researching",
+ "estMin": 40,
+ "why": [
+  "Every piece of research starts with a question. A doctor testing a new medicine asks whether people who take it get better faster than people who do not. A city traffic team asks which street crossings near schools have the most close calls. The question decides what they look for, who they ask and what they measure.",
+  "Some questions take one quick search to answer. A search box or an AI tool can tell you the height of a mountain in a second. The questions that need a researcher are the ones that still leave you thinking after the first answer: questions that ask how, why or what changed, and that need facts from more than one place put together."
+ ],
+ "ai": "Not in this unit. Today you practice asking questions, and that is the part no tool can do for you. From Stage 2 you may ask an AI, but you will treat its answer like any other source and check it in two other places.",
+ "steps": [
+  {
+   "id": "s1",
+   "type": "learn",
+   "short": "Kinds",
+   "title": "Three kinds of questions",
+   "text": [
+    "A look-up question has one answer that sits in one place. You find it, and you are done.",
+    "A research question needs you to gather facts from more than one place and put them together to explain something. It usually asks how, why, what changed, or what happens when something is different.",
+    "An opinion question asks what someone likes or thinks is best. Two people can give different answers and both be honest, so facts alone cannot settle it the way it is asked."
+   ],
+   "examples": [
+    {
+     "label": "Look-up",
+     "text": "How tall is Mount Everest?"
+    },
+    {
+     "label": "Research",
+     "text": "Why does Mount Everest still grow a little taller each year?"
+    },
+    {
+     "label": "Opinion",
+     "text": "Which mountain is the most beautiful?"
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "type": "quiz",
+   "short": "Sort",
+   "title": "Sort the questions",
+   "intro": "Pick the kind of question. Your first answer is your score.",
+   "questions": [
+    {
+     "id": "a1",
+     "q": "In what year did people first walk on the Moon?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Look-up question",
+       "Research question",
+       "Opinion question"
+      ],
+      "correct": 0
+     },
+     "hint": "How many facts would you need to answer it?",
+     "why": "One fact found in one place answers it: 1969."
+    },
+    {
+     "id": "a2",
+     "q": "How do beavers' dams change the streams they are built on?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Look-up question",
+       "Research question",
+       "Opinion question"
+      ],
+      "correct": 1
+     },
+     "hint": "Could one fact answer this, or would you need to put several together?",
+     "why": "You would need facts about the water, the fish, the plants and the land, from more than one source."
+    },
+    {
+     "id": "a3",
+     "q": "Which pet is the cutest?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Look-up question",
+       "Research question",
+       "Opinion question"
+      ],
+      "correct": 2
+     },
+     "hint": "Could two honest people give different answers?",
+     "why": "It asks what someone likes. Facts cannot settle it."
+    },
+    {
+     "id": "a4",
+     "q": "How did paper making change the way books were made in Baghdad more than a thousand years ago?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Look-up question",
+       "Research question",
+       "Opinion question"
+      ],
+      "correct": 1
+     },
+     "hint": "Is there one fact to find, or a change to explain?",
+     "why": "It asks what changed, so you would need to read about books before and after paper arrived."
+    },
+    {
+     "id": "a5",
+     "q": "How many legs does a spider have?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Look-up question",
+       "Research question",
+       "Opinion question"
+      ],
+      "correct": 0
+     },
+     "hint": "How long would it take to find the answer?",
+     "why": "One number answers it: eight."
+    },
+    {
+     "id": "a6",
+     "q": "How does the amount of sleep a student gets change the student's spelling quiz score the next day?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Look-up question",
+       "Research question",
+       "Opinion question"
+      ],
+      "correct": 1
+     },
+     "hint": "Would one fact answer it?",
+     "why": "You would need to collect sleep times and quiz scores and look for a pattern."
+    },
+    {
+     "id": "a7",
+     "q": "Which tastes better for lunch, pizza or tacos?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Look-up question",
+       "Research question",
+       "Opinion question"
+      ],
+      "correct": 2
+     },
+     "hint": "Does it ask for a fact or for what someone likes?",
+     "why": "It asks about taste, and two people can honestly disagree."
+    },
+    {
+     "id": "a8",
+     "q": "What is the capital of Japan?",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Look-up question",
+       "Research question",
+       "Opinion question"
+      ],
+      "correct": 0
+     },
+     "hint": "Is there one answer in one place?",
+     "why": "One fact answers it: Tokyo."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "type": "quiz",
+   "short": "Choose",
+   "title": "Which is the better research question?",
+   "intro": "Each pair is about the same topic. Pick the one that would make better research.",
+   "questions": [
+    {
+     "id": "b1",
+     "q": "Both are about sharks.",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "How many teeth does a great white shark have?",
+       "Why do sharks lose and replace so many teeth in their lives?"
+      ],
+      "correct": 1
+     },
+     "hint": "Which one would still leave you thinking after the first answer?",
+     "why": "The tooth count is one number. Explaining why sharks keep replacing teeth needs facts about how teeth grow and how sharks feed."
+    },
+    {
+     "id": "b2",
+     "q": "Both are about space.",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "How do astronauts on the space station keep their bones and muscles strong?",
+       "What is everything about space?"
+      ],
+      "correct": 0
+     },
+     "hint": "Could anyone ever finish answering one of these?",
+     "why": "Everything about space is too big for anyone. The astronaut question is small enough to answer and still needs several facts put together."
+    },
+    {
+     "id": "b3",
+     "q": "Both are about recess.",
+     "ans": {
+      "type": "choice",
+      "options": [
+       "Is recess too short?",
+       "How long is recess at schools in our town, and what do students and teachers say it changes?"
+      ],
+      "correct": 1
+     },
+     "hint": "Which one names facts you could collect?",
+     "why": "Asking whether recess is too short gets a yes or no judgment, and people disagree on what too short means. Asking how long recess is and what it changes names facts to collect: the minutes at each school and what people report."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "type": "learn",
+   "short": "Fix",
+   "title": "Three ways to fix a weak question",
+   "text": [
+    "Most good research questions start as weak ones. Researchers fix them in three ways."
+   ],
+   "examples": [
+    {
+     "label": "Fix 1: turn a look-up into how or why",
+     "text": "Look-up: In what year did the first airplane fly? Research: How did the bicycle change the way people in cities got around?"
+    },
+    {
+     "label": "Fix 2: shrink a big topic",
+     "text": "Topic: Dinosaurs. Research: How do scientists work out how fast a dinosaur moved from the footprints it left?"
+    },
+    {
+     "label": "Fix 3: turn an opinion into something you can collect",
+     "text": "Opinion: Which sport is the most fun? Research: Which sports do the students in my class play most, and what reasons do they give?"
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "type": "write",
+   "short": "Your turn",
+   "title": "Fix these three",
+   "text": [
+    "Rewrite each one as a research question. Use one of the three fixes. Write in your notebook first, then type it here."
+   ],
+   "boxes": [
+    {
+     "id": "f1",
+     "label": "1. Look-up: How tall is the Eiffel Tower?",
+     "rows": 2,
+     "model": "How did the engineers who built the Eiffel Tower keep such a tall iron tower steady in strong winds?"
+    },
+    {
+     "id": "f2",
+     "label": "2. Too big: Volcanoes",
+     "rows": 2,
+     "model": "Why do some volcanoes explode while others let lava flow out slowly?"
+    },
+    {
+     "id": "f3",
+     "label": "3. Opinion: Are cats better pets than dogs?",
+     "rows": 2,
+     "model": "How much time does a family spend each week caring for a cat compared with a dog?"
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "type": "pick",
+   "short": "Topic",
+   "title": "Pick your topic",
+   "field": "topic",
+   "text": [
+    "Pick a topic you want to know more about. You will stay with it for the next few units, so pick one you are curious about."
+   ],
+   "options": [
+    {
+     "label": "Animals that build",
+     "text": "Beaver dams, termite mounds, bird nests, spider webs."
+    },
+    {
+     "label": "Space travel",
+     "text": "Rockets, astronauts, living on the space station, the Moon."
+    },
+    {
+     "label": "Inventions",
+     "text": "Things that changed daily life, like the bicycle, the printing press or the refrigerator."
+    },
+    {
+     "label": "Scholars of the Islamic Golden Age",
+     "text": "Ibn al-Haytham, al-Khwarizmi, al-Jazari and others, and how their ideas spread."
+    },
+    {
+     "label": "Sports and the body",
+     "text": "What muscles, lungs and the heart do when you play."
+    },
+    {
+     "label": "Weather",
+     "text": "Storms, lightning, snow, and how forecasters predict them."
+    }
+   ],
+   "own": true,
+   "ownLabel": "My own topic"
+  },
+  {
+   "id": "s7",
+   "type": "write",
+   "short": "Ask",
+   "title": "Your own questions",
+   "showTopic": true,
+   "text": [
+    "Write five questions about your topic that you want answered. Do not worry yet about whether they are good. Researchers start with many questions and keep the best ones."
+   ],
+   "example": {
+    "label": "See an example for the topic Bridges",
+    "lines": [
+     "How long is the longest bridge in the world? (look-up)",
+     "Why do some bridges hang from cables while others are held up from below? (research)",
+     "Which bridge is the prettiest? (opinion)",
+     "How do engineers stop a bridge from shaking in strong wind? (research)",
+     "How do workers build a bridge over deep water? (research)"
+    ]
+   },
+   "boxes": [
+    {
+     "id": "q1",
+     "label": "Question 1",
+     "rows": 2
+    },
+    {
+     "id": "q2",
+     "label": "Question 2",
+     "rows": 2
+    },
+    {
+     "id": "q3",
+     "label": "Question 3",
+     "rows": 2
+    },
+    {
+     "id": "q4",
+     "label": "Question 4",
+     "rows": 2
+    },
+    {
+     "id": "q5",
+     "label": "Question 5",
+     "rows": 2
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "type": "write",
+   "short": "Best",
+   "title": "Your best question",
+   "showTopic": true,
+   "text": [
+    "Look at your five questions. In your notebook, mark each one L for look-up, R for research or O for opinion.",
+    "Now pick your best research question. If none of them is a research question yet, fix one with the three fixes."
+   ],
+   "example": {
+    "label": "See an example",
+    "lines": [
+     "Best question: How do engineers stop a bridge from shaking in strong wind?",
+     "Smaller questions: What makes a bridge shake in the wind? What happened to bridges that shook too much? What do engineers add to a bridge to stop the shaking?",
+     "Why I want to know: I cross a bridge on the way to school, and on windy days I wonder if it moves."
+    ]
+   },
+   "boxes": [
+    {
+     "id": "best",
+     "label": "My best research question",
+     "rows": 3
+    },
+    {
+     "id": "sub",
+     "label": "Two or three smaller questions I would need to answer first (one per line)",
+     "rows": 5,
+     "help": "Big questions get answered one small piece at a time."
+    },
+    {
+     "id": "whyme",
+     "label": "Why I want to know this (one or two sentences)",
+     "rows": 3
+    }
+   ]
+  }
+ ],
+ "marks": {
+  "rows": [
+   {
+    "k": "researchable",
+    "name": "A research question",
+    "d": [
+     "It is a look-up or an opinion question.",
+     "Close: it asks how or why, but one fact or one source would almost answer it.",
+     "A research question: it needs facts from more than one place.",
+     "A clear research question that asks how, why or what changed, and needs facts from several places."
+    ]
+   },
+   {
+    "k": "size",
+    "name": "The right size",
+    "d": [
+     "Far too big or too small to research.",
+     "Too big to answer in a few weeks, or close to a look-up.",
+     "A size he could answer in a few weeks.",
+     "Just the right size, with a clear edge between what is in and what is out."
+    ]
+   },
+   {
+    "k": "parts",
+    "name": "Smaller questions",
+    "d": [
+     "No smaller questions.",
+     "Smaller questions that do not build toward the big one.",
+     "Smaller questions that each help answer the big one.",
+     "Smaller questions that together would answer the big one, with no gaps."
+    ]
+   },
+   {
+    "k": "fixes",
+    "name": "Fixing weak questions",
+    "d": [
+     "None of the three practice questions is fixed.",
+     "One of the three is now a research question.",
+     "Two of the three are now research questions.",
+     "All three are now research questions."
+    ]
+   }
+  ]
+ },
+ "next": "Next unit: from a topic to a sharp question."
+}
