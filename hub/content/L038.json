@@ -1,0 +1,3131 @@
+{
+ "schema": 1,
+ "id": "L038",
+ "kind": "lesson",
+ "subject": "math",
+ "strand": "Geometry",
+ "title": "Parallel Lines and Transversals",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a fraction like 3/4, a mixed number like 2 1/2, and a power like 3^4.",
+ "skills": {
+  "int-addsub": "Add and subtract integers",
+  "ooo-exp": "Order of operations with exponents",
+  "par-names": "Name angle pairs at a transversal",
+  "par-equal": "Equal angles at parallel lines",
+  "par-supp": "Angles that add to 180 at parallel lines",
+  "par-all": "Find every angle at parallel lines",
+  "par-eq": "Angle equations at parallel lines",
+  "par-test": "Decide whether lines are parallel",
+  "par-apply": "Parallel lines in real problems"
+ },
+ "sections": [
+  {
+   "name": "Part A: Review",
+   "desc": "Two problems from older lessons. Decide the sign before you subtract, and count the zeros in a power of 10.",
+   "items": [
+    {
+     "id": "q1",
+     "q": "Find each value. Before you work it out, decide whether the answer is above 0 or below 0.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "-17"
+       },
+       "label": "a",
+       "prompt": "−9 − 8",
+       "tests": {
+        "ok": [
+         "-17",
+         "−17"
+        ],
+        "no": [
+         "17",
+         "-1",
+         "1"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-8"
+       },
+       "label": "b",
+       "prompt": "5 − 13",
+       "tests": {
+        "ok": [
+         "-8",
+         "−8"
+        ],
+        "no": [
+         "8",
+         "18",
+         "-18"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "-16"
+       },
+       "label": "c",
+       "prompt": "A submarine is at −12 meters, which is 12 meters below the surface. It rises 5 meters, then dives 9 meters. Where is it now? Write an integer.",
+       "unit": "m",
+       "tests": {
+        "ok": [
+         "-16",
+         "−16",
+         "-16 m"
+        ],
+        "no": [
+         "16",
+         "-26",
+         "2",
+         "-8"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) Start at −9 and move 8 to the left: −9 − 8 = −17",
+      "b) Start at 5 and move 13 to the left. You pass 0 after 5 steps and go 8 more: 5 − 13 = −8",
+      "c) −12 + 5 = −7 after rising",
+      "−7 − 9 = −16 after diving",
+      "Answers: a) −17, b) −8, c) −16 meters"
+     ],
+     "skill": "int-addsub",
+     "hint": "Subtracting moves left on the number line. Starting below 0 and moving left takes you further below 0.",
+     "tag": "Review of Lesson 33",
+     "min": 4
+    },
+    {
+     "id": "q2",
+     "q": "Find each value. Follow the order of operations.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "22"
+       },
+       "label": "a",
+       "prompt": "4 + 2 × 3²",
+       "tests": {
+        "ok": [
+         "22"
+        ],
+        "no": [
+         "54",
+         "40",
+         "100"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "5975"
+       },
+       "label": "b",
+       "prompt": "6 × 10³ − 5²",
+       "tests": {
+        "ok": [
+         "5975",
+         "5,975"
+        ],
+        "no": [
+         "575",
+         "5990",
+         "35975"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "49"
+       },
+       "label": "c",
+       "prompt": "(9 − 4)² + 3 × 2³",
+       "tests": {
+        "ok": [
+         "49"
+        ],
+        "no": [
+         "224",
+         "241",
+         "43"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 3² = 9, then 2 × 9 = 18, then 4 + 18 = 22",
+      "b) 10³ = 1,000, so 6 × 1,000 = 6,000",
+      "5² = 25, then 6,000 − 25 = 5,975",
+      "c) 9 − 4 = 5 and 5² = 25",
+      "2³ = 8 and 3 × 8 = 24",
+      "25 + 24 = 49",
+      "Answers: a) 22, b) 5,975, c) 49"
+     ],
+     "skill": "ooo-exp",
+     "hint": "Parentheses first, then every power, then multiply, then add and subtract. 10³ has three zeros.",
+     "tag": "Review of Lesson 36",
+     "min": 6
+    }
+   ]
+  },
+  {
+   "name": "Part B: Naming angle pairs",
+   "desc": "Corresponding angles sit in the same corner at each crossing. Alternate angles are on opposite sides of t. Interior angles are between the parallel lines; exterior angles are outside them.",
+   "items": [
+    {
+     "id": "q3",
+     "q": "Lines m and n are parallel, and line t crosses them. Use the figure. Name each pair of angles.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Corresponding",
+         "Alternate interior",
+         "Alternate exterior",
+         "Same-side interior",
+         "Vertical"
+        ],
+        "correct": 0
+       },
+       "label": "a",
+       "prompt": "Angles 2 and 6"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Corresponding",
+         "Alternate interior",
+         "Alternate exterior",
+         "Same-side interior",
+         "Vertical"
+        ],
+        "correct": 1
+       },
+       "label": "b",
+       "prompt": "Angles 4 and 5"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Corresponding",
+         "Alternate interior",
+         "Alternate exterior",
+         "Same-side interior",
+         "Vertical"
+        ],
+        "correct": 2
+       },
+       "label": "c",
+       "prompt": "Angles 1 and 8"
+      }
+     ],
+     "a": [
+      "a) Angles 2 and 6 are both in the upper right corner of their crossing: corresponding.",
+      "b) Angles 4 and 5 are between m and n, on opposite sides of t: alternate interior.",
+      "c) Angles 1 and 8 are outside m and n, on opposite sides of t: alternate exterior.",
+      "Answers: corresponding, alternate interior, alternate exterior"
+     ],
+     "skill": "par-names",
+     "hint": "First ask: same corner at both crossings? If not, are both angles between the lines, and are they on the same side of t?",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Parallel lines m and n cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    },
+    {
+     "id": "q4",
+     "q": "Lines m and n are parallel, and line t crosses them. Use the figure. Name each pair of angles.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Corresponding",
+         "Alternate interior",
+         "Alternate exterior",
+         "Same-side interior",
+         "Vertical"
+        ],
+        "correct": 3
+       },
+       "label": "a",
+       "prompt": "Angles 3 and 5"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Corresponding",
+         "Alternate interior",
+         "Alternate exterior",
+         "Same-side interior",
+         "Vertical"
+        ],
+        "correct": 4
+       },
+       "label": "b",
+       "prompt": "Angles 5 and 8"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Corresponding",
+         "Alternate interior",
+         "Alternate exterior",
+         "Same-side interior",
+         "Vertical"
+        ],
+        "correct": 0
+       },
+       "label": "c",
+       "prompt": "Angles 3 and 7"
+      }
+     ],
+     "a": [
+      "a) Angles 3 and 5 are between m and n, both on the left side of t: same-side interior.",
+      "b) Angles 5 and 8 are at the same crossing, opposite each other across the point: vertical.",
+      "c) Angles 3 and 7 are both in the lower left corner of their crossing: corresponding.",
+      "Answers: same-side interior, vertical, corresponding"
+     ],
+     "skill": "par-names",
+     "hint": "Vertical angles share one crossing point. The other pairs use one angle from each crossing.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Parallel lines m and n cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    },
+    {
+     "id": "q5",
+     "q": "Lines m and n are parallel, and line t crosses them. Use the figure. Type the number of the angle.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "8"
+       },
+       "label": "a",
+       "prompt": "Which angle corresponds to angle 4?",
+       "tests": {
+        "ok": [
+         "8"
+        ],
+        "no": [
+         "5",
+         "6",
+         "1"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "6"
+       },
+       "label": "b",
+       "prompt": "Which angle is the alternate interior partner of angle 3?",
+       "tests": {
+        "ok": [
+         "6"
+        ],
+        "no": [
+         "5",
+         "7",
+         "2"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3"
+       },
+       "label": "c",
+       "prompt": "Which angle is vertical to angle 2?",
+       "tests": {
+        "ok": [
+         "3"
+        ],
+        "no": [
+         "1",
+         "4",
+         "6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) Angle 4 is in the lower right corner at the top crossing. The lower right corner at the bottom crossing is angle 8.",
+      "b) Angle 3 is between the lines, left of t. Its alternate interior partner is between the lines, right of t, at the other crossing: angle 6.",
+      "c) Angle 2 is upper right at the top crossing. Across the point from it is the lower left angle, angle 3.",
+      "Answers: a) 8, b) 6, c) 3"
+     ],
+     "skill": "par-names",
+     "hint": "Find the corner the angle sits in. Then look at the other crossing, or across the same point, as the pair name tells you.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Parallel lines m and n cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    },
+    {
+     "id": "q6",
+     "q": "Lines m and n are parallel, and line t crosses them. Use the figure. Type the angle numbers with commas between them.",
+     "parts": [
+      {
+       "ans": {
+        "type": "list",
+        "values": [
+         "3",
+         "4",
+         "5",
+         "6"
+        ]
+       },
+       "label": "a",
+       "prompt": "List the four interior angles (the angles between m and n).",
+       "tests": {
+        "ok": [
+         "3, 4, 5, 6",
+         "6,5,4,3",
+         "3 4 5 6"
+        ],
+        "no": [
+         "1, 2, 7, 8",
+         "1, 2, 3, 4",
+         "3, 4, 7, 8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "list",
+        "values": [
+         "1",
+         "2",
+         "7",
+         "8"
+        ]
+       },
+       "label": "b",
+       "prompt": "List the four exterior angles (the angles outside m and n).",
+       "tests": {
+        "ok": [
+         "1, 2, 7, 8",
+         "8,7,2,1"
+        ],
+        "no": [
+         "3, 4, 5, 6",
+         "5, 6, 7, 8",
+         "1, 2, 5, 6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) Angles 3 and 4 open downward from line m, toward n. Angles 5 and 6 open upward from line n, toward m. All four are between the lines.",
+      "b) Angles 1 and 2 open upward from m, away from n. Angles 7 and 8 open downward from n, away from m.",
+      "Answers: a) 3, 4, 5, 6 and b) 1, 2, 7, 8"
+     ],
+     "skill": "par-names",
+     "hint": "Interior means inside, between the two lines. Look at which way each angle opens.",
+     "min": 2,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Parallel lines m and n cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    },
+    {
+     "id": "q7",
+     "q": "Lines m and n are parallel, and line t crosses them. Use the figure. Type the number of the angle.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "6"
+       },
+       "label": "a",
+       "prompt": "Which angle is the same-side interior partner of angle 4?",
+       "tests": {
+        "ok": [
+         "6"
+        ],
+        "no": [
+         "5",
+         "8",
+         "3"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "2"
+       },
+       "label": "b",
+       "prompt": "Which angle is the alternate exterior partner of angle 7?",
+       "tests": {
+        "ok": [
+         "2"
+        ],
+        "no": [
+         "1",
+         "3",
+         "8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "5"
+       },
+       "label": "c",
+       "prompt": "Which angle corresponds to angle 1?",
+       "tests": {
+        "ok": [
+         "5"
+        ],
+        "no": [
+         "4",
+         "8",
+         "6"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) Angle 4 is between the lines, right of t. The other interior angle right of t is angle 6.",
+      "b) Angle 7 is outside the lines, left of t, at the bottom crossing. The exterior angle right of t at the top crossing is angle 2.",
+      "c) Angle 1 is upper left at the top crossing. Upper left at the bottom crossing is angle 5.",
+      "Answers: a) 6, b) 2, c) 5"
+     ],
+     "skill": "par-names",
+     "hint": "Same side means the same side of line t. Alternate means opposite sides of line t.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Parallel lines m and n cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    }
+   ],
+   "learn": {
+    "title": "Eight angles, five pair names",
+    "where": [
+     "When one road crosses two parallel streets, it makes 4 angles at each crossing. Builders, map makers and surveyors use names for the pairs so they can say exactly which two angles they mean.",
+     "The line that crosses is called a transversal. Each name tells you where the two angles sit."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 250\" width=\"360\" height=\"250\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"250\" rx=\"12\" fill=\"#FFFFFF\"/><path d=\"M163.6,82.0 L193.6,82.0 A30,30 0 0 0 153.4,53.8 Z\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.6\"/><path d=\"M196.4,172.0 L226.4,172.0 A30,30 0 0 0 186.1,143.8 Z\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.6\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"220.3\" y1=\"237.8\" x2=\"139.7\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"125.7\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text></svg>",
+      "alt": "Parallel lines m and n cut by a line t that leans left. The upper right angle at each crossing is shaded blue.",
+      "text": "Corresponding angles sit in the same corner at each crossing. Here both are in the upper right corner."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 250\" width=\"360\" height=\"250\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"250\" rx=\"12\" fill=\"#FFFFFF\"/><path d=\"M163.6,82.0 L173.9,110.2 A30,30 0 0 0 193.6,82.0 Z\" fill=\"#FBE0CF\" stroke=\"#B9470B\" stroke-width=\"1.6\"/><path d=\"M196.4,172.0 L186.1,143.8 A30,30 0 0 0 166.4,172.0 Z\" fill=\"#FBE0CF\" stroke=\"#B9470B\" stroke-width=\"1.6\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"220.3\" y1=\"237.8\" x2=\"139.7\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"125.7\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text></svg>",
+      "alt": "The same lines. The lower right angle at the top crossing and the upper left angle at the bottom crossing are shaded orange. Both are between the lines.",
+      "text": "Alternate interior angles are between the two lines, on opposite sides of t. Together they trace a Z shape (here a backward Z, because t leans left)."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 250\" width=\"360\" height=\"250\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"250\" rx=\"12\" fill=\"#FFFFFF\"/><path d=\"M163.6,82.0 L153.4,53.8 A30,30 0 0 0 133.6,82.0 Z\" fill=\"#D7EEDF\" stroke=\"#1F7546\" stroke-width=\"1.6\"/><path d=\"M196.4,172.0 L206.6,200.2 A30,30 0 0 0 226.4,172.0 Z\" fill=\"#D7EEDF\" stroke=\"#1F7546\" stroke-width=\"1.6\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"220.3\" y1=\"237.8\" x2=\"139.7\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"125.7\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text></svg>",
+      "alt": "The same lines. The upper left angle at the top crossing and the lower right angle at the bottom crossing are shaded green. Both are outside the lines.",
+      "text": "Alternate exterior angles are outside the two lines, on opposite sides of t."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 250\" width=\"360\" height=\"250\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"250\" rx=\"12\" fill=\"#FFFFFF\"/><path d=\"M163.6,82.0 L173.9,110.2 A30,30 0 0 0 193.6,82.0 Z\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.6\"/><path d=\"M196.4,172.0 L226.4,172.0 A30,30 0 0 0 186.1,143.8 Z\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.6\"/><path d=\"M196.4,172.0 L166.4,172.0 A30,30 0 0 0 206.6,200.2 Z\" fill=\"#D7EEDF\" stroke=\"#1F7546\" stroke-width=\"1.6\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"220.3\" y1=\"237.8\" x2=\"139.7\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"125.7\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text></svg>",
+      "alt": "The same lines. Two angles between the lines on the right of t are shaded blue. At the bottom crossing, the lower left angle is shaded green, across the point from the upper right blue angle.",
+      "text": "Same-side interior angles (blue) are between the lines, on the same side of t, in a C shape. Vertical angles (blue and green at the bottom) are across one crossing point from each other."
+     }
+    ],
+    "example": {
+     "q": "A street map shows two parallel streets and an avenue crossing both. At the first street you stand in the corner above the street, left of the avenue. Which corner at the second street corresponds to yours?",
+     "steps": [
+      "Corresponding angles are in the same corner at each crossing.",
+      "Your corner is above the street and left of the avenue.",
+      "At the second street, take the corner above the street and left of the avenue."
+     ],
+     "answer": "The corner above the second street, left of the avenue"
+    }
+   }
+  },
+  {
+   "name": "Part C: Equal angles",
+   "desc": "When the lines are parallel, corresponding angles, alternate interior angles, alternate exterior angles and vertical angles have the same measure.",
+   "items": [
+    {
+     "id": "q8",
+     "q": "Lines m and n are parallel. Find the angles marked a and b.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "58"
+       },
+       "label": "a",
+       "prompt": "a =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "58",
+         "58°",
+         "58 degrees"
+        ],
+        "no": [
+         "122",
+         "32",
+         "68"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "58"
+       },
+       "label": "b",
+       "prompt": "b =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "58",
+         "58°",
+         "58 degrees"
+        ],
+        "no": [
+         "122",
+         "32",
+         "238"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) a is in the same corner as the 58° angle, at the other crossing. Corresponding angles are equal, so a = 58°.",
+      "b) b and the 58° angle are outside the lines, on opposite sides of t. Alternate exterior angles are equal, so b = 58°.",
+      "Answers: a = 58°, b = 58°"
+     ],
+     "skill": "par-equal",
+     "hint": "Name the pair first. Corresponding and alternate angles at parallel lines have the same measure.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"152.2\" y1=\"274.5\" x2=\"307.8\" y2=\"25.5\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"321.8\" y=\"31.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M282.4,95.0 A18,18 0 0 0 273.9,79.7\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"311.6\" y=\"74.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">58°</text><path d=\"M213.6,205.0 A18,18 0 0 0 205.2,189.7\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"242.9\" y=\"184.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">a</text><path d=\"M177.6,205.0 A18,18 0 0 0 186.1,220.3\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"148.4\" y=\"237.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">b</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. 58° at the top crossing, upper right; a at the bottom crossing, upper right; b at the bottom crossing, lower left."
+      }
+     ]
+    },
+    {
+     "id": "q9",
+     "q": "Lines m and n are parallel. Find the angles marked x and y.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "72"
+       },
+       "label": "a",
+       "prompt": "x =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "72",
+         "72°",
+         "72 degrees"
+        ],
+        "no": [
+         "108",
+         "18",
+         "144"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "72"
+       },
+       "label": "b",
+       "prompt": "y =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "72",
+         "72°",
+         "72 degrees"
+        ],
+        "no": [
+         "108",
+         "18",
+         "144"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) The 72° angle and x are between the lines, on opposite sides of t. Alternate interior angles are equal, so x = 72°.",
+      "b) The 72° angle and y are both in the lower left corner of their crossing. Corresponding angles are equal, so y = 72°.",
+      "Answers: x = 72°, y = 72°"
+     ],
+     "skill": "par-equal",
+     "hint": "Look for a Z shape for alternate interior angles and the same corner for corresponding angles.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"186.8\" y1=\"283.0\" x2=\"273.2\" y2=\"17.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"287.2\" y=\"23.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M229.9,95.0 A18,18 0 0 0 242.3,112.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"215.5\" y=\"124.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">72°</text><path d=\"M230.1,205.0 A18,18 0 0 0 217.7,187.9\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"244.5\" y=\"187.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">x</text><path d=\"M194.1,205.0 A18,18 0 0 0 206.6,222.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"179.8\" y=\"234.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">y</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. 72° at the top crossing, lower left; x at the bottom crossing, upper right; y at the bottom crossing, lower left."
+      }
+     ]
+    },
+    {
+     "id": "q10",
+     "q": "Lines m and n are parallel. Find the angles marked p and q.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "64"
+       },
+       "label": "a",
+       "prompt": "p =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "64",
+         "64°",
+         "64 degrees"
+        ],
+        "no": [
+         "116",
+         "26",
+         "296"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "64"
+       },
+       "label": "b",
+       "prompt": "q =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "64",
+         "64°",
+         "64 degrees"
+        ],
+        "no": [
+         "116",
+         "26",
+         "154"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) The 64° angle is upper left at the top crossing, outside the lines. p is lower right at the bottom crossing, outside the lines, on the other side of t.",
+      "Alternate exterior angles are equal, so p = 64°.",
+      "b) q is upper left at the bottom crossing, the same corner as the 64° angle. Corresponding angles are equal, so q = 64°.",
+      "Answers: p = 64°, q = 64°"
+     ],
+     "skill": "par-equal",
+     "hint": "This transversal leans the other way. Find the corner of each angle before you decide.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"292.8\" y1=\"278.7\" x2=\"167.2\" y2=\"21.3\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"153.2\" y=\"27.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M191.8,71.6 A26,26 0 0 0 177.2,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"169.3\" y=\"79.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">64°</text><path d=\"M268.2,228.4 A26,26 0 0 0 282.8,205.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"290.7\" y=\"232.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">p</text><path d=\"M245.4,181.6 A26,26 0 0 0 230.8,205.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"222.9\" y=\"189.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">q</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. 64° at the top crossing, upper left; p at the bottom crossing, lower right; q at the bottom crossing, upper left."
+      }
+     ]
+    },
+    {
+     "id": "q11",
+     "q": "Lines m and n are parallel, and t is not perpendicular to them. Use the figure. Pick every angle that has the same measure as angle 6.",
+     "parts": [
+      {
+       "ans": {
+        "type": "multi",
+        "options": [
+         "Angle 1",
+         "Angle 2",
+         "Angle 3",
+         "Angle 4",
+         "Angle 7",
+         "Angle 8"
+        ],
+        "correct": [
+         1,
+         2,
+         4
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Angle 2 corresponds to angle 6, so they are equal.",
+      "Angle 3 is the alternate interior partner of angle 6, so they are equal.",
+      "Angle 7 is vertical to angle 6, so they are equal.",
+      "Angles 1, 4 and 8 each make a straight line with an angle equal to angle 6, so they are not equal to it unless t is perpendicular to the lines.",
+      "Answer: angles 2, 3 and 7"
+     ],
+     "skill": "par-equal",
+     "hint": "Use three pair names: corresponding, alternate interior, and vertical. Each gives one angle.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Parallel lines m and n cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    },
+    {
+     "id": "q12",
+     "q": "Two straight railroad tracks are parallel. A straight road crosses both tracks. Where the road crosses the first track, one of the four angles measures 49°.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "49"
+       },
+       "label": "a",
+       "prompt": "What is the angle in the same position where the road crosses the second track?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "49",
+         "49°",
+         "49 degrees"
+        ],
+        "no": [
+         "131",
+         "41",
+         "98"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "4"
+       },
+       "label": "b",
+       "prompt": "Of the eight angles at the two crossings, how many measure 49°?",
+       "tests": {
+        "ok": [
+         "4"
+        ],
+        "no": [
+         "2",
+         "1",
+         "8"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) The same position at the other crossing is the corresponding angle. Corresponding angles are equal, so it measures 49°.",
+      "b) At the first crossing, the 49° angle and the angle vertical to it both measure 49°. That is 2 angles.",
+      "The second crossing has the same 2 angles in the same corners. 2 + 2 = 4",
+      "Answers: a) 49°, b) 4 angles"
+     ],
+     "skill": "par-equal",
+     "hint": "Draw it. Two parallel lines and one line across them. Mark the 49° angle and every angle equal to it.",
+     "min": 4
+    },
+    {
+     "id": "q13",
+     "q": "Lines m and n are parallel. Find the angles marked a, b and c, then name a pair.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "66"
+       },
+       "label": "a",
+       "prompt": "a =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "66",
+         "66°",
+         "66 degrees"
+        ],
+        "no": [
+         "114",
+         "24",
+         "132"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "66"
+       },
+       "label": "b",
+       "prompt": "b =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "66",
+         "66°",
+         "66 degrees"
+        ],
+        "no": [
+         "114",
+         "24",
+         "132"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "66"
+       },
+       "label": "c",
+       "prompt": "c =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "66",
+         "66°",
+         "66 degrees"
+        ],
+        "no": [
+         "114",
+         "24",
+         "132"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Corresponding",
+         "Alternate interior",
+         "Alternate exterior",
+         "Same-side interior",
+         "Vertical"
+        ],
+        "correct": 1
+       },
+       "label": "d",
+       "prompt": "What kind of pair are angles b and c?"
+      }
+     ],
+     "a": [
+      "a) a and the 66° angle are outside the lines, on opposite sides of t: alternate exterior, so a = 66°.",
+      "b) b and the 66° angle are at the same crossing, opposite each other: vertical, so b = 66°.",
+      "c) c is in the same corner as the 66° angle at the other crossing: corresponding, so c = 66°.",
+      "d) b and c are between the lines, on opposite sides of t: alternate interior.",
+      "Answers: a = 66°, b = 66°, c = 66°, d) alternate interior"
+     ],
+     "skill": "par-equal",
+     "hint": "Work from the 66° angle to each letter, one pair at a time.",
+     "min": 4,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"172.2\" y1=\"279.9\" x2=\"287.8\" y2=\"20.1\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"301.8\" y=\"26.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M272.5,95.0 A18,18 0 0 0 261.8,78.6\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"288.0\" y=\"79.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">66°</text><path d=\"M187.5,205.0 A18,18 0 0 0 198.2,221.4\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"172.0\" y=\"232.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">a</text><path d=\"M236.5,95.0 A18,18 0 0 0 247.2,111.4\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"220.9\" y=\"122.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">b</text><path d=\"M223.5,205.0 A18,18 0 0 0 212.8,188.6\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"239.1\" y=\"189.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">c</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. 66° at the top crossing, upper right; a at the bottom crossing, lower left; b at the top crossing, lower left; c at the bottom crossing, upper right."
+      }
+     ]
+    }
+   ],
+   "learn": {
+    "title": "Parallel lines copy the angles",
+    "where": [
+     "Because the lines are parallel, the transversal crosses both of them at the same slant. Carpenters use this to cut every stair post at the same angle, and city planners use it to make every crossing on an avenue match."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"139.7\" y1=\"237.8\" x2=\"220.3\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"234.3\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M214.4,82.0 A18,18 0 0 0 202.5,65.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"225.9\" y=\"67.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><path d=\"M181.6,172.0 A18,18 0 0 0 169.8,155.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"193.1\" y=\"157.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">Corresponding: 70° and 70°</text></svg>",
+      "alt": "Two parallel lines m and n cut by a line t. 70° at the top crossing, upper right; 70° at the bottom crossing, upper right.",
+      "text": "The top crossing and the bottom crossing look the same. So corresponding angles are equal."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"139.7\" y1=\"237.8\" x2=\"220.3\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"234.3\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M178.4,82.0 A18,18 0 0 0 190.2,98.9\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"166.9\" y=\"108.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><path d=\"M181.6,172.0 A18,18 0 0 0 169.8,155.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"193.1\" y=\"157.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">Alternate interior: 70° and 70°</text></svg>",
+      "alt": "Two parallel lines m and n cut by a line t. 70° at the top crossing, lower left; 70° at the bottom crossing, upper right.",
+      "text": "Alternate interior angles are equal too. So are alternate exterior angles, and vertical angles at one crossing."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"139.7\" y1=\"237.8\" x2=\"220.3\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"234.3\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M214.4,82.0 A18,18 0 0 0 202.5,65.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"225.9\" y=\"67.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><path d=\"M178.4,82.0 A18,18 0 0 0 190.2,98.9\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"166.9\" y=\"108.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><path d=\"M181.6,172.0 A18,18 0 0 0 169.8,155.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"193.1\" y=\"157.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><path d=\"M145.6,172.0 A18,18 0 0 0 157.5,188.9\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"134.1\" y=\"198.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">Four angles of 70°</text></svg>",
+      "alt": "Two parallel lines m and n cut by a line t. 70° at the top crossing, upper right; 70° at the top crossing, lower left; 70° at the bottom crossing, upper right; 70° at the bottom crossing, lower left.",
+      "text": "Put it together: these four angles all have the same measure, two at each crossing."
+     }
+    ],
+    "example": {
+     "q": "The rungs of a ladder are parallel, and one side rail crosses them. The rail meets the bottom rung at 40° in the upper right corner. What angle does it make with the next rung, in the upper right corner?",
+     "steps": [
+      "The two angles are in the same corner at each rung: corresponding angles.",
+      "The rungs are parallel, so corresponding angles are equal.",
+      "The angle at the next rung is 40°."
+     ],
+     "answer": "40°"
+    }
+   }
+  },
+  {
+   "name": "Part D: Angles that add to 180°",
+   "desc": "Two angles that make a straight line add to 180°. Same-side interior angles also add to 180°.",
+   "items": [
+    {
+     "id": "q14",
+     "q": "Lines m and n are parallel, and a line t crosses them.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "always have the same measure",
+         "always add to 180°",
+         "always add to 90°"
+        ],
+        "correct": 1
+       },
+       "label": "a",
+       "prompt": "Same-side interior angles"
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "90"
+       },
+       "label": "b",
+       "prompt": "If one same-side interior angle is 90°, what does its partner measure?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "90",
+         "90°",
+         "90 degrees"
+        ],
+        "no": [
+         "180",
+         "0",
+         "45"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "always have the same measure",
+         "always add to 180°",
+         "always add to 90°"
+        ],
+        "correct": 0
+       },
+       "label": "c",
+       "prompt": "Alternate interior angles"
+      }
+     ],
+     "a": [
+      "a) Same-side interior angles always add to 180°.",
+      "b) 180 − 90 = 90, so the partner is also 90°. This only happens when t is perpendicular to the lines.",
+      "c) Alternate interior angles always have the same measure.",
+      "Answers: a) add to 180°, b) 90°, c) same measure"
+     ],
+     "skill": "par-supp",
+     "hint": "Picture the C shape for same-side interior angles and the Z shape for alternate interior angles.",
+     "min": 2
+    },
+    {
+     "id": "q15",
+     "q": "Lines m and n are parallel. Find the angles marked a and b.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "106"
+       },
+       "label": "a",
+       "prompt": "a =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "106",
+         "106°",
+         "106 degrees"
+        ],
+        "no": [
+         "74",
+         "16",
+         "286"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "106"
+       },
+       "label": "b",
+       "prompt": "b =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "106",
+         "106°",
+         "106 degrees"
+        ],
+        "no": [
+         "74",
+         "16",
+         "286"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) a and the 74° angle sit side by side on line m and make a straight line.",
+      "a = 180 − 74 = 106, so a = 106°",
+      "b) b is in the same corner as a, at the other crossing. Corresponding angles are equal, so b = 106°.",
+      "Answers: a = 106°, b = 106°"
+     ],
+     "skill": "par-supp",
+     "hint": "Two angles side by side on a straight line add to 180°.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"191.6\" y1=\"283.8\" x2=\"268.4\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"282.4\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M263.8,95.0 A18,18 0 0 0 250.7,77.7\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"277.7\" y=\"76.9\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">74°</text><path d=\"M252.9,70.0 A26,26 0 0 0 219.8,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"221.7\" y=\"69.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">a</text><path d=\"M221.4,180.0 A26,26 0 0 0 188.2,205.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"190.2\" y=\"179.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">b</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. 74° at the top crossing, upper right; a at the top crossing, upper left; b at the bottom crossing, upper left."
+      }
+     ]
+    },
+    {
+     "id": "q16",
+     "q": "Lines m and n are parallel. Find the angles marked x and y.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "119"
+       },
+       "label": "a",
+       "prompt": "x =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "119",
+         "119°",
+         "119 degrees"
+        ],
+        "no": [
+         "61",
+         "29",
+         "299"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "119"
+       },
+       "label": "b",
+       "prompt": "y =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "119",
+         "119°",
+         "119 degrees"
+        ],
+        "no": [
+         "61",
+         "29",
+         "299"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) The 61° angle and x are between the lines, both on the left side of t: same-side interior angles. They add to 180°.",
+      "x = 180 − 61 = 119, so x = 119°",
+      "b) y is across the crossing point from x, so they are vertical angles and y = 119°.",
+      "Answers: x = 119°, y = 119°"
+     ],
+     "skill": "par-supp",
+     "hint": "Which pair are the 61° angle and x? Is that kind of pair equal, or does it add to 180°?",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"159.8\" y1=\"276.7\" x2=\"300.2\" y2=\"23.3\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"314.2\" y=\"29.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M242.5,95.0 A18,18 0 0 0 251.8,110.7\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"226.0\" y=\"121.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">61°</text><path d=\"M212.1,182.3 A26,26 0 0 0 173.5,205.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"179.2\" y=\"176.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">x</text><path d=\"M186.9,227.7 A26,26 0 0 0 225.5,205.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"219.8\" y=\"245.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">y</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. 61° at the top crossing, lower left; x at the bottom crossing, upper left; y at the bottom crossing, lower right."
+      }
+     ]
+    },
+    {
+     "id": "q17",
+     "q": "Lines m and n are parallel. Find the angles marked a and b.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "52"
+       },
+       "label": "a",
+       "prompt": "a =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "52",
+         "52°",
+         "52 degrees"
+        ],
+        "no": [
+         "128",
+         "38",
+         "232"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "128"
+       },
+       "label": "b",
+       "prompt": "b =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "128",
+         "128°",
+         "128 degrees"
+        ],
+        "no": [
+         "52",
+         "38",
+         "232"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) The 128° angle and a are between the lines, both on the right side of t: same-side interior angles add to 180°.",
+      "a = 180 − 128 = 52, so a = 52°",
+      "b) b is upper right at the top crossing, the same corner as the 128° angle at the bottom crossing. Corresponding angles are equal, so b = 128°.",
+      "Answers: a = 52°, b = 128°"
+     ],
+     "skill": "par-supp",
+     "hint": "One letter is equal to 128°, and the other adds with 128° to make 180°. Decide which is which first.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"323.5\" y1=\"269.6\" x2=\"136.5\" y2=\"30.4\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"122.5\" y=\"36.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M291.0,205.0 A18,18 0 0 0 261.9,190.8\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"292.3\" y=\"171.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">128°</text><path d=\"M203.0,115.5 A26,26 0 0 0 213.0,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"235.6\" y=\"124.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">a</text><path d=\"M205.0,95.0 A18,18 0 0 0 175.9,80.8\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"204.6\" y=\"65.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">b</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. 128° at the bottom crossing, upper right; a at the top crossing, lower right; b at the top crossing, upper right."
+      }
+     ]
+    },
+    {
+     "id": "q18",
+     "q": "Lines m and n are parallel, and t is not perpendicular to them. Use the figure. Pick every angle that adds with angle 4 to make 180°.",
+     "parts": [
+      {
+       "ans": {
+        "type": "multi",
+        "options": [
+         "Angle 1",
+         "Angle 2",
+         "Angle 3",
+         "Angle 6",
+         "Angle 7",
+         "Angle 8"
+        ],
+        "correct": [
+         1,
+         2,
+         3,
+         4
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Angle 4 makes a straight line with angle 2 and with angle 3, so each of them adds with angle 4 to make 180°.",
+      "Angle 6 is the same-side interior partner of angle 4, so they add to 180°.",
+      "Angle 7 has the same measure as angle 6 (vertical angles), so it also adds with angle 4 to make 180°.",
+      "Angles 1 and 8 have the same measure as angle 4, so they do not add with it to make 180°.",
+      "Answer: angles 2, 3, 6 and 7"
+     ],
+     "skill": "par-supp",
+     "hint": "Every angle in the figure is one of two sizes. Which angles are the other size from angle 4?",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Parallel lines m and n cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    }
+   ],
+   "learn": {
+    "title": "The other size: what is left of 180°",
+    "where": [
+     "A straight line is a half turn, 180°. Two angles that share a vertex and make a straight line add to 180°. Framers use this when a brace meets a beam."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"251.7\" y1=\"229.3\" x2=\"108.3\" y2=\"24.7\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"94.3\" y=\"30.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M166.5,82.0 A18,18 0 0 0 138.2,67.3\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"167.0\" y=\"52.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">125°</text><path d=\"M133.6,60.7 A26,26 0 0 0 122.5,82.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"104.1\" y=\"64.9\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">55°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">125° + 55° = 180°</text></svg>",
+      "alt": "Two parallel lines m and n cut by a line t. 125° at the top crossing, upper right; 55° at the top crossing, upper left.",
+      "text": "At one crossing, two angles side by side on line m make a straight line. So they add to 180°."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"251.7\" y1=\"229.3\" x2=\"108.3\" y2=\"24.7\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"94.3\" y=\"30.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M163.4,103.3 A26,26 0 0 0 174.5,82.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"192.8\" y=\"111.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">55°</text><path d=\"M229.5,172.0 A18,18 0 0 0 201.2,157.3\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"230.0\" y=\"142.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">125°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">Same-side interior: 55° + 125° = 180°</text></svg>",
+      "alt": "Two parallel lines m and n cut by a line t. 55° at the top crossing, lower right; 125° at the bottom crossing, upper right.",
+      "text": "Same-side interior angles are not equal. Together they make 180°, so one is 180° minus the other."
+     }
+    ],
+    "example": {
+     "q": "Two parallel shelves are held by a slanted bar. Between the shelves, on the right of the bar, the angle at the top shelf is 35°. What is the angle at the bottom shelf, between the shelves on the same side?",
+     "steps": [
+      "The two angles are between the shelves, on the same side of the bar: same-side interior angles.",
+      "Same-side interior angles add to 180°.",
+      "180 − 35 = 145"
+     ],
+     "answer": "145°"
+    }
+   }
+  },
+  {
+   "name": "Part E: Find every angle",
+   "desc": "Every angle at two parallel lines is one of two sizes, and the two sizes add to 180°. Find one angle at a time.",
+   "items": [
+    {
+     "id": "q19",
+     "q": "Lines m and n are parallel. Find the angles marked a, b and c.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "53"
+       },
+       "label": "a",
+       "prompt": "a =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "53",
+         "53°",
+         "53 degrees"
+        ],
+        "no": [
+         "127",
+         "37",
+         "233"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "127"
+       },
+       "label": "b",
+       "prompt": "b =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "127",
+         "127°",
+         "127 degrees"
+        ],
+        "no": [
+         "53",
+         "37",
+         "233"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "53"
+       },
+       "label": "c",
+       "prompt": "c =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "53",
+         "53°",
+         "53 degrees"
+        ],
+        "no": [
+         "127",
+         "37",
+         "233"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "The 127° angle is lower right at the bottom crossing.",
+      "a) a is upper right at the top crossing. It makes a straight line with the lower right angle at its own crossing, which equals 127° (corresponding). 180 − 127 = 53, so a = 53°",
+      "b) b is upper left at the top crossing. It and the 127° angle are alternate exterior angles, so b = 127°.",
+      "c) c is lower left at the bottom crossing and makes a straight line with the 127° angle. 180 − 127 = 53, so c = 53°",
+      "Answers: a = 53°, b = 127°, c = 53°"
+     ],
+     "skill": "par-all",
+     "hint": "Each letter is either 127° or 180° minus 127°. Find a pair name or a straight line that links it to 127°.",
+     "min": 4,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"139.2\" y1=\"270.5\" x2=\"320.8\" y2=\"29.5\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"334.8\" y=\"35.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M172.9,225.8 A26,26 0 0 0 214.6,205.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"208.2\" y=\"250.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">127°</text><path d=\"M289.4,95.0 A18,18 0 0 0 282.3,80.6\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"319.8\" y=\"76.9\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">a</text><path d=\"M287.1,74.2 A26,26 0 0 0 245.4,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"253.6\" y=\"65.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">b</text><path d=\"M170.6,205.0 A18,18 0 0 0 177.7,219.4\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"140.2\" y=\"235.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">c</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. 127° at the bottom crossing, lower right; a at the top crossing, upper right; b at the top crossing, upper left; c at the bottom crossing, lower left."
+      }
+     ]
+    },
+    {
+     "id": "q20",
+     "q": "Lines m and n are parallel. In the figure, angle 1 measures 136°. Find the other seven angles.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "44"
+       },
+       "label": "a",
+       "prompt": "Angle 2",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "44",
+         "44°",
+         "44 degrees"
+        ],
+        "no": [
+         "136",
+         "46",
+         "224"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "44"
+       },
+       "label": "b",
+       "prompt": "Angle 3",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "44",
+         "44°",
+         "44 degrees"
+        ],
+        "no": [
+         "136",
+         "46",
+         "224"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "136"
+       },
+       "label": "c",
+       "prompt": "Angle 4",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "136",
+         "136°",
+         "136 degrees"
+        ],
+        "no": [
+         "44",
+         "46",
+         "224"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "136"
+       },
+       "label": "d",
+       "prompt": "Angle 5",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "136",
+         "136°",
+         "136 degrees"
+        ],
+        "no": [
+         "44",
+         "46",
+         "224"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "44"
+       },
+       "label": "e",
+       "prompt": "Angle 6",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "44",
+         "44°",
+         "44 degrees"
+        ],
+        "no": [
+         "136",
+         "46",
+         "224"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "44"
+       },
+       "label": "f",
+       "prompt": "Angle 7",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "44",
+         "44°",
+         "44 degrees"
+        ],
+        "no": [
+         "136",
+         "46",
+         "224"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "136"
+       },
+       "label": "g",
+       "prompt": "Angle 8",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "136",
+         "136°",
+         "136 degrees"
+        ],
+        "no": [
+         "44",
+         "46",
+         "224"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Angle 2 makes a straight line with angle 1: 180 − 136 = 44, so angle 2 = 44°",
+      "Angle 4 is vertical to angle 1, so angle 4 = 136°. Angle 3 is vertical to angle 2, so angle 3 = 44°.",
+      "The bottom crossing matches the top crossing corner by corner (corresponding angles).",
+      "Angle 5 = 136°, angle 6 = 44°, angle 7 = 44°, angle 8 = 136°",
+      "Answers: 2 is 44°, 3 is 44°, 4 is 136°, 5 is 136°, 6 is 44°, 7 is 44°, 8 is 136°"
+     ],
+     "skill": "par-all",
+     "hint": "Find the angle next to angle 1 on the straight line first. After that, every angle is one of two sizes.",
+     "min": 5,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"114.1\" y1=\"262.0\" x2=\"345.9\" y2=\"38.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"359.9\" y=\"44.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"272.0\" y=\"63.9\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"337.0\" y=\"80.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"236.9\" y=\"121.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"301.9\" y=\"138.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"158.1\" y=\"173.9\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"223.1\" y=\"190.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"123.0\" y=\"231.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"188.0\" y=\"248.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Parallel lines m and n cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    },
+    {
+     "id": "q21",
+     "q": "Lines m and n are parallel. In the figure, angle 5 measures 118°.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "118"
+       },
+       "label": "a",
+       "prompt": "Angle 4",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "118",
+         "118°",
+         "118 degrees"
+        ],
+        "no": [
+         "62",
+         "28",
+         "242"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "62"
+       },
+       "label": "b",
+       "prompt": "Angle 3",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "62",
+         "62°",
+         "62 degrees"
+        ],
+        "no": [
+         "118",
+         "28",
+         "242"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "180"
+       },
+       "label": "c",
+       "prompt": "What is angle 3 + angle 5?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "180",
+         "180°"
+        ],
+        "no": [
+         "236",
+         "124",
+         "90"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) Angles 4 and 5 are alternate interior angles, so angle 4 = 118°.",
+      "b) Angles 3 and 5 are same-side interior angles, so they add to 180°: 180 − 118 = 62, so angle 3 = 62°",
+      "c) 62 + 118 = 180",
+      "Answers: a) 118°, b) 62°, c) 180°"
+     ],
+     "skill": "par-all",
+     "hint": "Name the pair that links each angle to angle 5.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Parallel lines m and n cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    },
+    {
+     "id": "q22",
+     "q": "Lines m and n are parallel. Find the angles marked a and b. Then compare.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "121"
+       },
+       "label": "a",
+       "prompt": "a =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "121",
+         "121°",
+         "121 degrees"
+        ],
+        "no": [
+         "59",
+         "31",
+         "239"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "121"
+       },
+       "label": "b",
+       "prompt": "b =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "121",
+         "121°",
+         "121 degrees"
+        ],
+        "no": [
+         "59",
+         "31",
+         "239"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "62"
+       },
+       "label": "c",
+       "prompt": "How many degrees greater is a than the 59° angle?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "62",
+         "62°"
+        ],
+        "no": [
+         "121",
+         "59",
+         "180"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "The 59° angle is upper right at the bottom crossing.",
+      "a) At the bottom crossing, the upper left angle makes a straight line with 59°: 180 − 59 = 121. a is in the same corner at the top crossing, so a = 121°",
+      "b) b is vertical to a, so b = 121°.",
+      "c) 121 − 59 = 62",
+      "Answers: a = 121°, b = 121°, c) 62°"
+     ],
+     "skill": "par-all",
+     "hint": "Move the 59° angle up to the top crossing first: the same corner has the same measure.",
+     "min": 4,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"154.7\" y1=\"275.3\" x2=\"305.3\" y2=\"24.7\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"319.3\" y=\"30.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M215.0,205.0 A18,18 0 0 0 206.2,189.6\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"244.0\" y=\"184.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">59°</text><path d=\"M276.4,72.7 A26,26 0 0 0 237.0,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"243.4\" y=\"66.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">a</text><path d=\"M249.7,117.3 A26,26 0 0 0 289.0,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"282.7\" y=\"135.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">b</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. 59° at the bottom crossing, upper right; a at the top crossing, upper left; b at the top crossing, lower right."
+      }
+     ]
+    }
+   ],
+   "learn": {
+    "title": "Only two sizes",
+    "where": [
+     "Once you know one angle, you know all eight. Surveyors measure one angle at a crossing and work out the rest on paper."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><path d=\"M196.4,82.0 L206.6,53.8 A30,30 0 0 0 166.4,82.0 Z\" fill=\"#FBE0CF\" stroke=\"#B9470B\" stroke-width=\"1.6\"/><path d=\"M196.4,82.0 L226.4,82.0 A30,30 0 0 0 206.6,53.8 Z\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.6\"/><path d=\"M196.4,82.0 L166.4,82.0 A30,30 0 0 0 186.1,110.2 Z\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.6\"/><path d=\"M196.4,82.0 L186.1,110.2 A30,30 0 0 0 226.4,82.0 Z\" fill=\"#FBE0CF\" stroke=\"#B9470B\" stroke-width=\"1.6\"/><path d=\"M163.6,172.0 L173.9,143.8 A30,30 0 0 0 133.6,172.0 Z\" fill=\"#FBE0CF\" stroke=\"#B9470B\" stroke-width=\"1.6\"/><path d=\"M163.6,172.0 L193.6,172.0 A30,30 0 0 0 173.9,143.8 Z\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.6\"/><path d=\"M163.6,172.0 L133.6,172.0 A30,30 0 0 0 153.4,200.2 Z\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"1.6\"/><path d=\"M163.6,172.0 L153.4,200.2 A30,30 0 0 0 193.6,172.0 Z\" fill=\"#FBE0CF\" stroke=\"#B9470B\" stroke-width=\"1.6\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"139.7\" y1=\"237.8\" x2=\"220.3\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"234.3\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"167.7\" y=\"47.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">110°</text><text x=\"237.3\" y=\"59.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><text x=\"155.4\" y=\"116.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><text x=\"225.1\" y=\"129.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">110°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">70° + 110° = 180°</text></svg>",
+      "alt": "Parallel lines m and n cut by t. At each crossing two angles are shaded blue and two are shaded orange. At the top crossing the blue angles are labeled 70 degrees and the orange angles 110 degrees.",
+      "text": "The blue angles are all 70°, and the orange angles are all 110°, at both crossings. The two sizes add to 180°."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 252\" width=\"360\" height=\"252\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"252\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"20\" y=\"12\" width=\"320\" height=\"52\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"38.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"44.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">1</text><text x=\"78.0\" y=\"44.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Find one angle you know</text><path d=\"M180.0,68 v12 m-7,-7 l7,8 l7,-8\" stroke=\"#B9470B\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"20\" y=\"86\" width=\"320\" height=\"66\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"119.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"125.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">2</text><text x=\"78.0\" y=\"114.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Same size: corresponding,</text><text x=\"78.0\" y=\"136.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">alternate or vertical</text><path d=\"M180.0,156 v12 m-7,-7 l7,8 l7,-8\" stroke=\"#B9470B\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"20\" y=\"174\" width=\"320\" height=\"66\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"207.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"213.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">3</text><text x=\"78.0\" y=\"202.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Other size: 180° minus the</text><text x=\"78.0\" y=\"224.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">angle</text></svg>",
+      "alt": "Three steps: find one angle you know; the angles that match it are the same size; the others are 180 degrees minus it.",
+      "text": "Work from the angle you know. Ask for each new angle: same size, or the other size?"
+     }
+    ],
+    "example": {
+     "q": "Two parallel streets are crossed by an avenue. One corner measures 75°. What two sizes do all eight angles have?",
+     "steps": [
+      "Every angle is one of two sizes.",
+      "One size is 75°.",
+      "The other size is 180 − 75 = 105."
+     ],
+     "answer": "75° and 105°"
+    }
+   }
+  },
+  {
+   "name": "Part F: Equations with angles",
+   "desc": "Decide first: are the two angles equal, or do they add to 180°? Then write one equation and solve it. Check by putting x back in.",
+   "items": [
+    {
+     "id": "q23",
+     "q": "Lines m and n are parallel. Find x, then find y.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "21"
+       },
+       "label": "a",
+       "prompt": "x =",
+       "tests": {
+        "ok": [
+         "21",
+         "x = 21",
+         "x=21"
+        ],
+        "no": [
+         "31",
+         "78",
+         "7"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "102"
+       },
+       "label": "b",
+       "prompt": "y =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "102",
+         "102°",
+         "102 degrees"
+        ],
+        "no": [
+         "78",
+         "12",
+         "21"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "(3x + 15)° and 78° are corresponding angles, so they are equal.",
+      "3x + 15 = 78",
+      "3x = 78 − 15 = 63",
+      "x = 63 ÷ 3 = 21",
+      "y makes a straight line with the (3x + 15)° angle, which is 78°: 180 − 78 = 102",
+      "Answers: x = 21, y = 102°"
+     ],
+     "skill": "par-eq",
+     "hint": "Decide first: are the two angles equal, or do they add to 180°? Then write one equation.",
+     "min": 4,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"201.3\" y1=\"285.2\" x2=\"258.7\" y2=\"14.8\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"272.7\" y=\"20.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M259.7,95.0 A18,18 0 0 0 245.4,77.4\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"305.4\" y=\"49.4\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(3x + 15)°</text><path d=\"M236.3,205.0 A18,18 0 0 0 222.1,187.4\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"249.4\" y=\"185.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">78°</text><path d=\"M247.1,69.6 A26,26 0 0 0 215.7,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"216.5\" y=\"69.9\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">y</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. (3x + 15)° at the top crossing, upper right; 78° at the bottom crossing, upper right; y at the top crossing, upper left."
+      }
+     ]
+    },
+    {
+     "id": "q24",
+     "q": "Lines m and n are parallel. Find x, then find the angle marked z.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "31"
+       },
+       "label": "a",
+       "prompt": "x =",
+       "tests": {
+        "ok": [
+         "31",
+         "x = 31"
+        ],
+        "no": [
+         "27",
+         "29",
+         "47"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "64"
+       },
+       "label": "b",
+       "prompt": "z =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "64",
+         "64°",
+         "64 degrees"
+        ],
+        "no": [
+         "116",
+         "26",
+         "31"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "(4x − 8)° and 116° are alternate interior angles, so they are equal.",
+      "4x − 8 = 116",
+      "4x = 116 + 8 = 124",
+      "x = 124 ÷ 4 = 31",
+      "z makes a straight line with the (4x − 8)° angle, which is 116°: 180 − 116 = 64",
+      "Answers: x = 31, z = 64°"
+     ],
+     "skill": "par-eq",
+     "hint": "Look for the Z shape. To undo subtracting 8, add 8 to both sides.",
+     "min": 4,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"167.2\" y1=\"278.7\" x2=\"292.8\" y2=\"21.3\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"306.8\" y=\"27.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M245.4,118.4 A26,26 0 0 0 282.8,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"308.7\" y=\"135.3\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(4x − 8)°</text><path d=\"M214.6,181.6 A26,26 0 0 0 177.2,205.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"179.9\" y=\"173.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">116°</text><path d=\"M274.8,95.0 A18,18 0 0 0 264.7,78.8\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"290.7\" y=\"79.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">z</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. (4x − 8)° at the top crossing, lower right; 116° at the bottom crossing, upper left; z at the top crossing, upper right."
+      }
+     ]
+    },
+    {
+     "id": "q25",
+     "q": "Lines m and n are parallel. Find x, then the measure of the angle marked (2x + 6)°.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "33"
+       },
+       "label": "a",
+       "prompt": "x =",
+       "tests": {
+        "ok": [
+         "33",
+         "x = 33"
+        ],
+        "no": [
+         "51",
+         "87",
+         "36"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "72"
+       },
+       "label": "b",
+       "prompt": "The angle marked (2x + 6)° measures",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "72",
+         "72°",
+         "72 degrees"
+        ],
+        "no": [
+         "108",
+         "33",
+         "66"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "(2x + 6)° and 108° are same-side interior angles, so they add to 180°.",
+      "2x + 6 + 108 = 180",
+      "2x + 114 = 180, so 2x = 180 − 114 = 66",
+      "x = 66 ÷ 2 = 33",
+      "2 × 33 + 6 = 72",
+      "Answers: x = 33, the angle is 72°"
+     ],
+     "skill": "par-eq",
+     "hint": "Which pair are these two angles? Do they have the same measure, or do they add to 180°?",
+     "min": 5,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"186.8\" y1=\"283.0\" x2=\"273.2\" y2=\"17.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"287.2\" y=\"23.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M229.9,95.0 A18,18 0 0 0 242.3,112.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"190.4\" y=\"115.7\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(2x + 6)°</text><path d=\"M220.2,180.3 A26,26 0 0 0 186.1,205.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"186.3\" y=\"175.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">108°</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. (2x + 6)° at the top crossing, lower left; 108° at the bottom crossing, upper left."
+      }
+     ]
+    },
+    {
+     "id": "q26",
+     "q": "Lines m and n are parallel. Find x, then the angle marked y.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "52"
+       },
+       "label": "a",
+       "prompt": "x =",
+       "tests": {
+        "ok": [
+         "52",
+         "x = 52"
+        ],
+        "no": [
+         "78",
+         "26",
+         "60"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "76"
+       },
+       "label": "b",
+       "prompt": "y =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "76",
+         "76°",
+         "76 degrees"
+        ],
+        "no": [
+         "104",
+         "52",
+         "128"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "(x + 24)° and 2x° sit side by side on line m, so they add to 180°.",
+      "x + 24 + 2x = 180",
+      "3x + 24 = 180",
+      "3x = 180 − 24 = 156",
+      "x = 156 ÷ 3 = 52",
+      "The upper right angle at m is 52 + 24 = 76",
+      "y and that angle are alternate exterior angles, so y = 76°.",
+      "Answers: x = 52, y = 76°"
+     ],
+     "skill": "par-eq",
+     "hint": "The two angles with x make a straight line. After you find x, find the upper right angle and match it to y.",
+     "min": 6,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"196.4\" y1=\"284.6\" x2=\"263.6\" y2=\"15.4\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"277.6\" y=\"21.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M261.7,95.0 A18,18 0 0 0 248.1,77.5\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"303.6\" y=\"54.2\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(x + 24)°</text><path d=\"M250.0,69.8 A26,26 0 0 0 217.7,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"219.1\" y=\"69.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">2x°</text><path d=\"M198.3,205.0 A18,18 0 0 0 211.9,222.5\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"184.8\" y=\"235.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">y</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. (x + 24)° at the top crossing, upper right; 2x° at the top crossing, upper left; y at the bottom crossing, lower left."
+      }
+     ]
+    },
+    {
+     "id": "q27",
+     "q": "Lines m and n are parallel. Find x, then the measure of each marked angle.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "21"
+       },
+       "label": "a",
+       "prompt": "x =",
+       "tests": {
+        "ok": [
+         "21",
+         "x = 21"
+        ],
+        "no": [
+         "9",
+         "18",
+         "63"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "83"
+       },
+       "label": "b",
+       "prompt": "Each marked angle measures",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "83",
+         "83°",
+         "83 degrees"
+        ],
+        "no": [
+         "97",
+         "21",
+         "63"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "(5x − 22)° and (2x + 41)° are alternate exterior angles, so they are equal.",
+      "5x − 22 = 2x + 41",
+      "Take 2x from both sides: 3x − 22 = 41",
+      "Add 22 to both sides: 3x = 63",
+      "x = 63 ÷ 3 = 21",
+      "5 × 21 − 22 = 83 and 2 × 21 + 41 = 83",
+      "Answers: x = 21, each angle is 83°"
+     ],
+     "skill": "par-eq",
+     "hint": "Which pair are these? Once you write the equation, take 2x from both sides so the x term stays positive.",
+     "min": 6,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"213.3\" y1=\"286.4\" x2=\"246.7\" y2=\"13.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"260.7\" y=\"19.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M254.8,95.0 A18,18 0 0 0 238.9,77.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"298.2\" y=\"46.7\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(5x − 22)°</text><path d=\"M205.2,205.0 A18,18 0 0 0 221.1,222.9\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"161.8\" y=\"265.3\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(2x + 41)°</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. (5x − 22)° at the top crossing, upper right; (2x + 41)° at the bottom crossing, lower left."
+      }
+     ]
+    },
+    {
+     "id": "q28",
+     "q": "Lines m and n are parallel. Find x, then the measure of the larger marked angle.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "31"
+       },
+       "label": "a",
+       "prompt": "x =",
+       "tests": {
+        "ok": [
+         "31",
+         "x = 31"
+        ],
+        "no": [
+         "11",
+         "41",
+         "36"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "100"
+       },
+       "label": "b",
+       "prompt": "The larger marked angle measures",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "100",
+         "100°",
+         "100 degrees"
+        ],
+        "no": [
+         "80",
+         "31",
+         "180"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "(3x + 7)° and (2x + 18)° are same-side interior angles, so they add to 180°.",
+      "3x + 7 + 2x + 18 = 180",
+      "Combine: 5x + 25 = 180",
+      "5x = 180 − 25 = 155",
+      "x = 155 ÷ 5 = 31",
+      "3 × 31 + 7 = 100 and 2 × 31 + 18 = 80",
+      "Answers: x = 31, the larger angle is 100°"
+     ],
+     "skill": "par-eq",
+     "hint": "Which pair are these? After you write the equation, combine the x terms and combine the plain numbers.",
+     "min": 6,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"206.1\" y1=\"285.8\" x2=\"253.9\" y2=\"14.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"267.9\" y=\"20.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M235.2,120.6 A26,26 0 0 0 265.7,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"300.8\" y=\"124.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(3x + 7)°</text><path d=\"M238.3,205.0 A18,18 0 0 0 223.4,187.3\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"303.1\" y=\"180.3\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(2x + 18)°</text></svg>",
+       "alt": "Two parallel lines m and n cut by a line t. (3x + 7)° at the top crossing, lower right; (2x + 18)° at the bottom crossing, upper right."
+      }
+     ]
+    }
+   ],
+   "learn": {
+    "title": "Equal or 180? Then solve",
+    "where": [
+     "Puzzle and contest writers sometimes give an angle as an expression, such as (2x + 10)°. The pair name tells you which equation to write, and the same steps solve equations in science and engineering."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"139.7\" y1=\"237.8\" x2=\"220.3\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"234.3\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M214.4,82.0 A18,18 0 0 0 202.5,65.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"260.3\" y=\"43.3\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(2x + 10)°</text><path d=\"M181.6,172.0 A18,18 0 0 0 169.8,155.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"193.1\" y=\"157.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">2x + 10 = 70, so x = 30</text></svg>",
+      "alt": "Two parallel lines m and n cut by a line t. (2x + 10)° at the top crossing, upper right; 70° at the bottom crossing, upper right.",
+      "text": "These are corresponding angles, so they are equal: 2x + 10 = 70. Take 10 from both sides: 2x = 60. Then x = 60 ÷ 2 = 30."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"241.0\" y1=\"232.6\" x2=\"119.0\" y2=\"21.4\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"105.0\" y=\"27.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M136.0,82.0 A18,18 0 0 0 163.0,97.6\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"118.0\" y=\"119.4\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(3x + 15)°</text><path d=\"M193.0,149.5 A26,26 0 0 0 180.0,172.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"164.8\" y=\"162.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">60°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">(3x + 15) + 60 = 180</text></svg>",
+      "alt": "Two parallel lines m and n cut by a line t. (3x + 15)° at the top crossing, lower left; 60° at the bottom crossing, upper left.",
+      "text": "These are same-side interior angles, so they add to 180: 3x + 15 + 60 = 180, so 3x + 75 = 180 and 3x = 105. Then x = 105 ÷ 3 = 35. Check: 3 × 35 + 15 = 120, and 120 + 60 = 180."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 252\" width=\"360\" height=\"252\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"252\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"20\" y=\"12\" width=\"320\" height=\"52\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"38.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"44.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">1</text><text x=\"78.0\" y=\"44.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Name the pair</text><path d=\"M180.0,68 v12 m-7,-7 l7,8 l7,-8\" stroke=\"#B9470B\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"20\" y=\"86\" width=\"320\" height=\"66\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"119.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"125.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">2</text><text x=\"78.0\" y=\"114.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Equal: set them equal. Other</text><text x=\"78.0\" y=\"136.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">size: add them to make 180</text><path d=\"M180.0,156 v12 m-7,-7 l7,8 l7,-8\" stroke=\"#B9470B\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"20\" y=\"174\" width=\"320\" height=\"66\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"207.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"213.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">3</text><text x=\"78.0\" y=\"202.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Solve for x, then put x back</text><text x=\"78.0\" y=\"224.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">in</text></svg>",
+      "alt": "Three steps: name the pair; if the angles are equal set them equal, otherwise add them to make 180; solve for x and put x back in.",
+      "text": "The last step matters. A question may ask for x, or for the angle, or both."
+     }
+    ],
+    "example": {
+     "q": "Alternate interior angles at parallel rails measure (4x + 5)° and (2x + 45)°. Find x and the angle.",
+     "steps": [
+      "Alternate interior angles are equal: 4x + 5 = 2x + 45",
+      "Take 2x from both sides: 2x + 5 = 45",
+      "2x = 40, so x = 40 ÷ 2 = 20",
+      "4 × 20 + 5 = 85 and 2 × 20 + 45 = 85"
+     ],
+     "answer": "x = 20, and each angle is 85°"
+    }
+   }
+  },
+  {
+   "name": "Part G: Are the lines parallel?",
+   "desc": "Lines are parallel only when corresponding angles are equal, alternate angles are equal, or same-side interior angles add to 180°. Trust the numbers, not the picture.",
+   "items": [
+    {
+     "id": "q29",
+     "q": "In the figure, lines m and n are not marked parallel. Use the angle measures to decide.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Yes, m and n are parallel",
+         "No, m and n are not parallel"
+        ],
+        "correct": 0
+       },
+       "label": "a",
+       "prompt": "Angle 2 measures 67° and angle 6 measures 67°."
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Yes, m and n are parallel",
+         "No, m and n are not parallel"
+        ],
+        "correct": 1
+       },
+       "label": "b",
+       "prompt": "Angle 3 measures 67° and angle 6 measures 69°."
+      }
+     ],
+     "a": [
+      "a) Angles 2 and 6 are corresponding angles, and they are equal. Equal corresponding angles mean the lines are parallel.",
+      "b) Angles 3 and 6 are alternate interior angles. 67° and 69° are not equal, so the lines are not parallel.",
+      "Answers: a) yes, b) no"
+     ],
+     "skill": "par-test",
+     "hint": "Name the pair. For parallel lines, that pair would have to be equal.",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Two lines m and n, not marked parallel, cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    },
+    {
+     "id": "q30",
+     "q": "In the figure, lines m and n are not marked parallel. Use the angle measures to decide.",
+     "parts": [
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Yes, m and n are parallel",
+         "No, m and n are not parallel"
+        ],
+        "correct": 0
+       },
+       "label": "a",
+       "prompt": "Angle 4 measures 113° and angle 6 measures 67°."
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Yes, m and n are parallel",
+         "No, m and n are not parallel"
+        ],
+        "correct": 1
+       },
+       "label": "b",
+       "prompt": "Angle 4 measures 113° and angle 6 measures 113°."
+      }
+     ],
+     "a": [
+      "Angles 4 and 6 are same-side interior angles. For parallel lines they must add to 180°.",
+      "a) 113 + 67 = 180, so the lines are parallel.",
+      "b) 113 + 113 = 226, which is not 180, so the lines are not parallel.",
+      "Answers: a) yes, b) no"
+     ],
+     "skill": "par-test",
+     "hint": "Same-side interior angles at parallel lines are not equal. What must they add to?",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><line x1=\"162.3\" y1=\"277.4\" x2=\"297.7\" y2=\"22.6\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"311.7\" y=\"28.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><text x=\"238.6\" y=\"66.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">1</text><text x=\"293.5\" y=\"80.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">2</text><text x=\"225.0\" y=\"121.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">3</text><text x=\"279.8\" y=\"135.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">4</text><text x=\"180.2\" y=\"176.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">5</text><text x=\"235.0\" y=\"190.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">6</text><text x=\"166.5\" y=\"231.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">7</text><text x=\"221.4\" y=\"245.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#1B6884\" font-weight=\"700\">8</text></svg>",
+       "alt": "Two lines m and n, not marked parallel, cut by a line t. The angles are numbered 1 to 8: at the top crossing 1 upper left, 2 upper right, 3 lower left, 4 lower right; at the bottom crossing 5 upper left, 6 upper right, 7 lower left, 8 lower right."
+      }
+     ]
+    },
+    {
+     "id": "q31",
+     "q": "Lines m and n look almost parallel. Use the angle measures, not the picture, to decide.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "3"
+       },
+       "label": "a",
+       "prompt": "How many degrees apart are the two marked angles?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "3",
+         "3°"
+        ],
+        "no": [
+         "123",
+         "60",
+         "63"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Yes, m and n are parallel",
+         "No, m and n are not parallel"
+        ],
+        "correct": 1
+       },
+       "label": "b",
+       "prompt": "Are m and n parallel?"
+      }
+     ],
+     "a": [
+      "The two marked angles are both in the upper right corner of their crossing: corresponding angles.",
+      "a) 63 − 60 = 3",
+      "b) Corresponding angles must be equal for the lines to be parallel. They differ by 3°, so m and n are not parallel.",
+      "Answers: a) 3°, b) no"
+     ],
+     "skill": "par-test",
+     "hint": "Which pair are the two marked angles? What must be true about that pair for parallel lines?",
+     "min": 3,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"215.5\" x2=\"430.0\" y2=\"194.5\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"200.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><line x1=\"164.0\" y1=\"279.6\" x2=\"295.3\" y2=\"21.9\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"309.3\" y=\"27.9\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M276.0,95.0 A18,18 0 0 0 266.2,79.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"292.1\" y=\"80.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">63°</text><path d=\"M219.2,205.6 A18,18 0 0 0 209.4,190.5\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"234.8\" y=\"190.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">60°</text></svg>",
+       "alt": "Two lines that are not marked parallel, m and n cut by a line t. 63° at the top crossing, upper right; 60° at the bottom crossing, upper right."
+      }
+     ]
+    },
+    {
+     "id": "q32",
+     "q": "Lines m and n are not marked parallel. For which value of x are they parallel?",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "18"
+       },
+       "label": "a",
+       "prompt": "x =",
+       "tests": {
+        "ok": [
+         "18",
+         "x = 18"
+        ],
+        "no": [
+         "36",
+         "9",
+         "4"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "68"
+       },
+       "label": "b",
+       "prompt": "Then each marked angle measures",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "68",
+         "68°",
+         "68 degrees"
+        ],
+        "no": [
+         "112",
+         "18",
+         "36"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "The two marked angles are alternate interior angles. The lines are parallel when these angles are equal.",
+      "3x + 14 = 5x − 22",
+      "Take 3x from both sides: 14 = 2x − 22",
+      "Add 22 to both sides: 36 = 2x",
+      "x = 36 ÷ 2 = 18",
+      "3 × 18 + 14 = 68 and 5 × 18 − 22 = 68",
+      "Answers: x = 18, each angle is 68°"
+     ],
+     "skill": "par-test",
+     "hint": "Which pair are the two marked angles, and what must be true of that pair for parallel lines? When you solve, take 3x from both sides so the x term stays positive.",
+     "min": 6,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><line x1=\"177.1\" y1=\"281.0\" x2=\"282.9\" y2=\"19.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"296.9\" y=\"25.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M234.2,95.0 A18,18 0 0 0 245.5,111.7\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"188.2\" y=\"120.9\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(3x + 14)°</text><path d=\"M225.8,205.0 A18,18 0 0 0 214.5,188.3\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"275.8\" y=\"183.1\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\">(5x − 22)°</text></svg>",
+       "alt": "Two lines that are not marked parallel, m and n cut by a line t. (3x + 14)° at the top crossing, lower left; (5x − 22)° at the bottom crossing, upper right."
+      }
+     ]
+    }
+   ],
+   "learn": {
+    "title": "Run the facts backward",
+    "where": [
+     "Nobody can tell by looking whether two boards are exactly parallel. One way to check is to measure angles where a third board crosses them: if corresponding angles match, the boards are parallel."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"161.5\" x2=\"330.0\" y2=\"182.5\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"188.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><line x1=\"140.1\" y1=\"236.7\" x2=\"220.3\" y2=\"16.2\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"234.3\" y=\"22.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M214.4,82.0 A18,18 0 0 0 202.5,65.1\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"225.9\" y=\"67.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><path d=\"M182.0,172.1 A18,18 0 0 0 170.2,154.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"194.2\" y=\"157.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">74°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">70° and 74°: not parallel</text></svg>",
+      "alt": "Two lines that are not marked parallel, m and n cut by a line t. 70° at the top crossing, upper right; 74° at the bottom crossing, upper right.",
+      "text": "These lines look close to parallel, but the corresponding angles are 70° and 74°. They are not equal, so the lines are not parallel."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 272\" width=\"360\" height=\"272\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"272\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><line x1=\"149.8\" y1=\"239.6\" x2=\"210.2\" y2=\"14.4\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"224.2\" y=\"20.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M210.1,82.0 A18,18 0 0 0 196.7,64.6\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"220.6\" y=\"66.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">75°</text><path d=\"M185.9,172.0 A18,18 0 0 0 172.6,154.6\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"196.5\" y=\"156.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">75°</text><text x=\"180.0\" y=\"258.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">75° and 75°: parallel</text></svg>",
+      "alt": "Two lines that are not marked parallel, m and n cut by a line t. 75° at the top crossing, upper right; 75° at the bottom crossing, upper right.",
+      "text": "Here the corresponding angles match, so the lines are parallel. Equal alternate angles, or same-side interior angles that add to 180°, prove it too."
+     }
+    ],
+    "example": {
+     "q": "Two fence rails are crossed by a slanted post. Between the rails, on the left of the post, the angles are 103° at the top rail and 77° at the bottom rail. Are the rails parallel?",
+     "steps": [
+      "The two angles are same-side interior angles.",
+      "For parallel rails they must add to 180°.",
+      "103 + 77 = 180, so the rails are parallel."
+     ],
+     "answer": "Yes, the rails are parallel"
+    }
+   }
+  },
+  {
+   "name": "Part H: Real jobs",
+   "desc": "Real decisions. Find the angles, compare them with what is needed, then decide and give your reason.",
+   "items": [
+    {
+     "id": "q33",
+     "q": "Parking stripes in a lot must be parallel. The straight curb meets every stripe. A painter measures the angle where each stripe meets the curb, in the same corner each time. Stripe 1 meets the curb at 63°. Stripe 2 meets it at 58°. Stripe 3 meets it at 64°. The owner keeps a stripe if its angle is within 2° of stripe 1's angle. Otherwise the stripe is repainted.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "5"
+       },
+       "label": "a",
+       "prompt": "How many degrees is stripe 2 off from stripe 1?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "5",
+         "5°"
+        ],
+        "no": [
+         "121",
+         "6",
+         "4"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1"
+       },
+       "label": "b",
+       "prompt": "How many degrees is stripe 3 off from stripe 1?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "1",
+         "1°"
+        ],
+        "no": [
+         "127",
+         "6",
+         "2"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Only stripe 2",
+         "Only stripe 3",
+         "Both stripes 2 and 3",
+         "Neither stripe"
+        ],
+        "correct": 0
+       },
+       "label": "c",
+       "prompt": "Which stripes must be repainted?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "The angles are corresponding angles, so parallel stripes would all meet the curb at 63°. Stripe 2 is 63 − 58 = 5° off, more than 2°, so it is repainted. Stripe 3 is 64 − 63 = 1° off, within 2°, so it stays.",
+        "look": "Names both differences (5° and 1°) and compares each with the 2° limit."
+       },
+       "label": "d",
+       "prompt": "Give your reason. Use the numbers."
+      }
+     ],
+     "a": [
+      "The angles are measured in the same corner at each crossing, so they are corresponding angles. Parallel stripes would all match stripe 1.",
+      "a) 63 − 58 = 5",
+      "b) 64 − 63 = 1",
+      "c) 5° is more than 2°, so stripe 2 is repainted. 1° is within 2°, so stripe 3 stays.",
+      "Decision: repaint only stripe 2."
+     ],
+     "skill": "par-apply",
+     "hint": "Compare each stripe's angle with 63°. Is the difference more than 2°?",
+     "real": true,
+     "min": 8
+    },
+    {
+     "id": "q34",
+     "q": "A carpenter builds a shelf unit with two parallel shelves, m and n, and a straight diagonal brace t. The brace meets shelf m at 122° in the upper left corner, as shown. Corner wedges glue into a corner only when their angle matches it exactly, and the carpenter has only 58° wedges.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "122"
+       },
+       "label": "a",
+       "prompt": "What is the angle marked a (below shelf n, right of the brace)?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "122",
+         "122°",
+         "122 degrees"
+        ],
+        "no": [
+         "58",
+         "32",
+         "238"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "58"
+       },
+       "label": "b",
+       "prompt": "What is the angle marked b (above shelf n, right of the brace)?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "58",
+         "58°",
+         "58 degrees"
+        ],
+        "no": [
+         "122",
+         "32",
+         "238"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Above shelf n, right of the brace",
+         "Below shelf n, right of the brace",
+         "Above shelf n, left of the brace"
+        ],
+        "correct": 0
+       },
+       "label": "c",
+       "prompt": "Which of these corners at shelf n can take a 58° wedge?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "The angle below shelf n on the right is 122°, the same as the upper left angle at m (alternate exterior). The angle above shelf n on the right is 180 − 122 = 58°. Only the 58° corner matches the wedge, so it goes above shelf n, right of the brace.",
+        "look": "Names 122° for corner a and 58° for corner b, and picks the corner that matches 58°."
+       },
+       "label": "d",
+       "prompt": "Give your reason. Use the numbers."
+      }
+     ],
+     "a": [
+      "a) a and the 122° angle are outside the shelves, on opposite sides of the brace: alternate exterior angles, so a = 122°.",
+      "b) b makes a straight line with a on shelf n: 180 − 122 = 58, so b = 58°",
+      "c) Of the three corners listed, only the one above shelf n, right of the brace, measures 58°. The corner below n on the right is a = 122°, and the corner above n on the left is 122° (it corresponds to the 122° corner at m).",
+      "Decision: the 58° wedge goes above shelf n, right of the brace, because that corner measures 58°."
+     ],
+     "skill": "par-apply",
+     "hint": "Find the measure of each corner at shelf n first. Only a 58° corner takes the wedge.",
+     "real": true,
+     "min": 9,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,101.0 64.0,95.0 56.0,89.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,211.0 64.0,205.0 56.0,199.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"152.2\" y1=\"274.5\" x2=\"307.8\" y2=\"25.5\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"321.8\" y=\"31.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M278.1,73.0 A26,26 0 0 0 238.4,95.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"243.0\" y=\"62.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">122°</text><path d=\"M181.9,227.0 A26,26 0 0 0 221.6,205.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"215.0\" y=\"246.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">a</text><path d=\"M213.6,205.0 A18,18 0 0 0 205.2,189.7\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"242.9\" y=\"184.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">b</text></svg>",
+       "alt": "Two parallel shelves m and n cut by a diagonal brace t that leans to the right. 122° at the top crossing, upper left. At the bottom crossing, a is lower right and b is upper right."
+      }
+     ]
+    },
+    {
+     "id": "q35",
+     "q": "Main Street is line m. A railroad track, line t, crosses it at 71° in the upper right corner, as shown. The city wants a new road, line n, parallel to Main Street. Two plans are drawn.\nPlan A: the track meets the new road at 109° in the lower right corner.\nPlan B: the track meets the new road at 71° in the upper left corner.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "109"
+       },
+       "label": "a",
+       "prompt": "If n is parallel to m, what should the lower right corner at n measure?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "109",
+         "109°",
+         "109 degrees"
+        ],
+        "no": [
+         "71",
+         "19",
+         "251"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "109"
+       },
+       "label": "b",
+       "prompt": "If n is parallel to m, what should the upper left corner at n measure?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "109",
+         "109°",
+         "109 degrees"
+        ],
+        "no": [
+         "71",
+         "19",
+         "251"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Plan A",
+         "Plan B",
+         "Both plans",
+         "Neither plan"
+        ],
+        "correct": 0
+       },
+       "label": "c",
+       "prompt": "Which plan makes the new road parallel to Main Street?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "If n is parallel to m, the lower right corner at n is 180 − 71 = 109° and the upper left corner at n is also 109°. Plan A has 109° in the lower right corner, so it is parallel. Plan B has 71° in the upper left corner, not 109°, so it is not parallel.",
+        "look": "Names 109° for both corners and checks each plan against it."
+       },
+       "label": "d",
+       "prompt": "Give your reason. Use the numbers."
+      }
+     ],
+     "a": [
+      "a) The lower right corner at n makes a straight line with the upper right corner at n, which would be 71° (corresponding to m).",
+      "180 − 71 = 109, so the lower right corner should be 109°",
+      "b) The upper left corner at n corresponds to the upper left corner at m, which makes a straight line with 71°: 109°.",
+      "c) Plan A gives 109° in the lower right corner: a match. Plan B gives 71° in the upper left corner where 109° is needed: no match.",
+      "Decision: Plan A, because only its angle matches the 109° a parallel road needs."
+     ],
+     "skill": "par-apply",
+     "hint": "Work out what each corner at n must measure for parallel lines, then check each plan.",
+     "real": true,
+     "min": 10,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30.0\" y1=\"95.0\" x2=\"430.0\" y2=\"95.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"101.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"205.0\" x2=\"430.0\" y2=\"205.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"211.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><line x1=\"184.4\" y1=\"282.5\" x2=\"275.6\" y2=\"17.5\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"289.6\" y=\"23.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M266.9,95.0 A18,18 0 0 0 254.8,78.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"281.5\" y=\"77.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">71°</text></svg>",
+       "alt": "Main Street m and a planned road n, not marked parallel, cut by a railroad track t. 71° at the top crossing, upper right."
+      }
+     ]
+    }
+   ],
+   "learn": {
+    "title": "Measure, compare, decide",
+    "where": [
+     "People who paint lines, build shelves and plan roads all check angles before they decide. A small error at one crossing shows the lines are not parallel."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 266\" width=\"360\" height=\"266\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"266\" rx=\"12\" fill=\"#FFFFFF\"/><rect x=\"20\" y=\"12\" width=\"320\" height=\"66\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"45.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"51.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">1</text><text x=\"78.0\" y=\"40.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Find each angle you need on</text><text x=\"78.0\" y=\"62.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">paper</text><path d=\"M180.0,82 v12 m-7,-7 l7,8 l7,-8\" stroke=\"#B9470B\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"20\" y=\"100\" width=\"320\" height=\"66\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"133.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"139.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">2</text><text x=\"78.0\" y=\"128.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Compare it with what the</text><text x=\"78.0\" y=\"150.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">job needs</text><path d=\"M180.0,170 v12 m-7,-7 l7,8 l7,-8\" stroke=\"#B9470B\" stroke-width=\"2.5\" fill=\"none\"/><rect x=\"20\" y=\"188\" width=\"320\" height=\"66\" rx=\"12\" fill=\"#D3E8F0\" stroke=\"#1B6884\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"221.0\" r=\"16\" fill=\"#1B6884\"/><text x=\"50.0\" y=\"227.0\" font-size=\"18.0\" text-anchor=\"middle\" fill=\"#FFFFFF\" font-weight=\"700\">3</text><text x=\"78.0\" y=\"216.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">Decide, and give the reason</text><text x=\"78.0\" y=\"238.0\" font-size=\"17.0\" text-anchor=\"start\" fill=\"#13212B\" font-weight=\"700\">with the numbers</text></svg>",
+      "alt": "Three steps: find each angle you need on paper, compare it with what the job needs, decide and give the reason with the numbers.",
+      "text": "Each job below follows these three steps."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 250\" width=\"360\" height=\"250\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"250\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30.0\" y1=\"82.0\" x2=\"330.0\" y2=\"82.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"88.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><line x1=\"30.0\" y1=\"172.0\" x2=\"330.0\" y2=\"172.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"178.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,88.0 64.0,82.0 56.0,76.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"56.0,178.0 64.0,172.0 56.0,166.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"72.7\" y1=\"217.0\" x2=\"287.3\" y2=\"37.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"301.3\" y=\"43.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text><path d=\"M253.5,65.3 A26,26 0 0 0 207.6,82.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"219.9\" y=\"50.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">140°</text><path d=\"M106.5,188.7 A26,26 0 0 0 152.4,172.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"138.7\" y=\"211.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">w</text></svg>",
+      "alt": "A window frame: parallel bars m and n cut by a slanted brace t that leans right. 140° at the top crossing, upper left. w at the bottom crossing, lower right.",
+      "text": "A window has parallel top and bottom bars and a slanted brace. The angle marked w and the 140° angle are alternate exterior angles."
+     }
+    ],
+    "example": {
+     "q": "A window maker has a 40° wedge and a 140° wedge. In the picture, which one fits the corner marked w?",
+     "steps": [
+      "w and the 140° angle are outside the bars, on opposite sides of the brace: alternate exterior angles.",
+      "Alternate exterior angles at parallel lines are equal, so w is 140°.",
+      "The 140° wedge matches; the 40° wedge does not."
+     ],
+     "answer": "The 140° wedge"
+    },
+    "apply": true
+   }
+  },
+  {
+   "name": "Part I: Stretch",
+   "desc": "Competition-style problems. A helper line drawn parallel to the others often cracks the problem open.",
+   "items": [
+    {
+     "id": "q36",
+     "q": "Lines m and n are parallel. Point P is between them. Find the angle marked x at P.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "84"
+       },
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "84",
+         "84°"
+        ],
+        "no": [
+         "96",
+         "8",
+         "142",
+         "38"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Draw a line through P parallel to m and n. It splits x into two parts.",
+      "The top part and the 38° angle are alternate interior angles (m and the new line), so the top part is 38°.",
+      "The bottom part and the 46° angle are alternate interior angles (n and the new line), so the bottom part is 46°.",
+      "38 + 46 = 84",
+      "Answer: x = 84°"
+     ],
+     "skill": "par-all",
+     "hint": "Draw a third line through P, parallel to m and n. Look for two Z shapes.",
+     "stretch": true,
+     "min": 7,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 280\" width=\"460\" height=\"280\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30\" y1=\"55\" x2=\"430\" y2=\"55\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"61.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><polyline points=\"56.0,61.0 64.0,55.0 56.0,49.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"30\" y1=\"225\" x2=\"430\" y2=\"225\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"231.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,231.0 64.0,225.0 56.0,219.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"204.0,55.0 312.8,140.0 230.7,225.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2.5\"/><circle cx=\"204.0\" cy=\"55.0\" r=\"3.5\" fill=\"#13212B\"/><circle cx=\"230.7\" cy=\"225.0\" r=\"3.5\" fill=\"#13212B\"/><circle cx=\"312.8\" cy=\"140.0\" r=\"3.5\" fill=\"#13212B\"/><path d=\"M222.9,69.8 A24,24 0 0 0 228.0,55.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><path d=\"M254.7,225.0 A24,24 0 0 0 247.4,207.7\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><path d=\"M295.5,126.5 A22,22 0 0 0 297.5,155.8\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"202.0\" y=\"45.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">A</text><text x=\"228.7\" y=\"247.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">B</text><text x=\"322.8\" y=\"145.0\" font-size=\"15\" text-anchor=\"start\" fill=\"#4E5F69\" font-weight=\"700\">P</text><text x=\"266.4\" y=\"82.5\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">38°</text><text x=\"278.6\" y=\"210.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">46°</text><text x=\"266.9\" y=\"149.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">x</text></svg>",
+       "alt": "Two parallel lines m and n. Point A is on m, point B is on n, and point P is between the lines to the right. Segments AP and BP make an angle at P that opens to the left. angle at A: 38°; angle at B: 46°; angle at P: x."
+      }
+     ]
+    },
+    {
+     "id": "q37",
+     "q": "Lines m and n are parallel. The angle at P measures 96°. Find the angle marked y.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "53"
+       },
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "53",
+         "53°"
+        ],
+        "no": [
+         "139",
+         "43",
+         "84",
+         "127"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "A line through P parallel to m and n splits the 96° angle into two parts.",
+      "The top part equals the 43° angle at A (alternate interior angles).",
+      "The bottom part is 96 − 43 = 53, and it equals y (alternate interior angles).",
+      "Answer: y = 53°"
+     ],
+     "skill": "par-all",
+     "hint": "Draw a line through P parallel to m and n. How does it split the 96° angle?",
+     "stretch": true,
+     "min": 7,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 280\" width=\"460\" height=\"280\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30\" y1=\"55\" x2=\"430\" y2=\"55\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"61.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><polyline points=\"56.0,61.0 64.0,55.0 56.0,49.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"30\" y1=\"225\" x2=\"430\" y2=\"225\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"231.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,231.0 64.0,225.0 56.0,219.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"221.6,55.0 312.8,140.0 248.7,225.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2.5\"/><circle cx=\"221.6\" cy=\"55.0\" r=\"3.5\" fill=\"#13212B\"/><circle cx=\"248.7\" cy=\"225.0\" r=\"3.5\" fill=\"#13212B\"/><circle cx=\"312.8\" cy=\"140.0\" r=\"3.5\" fill=\"#13212B\"/><path d=\"M239.2,71.4 A24,24 0 0 0 245.6,55.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><path d=\"M272.7,225.0 A24,24 0 0 0 263.2,205.8\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><path d=\"M296.7,125.0 A22,22 0 0 0 299.6,157.6\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"219.6\" y=\"45.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">A</text><text x=\"246.7\" y=\"247.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">B</text><text x=\"322.8\" y=\"145.0\" font-size=\"15\" text-anchor=\"start\" fill=\"#4E5F69\" font-weight=\"700\">P</text><text x=\"270.0\" y=\"80.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">43°</text><text x=\"295.3\" y=\"207.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">y</text><text x=\"267.0\" y=\"150.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">96°</text></svg>",
+       "alt": "Two parallel lines m and n. Point A is on m, point B is on n, and point P is between the lines to the right. Segments AP and BP make an angle at P that opens to the left. angle at A: 43°; angle at B: y; angle at P: 96°."
+      }
+     ]
+    },
+    {
+     "id": "q38",
+     "q": "Lines m and n are parallel. Triangle ABC has A on line m and B and C on line n. Find the angles marked p, q and x.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "48"
+       },
+       "label": "a",
+       "prompt": "p (angle B of the triangle) =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "48",
+         "48°",
+         "48 degrees"
+        ],
+        "no": [
+         "132",
+         "67",
+         "42"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "67"
+       },
+       "label": "b",
+       "prompt": "q (angle C of the triangle) =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "67",
+         "67°",
+         "67 degrees"
+        ],
+        "no": [
+         "113",
+         "48",
+         "23"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "65"
+       },
+       "label": "c",
+       "prompt": "x (angle A of the triangle) =",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "65",
+         "65°",
+         "65 degrees"
+        ],
+        "no": [
+         "115",
+         "180",
+         "63"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) The 48° angle and p are alternate interior angles (m, n and side AB), so p = 48°.",
+      "b) The 67° angle and q are alternate interior angles (m, n and side AC), so q = 67°.",
+      "c) The three angles at A make a straight line on m: 48 + x + 67 = 180, so x = 180 − 115 = 65",
+      "Check: the triangle's angles are 48 + 67 + 65 = 180",
+      "Answers: p = 48°, q = 67°, x = 65°"
+     ],
+     "skill": "par-all",
+     "hint": "Each side of the triangle is a transversal of m and n. The three angles at A sit on a straight line.",
+     "stretch": true,
+     "min": 7,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 270\" width=\"460\" height=\"270\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"20\" y1=\"60\" x2=\"440\" y2=\"60\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"452.0\" y=\"52.0\" font-size=\"17\" text-anchor=\"end\" fill=\"#13212B\" font-weight=\"700\">m</text><polyline points=\"382.0,66.0 390.0,60.0 382.0,54.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"20\" y1=\"225\" x2=\"440\" y2=\"225\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"452.0\" y=\"217.0\" font-size=\"17\" text-anchor=\"end\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"382.0,231.0 390.0,225.0 382.0,219.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polygon points=\"190.7,60.0 42.2,225.0 260.8,225.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/><path d=\"M168.7,60.0 A22,22 0 0 0 176.0,76.3\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"139.6\" y=\"88.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">48°</text><path d=\"M199.3,80.3 A22,22 0 0 0 212.7,60.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"225.8\" y=\"89.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">67°</text><path d=\"M64.2,225.0 A22,22 0 0 0 56.9,208.7\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"93.3\" y=\"208.2\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">p</text><path d=\"M252.2,204.7 A22,22 0 0 0 238.8,225.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"225.8\" y=\"207.8\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">q</text><path d=\"M176.0,76.3 A22,22 0 0 0 199.3,80.3\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"183.8\" y=\"107.4\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">x</text><text x=\"190.7\" y=\"48.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">A</text><text x=\"38.2\" y=\"247.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">B</text><text x=\"264.8\" y=\"247.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">C</text></svg>",
+       "alt": "Two parallel lines m and n. Triangle ABC has B and C on line n and A on line m. 48°: at A, between line m on the left and side AB; 67°: at A, between line m on the right and side AC; p: angle B inside the triangle; q: angle C inside the triangle; x: angle A inside the triangle."
+      }
+     ]
+    },
+    {
+     "id": "q39",
+     "q": "Three parallel lines p, q and r are crossed by one line t, which is not perpendicular to them.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "12"
+       },
+       "label": "a",
+       "prompt": "How many angles are formed at the three crossings?",
+       "tests": {
+        "ok": [
+         "12"
+        ],
+        "no": [
+         "8",
+         "4",
+         "6"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "6"
+       },
+       "label": "b",
+       "prompt": "The acute angle where t crosses p measures 57°. How many of all the angles measure 57°?",
+       "tests": {
+        "ok": [
+         "6"
+        ],
+        "no": [
+         "3",
+         "4",
+         "12"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "123"
+       },
+       "label": "c",
+       "prompt": "What do the other angles measure?",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "123",
+         "123°",
+         "123 degrees"
+        ],
+        "no": [
+         "33",
+         "57",
+         "303"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) Each crossing makes 4 angles. 3 × 4 = 12",
+      "b) At each crossing, 2 angles are acute and 2 are obtuse, and the acute ones all equal 57° because the lines are parallel.",
+      "3 × 2 = 6",
+      "c) Each obtuse angle makes a straight line with a 57° angle: 180 − 57 = 123",
+      "Answers: a) 12, b) 6, c) 123°"
+     ],
+     "skill": "par-all",
+     "hint": "Start with one crossing. How many angles, and how many of each size?",
+     "stretch": true,
+     "min": 5,
+     "figs": [
+      {
+       "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 300\" width=\"460\" height=\"300\" font-family=\"Arial, Helvetica, sans-serif\"><line x1=\"30\" y1=\"60\" x2=\"430\" y2=\"60\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"66.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">p</text><polyline points=\"56.0,66.0 64.0,60.0 56.0,54.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"30\" y1=\"150\" x2=\"430\" y2=\"150\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"156.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">q</text><polyline points=\"56.0,156.0 64.0,150.0 56.0,144.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"30\" y1=\"240\" x2=\"430\" y2=\"240\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"444.0\" y=\"246.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">r</text><polyline points=\"56.0,246.0 64.0,240.0 56.0,234.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"145.6\" y1=\"280.0\" x2=\"314.4\" y2=\"20.0\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"328.4\" y=\"30.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">t</text></svg>",
+       "alt": "Three parallel lines p, q and r cut by one line t."
+      }
+     ]
+    },
+    {
+     "id": "q40",
+     "q": "Two same-side interior angles at parallel lines are different sizes. The larger angle is 30° more than twice the smaller angle.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "50"
+       },
+       "label": "a",
+       "prompt": "The smaller angle measures",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "50",
+         "50°",
+         "50 degrees"
+        ],
+        "no": [
+         "75",
+         "60",
+         "40"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "130"
+       },
+       "label": "b",
+       "prompt": "The larger angle measures",
+       "unit": "°",
+       "tests": {
+        "ok": [
+         "130",
+         "130°",
+         "130 degrees"
+        ],
+        "no": [
+         "105",
+         "120",
+         "150"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "Same-side interior angles add to 180°.",
+      "Call the smaller angle s. The larger angle is 2s + 30.",
+      "s + 2s + 30 = 180",
+      "3s = 180 − 30 = 150",
+      "s = 150 ÷ 3 = 50",
+      "2 × 50 + 30 = 130, and 50 + 130 = 180",
+      "Answers: 50° and 130°"
+     ],
+     "skill": "par-eq",
+     "hint": "Write the larger angle using the smaller one. Then use the fact that the two angles add to 180°.",
+     "stretch": true,
+     "min": 7
+    }
+   ],
+   "learn": {
+    "title": "Draw a helper line",
+    "where": [
+     "Contest problems often hide a bend between two parallel lines. The trick is to draw one more line through the bend, parallel to the other two, so the facts from this lesson apply twice."
+    ],
+    "steps": [
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 262\" width=\"360\" height=\"262\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"262\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"30\" y1=\"50\" x2=\"330\" y2=\"50\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"56.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">m</text><polyline points=\"56.0,56.0 64.0,50.0 56.0,44.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"30\" y1=\"190\" x2=\"330\" y2=\"190\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"344.0\" y=\"196.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"56.0,196.0 64.0,190.0 56.0,184.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polyline points=\"123.6,50.0 244.8,120.0 174.8,190.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2.5\"/><line x1=\"94.8\" y1=\"120.0\" x2=\"284.8\" y2=\"120.0\" stroke=\"#1B6884\" stroke-width=\"2\" stroke-dasharray=\"7 5\"/><circle cx=\"123.6\" cy=\"50.0\" r=\"3.5\" fill=\"#13212B\"/><circle cx=\"174.8\" cy=\"190.0\" r=\"3.5\" fill=\"#13212B\"/><circle cx=\"244.8\" cy=\"120.0\" r=\"3.5\" fill=\"#13212B\"/><path d=\"M144.3,62.0 A24,24 0 0 0 147.6,50.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><path d=\"M198.8,190.0 A24,24 0 0 0 191.8,173.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><path d=\"M225.7,109.0 A22,22 0 0 0 229.2,135.6\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"121.6\" y=\"40.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">A</text><text x=\"172.8\" y=\"212.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">B</text><text x=\"254.8\" y=\"108.0\" font-size=\"15\" text-anchor=\"start\" fill=\"#4E5F69\" font-weight=\"700\">P</text><text x=\"187.3\" y=\"73.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">30°</text><text x=\"222.8\" y=\"176.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">45°</text><text x=\"184.9\" y=\"110.0\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">30°</text><text x=\"187.5\" y=\"149.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">45°</text><text x=\"180.0\" y=\"248.0\" font-size=\"16\" text-anchor=\"middle\" fill=\"#13212B\" font-weight=\"700\">Angle at P: 30° + 45° = 75°</text></svg>",
+      "alt": "Parallel lines m and n with a bend at P between them. The angle at A on m is 30 degrees and the angle at B on n is 45 degrees. A dashed line through P, parallel to m and n, splits the angle at P into a 30 degree part on top and a 45 degree part below.",
+      "text": "The dashed line through P is parallel to m and n. It splits the angle at P into two parts. The top part matches the 30° at A and the bottom part matches the 45° at B (alternate interior angles), so the angle at P is 30° + 45° = 75°."
+     },
+     {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 230\" width=\"360\" height=\"230\" font-family=\"Arial, Helvetica, sans-serif\"><rect width=\"360\" height=\"230\" rx=\"12\" fill=\"#FFFFFF\"/><line x1=\"20\" y1=\"55\" x2=\"340\" y2=\"55\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"352.0\" y=\"47.0\" font-size=\"17\" text-anchor=\"end\" fill=\"#13212B\" font-weight=\"700\">m</text><polyline points=\"282.0,61.0 290.0,55.0 282.0,49.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><line x1=\"20\" y1=\"190\" x2=\"340\" y2=\"190\" stroke=\"#13212B\" stroke-width=\"2.5\"/><text x=\"352.0\" y=\"182.0\" font-size=\"17\" text-anchor=\"end\" fill=\"#13212B\" font-weight=\"700\">n</text><polyline points=\"282.0,196.0 290.0,190.0 282.0,184.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2\"/><polygon points=\"159.0,55.0 68.0,190.0 208.2,190.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/><path d=\"M137.0,55.0 A22,22 0 0 0 146.7,73.2\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"109.6\" y=\"87.3\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">56°</text><path d=\"M166.6,75.7 A22,22 0 0 0 181.0,55.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"193.4\" y=\"85.1\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><path d=\"M146.7,73.2 A22,22 0 0 0 166.6,75.7\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"152.2\" y=\"116.6\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">54°</text><path d=\"M90.0,190.0 A22,22 0 0 0 80.3,171.8\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"117.4\" y=\"169.7\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">56°</text><path d=\"M200.7,169.3 A22,22 0 0 0 186.2,190.0\" fill=\"none\" stroke=\"#13212B\" stroke-width=\"1.6\"/><text x=\"173.8\" y=\"171.9\" font-size=\"17\" text-anchor=\"middle\" fill=\"#13212B\">70°</text><text x=\"159.0\" y=\"43.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">A</text><text x=\"64.0\" y=\"212.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">B</text><text x=\"212.2\" y=\"212.0\" font-size=\"15\" text-anchor=\"middle\" fill=\"#4E5F69\" font-weight=\"700\">C</text></svg>",
+      "alt": "Two parallel lines m and n. Triangle ABC has B and C on line n and A on line m. 56°: at A, between line m on the left and side AB; 70°: at A, between line m on the right and side AC; 54°: angle A inside the triangle; 56°: angle B inside the triangle; 70°: angle C inside the triangle.",
+      "text": "A triangle between parallel lines: each side is a transversal, so the angles at the top copy the angles at the bottom. The three angles at the top make a straight line, so the triangle's angles add to 180°."
+     }
+    ],
+    "example": {
+     "q": "Two parallel lines have a bend between them. The angle at the top line is 25° and the angle at the bottom line is 30°, as in the picture with the dashed line. What is the angle at the bend?",
+     "steps": [
+      "Draw a line through the bend, parallel to the other two.",
+      "The top part of the bend matches 25°, and the bottom part matches 30° (alternate interior angles).",
+      "25 + 30 = 55"
+     ],
+     "answer": "55°"
+    },
+    "apply": true
+   }
+  }
+ ],
+ "n": 38,
+ "note": "When a line crosses two parallel lines, every angle is one of two sizes. Corresponding, alternate interior, alternate exterior and vertical angles are equal. Same-side interior angles, and angles that make a straight line, add to 180°.",
+ "scene": {
+  "title": "Where you will see this",
+  "text": [
+   "Look at a city map. Many streets run parallel, and an avenue often cuts across them on a slant. Because the streets are parallel, the avenue makes the same angles at every crossing. Map makers and city planners use that fact when they lay out new roads.",
+   "Builders use it too. The posts that hold up a stair rail stand parallel to each other, and the rail crosses all of them, so every post meets the rail at the same angle and the tops can all be cut the same way. Painters checking parking stripes and surveyors checking property lines measure these same angles."
+  ],
+  "ask": "Before you start: find two parallel lines crossed by a third line at home, such as a ladder, a stair rail, a window with a slanted bar, or lines on notebook paper with a ruler laid across them. Point to two angles that look the same size and two angles that together make a straight line."
+ },
+ "scene_key": "Not graded. Any example works. The two equal angles should be in the same corner at two crossings, opposite each other at one crossing, or on opposite sides of the slanted line between the parallel lines. The two that make a straight line sit side by side at one crossing.",
+ "teach": [
+  {
+   "h": "The names of the angle pairs",
+   "text": [
+    "A transversal is a line that crosses two other lines. It makes 4 angles at each crossing, 8 in all.",
+    "Corresponding angles are in the same corner at each crossing. Alternate angles are on opposite sides of the transversal. Interior angles are between the two lines; exterior angles are outside them."
+   ],
+   "ex": [
+    {
+     "q": "A road crosses two parallel streets. At the first street, take the angle in the lower left corner. Which angle at the second street corresponds to it?",
+     "steps": [
+      "Corresponding angles sit in the same corner at each crossing.",
+      "The same corner at the second street is the lower left corner.",
+      "Answer: the lower left angle at the second street."
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Equal, or adding to 180°",
+   "text": [
+    "When the two lines are parallel, corresponding, alternate interior, alternate exterior and vertical angles are equal.",
+    "Two angles side by side on a straight line add to 180°, and so do same-side interior angles."
+   ],
+   "ex": [
+    {
+     "q": "Two parallel lines are crossed by a transversal. One interior angle measures 75°. What does the interior angle on the same side of the transversal, at the other line, measure?",
+     "steps": [
+      "Same-side interior angles add to 180°.",
+      "180 − 75 = 105",
+      "Answer: 105°"
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Angles with x",
+   "text": [
+    "When an angle is written with x, decide first whether it equals the other angle or adds with it to 180°.",
+    "Write one equation, solve it, then put x back in to find the angle."
+   ],
+   "ex": [
+    {
+     "q": "Alternate interior angles at parallel lines measure (5x + 10)° and 85°. Find x.",
+     "steps": [
+      "Alternate interior angles are equal: 5x + 10 = 85",
+      "5x = 85 − 10 = 75",
+      "x = 75 ÷ 5 = 15",
+      "Answer: x = 15"
+     ]
+    }
+   ]
+  }
+ ],
+ "min_questions": 35
+}
