@@ -3819,6 +3819,30 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     save(p);
   }
 
+  // A parent or the tutor can send him back to the passage from the Reading tab (reopen on his row). His open page
+  // picks it up on the next poll: it records where he was and shows the passage again. He cannot do this himself.
+  var BACKABLE = { gist: 1, qs: 1, compare: 1 };
+  H.store.on('reading', function () {
+    if (!W || !W.id || W.mode || !W.A || W.A.finishedAt || H.views.current !== 'write') return;
+    var row = work(W.id), r = row && row.reopen;
+    if (!r || (r.n || 0) <= ((W.A.reopen || {}).n || 0)) return;
+    var at = W.A.step || 'read', inFix = !!(W.fix && !W.fix.done);
+    if (BACKABLE[at]) {
+      // During the rewrite of his last paragraph the set waits: the passage opens when he goes on to the set.
+      var p = {};
+      if (!inFix) { flushDraft(); p = addTime(at, stepTime()); }
+      p.step = 'read'; p.resume = at; p.reopen = H.clone(r);
+      save(p);
+      if (!inFix) { W.qi = null; W.qStart = null; route(); }
+    } else {
+      // On the read and write steps the passage is already in front of him: keep his place, and put his step back
+      // if the reopen changed it.
+      var keep = { reopen: H.clone(r), step: at };
+      if (at !== 'read') keep.resume = null;
+      save(keep);
+    }
+  });
+
   // ----- start a set -----
   function startSet(arg) {
     var q = queue(), id = arg.set || (q && q.meta.id) || null;
@@ -3896,10 +3920,15 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   }
 
   // ----- step 1: read -----
+  // The button refuses until the passage has been open long enough to read at 400 words a minute (16 Nov 2026: a
+  // second fast tap used to go through, and he moved on after 12 seconds on a 538-word passage).
   function stepRead() {
-    var minSec = Math.max(30, Math.round(words((W.L.passage || []).join(' ')) / 400 * 60)), tapped = false;
-    var note = msg();
+    var minSec = Math.max(30, Math.round(words((W.L.passage || []).join(' ')) / 400 * 60)), early = 0;
+    var note = msg(), back = (W.A.resume && W.A.reopen) ? W.A.reopen : null;
     show([head(title()), stepBar(0),
+      back ? el('div', { class: 'card cw-back', id: 'cwSentBack' },
+        el('p', { class: 'rd-strong', text: (back.role === 'tutor' ? 'Your tutor' : 'Your parent') + ' sent you back to the passage.' }),
+        el('p', { text: 'Read it again, all the way through. Then you go on from where you stopped.' })) : null,
       el('div', { class: 'card' },
         el('h2', { text: 'Step 1: Read' }),
         el('div', { class: 'howto' },
@@ -3910,8 +3939,12 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       el('div', { class: 'card' }, note,
         el('div', { class: 'row' }, el('button', { class: 'btn big', type: 'button', id: 'cwReadDone', text: 'I have read it', onclick: function () {
           var secs = (H.ms() - W.t0) / 1000;
-          if (secs < minSec && !tapped) { tapped = true; note.textContent = 'That was quick. Read it once more, all the way through, then tap again.'; return; }
-          var t = stepTime(), p = addTime('read', t); p.step = 'gist'; p.read = { sec: ((W.A.read || {}).sec || 0) + t, quick: secs < minSec };
+          if (secs < minSec) { early++; note.textContent = 'That was quick. Read the whole passage once more, all the way through, then tap again.'; return; }
+          var prev = W.A.read || {}, t = stepTime(), p = addTime('read', t), next = W.A.resume || 'gist';
+          if (next === 'gist' && W.A.gist && W.A.gist.text) next = 'qs';
+          p.step = next; p.resume = null;
+          p.read = { sec: (prev.sec || 0) + t, quick: false, times: (prev.times || (prev.sec != null ? 1 : 0)) + 1, early: (prev.early || 0) + early };
+          if (back && !prev.first && prev.sec != null) p.read.first = { sec: prev.sec, quick: !!prev.quick };
           save(p); route();
         } })))]);
   }
@@ -4268,12 +4301,43 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   });
 
   // ---------- Reading tab card ----------
+  var STEP_AT = { read: 0, gist: 1, qs: 2, compare: 3, write: 4 };
+  function secText(s) { s = Math.round(s || 0); return s < 90 ? s + ' second' + (s === 1 ? '' : 's') : H.fmt.mins(s); }
+  function clock(iso) { try { return new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); } catch (e) { return ''; } }
+  // Parent and tutor only: where he is in the set he has open, how long the passage was open, and a button that
+  // sends him back to the passage. He has no way back himself once the passage closes.
+  function nowBox(id, w) {
+    var st = w.step || 'read', i = STEP_AT[st] == null ? 0 : STEP_AT[st], rd = w.read || {}, log = w.reopens || [];
+    var box = el('div', { class: 'task cw-now', id: 'cwNow' });
+    box.append(el('span', { class: 'label', text: 'Now on step ' + (i + 1) + ' of 5: ' + STEPS[i] }));
+    if (rd.first) box.append(el('p', { class: 'small', id: 'cwReadTime', text: 'First read: ' + secText(rd.first.sec) + (rd.first.quick ? ', too fast to have read it all' : '') + '. All reads together: ' + secText(rd.sec) + '.' }));
+    else if (rd.sec != null) box.append(el('p', { class: 'small', id: 'cwReadTime', text: 'Time on the passage: ' + secText(rd.sec) + (rd.quick ? ', too fast to have read it all' : '') + '.' }));
+    if (log.length) { var last = log[log.length - 1]; box.append(el('p', { class: 'small muted', id: 'cwBackLog', text: 'Sent back to the passage ' + (log.length === 1 ? 'once' : log.length + ' times') + '. Last: ' + (last.by || 'Parent') + ', ' + H.fmt.date(dayOf(last.at)) + ' at ' + clock(last.at) + '.' })); }
+    if (st === 'read' && w.resume) box.append(el('p', { class: 'small muted', text: 'He is rereading the passage now. Then he goes on from where he stopped.' }));
+    if (BACKABLE[st]) {
+      var b = el('button', { class: 'btn ghost', type: 'button', id: 'cwSendBack', text: 'Send him back to the passage' });
+      b.addEventListener('click', function () {
+        if (!b.classList.contains('confirm')) {
+          b.classList.add('confirm'); b.textContent = 'Tap again to send him back';
+          setTimeout(function () { if (b.isConnected) { b.classList.remove('confirm'); b.textContent = 'Send him back to the passage'; } }, 4000);
+          return;
+        }
+        var cur = work(id) || w, who = me(), from = cur.step || st;
+        if (!BACKABLE[from]) { H.toast('He has moved on to a step where the passage is open, so there is nothing to send back.'); return; }
+        var r = { n: ((cur.reopen || {}).n || 0) + 1, at: nowISO(), by: who.by, role: who.role, from: from };
+        H.store.patch('reading/comp-' + id, { step: 'read', resume: from, reopen: r, reopens: (cur.reopens || []).concat([r]), updatedAt: nowISO() })
+          .then(function () { H.toast('Sent back. His screen opens the passage within about 15 seconds.'); });
+      });
+      box.append(el('p', { class: 'small muted', text: 'He cannot go back to the passage himself once it closes. Answers and the main idea he already gave stay as they are.' }), b);
+    }
+    return box;
+  }
   function avg(list) { return list.length ? list.reduce(function (a, b) { return a + b; }, 0) / list.length : null; }
   function card(box) {
     if (!box) return;
     var q = queue(), fix = pendingFix(), all = works().filter(function (w) { return w.finishedAt; }), big = adult();
     var kids = [el('div', { class: 'row rd-split' }, el('h2', { text: 'Read and write' }), el('span', { class: 'small muted', text: 'Tuesday and Thursday' }))];
-    var nx = el('div', { class: 'task', id: 'cwNext' });
+    var nx = el('div', { class: 'task', id: 'cwNextSet' });
     if (q) {
       var started = !!(q.work && q.work.startedAt);
       nx.append(el('span', { class: 'label', text: q.meta.title }), el('span', { class: 'when', text: 'Set ' + (q.index + 1) + ' of ' + q.total + (fix ? ' · starts with a rewrite of the last paragraph' : '') }),
@@ -4284,6 +4348,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         el('button', { class: 'btn', type: 'button', id: 'cwStart', text: 'Start', onclick: function () { H.go('write', { fixOnly: true, from: 'reading' }); } }));
     } else nx.append(el('span', { class: 'label', text: sets().length ? 'All sets done' : 'No set loaded yet' }), el('p', { text: 'More arrive with the next build.' }));
     kids.push(nx);
+    if (big && q && q.work && q.work.startedAt && !q.work.finishedAt) kids.push(nowBox(q.meta.id, q.work));
     if (all.length) {
       // comprehension by kind of question, last 6 sets
       var recent = all.slice(-6), by = {}, memR = 0, memT = 0;
