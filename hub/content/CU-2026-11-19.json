@@ -1,0 +1,121 @@
+{
+ "schema": 1,
+ "id": "CU-2026-11-19",
+ "kind": "catchup",
+ "subject": "math",
+ "strand": "Mixed",
+ "title": "1 question from an earlier lesson",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a fraction like 3/4, a mixed number like 2 1/2, and a power like 3^4.",
+ "skills": {
+  "exp-apply": "Use powers in real problems"
+ },
+ "sections": [
+  {
+   "name": "Catch-up",
+   "desc": "Questions you missed before, with new numbers or a new story. Right on the first try takes one off your list.",
+   "items": [
+    {
+     "id": "c1",
+     "q": "A science museum runs an 8 day robot show, and your club helps at the door every day. The museum offers two ways to pay the club in shop points it can spend in the museum store. Plan A gives 120 points every day. Plan B gives 4 points on day 1, and the points double every day after that: day 2 gives 8 points, day 3 gives 16 points, and so on.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "960"
+       },
+       "label": "a",
+       "prompt": "Total points for the 8 days under Plan A",
+       "tests": {
+        "ok": [
+         "960",
+         "960.00"
+        ],
+        "no": [
+         "128",
+         "840",
+         "120"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "512"
+       },
+       "label": "b",
+       "prompt": "Points on day 8 alone under Plan B",
+       "tests": {
+        "ok": [
+         "512",
+         "512.00"
+        ],
+        "no": [
+         "256",
+         "1024",
+         "32"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1020"
+       },
+       "label": "c",
+       "prompt": "Total points for the 8 days under Plan B",
+       "tests": {
+        "ok": [
+         "1020",
+         "1,020",
+         "1020.00"
+        ],
+        "no": [
+         "1024",
+         "508",
+         "1028",
+         "512"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Plan A",
+         "Plan B"
+        ],
+        "correct": 1
+       },
+       "label": "d",
+       "prompt": "Which plan should the club take for this 8 day show?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "Plan A gives 960 points in total. Plan B gives 1,020 points in total, so Plan B gives 60 more. Plan B starts far behind, but doubling passes the fixed amount by the end.",
+        "look": "Names both totals (960 and 1,020) and says Plan B is bigger."
+       },
+       "label": "e",
+       "prompt": "Give the reason for your choice. Use the numbers."
+      }
+     ],
+     "a": [
+      "a) 120 × 8 = 960",
+      "b) Double each day: 4, 8, 16, 32, 64, 128, 256, 512. Day 8 gives 512 points.",
+      "Check with powers: 4 × 2⁷ = 4 × 128 = 512",
+      "c) 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 = 1,020",
+      "1,020 − 960 = 60, so Plan B gives 60 more points.",
+      "d) and e) Decision: Plan B, because 1,020 is more than 960."
+     ],
+     "skill": "exp-apply",
+     "hint": "Write the 8 day numbers in a row and the points for each day under them. Add the bottom row in pairs to keep the sum tidy.",
+     "real": true,
+     "min": 8,
+     "from": "L036/q33",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    }
+   ]
+  }
+ ]
+}
