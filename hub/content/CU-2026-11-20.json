@@ -1,0 +1,367 @@
+{
+ "schema": 1,
+ "id": "CU-2026-11-20",
+ "kind": "catchup",
+ "subject": "math",
+ "strand": "Mixed",
+ "title": "4 questions from earlier lessons",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a fraction like 3/4, a mixed number like 2 1/2, and a power like 3^4.",
+ "skills": {
+  "exp-apply": "Use powers in real problems",
+  "exp-eval": "Evaluate powers"
+ },
+ "sections": [
+  {
+   "name": "Catch-up",
+   "desc": "Questions you missed before, with new numbers or a new story. Right on the first try takes one off your list.",
+   "items": [
+    {
+     "id": "c1",
+     "q": "A school wants to cover a play area with rubber safety mats. The mats cost $7 for each square foot, and the budget is $1,600. Design 1 is a square that is 15 feet on each side. Design 2 is a rectangle that is 11 feet by 21 feet.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "225"
+       },
+       "label": "a",
+       "prompt": "Area of Design 1",
+       "unit": "square feet",
+       "tests": {
+        "ok": [
+         "225",
+         "225 sq ft",
+         "225 square feet"
+        ],
+        "no": [
+         "30",
+         "60"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1575"
+       },
+       "label": "b",
+       "prompt": "Cost of Design 1",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "1575",
+         "1,575",
+         "$1,575",
+         "1575.00"
+        ],
+        "no": [
+         "105",
+         "1617",
+         "210"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1617"
+       },
+       "label": "c",
+       "prompt": "Cost of Design 2",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "1617",
+         "1,617",
+         "$1,617",
+         "1617.00"
+        ],
+        "no": [
+         "224",
+         "1575",
+         "231"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Design 1, the square",
+         "Design 2, the rectangle",
+         "Both designs",
+         "Neither design"
+        ],
+        "correct": 0
+       },
+       "label": "d",
+       "prompt": "Which design fits the budget?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "Design 1 costs $1,575, which is $25 under the $1,600 budget. Design 2 costs $1,617, which is $17 over the budget, so only Design 1 fits.",
+        "look": "Names both costs and compares each one with $1,600."
+       },
+       "label": "e",
+       "prompt": "Give the reason for your choice. Use both costs and the budget."
+      }
+     ],
+     "a": [
+      "a) 15² = 225, so the square is 225 square feet.",
+      "b) 225 × 7 = 1,575, so Design 1 costs $1,575.",
+      "c) 11 × 21 = 231, so the rectangle is 231 square feet.",
+      "231 × 7 = 1,617, so Design 2 costs $1,617.",
+      "1,600 − 1,575 = 25, so Design 1 is $25 under the budget.",
+      "1,617 − 1,600 = 17, so Design 2 is $17 over the budget.",
+      "d) and e) Decision: Design 1, because $1,575 is within the $1,600 budget and $1,617 is not."
+     ],
+     "skill": "exp-apply",
+     "hint": "Find the area of each design in square feet, then each cost. Put each cost next to the budget and ask: over or under?",
+     "real": true,
+     "min": 7,
+     "from": "L036/q34",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c2",
+     "q": "The ones digits of the powers of 8 follow a pattern. Here are the first four powers: 8¹ is 8, 8² is 64, 8³ is 512 and 8⁴ is 4,096.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "4"
+       },
+       "label": "a",
+       "prompt": "What is the ones digit of 8⁶?",
+       "tests": {
+        "ok": [
+         "4"
+        ],
+        "no": [
+         "8",
+         "2",
+         "6",
+         "262144"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "5"
+       },
+       "label": "b",
+       "prompt": "8¹ ends in 8. What is the next exponent that makes a power of 8 end in 8 again?",
+       "tests": {
+        "ok": [
+         "5"
+        ],
+        "no": [
+         "4",
+         "8",
+         "2"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "6"
+       },
+       "label": "c",
+       "prompt": "What is the ones digit of 8²⁴?",
+       "tests": {
+        "ok": [
+         "6"
+        ],
+        "no": [
+         "8",
+         "4",
+         "2"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 4,096 × 8 = 32,768, so 8⁵ ends in 8.",
+      "32,768 × 8 = 262,144, so the ones digit of 8⁶ is 4.",
+      "b) The ones digits go 8, 4, 2, 6, and then 8 again at 8⁵. The cycle has 4 digits, so the next exponent is 5.",
+      "c) 24 ÷ 4 = 6, so 8²⁴ comes at the end of the sixth full cycle. Every full cycle ends in the digit 6.",
+      "Answers: a) 4, b) 5, c) 6"
+     ],
+     "skill": "exp-eval",
+     "hint": "Write only the ones digit of each power in a row: multiply the last ones digit by 8 and keep only its ones digit. Stop when 8 comes back.",
+     "stretch": true,
+     "min": 6,
+     "from": "L036/q36",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c3",
+     "q": "Add the odd numbers in order, starting from 1, and look at the sums: 1 + 3 + 5 = 9, 1 + 3 + 5 + 7 = 16 and 1 + 3 + 5 + 7 + 9 = 25.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "49"
+       },
+       "label": "a",
+       "prompt": "Find 1 + 3 + 5 + 7 + 9 + 11 + 13.",
+       "tests": {
+        "ok": [
+         "49"
+        ],
+        "no": [
+         "48",
+         "36",
+         "64"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "power",
+        "base": "7",
+        "exp": "2"
+       },
+       "label": "b",
+       "prompt": "Write your answer to part a as a power with exponent 2. Type it with the ^ key.",
+       "tests": {
+        "ok": [
+         "7^2"
+        ],
+        "no": [
+         "2^7",
+         "13^2"
+        ],
+        "nudge": [
+         "49"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "144"
+       },
+       "label": "c",
+       "prompt": "Use the pattern to find the sum of the first 12 odd numbers, 1 + 3 + 5 and so on up to 23.",
+       "tests": {
+        "ok": [
+         "144"
+        ],
+        "no": [
+         "121",
+         "24",
+         "276",
+         "529"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 1 + 3 + 5 + 7 + 9 + 11 + 13 = 49",
+      "b) 49 = 7 × 7 = 7², so adding the first 7 odd numbers gives 7².",
+      "c) Count the odd numbers from 1 to 23: (23 + 1) ÷ 2 = 12, so there are 12 of them.",
+      "12² = 144, so adding the first 12 odd numbers gives 144.",
+      "1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19 + 21 + 23 = 144",
+      "Answers: a) 49, b) 7², c) 144"
+     ],
+     "skill": "exp-eval",
+     "hint": "Compare each sum with how many odd numbers were added to make it. Before part c, check on paper that the list from 1 to 23 really holds 12 odd numbers.",
+     "stretch": true,
+     "min": 6,
+     "from": "L036/q39",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c4",
+     "q": "In a video game, your coins double at the end of every level. You start with 1 coin. After level 1 you have 2 coins, after level 2 you have 4 coins, and after level 3 you have 8 coins.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "128"
+       },
+       "label": "a",
+       "prompt": "How many coins do you have after level 7?",
+       "unit": "coins",
+       "tests": {
+        "ok": [
+         "128",
+         "128 coins"
+        ],
+        "no": [
+         "14",
+         "49",
+         "64",
+         "256"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "11"
+       },
+       "label": "b",
+       "prompt": "After which level do you have more than 2,000 coins for the first time? Type the level number.",
+       "tests": {
+        "ok": [
+         "11"
+        ],
+        "no": [
+         "10",
+         "12",
+         "1000"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "65536"
+       },
+       "label": "c",
+       "prompt": "After level 16 you have 2¹⁶ coins. Sixteen 2s multiplied together is the same as eight 2s times eight 2s, which is 2⁸ × 2⁸. Find the value of 2¹⁶.",
+       "unit": "coins",
+       "tests": {
+        "ok": [
+         "65536",
+         "65,536"
+        ],
+        "no": [
+         "512",
+         "32",
+         "65526",
+         "256",
+         "4096"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2⁷ = 128, so you have 128 coins after level 7.",
+      "b) 2¹⁰ = 1,024, which is less than 2,000.",
+      "2¹¹ = 2,048, which is more than 2,000, so the first time is after level 11.",
+      "c) 2⁸ = 256, so 2¹⁶ = 256 × 256.",
+      "256 × 200 = 51,200 and 256 × 56 = 14,336",
+      "51,200 + 14,336 = 65,536",
+      "Answers: a) 128, b) level 11, c) 65,536"
+     ],
+     "skill": "exp-apply",
+     "hint": "For part c, find 2⁸ first, then multiply it by itself in two pieces. Check each digit of your product before you type it.",
+     "stretch": true,
+     "min": 8,
+     "from": "L036/q40",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    }
+   ]
+  }
+ ]
+}
