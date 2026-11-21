@@ -1,0 +1,465 @@
+{
+ "schema": 1,
+ "id": "CU-2026-11-21",
+ "kind": "catchup",
+ "subject": "math",
+ "strand": "Mixed",
+ "title": "5 questions from earlier lessons",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a fraction like 3/4, a mixed number like 2 1/2, and a power like 3^4.",
+ "skills": {
+  "exp-apply": "Use powers in real problems",
+  "ooo": "Order of operations",
+  "exp-eval": "Evaluate powers"
+ },
+ "sections": [
+  {
+   "name": "Catch-up",
+   "desc": "Questions you missed before, with new numbers or a new story. Right on the first try takes one off your list.",
+   "items": [
+    {
+     "id": "c1",
+     "q": "A theater runs a play for 9 nights, and the drama club helps seat people every night. The theater offers two ways to pay the club. Plan A pays $150 every night. Plan B pays $3 on night 1, and the pay doubles every night after that: night 2 pays $6, night 3 pays $12, and so on.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1350"
+       },
+       "label": "a",
+       "prompt": "Total pay for the 9 nights under Plan A",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "1350",
+         "1,350",
+         "$1,350",
+         "1350.00"
+        ],
+        "no": [
+         "159",
+         "1200",
+         "150"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "768"
+       },
+       "label": "b",
+       "prompt": "Pay on night 9 alone under Plan B",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "768",
+         "$768",
+         "768.00"
+        ],
+        "no": [
+         "384",
+         "1536",
+         "27"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "1533"
+       },
+       "label": "c",
+       "prompt": "Total pay for the 9 nights under Plan B",
+       "pre": "$",
+       "tests": {
+        "ok": [
+         "1533",
+         "1,533",
+         "$1,533",
+         "1533.00"
+        ],
+        "no": [
+         "1536",
+         "768",
+         "765",
+         "1530"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Plan A",
+         "Plan B"
+        ],
+        "correct": 1
+       },
+       "label": "d",
+       "prompt": "Which plan should the club take for these 9 nights?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "Plan A pays $1,350 in total. Plan B pays $1,533 in total, so Plan B pays $183 more. Plan B starts far behind, and its total only passes Plan A's total on the last night.",
+        "look": "Names both totals ($1,350 and $1,533) and says how much more Plan B pays ($183)."
+       },
+       "label": "e",
+       "prompt": "Give the reason for your choice. Name both totals and say how much more the better plan pays."
+      }
+     ],
+     "a": [
+      "a) $150 × 9 = $1,350",
+      "b) Double each night: 3, 6, 12, 24, 48, 96, 192, 384, 768. Night 9 pays $768.",
+      "Check with powers: 3 × 2⁸ = 3 × 256 = 768",
+      "c) 3 + 6 + 12 + 24 + 48 + 96 + 192 + 384 + 768 = 1,533",
+      "1,533 − 1,350 = 183, so Plan B pays $183 more.",
+      "d) and e) Decision: Plan B, because $1,533 is more than $1,350."
+     ],
+     "skill": "exp-apply",
+     "hint": "Write the night numbers 1 to 9 in a row and the pay under each one. Then compare the two totals and find the difference.",
+     "real": true,
+     "min": 8,
+     "from": "L036/q33",
+     "round": 2,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c2",
+     "q": "A soccer team orders new shirts: 4 coach shirts at $15 each and 18 player shirts at $9 each. A coupon takes $25 off the total. Lena writes the cost as (4 × 15 + 18) × 9 − 25. Sam writes it as 4 × 15 + 18 × 9 − 25.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "677"
+       },
+       "label": "a",
+       "prompt": "Value of Lena's expression, (4 × 15 + 18) × 9 − 25",
+       "tests": {
+        "ok": [
+         "677"
+        ],
+        "no": [
+         "197",
+         "702",
+         "472"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "197"
+       },
+       "label": "b",
+       "prompt": "Value of Sam's expression, 4 × 15 + 18 × 9 − 25",
+       "tests": {
+        "ok": [
+         "197"
+        ],
+        "no": [
+         "677",
+         "222",
+         "247"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Lena's",
+         "Sam's",
+         "Both",
+         "Neither"
+        ],
+        "correct": 1
+       },
+       "label": "c",
+       "prompt": "Whose expression matches the real cost of the shirts?"
+      },
+      {
+       "ans": {
+        "type": "choice",
+        "options": [
+         "Yes, with money left over",
+         "No, the team needs more money"
+        ],
+        "correct": 1
+       },
+       "label": "d",
+       "prompt": "The team has collected $185. Is that enough to pay for the shirts?"
+      },
+      {
+       "ans": {
+        "type": "self",
+        "model": "The coach shirts cost 4 × 15 = $60 and the player shirts cost 18 × 9 = $162. After the $25 coupon the shirts cost $197, which is the value of Sam's expression. Lena's parentheses multiply the coach cost by 9 as well, so her total is far too high. $185 is $12 less than $197, so the team needs $12 more.",
+        "look": "Says the shirts cost $197, says what Lena's parentheses change, and compares $197 with $185."
+       },
+       "label": "e",
+       "prompt": "Give the reason for your two choices. Say what the parentheses in Lena's expression change, and use the numbers."
+      }
+     ],
+     "a": [
+      "a) 4 × 15 + 18 = 78",
+      "78 × 9 = 702",
+      "702 − 25 = 677",
+      "b) 4 × 15 = 60",
+      "18 × 9 = 162",
+      "60 + 162 − 25 = 197",
+      "c) Sam's expression matches, because each coach shirt costs $15 once and each player shirt costs $9 once.",
+      "d) 197 − 185 = 12, so $185 is not enough. The team needs $12 more.",
+      "e) Decision: use Sam's expression. The shirts cost $197, and $185 falls $12 short."
+     ],
+     "skill": "ooo",
+     "hint": "In Sam's expression, do both multiplications before you add or subtract. In Lena's, finish the parentheses first. For the reason, say which costs get multiplied by 9 in Lena's expression.",
+     "real": true,
+     "min": 8,
+     "from": "L036/q35",
+     "round": 1,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c3",
+     "q": "The ones digits of the powers of 7 follow a pattern. Here are the first four powers: 7¹ is 7, 7² is 49, 7³ is 343 and 7⁴ is 2,401.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "3"
+       },
+       "label": "a",
+       "prompt": "What is the ones digit of 7⁷?",
+       "tests": {
+        "ok": [
+         "3"
+        ],
+        "no": [
+         "7",
+         "9",
+         "1",
+         "49"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "7"
+       },
+       "label": "b",
+       "prompt": "7¹, 7⁵ and 7⁹ all end in 7. What is the ones digit of 7¹³?",
+       "tests": {
+        "ok": [
+         "7"
+        ],
+        "no": [
+         "3",
+         "1",
+         "9"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "9"
+       },
+       "label": "c",
+       "prompt": "What is the ones digit of 7³⁰?",
+       "tests": {
+        "ok": [
+         "9"
+        ],
+        "no": [
+         "1",
+         "7",
+         "3",
+         "0"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) Keep only the ones digit: 7, 9, 3, 1 for 7¹ to 7⁴, then 7, 9, 3 for 7⁵, 7⁶, 7⁷. The ones digit of 7⁷ is 3.",
+      "b) The ones digits go 7, 9, 3, 1 and then start over, so the cycle has 4 digits.",
+      "13 = 4 × 3 + 1, so 7¹³ comes after 3 full cycles, in place 1 of the cycle. Its ones digit is 7.",
+      "c) 30 = 4 × 7 + 2, so 7³⁰ comes after 7 full cycles, in place 2 of the cycle. Its ones digit is 9.",
+      "Answers: a) 3, b) 7, c) 9"
+     ],
+     "skill": "exp-eval",
+     "hint": "Write the exponents 1 to 8 in a row and only the ones digit of each power under them. See how far apart the exponents are that share a ones digit.",
+     "stretch": true,
+     "min": 6,
+     "from": "L036/q36",
+     "round": 2,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c4",
+     "q": "Add the odd numbers in order, starting from 1, and look at the sums: 1 + 3 + 5 + 7 = 16 and 1 + 3 + 5 + 7 + 9 = 25.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "64"
+       },
+       "label": "a",
+       "prompt": "Find 1 + 3 + 5 + 7 + 9 + 11 + 13 + 15.",
+       "tests": {
+        "ok": [
+         "64"
+        ],
+        "no": [
+         "63",
+         "49",
+         "81"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "power",
+        "base": "8",
+        "exp": "2"
+       },
+       "label": "b",
+       "prompt": "Write your answer to part a as a power with exponent 2. Type it with the ^ key.",
+       "tests": {
+        "ok": [
+         "8^2"
+        ],
+        "no": [
+         "2^8",
+         "15^2",
+         "4^3"
+        ],
+        "nudge": [
+         "64"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "225"
+       },
+       "label": "c",
+       "prompt": "Use the pattern to find the sum of the first 15 odd numbers, 1 + 3 + 5 and so on up to 29.",
+       "tests": {
+        "ok": [
+         "225"
+        ],
+        "no": [
+         "196",
+         "841",
+         "30",
+         "435"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 = 64",
+      "b) 64 = 8 × 8 = 8², so adding the first 8 odd numbers gives 8².",
+      "c) 15² = 225, so adding the first 15 odd numbers gives 225.",
+      "1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19 + 21 + 23 + 25 + 27 + 29 = 225",
+      "Answers: a) 64, b) 8², c) 225"
+     ],
+     "skill": "exp-eval",
+     "hint": "Compare each sum with how many odd numbers were added to make it.",
+     "stretch": true,
+     "min": 6,
+     "from": "L036/q39",
+     "round": 2,
+     "tag": "Back from Lesson 36"
+    },
+    {
+     "id": "c5",
+     "q": "In a fairy tale, a magic beanstalk doubles its height every night. It starts 1 centimeter tall. After 1 night it is 2 centimeters tall, after 2 nights 4 centimeters, and after 3 nights 8 centimeters.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "256"
+       },
+       "label": "a",
+       "prompt": "How tall is the beanstalk after 8 nights?",
+       "unit": "centimeters",
+       "tests": {
+        "ok": [
+         "256",
+         "256 cm"
+        ],
+        "no": [
+         "16",
+         "64",
+         "128",
+         "512"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "9"
+       },
+       "label": "b",
+       "prompt": "After how many nights is the beanstalk taller than 500 centimeters for the first time?",
+       "unit": "nights",
+       "tests": {
+        "ok": [
+         "9",
+         "9 nights"
+        ],
+        "no": [
+         "8",
+         "10",
+         "250"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "262144"
+       },
+       "label": "c",
+       "prompt": "After 18 nights it is 2¹⁸ centimeters tall. Eighteen 2s multiplied together is the same as nine 2s times nine 2s, which is 2⁹ × 2⁹. Find the value of 2¹⁸.",
+       "unit": "centimeters",
+       "tests": {
+        "ok": [
+         "262144",
+         "262,144"
+        ],
+        "no": [
+         "1024",
+         "36",
+         "262044",
+         "65536",
+         "261144"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 2⁸ = 256, so the beanstalk is 256 centimeters tall after 8 nights.",
+      "b) 2⁸ = 256, which is less than 500.",
+      "2⁹ = 512, which is more than 500, so the first time is after 9 nights.",
+      "c) 2⁹ = 512, so 2¹⁸ = 512 × 512.",
+      "512 × 500 = 256,000 and 512 × 12 = 6,144",
+      "256,000 + 6,144 = 262,144",
+      "Answers: a) 256, b) 9 nights, c) 262,144"
+     ],
+     "skill": "exp-apply",
+     "hint": "For part c, find 2⁹ first, then multiply it by itself in two pieces and add them. Check each digit before you type it.",
+     "stretch": true,
+     "min": 8,
+     "from": "L036/q40",
+     "round": 2,
+     "tag": "Back from Lesson 36"
+    }
+   ]
+  }
+ ]
+}
