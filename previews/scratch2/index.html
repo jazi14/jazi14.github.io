@@ -638,6 +638,12 @@ details{border-color:transparent;border-radius:var(--radius);box-shadow:var(--li
 /* tablets and phones: the pad sits under the question, full width, and reaches the bottom of the screen */
 html.spad-stack .qlayout{gap:12px}
 html.spad-stack .spad-surf{height:var(--spad-h,380px)}
+/* a tall question on a tablet in landscape: the pad goes beside it */
+@media (min-width:960px){
+  html.spad-stack .qlayout.beside{flex-direction:row;align-items:flex-start;width:min(1180px,calc(100vw - 32px));margin-left:calc(50% - min(590px,50vw - 16px))}
+  html.spad-stack .qlayout.beside .qmain{flex:1 1 0}
+  html.spad-stack .qlayout.beside .qside{flex:0 0 min(480px,44%);position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px)}
+}
 
 /* finger and Apple Pencil sizes */
 html.spad-touch .spad-bar{padding:8px 12px}
@@ -646,8 +652,8 @@ html.spad-touch .spad-bar button svg{width:22px;height:22px}
 html.spad-touch .spad-title{font-size:1.05rem}
 html.spad-touch .spad-title svg{width:22px;height:22px}
 @media (min-width:900px){
-  html.spad-touch .spad-bar{grid-template-columns:auto minmax(0,1fr) auto;gap:12px}
-  html.spad-touch .spad-tools{grid-column:2;grid-row:1;width:100%;max-width:560px;justify-self:center}
+  html.spad-touch .qlayout:not(.beside) .spad-bar{grid-template-columns:auto minmax(0,1fr) auto;gap:12px}
+  html.spad-touch .qlayout:not(.beside) .spad-tools{grid-column:2;grid-row:1;width:100%;max-width:560px;justify-self:center}
 }
 @media (max-width:480px){ html.spad-touch .spad-bar button{padding:6px 10px} }
 
@@ -6042,8 +6048,20 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var h = Math.round(window.innerHeight - top - foot.offsetHeight - 16);
       el.style.setProperty('--spad-h', Math.max(340, Math.min(h, 1100)) + 'px');
     }
-    var watching = null, ro = window.ResizeObserver ? new ResizeObserver(function () { sizeIt(); }) : null;
-    function watch(node) { if (!ro || node === watching) return; if (watching) ro.unobserve(watching); watching = node; ro.observe(node); }
+    var watching = null, wrapEl = null, ro = window.ResizeObserver ? new ResizeObserver(function () { sizeIt(); }) : null;
+    function watch(node, wrap) { wrapEl = wrap; if (!ro || node === watching) return; if (watching) ro.unobserve(watching); watching = node; ro.observe(node); }
+    /* Tablet in landscape: the pad goes under the question when there is room for it on the screen. When a tall
+       question (one with a picture) would push it off the screen, it goes beside the question instead. Decided once
+       per question and again when the screen turns, never while he writes. */
+    function place() {
+      if (!wrapEl) return;
+      wrapEl.classList.remove('beside');
+      if (stacked() && window.innerWidth >= 960 && watching && wrapEl.isConnected) {
+        var spare = window.innerHeight - (watching.getBoundingClientRect().bottom + (window.scrollY || 0)) - bar.offsetHeight - foot.offsetHeight - 28;
+        if (spare < 300) wrapEl.classList.add('beside');
+      }
+      sizeIt();
+    }
 
     function setTool(t) {
       S.tool = t; el.dataset.tool = t;
@@ -6174,7 +6192,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       el: el,
       setQuestion: function (label, text) { q.textContent = (label ? label + '. ' : '') + (text || ''); },
       refresh: loadRemote,
-      size: sizeIt,
+      size: place,
       watch: watch,
       flush: push,
       close: function () { if (!tutorMode && el.classList.contains('full')) full(false); push(); }
@@ -6225,7 +6243,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var main = div('qmain'); main.append(card);
       var side = div('qside'); side.append(pad.el);
       var wrap = div('qlayout'); wrap.append(main, side);
-      pad.watch(card);
+      pad.watch(card, wrap);
       requestAnimationFrame(function () { pad.size(); });
       return wrap;
     },
@@ -6284,7 +6302,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     Hub.store.ready.then(function(){
       if (qs.get('view') === 'answers') { Hub.go('answers',{id:'L038',from:'parent'}); return; }
       Hub.go('lesson',{id:'L038',from:'math'});
-      var tries=0;(function pick(){var b=document.querySelector('.strip button[aria-label="Question 23"]');if(b){b.click();}else if(tries++<100)setTimeout(pick,50);})();
+      var tries=0;(function pick(){var b=document.querySelector('.strip button[aria-label="Question '+(qs.get('q')||'23')+'"]');if(b){b.click();}else if(tries++<100)setTimeout(pick,50);})();
     });
   }
   go();
