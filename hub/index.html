@@ -682,6 +682,9 @@ html.spad-lock,html.spad-lock body{overflow:hidden}
 .awork-pic svg{display:block;width:100%;height:auto}
 .awork-text{font-family:var(--f-read);white-space:pre-wrap;margin-top:8px}
 .awork-key{margin-top:6px}
+/* Clear waits for a second tap, so one slip of a finger never wipes his working */
+.spad-bar button.armed{background:var(--bad);color:#fff;border-color:var(--bad)}
+.spad-bar button.armed .lbl{display:inline!important}
 
 </style>
 </head>
@@ -5881,8 +5884,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
    only the tutor writes scratchtutor. Strokes use a 1000-unit-wide space so a drawing scales with the pad. Never graded. */
 (function () {
   'use strict';
-  var PRE = 'nlh.pad.', KEEP = 150, U = 1000, ERASE_R = 16, SYNC_MS = 2500, MAXB = 300000;
-  var cache = {};
+  var PRE = 'nlh.pad.', KEEP = 150, BUDGET = 1500000, U = 1000, ERASE_R = 16, SYNC_MS = 2500, MAXB = 300000, CACHE_MAX = 8, PEN_MS = 8000;
+  var cache = {}, tutorPad = null;
   // Where the pad goes. Side by side only on a wide screen with a mouse; on a tablet or phone it sits under the question.
   var root = document.documentElement;
   var mqWide = window.matchMedia ? window.matchMedia('(min-width: 960px) and (hover: hover) and (pointer: fine)') : null;
@@ -5915,19 +5918,28 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   function div(cls, text) { var d = document.createElement('div'); d.className = cls; if (text) d.textContent = text; return d; }
   function lsGet(k) { try { var v = localStorage.getItem(PRE + k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
   function lsDel(k) { try { localStorage.removeItem(PRE + k); } catch (e) { /* ignore */ } }
-  function prune(room) {
+  /* Pads kept on this device are a copy: when he is signed in, the database has them too. Keep at most KEEP pads and
+     about BUDGET characters, so the pads never crowd out the hub's own saved lesson attempts in the same storage.
+     The oldest pads go first; pads not yet sent to the database go last; the pad being written is never dropped. */
+  function prune(keepKey, room, extra) {
     try {
-      var rows = [];
-      for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf(PRE) === 0) { var at = 0; try { at = JSON.parse(localStorage.getItem(k)).at || 0; } catch (e) { /* ignore */ } rows.push([k, at]); } }
-      rows.sort(function (a, b) { return a[1] - b[1]; });
-      var drop = rows.length - (KEEP - (room || 0));
-      for (var j = 0; j < drop; j++) localStorage.removeItem(rows[j][0]);
+      var rows = [], total = 0;
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i); if (!k || k.indexOf(PRE) !== 0 || k === keepKey) continue;
+        var raw = localStorage.getItem(k) || '', at = 0, pend = 0;
+        try { var j = JSON.parse(raw); at = j.at || 0; pend = j.pend ? 1 : 0; } catch (e) { /* ignore */ }
+        rows.push([k, at, raw.length, pend]); total += raw.length;
+      }
+      rows.sort(function (a, b) { return (a[3] - b[3]) || (a[1] - b[1]); });
+      var max = KEEP - room, lim = BUDGET - extra;
+      for (var n = 0; n < rows.length && (rows.length - n > max || total > lim); n++) { localStorage.removeItem(rows[n][0]); total -= rows[n][2]; }
     } catch (e) { /* ignore */ }
   }
   function lsSet(k, v) {
-    var s = JSON.stringify(v);
-    try { localStorage.setItem(PRE + k, s); return true; } catch (e) {
-      prune(40); try { localStorage.setItem(PRE + k, s); return true; } catch (e2) { return false; }
+    var s = JSON.stringify(v), full = PRE + k;
+    try { if (localStorage.getItem(full) == null) prune(full, 1, s.length); } catch (e) { /* ignore */ }
+    try { localStorage.setItem(full, s); return true; } catch (e) {
+      prune(full, 40, s.length + 200000); try { localStorage.setItem(full, s); return true; } catch (e2) { return false; }
     }
   }
 
@@ -5937,7 +5949,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   function copy(v) { return v == null ? v : JSON.parse(JSON.stringify(v)); }
   function rGet(path) {
     var d = db(); if (!d) return Promise.resolve(null);
-    return d.doc(path).get().then(function (s) { return s.exists ? copy(s.data()) : null; }, function () { return null; });
+    return d.doc(path).get().then(function (s) { return s.exists ? copy(s.data()) : null; }, function () { return undefined; });   // undefined: could not read
   }
   function rSet(path, body) {
     var d = db(); if (!d) return Promise.resolve('local');
@@ -5952,10 +5964,12 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   }
   function msOf(v) { return v ? (v.atMs || Date.parse(v.at) || 0) : 0; }
   function has(v) { return !!(v && ((v.s && v.s.length) || (v.t && String(v.t).trim()))); }
+  function sig(st) { return JSON.stringify(st); }
+  function maxY(list) { var m = 0; list.forEach(function (st) { for (var i = 1; i < (st.p || []).length; i += 2) if (st.p[i] > m) m = st.p[i]; }); return m; }
 
-  function cssColor(node, c) {
-    var cs = getComputedStyle(node), name = c === 'red' ? '--bad' : c === 'tutor' ? '--spad-tutor' : '--ink';
-    return cs.getPropertyValue(name).trim() || (c === 'red' ? '#c0392b' : c === 'tutor' ? '#7b3fe4' : '#13212B');
+  function colors(node) {
+    var cs = getComputedStyle(node), g = function (n, d) { return cs.getPropertyValue(n).trim() || d; };
+    return { ink: g('--ink', '#13212B'), red: g('--bad', '#c0392b'), tutor: g('--spad-tutor', '#7b3fe4') };
   }
   function strokePath(ctx, s, k) {
     var p = s.p;
@@ -5970,8 +5984,13 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   function makePad(key, o) {
     var tutorMode = o.mode === 'tutor', sync = o.mode === 'student' && !!db(), path = o.lessonId && o.qid ? o.lessonId + '.' + o.qid : null;
     var saved = tutorMode ? (o.mine || {}) : (lsGet(key) || {});
-    var S = { tool: 'pen', strokes: saved.s || [], undo: [], penSeen: false, cur: null, erasing: null, scale: 1, timer: null,
-      under: tutorMode ? ((o.his && o.his.s) || []) : [], over: [], overText: '', showOver: true, dirty: false, rtimer: null, touched: false };
+    var S = { tool: 'pen', strokes: saved.s || [], undo: [], penAt: 0, curType: '', cur: null, erasing: null, scale: 1, ox: 0, timer: null,
+      under: tutorMode ? ((o.his && o.his.s) || []) : [], over: [], overText: '', showOver: true, dirty: false, rtimer: null, touched: false,
+      inflight: null, last: null, baseMs: 0, baseSig: {}, baseT: '', clearAt: 0 };
+    // The copy on the server that this pad last read or wrote. Used to merge in work saved from another device
+    // instead of writing over it. After a reload only its time is known, so a merge then keeps strokes from both.
+    function setBase(v) { S.baseMs = msOf(v); S.baseSig = {}; S.baseT = (v && v.t) || ''; ((v && v.s) || []).forEach(function (st) { S.baseSig[sig(st)] = 1; }); }
+    if (tutorMode) setBase(o.mine); else S.baseMs = saved.bms || 0;
     var el = div('spad' + (tutorMode ? ' spad-tutormode full' : '')); el.dataset.tool = 'pen';
     var bar = div('spad-bar');
     var title = div('spad-title'); title.innerHTML = svg(tutorMode ? 'tutor' : 'pad') + '<span>' + (tutorMode ? 'Your notes on his work' : 'Scratch pad') + '</span>';
@@ -6002,26 +6021,45 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     foot.append(footL, footR);
     if (tutorMode) el.append(bar, q, surf, tnoteIn, foot); else el.append(bar, q, tnote, surf, foot);
     var ctx = cv.getContext('2d');
+    // Finished strokes are drawn once into a second canvas; while he writes, only the stroke in progress is drawn on
+    // top of it, once per screen frame, so a full pad stays quick.
+    var base = document.createElement('canvas'), bctx = base.getContext('2d'), col = null, raf = 0;
 
-    function drawStroke(s, c) {
+    function drawStroke(c2, s, c) {
       if (!s.p || s.p.length < 2) return;
-      ctx.strokeStyle = cssColor(el, c || s.c); ctx.fillStyle = ctx.strokeStyle; ctx.lineWidth = s.w * S.scale; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      strokePath(ctx, s, S.scale);
+      c2.strokeStyle = col[c || s.c] || col.ink; c2.fillStyle = c2.strokeStyle; c2.lineWidth = s.w * S.scale; c2.lineCap = 'round'; c2.lineJoin = 'round';
+      strokePath(c2, s, S.scale);
+    }
+    function setT(c2) { var dpr = window.devicePixelRatio || 1; c2.setTransform(dpr, 0, 0, dpr, S.ox * dpr, 0); }
+    function compose() {
+      raf = 0; if (!cv.width) return;
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height); ctx.drawImage(base, 0, 0);
+      if (S.cur) { setT(ctx); drawStroke(ctx, S.cur, tutorMode ? 'tutor' : null); }
     }
     function redraw() {
-      var dpr = window.devicePixelRatio || 1;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
-      S.under.forEach(function (s) { drawStroke(s); });
-      S.strokes.forEach(function (s) { drawStroke(s, tutorMode ? 'tutor' : null); });
-      if (S.cur) drawStroke(S.cur, tutorMode ? 'tutor' : null);
-      if (S.showOver) S.over.forEach(function (s) { drawStroke(s, 'tutor'); });
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+      if (!cv.width) return;
+      if (base.width !== cv.width || base.height !== cv.height) { base.width = cv.width; base.height = cv.height; }
+      col = colors(el);
+      bctx.setTransform(1, 0, 0, 1, 0, 0); bctx.clearRect(0, 0, base.width, base.height); setT(bctx);
+      S.under.forEach(function (s) { drawStroke(bctx, s); });
+      S.strokes.forEach(function (s) { drawStroke(bctx, s, tutorMode ? 'tutor' : null); });
+      if (S.showOver) S.over.forEach(function (s) { drawStroke(bctx, s, 'tutor'); });
+      compose();
     }
+    function soon() { if (!raf) raf = requestAnimationFrame(compose); }
+    /* Strokes are kept in a space 1000 units wide. Normally that fills the pad's width. When the drawing reaches
+       lower than the pad is tall (he wrote on a taller pad, turned the iPad, or the tutor's screen is shorter), the
+       whole drawing is shrunk to fit and centred, so nothing he wrote is ever hidden below the edge. */
     function fit() {
       var r = surf.getBoundingClientRect(); if (!r.width || !r.height) return;
       var dpr = window.devicePixelRatio || 1, w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
       if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
-      S.scale = r.width / U; redraw();
+      var k = r.width / U, my = maxY(S.under.concat(S.strokes, S.showOver ? S.over : []));
+      if (my && (my + 12) * k > r.height) k = Math.max(r.height / (my + 12), k * 0.4);
+      S.scale = k; S.ox = Math.round((r.width - U * k) / 2); redraw();
     }
+    function release() { cv.width = cv.height = 0; base.width = base.height = 0; }
     if (window.ResizeObserver) new ResizeObserver(fit).observe(surf); else window.addEventListener('resize', fit);
     // Under the question: make the writing area reach the bottom of the screen. When a tall question (one with a
     // picture) leaves less than that, the pad is as tall as the screen below the lesson's top bar, so one scroll
@@ -6039,12 +6077,12 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
     var watching = null, wrapEl = null, ro = window.ResizeObserver ? new ResizeObserver(function () { sizeIt(); }) : null;
     function watch(node, wrap) { wrapEl = wrap; if (!ro || node === watching) return; if (watching) ro.unobserve(watching); watching = node; ro.observe(node); }
-    function place() { sizeIt(); }
+    function place() { sizeIt(); fit(); }
 
     function setTool(t) {
       S.tool = t; el.dataset.tool = t;
       [[bPen, 'pen'], [bRed, 'red'], [bEr, 'eraser'], [bType, 'type']].forEach(function (x) { x[0].setAttribute('aria-pressed', x[1] === t ? 'true' : 'false'); });
-      if (t === 'type') setTimeout(function () { ta.focus(); }, 0); else ta.blur();
+      if (t === 'type') ta.focus(); else ta.blur();      // focus inside the tap, so the iPad opens its keyboard
     }
     function textNow() { return tutorMode ? tnoteIn.value : ta.value; }
     function refreshButtons() { bUndo.disabled = !S.undo.length; bClear.disabled = !S.strokes.length && !textNow(); }
@@ -6052,31 +6090,57 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var now = Date.now();
       return { lessonId: o.lessonId, qid: o.qid, s: S.strokes, t: textNow(), w: U, at: new Date(now).toISOString(), atMs: now };
     }
+    /* Work saved from another device since this pad last read the server: keep his strokes, add the ones written
+       there, and drop the ones erased there. Typed text: keep his unless only the other device changed it. */
+    function mergeIn(v) {
+      var theirs = {}, ours = {}, vs = (v && v.s) || [];
+      vs.forEach(function (st) { theirs[sig(st)] = 1; });
+      S.strokes.forEach(function (st) { ours[sig(st)] = 1; });
+      var out = S.strokes.filter(function (st) { var k = sig(st); return theirs[k] || !S.baseSig[k]; });
+      vs.forEach(function (st) { var k = sig(st); if (!ours[k] && !S.baseSig[k]) out.push(st); });
+      S.strokes = out; S.undo = [];
+      var vt = (v && v.t) || '';
+      if (textNow() === S.baseT && vt !== S.baseT) { if (tutorMode) tnoteIn.value = vt; else ta.value = vt; }
+      redraw(); refreshButtons();
+    }
+    function saveLocal() {
+      clearTimeout(S.timer); S.timer = null;
+      if (tutorMode) return;
+      if (!S.strokes.length && !ta.value) { lsDel(key); return; }
+      var v = { s: S.strokes, t: ta.value, at: Date.now(), bms: S.baseMs }; if (sync && S.dirty) v.pend = 1;
+      lsSet(key, v);
+    }
     function push() {
+      if (S.inflight) return S.inflight.then(push);
       clearTimeout(S.rtimer); S.rtimer = null;
-      if (!S.dirty || !path || !(sync || tutorMode)) return Promise.resolve();
+      if (!S.dirty || !path || !(sync || tutorMode)) return Promise.resolve(S.last);
       S.dirty = false;
       if (tutorMode) footR.textContent = 'Saving';
-      return rSet((tutorMode ? 'scratchtutor/' : 'scratch/') + path, body()).then(function (r) {
+      var where = (tutorMode ? 'scratchtutor/' : 'scratch/') + path;
+      S.inflight = rGet(where).then(function (v) {
+        if (v === undefined) return 'fail';                                   // could not read: never write blind over it
+        if (v && msOf(v) > S.baseMs) mergeIn(v);
+        var b = body();
+        return rSet(where, b).then(function (r) { if (r === 'ok') setBase(b); return r; });
+      }).then(function (r) {
+        S.inflight = null; S.last = r;
         if (r === 'fail') S.dirty = true;
+        if (!tutorMode && !S.timer) saveLocal();                             // record on the device whether it was sent
         footR.textContent = r === 'ok' ? (tutorMode ? 'Saved' : 'Your tutor and parent can see this.')
-          : r === 'big' ? 'Too much on this pad to send. It stays on this device.'
-          : r === 'fail' ? (tutorMode ? 'Not saved. Check the connection and tap Done again.' : 'Not sent yet. It tries again when you write more.') : footR.textContent;
+          : r === 'big' ? (tutorMode ? 'Too much on this pad to save. Clear some marks, then tap Done.' : 'Too much on this pad to send. It stays on this device.')
+          : r === 'fail' ? (tutorMode ? 'Not saved. Check the connection and tap Done again.' : 'Not sent yet. It tries again soon.') : footR.textContent;
+        if (r === 'fail' && !tutorMode) { clearTimeout(S.rtimer); S.rtimer = setTimeout(push, 20000); }
         return r;
       });
+      return S.inflight;
     }
     function save() {
       S.touched = true;
-      if (!tutorMode) {
-        clearTimeout(S.timer);
-        S.timer = setTimeout(function () {
-          if (!S.strokes.length && !ta.value) lsDel(key); else lsSet(key, { s: S.strokes, t: ta.value, at: Date.now() });
-        }, 300);
-      }
       if (sync || tutorMode) { S.dirty = true; clearTimeout(S.rtimer); S.rtimer = setTimeout(push, SYNC_MS); }
+      if (!tutorMode) { clearTimeout(S.timer); S.timer = setTimeout(saveLocal, 300); }
       refreshButtons();
     }
-    function pt(e) { var r = cv.getBoundingClientRect(); return [Math.round((e.clientX - r.left) / S.scale), Math.round((e.clientY - r.top) / S.scale)]; }
+    function pt(e) { var r = cv.getBoundingClientRect(); return [Math.round((e.clientX - r.left - S.ox) / S.scale), Math.round((e.clientY - r.top) / S.scale)]; }
     function eraseAt(x, y) {
       var hit = false;
       for (var i = S.strokes.length - 1; i >= 0; i--) {
@@ -6085,18 +6149,26 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       }
       if (hit) redraw();
     }
+    // A hand resting on the screen. When the Pencil comes down while a touch is drawing, the touch was the palm:
+    // drop it and draw with the Pencil. Touches are ignored while the Pencil was used in the last few seconds.
+    function dropTouch() {
+      if (S.curType !== 'touch') return;
+      if (S.erasing) { S.erasing.slice().reverse().forEach(function (x) { S.strokes.splice(x[0], 0, x[1]); }); S.erasing = null; }
+      S.cur = null; S.pid = null; S.curType = ''; redraw();
+    }
     cv.addEventListener('pointerdown', function (e) {
       if (S.tool === 'type') return;
-      if (e.pointerType === 'pen') S.penSeen = true;
-      else if (e.pointerType === 'touch' && S.penSeen) return;     // palm on the screen while writing with a stylus
+      if (e.pointerType === 'pen') { S.penAt = Date.now(); dropTouch(); }
+      else if (e.pointerType === 'touch' && Date.now() - S.penAt < PEN_MS) return;
       if (e.button > 0 || S.cur || S.erasing) return;
       e.preventDefault(); try { cv.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
-      S.pid = e.pointerId; var p = pt(e);
+      S.pid = e.pointerId; S.curType = e.pointerType; var p = pt(e);
       if (S.tool === 'eraser') { S.erasing = []; eraseAt(p[0], p[1]); return; }
       S.cur = { c: tutorMode ? 'tutor' : S.tool === 'red' ? 'red' : 'ink', w: 5, p: [p[0], p[1]] }; redraw();
     });
     cv.addEventListener('pointermove', function (e) {
       if (e.pointerId !== S.pid || (!S.cur && !S.erasing)) return;
+      if (e.pointerType === 'pen') S.penAt = Date.now();
       var evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e]; if (!evs.length) evs = [e];
       evs.forEach(function (ev) {
         var p = pt(ev);
@@ -6104,10 +6176,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         var a = S.cur.p, lx = a[a.length - 2], ly = a[a.length - 1];
         if ((p[0] - lx) * (p[0] - lx) + (p[1] - ly) * (p[1] - ly) >= 4) a.push(p[0], p[1]);
       });
-      if (S.cur) redraw();
+      if (S.cur) soon();
     });
     function end(e) {
-      if (e.pointerId !== S.pid) return; S.pid = null;
+      if (e.pointerId !== S.pid) return; S.pid = null; S.curType = '';
+      if (e.pointerType === 'pen') S.penAt = Date.now();
       if (S.erasing) { if (S.erasing.length) { S.undo.push({ a: 'del', items: S.erasing }); save(); } S.erasing = null; return; }
       if (!S.cur) return;
       S.strokes.push(S.cur); S.cur = null; S.undo.push({ a: 'add' }); redraw(); save();
@@ -6125,15 +6198,26 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       else if (u.a === 'clear') { S.strokes = u.s; if (tutorMode) tnoteIn.value = u.t; else ta.value = u.t; }
       redraw(); save();
     });
+    var clearLbl = bClear.querySelector('.lbl'), clearTxt = clearLbl.textContent, clearT = null;
+    function disarm() { clearTimeout(clearT); S.clearAt = 0; bClear.classList.remove('armed'); clearLbl.textContent = clearTxt; }
     bClear.addEventListener('click', function () {
       if (!S.strokes.length && !textNow()) return;
+      if (Date.now() - S.clearAt > 3000) {                                    // first tap: ask for a second one
+        S.clearAt = Date.now(); bClear.classList.add('armed'); clearLbl.textContent = 'Tap again to clear';
+        clearTimeout(clearT); clearT = setTimeout(disarm, 3000); return;
+      }
+      disarm();
       S.undo.push({ a: 'clear', s: S.strokes, t: textNow() }); S.strokes = [];
       if (tutorMode) tnoteIn.value = ''; else ta.value = '';
       redraw(); save();
     });
+    var mo = null;
     function full(on) {
       el.classList.toggle('full', on); document.documentElement.classList.toggle('spad-lock', on);
-      if (on) bDone.focus(); else bBig.focus();
+      if (mo) { mo.disconnect(); mo = null; }
+      // if the screen changes under the big pad (a test's time runs out, he goes back), close it and unlock the page
+      if (on && window.MutationObserver) { mo = new MutationObserver(function () { if (!el.isConnected) full(false); }); mo.observe(document.body, { childList: true, subtree: true }); }
+      if (el.isConnected) { if (on) bDone.focus(); else bBig.focus(); }
       sizeIt();
     }
     function done() { if (tutorMode) { if (o.onDone) o.onDone(); } else full(false); }
@@ -6157,23 +6241,30 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     bTut.addEventListener('click', function () { S.showOver = !S.showOver; setOver({ s: S.over, t: S.overText }); });
     function loadRemote() {
       if (!path || tutorMode || !db()) return;
-      rGet('scratchtutor/' + path).then(setOver);
+      rGet('scratchtutor/' + path).then(function (v) { if (v !== undefined) { setOver(v); fit(); } });
       if (sync) rGet('scratch/' + path).then(function (v) {
-        if (!v || S.touched || msOf(v) <= (saved.at || 0)) return;        // a newer copy saved from his other device
-        S.strokes = v.s || []; ta.value = v.t || ''; saved = { s: S.strokes, t: ta.value, at: msOf(v) };
-        lsSet(key, saved); redraw(); refreshButtons();
+        if (!v || msOf(v) <= S.baseMs) return;                               // nothing newer on the server
+        if (!S.touched && !S.dirty && !saved.pend && msOf(v) > (saved.at || 0)) {
+          S.strokes = v.s || []; ta.value = v.t || ''; S.undo = []; setBase(v);  // a newer copy from his other device
+          saveLocal(); fit(); refreshButtons(); return;
+        }
+        mergeIn(v); setBase(v); fit(); save();                               // both changed: keep both, then send
       });
     }
 
     setTool('pen'); refreshButtons(); loadRemote();
+    if (sync && saved.pend) { S.dirty = true; S.rtimer = setTimeout(push, SYNC_MS); }   // work not sent last time
     return {
       el: el,
       setQuestion: function (label, text) { q.textContent = (label ? label + '. ' : '') + (text || ''); },
       refresh: loadRemote,
       size: place,
       watch: watch,
-      flush: push,
-      close: function () { if (!tutorMode && el.classList.contains('full')) full(false); push(); }
+      flush: function () { if (S.timer) saveLocal(); return push(); },
+      close: function (drop) {
+        if (!tutorMode && el.classList.contains('full')) full(false);
+        if (S.timer) saveLocal(); push(); if (drop) release();
+      }
     };
   }
 
@@ -6214,9 +6305,12 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 
   window.HubScratch = {
     layout: function (card, o) {
-      Object.keys(cache).forEach(function (k) { if (k !== o.key) cache[k].close(); });
+      Object.keys(cache).forEach(function (k) { if (k !== o.key) cache[k].close(true); });
       var pad = cache[o.key];
-      if (pad) pad.refresh(); else pad = cache[o.key] = makePad(o.key, { mode: role() === 'student' ? 'student' : 'local', lessonId: o.lessonId, qid: o.qid });
+      if (pad) { delete cache[o.key]; cache[o.key] = pad; pad.refresh(); }    // most recently used last
+      else pad = cache[o.key] = makePad(o.key, { mode: role() === 'student' ? 'student' : 'local', lessonId: o.lessonId, qid: o.qid });
+      // keep only a few pads in memory; each one's work is already on the device and sent or queued to send
+      var keys = Object.keys(cache); while (keys.length > CACHE_MAX) delete cache[keys.shift()];
       pad.setQuestion(o.label, o.text);
       var main = div('qmain'); main.append(card);
       var side = div('qside'); side.append(pad.el);
@@ -6225,7 +6319,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       requestAnimationFrame(function () { pad.size(); });
       return wrap;
     },
-    closeAll: function () { Object.keys(cache).forEach(function (k) { cache[k].close(); }); },
+    closeAll: function () { Object.keys(cache).forEach(function (k) { cache[k].close(true); }); },
     // His work and the tutor's notes for one lesson, keyed by question id.
     lesson: function (lessonId) {
       if (!db()) return Promise.resolve({ mine: localWork(lessonId), tutor: {} });
@@ -6248,15 +6342,23 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     },
     // The tutor's pad over his work, full screen. Calls back after the last save when the tutor taps Done.
     openTutor: function (o, onClose) {
-      var path = o.lessonId + '.' + o.qid, pad;
+      if (tutorPad) return Promise.resolve(tutorPad);                 // already open
+      var path = o.lessonId + '.' + o.qid, pad, opening = { el: null };
+      tutorPad = opening;
       return Promise.all([rGet('scratch/' + path), rGet('scratchtutor/' + path)]).then(function (r) {
+        if (r[0] === undefined || r[1] === undefined) {                // a failed read is not an empty pad: do not open over it
+          tutorPad = null;
+          if (window.Hub && window.Hub.toast) window.Hub.toast('Could not load his pad. Check the connection and try again.');
+          return null;
+        }
         pad = makePad('tutor:' + path, { mode: 'tutor', lessonId: o.lessonId, qid: o.qid, his: r[0] || {}, mine: r[1] || {}, onDone: function () {
           pad.flush().then(function (res) {
-            if (res === 'fail') return;                              // keep the pad open; the footer says what to do
-            document.documentElement.classList.remove('spad-lock'); pad.el.remove();
+            if (res === 'fail' || res === 'big') return;              // keep the pad open; the footer says what to do
+            document.documentElement.classList.remove('spad-lock'); pad.el.remove(); tutorPad = null;
             if (onClose) onClose();
           });
         } });
+        tutorPad = pad;
         pad.setQuestion(o.label, o.text);
         document.body.append(pad.el); document.documentElement.classList.add('spad-lock');
         setTimeout(function () { var b = pad.el.querySelector('.spad-done'); if (b) b.focus(); }, 0);
@@ -6265,9 +6367,15 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
   };
   function sizeAll() { Object.keys(cache).forEach(function (k) { cache[k].size(); }); }
-  window.addEventListener('resize', sizeAll);
-  window.addEventListener('orientationchange', function () { setTimeout(sizeAll, 250); });
-  function flushAll() { Object.keys(cache).forEach(function (k) { cache[k].flush(); }); }
+  // Safari's bars shrinking and growing while he scrolls also fire resize; only a real change resizes the pad
+  var lastW = window.innerWidth, lastH = window.innerHeight;
+  window.addEventListener('resize', function () {
+    var w = window.innerWidth, h = window.innerHeight;
+    if (w === lastW && Math.abs(h - lastH) < 100) return;
+    lastW = w; lastH = h; sizeAll();
+  });
+  window.addEventListener('orientationchange', function () { setTimeout(function () { lastW = window.innerWidth; lastH = window.innerHeight; sizeAll(); }, 250); });
+  function flushAll() { Object.keys(cache).forEach(function (k) { cache[k].flush(); }); if (tutorPad && tutorPad.flush) tutorPad.flush(); }
   window.addEventListener('pagehide', flushAll);
   document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') flushAll(); });
 })();
