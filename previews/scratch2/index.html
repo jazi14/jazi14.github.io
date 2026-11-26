@@ -6171,7 +6171,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       tnote.textContent = '';
       if (S.overText.trim()) { var b = document.createElement('b'); b.textContent = 'Tutor: '; tnote.append(b, document.createTextNode(S.overText)); }
       tnote.hidden = !(S.showOver && S.overText.trim());
-      redraw();
+      redraw(); sizeIt();
     }
     bTut.addEventListener('click', function () { S.showOver = !S.showOver; setOver({ s: S.over, t: S.overText }); });
     function loadRemote() {
