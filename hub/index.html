@@ -596,7 +596,8 @@ details{border-color:transparent;border-radius:var(--radius);box-shadow:var(--li
 .qside{min-width:0}
 .spad{background:var(--card);border-radius:var(--radius,14px);box-shadow:var(--lift,none);border:1px solid var(--rule);display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .spad-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--rule);background:var(--accent-soft,var(--action-soft))}
-.spad-title{font-weight:800;font-size:.95rem;color:var(--ink);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.spad-title{font-weight:800;font-size:.95rem;color:var(--ink);display:flex;align-items:center;gap:6px;white-space:nowrap;min-width:0;overflow:hidden}
+.spad-title span{overflow:hidden;text-overflow:ellipsis}
 .spad-title svg{width:18px;height:18px;color:var(--accent-hi,var(--action))}
 .spad-tools,.spad-acts{display:flex;gap:4px;flex-wrap:wrap}
 .spad-tools{grid-column:1 / -1;grid-row:2;flex-wrap:nowrap;background:var(--card);border-radius:999px;padding:3px;border:1px solid var(--rule)}
@@ -622,24 +623,65 @@ details{border-color:transparent;border-radius:var(--radius);box-shadow:var(--li
 .spad-question{display:none}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .spad-surf{--spad-grid:rgba(238,240,246,.10)} }
 :root[data-theme="dark"] .spad-surf{--spad-grid:rgba(238,240,246,.10)}
+:root{--spad-tutor:#6D28D9}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--spad-tutor:#C4A1FF} }
+:root[data-theme="dark"]{--spad-tutor:#C4A1FF}
 @media (max-width:480px){ .spad-acts button .lbl{display:none} .spad-bar button{padding:4px 8px} .spad-surf{height:340px} }
 
-/* wide screens: question on the left, pad on the right */
+/* wide screens with a mouse: question on the left, pad on the right */
 @media (min-width:960px){
-  .qlayout{flex-direction:row;align-items:flex-start;width:min(1180px,calc(100vw - 48px));margin-left:calc(50% - min(590px,50vw - 24px))}
-  .qmain{flex:1 1 0}
-  .qside{flex:0 0 min(470px,42%);position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px)}
-  .spad-surf{height:calc(100vh - 330px);max-height:620px;min-height:380px}
+  html:not(.spad-stack) .qlayout{flex-direction:row;align-items:flex-start;width:min(1180px,calc(100vw - 48px));margin-left:calc(50% - min(590px,50vw - 24px))}
+  html:not(.spad-stack) .qmain{flex:1 1 0}
+  html:not(.spad-stack) .qside{flex:0 0 min(470px,42%);position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px)}
+  html:not(.spad-stack) .spad-surf{height:calc(100vh - 330px);max-height:620px;min-height:380px}
 }
+
+/* tablets and phones: the pad sits under the question, full width, and reaches the bottom of the screen */
+html.spad-stack .qlayout{gap:12px}
+html.spad-stack .spad-surf{height:var(--spad-h,380px)}
+/* a tablet in landscape: question and pad use the full width of the screen */
+@media (min-width:960px){
+  html.spad-stack .qlayout{width:min(1180px,calc(100vw - 32px));margin-left:calc(50% - min(590px,50vw - 16px))}
+}
+/* a tablet in landscape: keep a question's picture short so more of the pad fits on the screen */
+@media (orientation:landscape) and (max-height:900px){
+  html.spad-stack .qmain .fig img{max-height:34vh;width:auto}
+}
+
+/* finger and Apple Pencil sizes */
+html.spad-touch .spad-bar{padding:8px 12px}
+html.spad-touch .spad-bar button{min-height:44px;min-width:44px;font-size:.95rem;padding:6px 14px}
+html.spad-touch .spad-bar button svg{width:22px;height:22px}
+html.spad-touch .spad-title{font-size:1.05rem}
+html.spad-touch .spad-title svg{width:22px;height:22px}
+@media (max-width:480px){ html.spad-touch .spad-bar button{padding:6px 10px} }
 
 /* bigger: the pad fills the screen, the question stays on top */
 html.spad-lock,html.spad-lock body{overflow:hidden}
 .spad.full{position:fixed;inset:0;z-index:60;border-radius:0;border:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-.spad.full .spad-surf{height:auto;max-height:none;flex:1 1 auto}
+.spad.full .spad-surf,html.spad-stack .spad.full .spad-surf{height:auto;max-height:none;flex:1 1 auto}
 .spad.full .spad-question{display:block;padding:10px 14px;border-bottom:1px solid var(--rule);font-family:var(--f-read);font-size:1.02rem;max-height:30vh;overflow:auto;background:var(--card)}
 .spad.full .spad-acts .spad-big{display:none}
 .spad.full .spad-acts .spad-done{display:inline-flex;background:var(--accent,var(--action));color:var(--action-ink,#fff);border-color:transparent}
 @media print{ .qside{display:none} }
+
+/* the tutor's layer */
+.spad-bar .spad-tut[aria-pressed="true"],.spad-bar .tpen[aria-pressed="true"]{background:var(--spad-tutor);color:var(--card);border-color:transparent}
+.spad-tnote{padding:8px 12px;border-bottom:1px solid var(--rule);border-left:5px solid var(--spad-tutor);font-family:var(--f-read);font-size:1.02rem;white-space:pre-wrap;max-height:9em;overflow:auto}
+.spad-tnote b,.awork-text.tut b{color:var(--spad-tutor)}
+.spad-under{position:absolute;inset:0;font-family:var(--f-read);font-size:18px;line-height:28px;padding:1px 10px 0;white-space:pre-wrap;overflow:hidden;color:var(--ink);pointer-events:none;z-index:2}
+.spad-tutormode .spad-bar{background:color-mix(in srgb,var(--spad-tutor) 16%,var(--card))}
+.spad-tutormode .spad-title svg{color:var(--spad-tutor)}
+.spad textarea.spad-tnote-in{display:block;width:100%;margin:0;border:0;border-top:1px solid var(--rule);border-radius:0;resize:none;font-family:var(--f-read);font-size:1.02rem;padding:10px 12px;background:var(--card);color:var(--spad-tutor);min-height:3.2em}
+
+/* his working in the answer book */
+.awork{margin-top:12px;border:1px solid var(--rule);border-radius:12px;padding:10px 12px;background:var(--card)}
+.awork-head{display:flex;gap:10px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+.awork-pic{margin-top:8px;border-radius:8px;border:1px solid var(--rule);overflow:hidden;
+  background-image:linear-gradient(to right,var(--spad-grid,rgba(66,83,96,.10)) 1px,transparent 1px),linear-gradient(to bottom,var(--spad-grid,rgba(66,83,96,.10)) 1px,transparent 1px);background-size:28px 28px}
+.awork-pic svg{display:block;width:100%;height:auto}
+.awork-text{font-family:var(--f-read);white-space:pre-wrap;margin-top:8px}
+.awork-key{margin-top:6px}
 
 </style>
 </head>
@@ -2519,7 +2561,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       kids.push(el('div', {}, el('button', { class: 'linkbtn', type: 'button', text: P.teachOpen ? 'Hide the rule and examples' : 'Show the rule and examples', onclick: function () { P.teachOpen = !P.teachOpen; paint(); } })));
       if (P.teachOpen) kids.push(teachBlock(L));
     }
-    kids.push(window.HubScratch ? HubScratch.layout(card, { key: P.id + '.' + it.id, label: 'Question ' + x.n, text: it.q }) : card);
+    kids.push(window.HubScratch ? HubScratch.layout(card, { key: P.id + '.' + it.id, lessonId: P.id, qid: it.id, label: 'Question ' + x.n, text: it.q }) : card);
     root.replaceChildren.apply(root, kids);
     paintFeedback();
     if (test) paintClock();
@@ -5408,7 +5450,15 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
    second tries, time and his own reason for a miss, and the idea card that opens each part. Live while he works. */
 (function () {
   'use strict';
-  var H = window.Hub, el = H.el, C = window.NLHCheck, root = null, cur = null, onlyMiss = false, sig = '', openQ = null, drafts = {}, cuNow = null;
+  var H = window.Hub, el = H.el, C = window.NLHCheck, root = null, cur = null, onlyMiss = false, sig = '', openQ = null, drafts = {}, cuNow = null, work = null;
+  // His scratch-pad working and the tutor's notes for the open lesson. Read when the lesson opens and after the tutor saves.
+  function loadWork(force) {
+    if (!window.HubScratch || !cur) return;
+    if (!force && work && work.id === cur.id) return;
+    var want = cur.id;
+    work = { id: want, d: (work && work.id === want && work.d) || { mine: {}, tutor: {} } };
+    HubScratch.lesson(want).then(function (d) { if (cur && cur.id === want) { work = { id: want, d: d }; paint(true); } });
+  }
   var WHYTXT = {};
   function adult() {
     if (window.HUB_CFG) { var r = (window.HUB_ME || {}).role; return r === 'parent' || r === 'tutor'; }
@@ -5558,6 +5608,14 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         : 'On his catch-up list' + (c.rounds.length ? ' (' + hist + ')' : '') + '. ' + (c.pending ? 'A new version is waiting in his catch-up set.' : 'The next morning build writes a new version.') }));
     }
     if (it.from) box.append(el('p', { class: 'acu', text: 'New version of ' + it.from.replace(/^L0*(\d+)\//, 'Lesson $1, question ').replace(/question q/, 'question ') + (it.round ? ', try ' + it.round : '') + '.' }));
+    if (window.HubScratch && work && work.id === cur.id) {
+      var wm = work.d.mine[it.id], wt = work.d.tutor[it.id], wv = HubScratch.view(wm, wt, when);
+      if (wv) box.append(wv);
+      if (HubScratch.canTutor()) box.append(el('div', { class: 'noprint' }, el('button', { class: 'linkbtn', type: 'button', 'data-explain': it.id,
+        text: wt ? 'Change your notes on his pad' : 'Write on his pad to explain', onclick: function () {
+          HubScratch.openTutor({ lessonId: cur.id, qid: it.id, label: 'Question ' + x.n, text: it.q }, function () { H.toast('Saved. He sees it the next time he opens this question.'); loadWork(true); });
+        } })));
+    }
     notesFor(cur.id, it.id).forEach(function (v) { box.append(noteRow(v)); });
     if (openQ === it.id) box.append(remarkBox(it.id, it.id, 'A remark on question ' + x.n));
     else box.append(el('div', { class: 'noprint' }, el('button', { class: 'linkbtn', type: 'button', 'data-remark': it.id, text: 'Add a remark on this question', onclick: function () { openQ = it.id; paint(true); var t = H.$('#rem-' + it.id, root); if (t) t.focus(); } })));
@@ -5595,6 +5653,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
     if (cur.L === false) { root.replaceChildren(bar(title), el('div', { class: 'banner', text: 'The questions for this lesson could not be loaded. Check the connection and try again.' })); return; }
     var L = cur.L, A = H.math.attempt(cur.id), test = L.kind === 'test', kids = [bar(title)];
+    loadWork(false);
     cuNow = H.math.catchupState();
     var head = el('div', { class: 'card' }, el('h1', { text: L.title }));
     if (A) {
@@ -5629,7 +5688,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     render: function (r) { root = r; (H.math.WHY || []).forEach(function (w) { WHYTXT[w[0]] = w[1]; }); },
     show: function (arg) { cur = { id: arg && arg.id, from: (arg && arg.from) || 'parent', L: null }; onlyMiss = false; openQ = null; sig = ''; paint(true); },
     refresh: function () { var a = document.activeElement; if (a && root && root.contains(a) && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return; paint(false); },
-    hide: function () { cur = null; sig = ''; }
+    hide: function () { cur = null; sig = ''; work = null; }
   });
 })();
 
@@ -5814,12 +5873,28 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 </script>
 <script>Hub.boot();</script>
 <script>
-/* Scratch pad beside each question. Saved per question on this device only (localStorage, key nlh.pad.<lessonId>.<qid>).
-   Strokes are kept in a 1000-unit-wide space so the drawing scales with the pad. Not graded, never sent to the database. */
+/* Scratch pad beside each question.
+   His working is kept on this device (localStorage, key nlh.pad.<lessonId>.<qid>) and, when he is signed in as the
+   student, also saved to the database as scratch/<lessonId>.<qid> so the tutor and the parent can see it in the answer book.
+   The tutor writes on a separate layer, scratchtutor/<lessonId>.<qid>, drawn over his work in its own color. The tutor
+   layer never changes or erases his strokes, and he can hide it. Database rules: only the student writes scratch,
+   only the tutor writes scratchtutor. Strokes use a 1000-unit-wide space so a drawing scales with the pad. Never graded. */
 (function () {
   'use strict';
-  var PRE = 'nlh.pad.', KEEP = 150, U = 1000, ERASE_R = 16;
+  var PRE = 'nlh.pad.', KEEP = 150, U = 1000, ERASE_R = 16, SYNC_MS = 2500, MAXB = 300000;
   var cache = {};
+  // Where the pad goes. Side by side only on a wide screen with a mouse; on a tablet or phone it sits under the question.
+  var root = document.documentElement;
+  var mqWide = window.matchMedia ? window.matchMedia('(min-width: 960px) and (hover: hover) and (pointer: fine)') : null;
+  var mqTouch = window.matchMedia ? window.matchMedia('(pointer: coarse)') : null;
+  function setMode() {
+    var force = !!window.HUB_PAD_STACK;
+    root.classList.toggle('spad-stack', force || !(mqWide && mqWide.matches));
+    root.classList.toggle('spad-touch', force || !!(mqTouch && mqTouch.matches));
+  }
+  function stacked() { return root.classList.contains('spad-stack'); }
+  setMode();
+  [mqWide, mqTouch].forEach(function (m) { if (m && m.addEventListener) m.addEventListener('change', function () { setMode(); sizeAll(); }); });
   var ICON = {
     pad: '<path d="M5 3h11l3 3v15H5z"/><path d="M8 9h8M8 13h8M8 17h5"/>',
     pen: '<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/>',
@@ -5829,13 +5904,15 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     undo: '<path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/>',
     clear: '<path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/>',
     big: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
-    done: '<path d="M5 12l5 5 9-10"/>'
+    done: '<path d="M5 12l5 5 9-10"/>',
+    tutor: '<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/><circle cx="19" cy="19" r="2.5" fill="currentColor" stroke="none"/>'
   };
   function svg(name) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[name] + '</svg>'; }
   function btn(name, label, extra) {
     var b = document.createElement('button'); b.type = 'button'; b.className = extra || ''; b.setAttribute('aria-label', label); b.title = label;
     b.innerHTML = svg(name) + '<span class="lbl">' + label + '</span>'; return b;
   }
+  function div(cls, text) { var d = document.createElement('div'); d.className = cls; if (text) d.textContent = text; return d; }
   function lsGet(k) { try { var v = localStorage.getItem(PRE + k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
   function lsDel(k) { try { localStorage.removeItem(PRE + k); } catch (e) { /* ignore */ } }
   function prune(room) {
@@ -5854,44 +5931,90 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
   }
 
-  function makePad(key) {
-    var saved = lsGet(key) || {};
-    var S = { tool: 'pen', strokes: saved.s || [], undo: [], penSeen: false, cur: null, erasing: null, scale: 1, timer: null };
-    var el = document.createElement('div'); el.className = 'spad'; el.dataset.tool = 'pen';
-    var bar = document.createElement('div'); bar.className = 'spad-bar';
-    var title = document.createElement('div'); title.className = 'spad-title'; title.innerHTML = svg('pad') + '<span>Scratch pad</span>';
-    var tools = document.createElement('div'); tools.className = 'spad-tools'; tools.setAttribute('role', 'group'); tools.setAttribute('aria-label', 'Tools');
-    var bPen = btn('pen', 'Pen'), bRed = btn('red', 'Red', 'red'), bEr = btn('eraser', 'Eraser'), bType = btn('type', 'Type');
-    tools.append(bPen, bRed, bEr, bType);
-    var acts = document.createElement('div'); acts.className = 'spad-acts';
-    var bUndo = btn('undo', 'Undo'), bClear = btn('clear', 'Clear'), bBig = btn('big', 'Bigger', 'spad-big'), bDone = btn('done', 'Done', 'spad-done');
-    acts.append(bUndo, bClear, bBig, bDone);
+  // ---------- database (only when signed in; the local version of the hub keeps everything on the device) ----------
+  function role() { return (window.HUB_ME || {}).role || ''; }
+  function db() { var s = window.Hub && window.Hub.store; return s && s._db ? s._db : null; }
+  function copy(v) { return v == null ? v : JSON.parse(JSON.stringify(v)); }
+  function rGet(path) {
+    var d = db(); if (!d) return Promise.resolve(null);
+    return d.doc(path).get().then(function (s) { return s.exists ? copy(s.data()) : null; }, function () { return null; });
+  }
+  function rSet(path, body) {
+    var d = db(); if (!d) return Promise.resolve('local');
+    if (JSON.stringify(body).length > MAXB) return Promise.resolve('big');
+    return d.doc(path).set(body).then(function () { return 'ok'; }, function () { return 'fail'; });
+  }
+  function rList(col, lessonId) {
+    var d = db(); if (!d) return Promise.resolve({});
+    return d.collection(col).where('lessonId', '==', lessonId).get().then(function (snap) {
+      var out = {}; snap.docs.forEach(function (x) { var v = x.data(); if (v && v.qid) out[v.qid] = copy(v); }); return out;
+    }, function () { return {}; });
+  }
+  function msOf(v) { return v ? (v.atMs || Date.parse(v.at) || 0) : 0; }
+  function has(v) { return !!(v && ((v.s && v.s.length) || (v.t && String(v.t).trim()))); }
+
+  function cssColor(node, c) {
+    var cs = getComputedStyle(node), name = c === 'red' ? '--bad' : c === 'tutor' ? '--spad-tutor' : '--ink';
+    return cs.getPropertyValue(name).trim() || (c === 'red' ? '#c0392b' : c === 'tutor' ? '#7b3fe4' : '#13212B');
+  }
+  function strokePath(ctx, s, k) {
+    var p = s.p;
+    if (p.length === 2) { ctx.beginPath(); ctx.arc(p[0] * k, p[1] * k, s.w * k / 2, 0, Math.PI * 2); ctx.fill(); return; }
+    ctx.beginPath(); ctx.moveTo(p[0] * k, p[1] * k);
+    for (var i = 2; i < p.length - 2; i += 2) { var mx = (p[i] + p[i + 2]) / 2, my = (p[i + 1] + p[i + 3]) / 2; ctx.quadraticCurveTo(p[i] * k, p[i + 1] * k, mx * k, my * k); }
+    ctx.lineTo(p[p.length - 2] * k, p[p.length - 1] * k); ctx.stroke();
+  }
+
+  /* One pad. o.mode: 'student' (his own pad, also saved to the database when signed in), 'local' (this device only) or
+     'tutor' (the tutor's layer over his work; his strokes and typed text show underneath and cannot be changed). */
+  function makePad(key, o) {
+    var tutorMode = o.mode === 'tutor', sync = o.mode === 'student' && !!db(), path = o.lessonId && o.qid ? o.lessonId + '.' + o.qid : null;
+    var saved = tutorMode ? (o.mine || {}) : (lsGet(key) || {});
+    var S = { tool: 'pen', strokes: saved.s || [], undo: [], penSeen: false, cur: null, erasing: null, scale: 1, timer: null,
+      under: tutorMode ? ((o.his && o.his.s) || []) : [], over: [], overText: '', showOver: true, dirty: false, rtimer: null, touched: false };
+    var el = div('spad' + (tutorMode ? ' spad-tutormode full' : '')); el.dataset.tool = 'pen';
+    var bar = div('spad-bar');
+    var title = div('spad-title'); title.innerHTML = svg(tutorMode ? 'tutor' : 'pad') + '<span>' + (tutorMode ? 'Your notes on his work' : 'Scratch pad') + '</span>';
+    var tools = div('spad-tools'); tools.setAttribute('role', 'group'); tools.setAttribute('aria-label', 'Tools');
+    var bPen = btn(tutorMode ? 'tutor' : 'pen', 'Pen', tutorMode ? 'tpen' : ''), bRed = btn('red', 'Red', 'red'), bEr = btn('eraser', 'Eraser'), bType = btn('type', 'Type');
+    if (tutorMode) tools.append(bPen, bEr); else tools.append(bPen, bRed, bEr, bType);
+    var acts = div('spad-acts');
+    var bUndo = btn('undo', 'Undo'), bClear = btn('clear', tutorMode ? 'Clear mine' : 'Clear'), bBig = btn('big', 'Bigger', 'spad-big'), bDone = btn('done', 'Done', 'spad-done');
+    var bTut = btn('tutor', 'Tutor', 'spad-tut'); bTut.hidden = true; bTut.title = 'Show or hide your tutor’s notes';
+    if (tutorMode) acts.append(bUndo, bClear, bDone); else acts.append(bTut, bUndo, bClear, bBig, bDone);
     bar.append(title, tools, acts);
-    var q = document.createElement('div'); q.className = 'spad-question';
-    var surf = document.createElement('div'); surf.className = 'spad-surf';
-    var cv = document.createElement('canvas'); cv.setAttribute('aria-label', 'Scratch pad. Draw with a finger, a stylus or the mouse.');
+    var q = div('spad-question');
+    var tnote = div('spad-tnote'); tnote.hidden = true;
+    var surf = div('spad-surf');
+    var cv = document.createElement('canvas'); cv.setAttribute('aria-label', tutorMode ? 'His scratch pad. Your marks go on top in your own color and never change his.' : 'Scratch pad. Draw with a finger, a stylus or the mouse.');
     var ta = document.createElement('textarea'); ta.className = 'spad-text'; ta.setAttribute('aria-label', 'Typed notes on the scratch pad');
     ta.placeholder = ''; ta.spellcheck = false; ta.setAttribute('autocomplete', 'off'); ta.setAttribute('autocapitalize', 'off'); ta.setAttribute('autocorrect', 'off');
-    ta.value = saved.t || '';
-    surf.append(cv, ta);
-    var foot = document.createElement('div'); foot.className = 'spad-foot';
-    foot.innerHTML = '<span>For your working. Not checked or graded.</span><span>Saved on this device</span>';
-    el.append(bar, q, surf, foot);
+    surf.append(cv);
+    var tnoteIn = null;
+    if (tutorMode) {
+      surf.append(div('spad-under', (o.his && o.his.t) || ''));
+      tnoteIn = document.createElement('textarea'); tnoteIn.className = 'spad-tnote-in'; tnoteIn.rows = 2;
+      tnoteIn.placeholder = 'Typed note for him (optional)'; tnoteIn.setAttribute('aria-label', 'Typed note for him'); tnoteIn.value = saved.t || '';
+    } else { ta.value = saved.t || ''; surf.append(ta); }
+    var foot = div('spad-foot'), footL = document.createElement('span'), footR = document.createElement('span');
+    footL.textContent = tutorMode ? 'He sees your notes the next time he opens this question.' : 'For your working. Not checked or graded.';
+    footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? 'Your tutor and parent can see this.' : 'Saved on this device';
+    foot.append(footL, footR);
+    if (tutorMode) el.append(bar, q, surf, tnoteIn, foot); else el.append(bar, q, tnote, surf, foot);
     var ctx = cv.getContext('2d');
 
-    function color(c) { var cs = getComputedStyle(el); return (c === 'red' ? cs.getPropertyValue('--bad') : cs.getPropertyValue('--ink')).trim() || (c === 'red' ? '#c0392b' : '#13212B'); }
-    function drawStroke(s) {
-      var p = s.p, k = S.scale; if (!p || p.length < 2) return;
-      ctx.strokeStyle = color(s.c); ctx.fillStyle = ctx.strokeStyle; ctx.lineWidth = s.w * k; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      if (p.length === 2) { ctx.beginPath(); ctx.arc(p[0] * k, p[1] * k, s.w * k / 2, 0, Math.PI * 2); ctx.fill(); return; }
-      ctx.beginPath(); ctx.moveTo(p[0] * k, p[1] * k);
-      for (var i = 2; i < p.length - 2; i += 2) { var mx = (p[i] + p[i + 2]) / 2, my = (p[i + 1] + p[i + 3]) / 2; ctx.quadraticCurveTo(p[i] * k, p[i + 1] * k, mx * k, my * k); }
-      ctx.lineTo(p[p.length - 2] * k, p[p.length - 1] * k); ctx.stroke();
+    function drawStroke(s, c) {
+      if (!s.p || s.p.length < 2) return;
+      ctx.strokeStyle = cssColor(el, c || s.c); ctx.fillStyle = ctx.strokeStyle; ctx.lineWidth = s.w * S.scale; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      strokePath(ctx, s, S.scale);
     }
     function redraw() {
       var dpr = window.devicePixelRatio || 1;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
-      S.strokes.forEach(drawStroke); if (S.cur) drawStroke(S.cur);
+      S.under.forEach(function (s) { drawStroke(s); });
+      S.strokes.forEach(function (s) { drawStroke(s, tutorMode ? 'tutor' : null); });
+      if (S.cur) drawStroke(S.cur, tutorMode ? 'tutor' : null);
+      if (S.showOver) S.over.forEach(function (s) { drawStroke(s, 'tutor'); });
     }
     function fit() {
       var r = surf.getBoundingClientRect(); if (!r.width || !r.height) return;
@@ -5900,18 +6023,57 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       S.scale = r.width / U; redraw();
     }
     if (window.ResizeObserver) new ResizeObserver(fit).observe(surf); else window.addEventListener('resize', fit);
+    // Under the question: make the writing area reach the bottom of the screen. When a tall question (one with a
+    // picture) leaves less than that, the pad is as tall as the screen below the lesson's top bar, so one scroll
+    // down shows the whole pad.
+    function sizeIt() {
+      if (tutorMode) return;
+      if (!stacked() || el.classList.contains('full') || !el.isConnected) { el.style.removeProperty('--spad-h'); return; }
+      var top = surf.getBoundingClientRect().top + (window.scrollY || 0);
+      var h = Math.round(window.innerHeight - top - foot.offsetHeight - 16);
+      if (h < 380) {
+        var pt = document.querySelector('.ptop'), ph = pt ? pt.getBoundingClientRect().height : 0;
+        h = Math.round(window.innerHeight - ph - bar.offsetHeight - (tnote.hidden ? 0 : tnote.offsetHeight) - foot.offsetHeight - 24);
+      }
+      el.style.setProperty('--spad-h', Math.max(300, Math.min(h, 1100)) + 'px');
+    }
+    var watching = null, wrapEl = null, ro = window.ResizeObserver ? new ResizeObserver(function () { sizeIt(); }) : null;
+    function watch(node, wrap) { wrapEl = wrap; if (!ro || node === watching) return; if (watching) ro.unobserve(watching); watching = node; ro.observe(node); }
+    function place() { sizeIt(); }
 
     function setTool(t) {
       S.tool = t; el.dataset.tool = t;
       [[bPen, 'pen'], [bRed, 'red'], [bEr, 'eraser'], [bType, 'type']].forEach(function (x) { x[0].setAttribute('aria-pressed', x[1] === t ? 'true' : 'false'); });
       if (t === 'type') setTimeout(function () { ta.focus(); }, 0); else ta.blur();
     }
-    function refreshButtons() { bUndo.disabled = !S.undo.length; bClear.disabled = !S.strokes.length && !ta.value; }
+    function textNow() { return tutorMode ? tnoteIn.value : ta.value; }
+    function refreshButtons() { bUndo.disabled = !S.undo.length; bClear.disabled = !S.strokes.length && !textNow(); }
+    function body() {
+      var now = Date.now();
+      return { lessonId: o.lessonId, qid: o.qid, s: S.strokes, t: textNow(), w: U, at: new Date(now).toISOString(), atMs: now };
+    }
+    function push() {
+      clearTimeout(S.rtimer); S.rtimer = null;
+      if (!S.dirty || !path || !(sync || tutorMode)) return Promise.resolve();
+      S.dirty = false;
+      if (tutorMode) footR.textContent = 'Saving';
+      return rSet((tutorMode ? 'scratchtutor/' : 'scratch/') + path, body()).then(function (r) {
+        if (r === 'fail') S.dirty = true;
+        footR.textContent = r === 'ok' ? (tutorMode ? 'Saved' : 'Your tutor and parent can see this.')
+          : r === 'big' ? 'Too much on this pad to send. It stays on this device.'
+          : r === 'fail' ? (tutorMode ? 'Not saved. Check the connection and tap Done again.' : 'Not sent yet. It tries again when you write more.') : footR.textContent;
+        return r;
+      });
+    }
     function save() {
-      clearTimeout(S.timer);
-      S.timer = setTimeout(function () {
-        if (!S.strokes.length && !ta.value) lsDel(key); else lsSet(key, { s: S.strokes, t: ta.value, at: Date.now() });
-      }, 300);
+      S.touched = true;
+      if (!tutorMode) {
+        clearTimeout(S.timer);
+        S.timer = setTimeout(function () {
+          if (!S.strokes.length && !ta.value) lsDel(key); else lsSet(key, { s: S.strokes, t: ta.value, at: Date.now() });
+        }, 300);
+      }
+      if (sync || tutorMode) { S.dirty = true; clearTimeout(S.rtimer); S.rtimer = setTimeout(push, SYNC_MS); }
       refreshButtons();
     }
     function pt(e) { var r = cv.getBoundingClientRect(); return [Math.round((e.clientX - r.left) / S.scale), Math.round((e.clientY - r.top) / S.scale)]; }
@@ -5931,7 +6093,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       e.preventDefault(); try { cv.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
       S.pid = e.pointerId; var p = pt(e);
       if (S.tool === 'eraser') { S.erasing = []; eraseAt(p[0], p[1]); return; }
-      S.cur = { c: S.tool === 'red' ? 'red' : 'ink', w: S.tool === 'red' ? 5 : 5, p: [p[0], p[1]] }; redraw();
+      S.cur = { c: tutorMode ? 'tutor' : S.tool === 'red' ? 'red' : 'ink', w: 5, p: [p[0], p[1]] }; redraw();
     });
     cv.addEventListener('pointermove', function (e) {
       if (e.pointerId !== S.pid || (!S.cur && !S.erasing)) return;
@@ -5960,42 +6122,154 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var u = S.undo.pop(); if (!u) return;
       if (u.a === 'add') S.strokes.pop();
       else if (u.a === 'del') u.items.slice().reverse().forEach(function (x) { S.strokes.splice(x[0], 0, x[1]); });
-      else if (u.a === 'clear') { S.strokes = u.s; ta.value = u.t; }
+      else if (u.a === 'clear') { S.strokes = u.s; if (tutorMode) tnoteIn.value = u.t; else ta.value = u.t; }
       redraw(); save();
     });
     bClear.addEventListener('click', function () {
-      if (!S.strokes.length && !ta.value) return;
-      S.undo.push({ a: 'clear', s: S.strokes, t: ta.value }); S.strokes = []; ta.value = ''; redraw(); save();
+      if (!S.strokes.length && !textNow()) return;
+      S.undo.push({ a: 'clear', s: S.strokes, t: textNow() }); S.strokes = [];
+      if (tutorMode) tnoteIn.value = ''; else ta.value = '';
+      redraw(); save();
     });
     function full(on) {
       el.classList.toggle('full', on); document.documentElement.classList.toggle('spad-lock', on);
       if (on) bDone.focus(); else bBig.focus();
+      sizeIt();
     }
+    function done() { if (tutorMode) { if (o.onDone) o.onDone(); } else full(false); }
     bBig.addEventListener('click', function () { full(true); });
-    bDone.addEventListener('click', function () { full(false); });
-    el.addEventListener('keydown', function (e) { if (e.key === 'Escape' && el.classList.contains('full')) full(false); });
+    bDone.addEventListener('click', done);
+    el.addEventListener('keydown', function (e) { if (e.key === 'Escape' && el.classList.contains('full')) done(); });
     ta.addEventListener('input', save);
-    setTool('pen'); refreshButtons();
+    if (tnoteIn) tnoteIn.addEventListener('input', save);
 
+    // The tutor's layer over his own pad. He can hide it; it is never part of his strokes.
+    function setOver(v) {
+      S.over = (v && v.s) || []; S.overText = (v && v.t) || '';
+      var any = has(v);
+      bTut.hidden = !any;
+      bTut.setAttribute('aria-pressed', S.showOver ? 'true' : 'false');
+      tnote.textContent = '';
+      if (S.overText.trim()) { var b = document.createElement('b'); b.textContent = 'Tutor: '; tnote.append(b, document.createTextNode(S.overText)); }
+      tnote.hidden = !(S.showOver && S.overText.trim());
+      redraw(); sizeIt();
+    }
+    bTut.addEventListener('click', function () { S.showOver = !S.showOver; setOver({ s: S.over, t: S.overText }); });
+    function loadRemote() {
+      if (!path || tutorMode || !db()) return;
+      rGet('scratchtutor/' + path).then(setOver);
+      if (sync) rGet('scratch/' + path).then(function (v) {
+        if (!v || S.touched || msOf(v) <= (saved.at || 0)) return;        // a newer copy saved from his other device
+        S.strokes = v.s || []; ta.value = v.t || ''; saved = { s: S.strokes, t: ta.value, at: msOf(v) };
+        lsSet(key, saved); redraw(); refreshButtons();
+      });
+    }
+
+    setTool('pen'); refreshButtons(); loadRemote();
     return {
       el: el,
       setQuestion: function (label, text) { q.textContent = (label ? label + '. ' : '') + (text || ''); },
-      close: function () { if (el.classList.contains('full')) full(false); }
+      refresh: loadRemote,
+      size: place,
+      watch: watch,
+      flush: push,
+      close: function () { if (!tutorMode && el.classList.contains('full')) full(false); push(); }
     };
+  }
+
+  // ---------- his work in the answer book ----------
+  function localWork(lessonId) {
+    var out = {}, pre = PRE + lessonId + '.';
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && k.indexOf(pre) === 0) { var v = JSON.parse(localStorage.getItem(k)), qid = k.slice(pre.length); if (v) out[qid] = { lessonId: lessonId, qid: qid, s: v.s || [], t: v.t || '', at: new Date(v.at || 0).toISOString() }; }
+      }
+    } catch (e) { /* ignore */ }
+    return out;
+  }
+  function pathD(p) {
+    if (p.length === 2) return 'M' + p[0] + ' ' + p[1] + 'l0.01 0';
+    var d = 'M' + p[0] + ' ' + p[1];
+    for (var i = 2; i < p.length - 2; i += 2) d += 'Q' + p[i] + ' ' + p[i + 1] + ' ' + (p[i] + p[i + 2]) / 2 + ' ' + (p[i + 1] + p[i + 3]) / 2;
+    return d + 'L' + p[p.length - 2] + ' ' + p[p.length - 1];
+  }
+  // A read-only picture of one question's pad: his strokes, then the tutor's on top.
+  function drawing(mine, tut) {
+    var layers = [[(mine && mine.s) || [], null], [(tut && tut.s) || [], 'tutor']], maxY = 0, n = 0;
+    layers.forEach(function (L) { L[0].forEach(function (s) { n++; for (var i = 1; i < (s.p || []).length; i += 2) if (s.p[i] > maxY) maxY = s.p[i]; }); });
+    if (!n) return null;
+    var h = Math.max(160, Math.ceil(maxY + 24)), parts = [];
+    layers.forEach(function (L) {
+      L[0].forEach(function (s) {
+        if (!s.p || s.p.length < 2) return;
+        var c = L[1] || (s.c === 'red' ? 'red' : 'ink'), v = c === 'red' ? 'var(--bad)' : c === 'tutor' ? 'var(--spad-tutor)' : 'var(--ink)';
+        parts.push('<path d="' + pathD(s.p.map(Number)) + '" style="stroke:' + v + '" stroke-width="' + (Number(s.w) || 5) + '"/>');
+      });
+    });
+    var wrap = div('awork-pic');
+    wrap.innerHTML = '<svg viewBox="0 0 ' + U + ' ' + h + '" role="img" aria-label="Drawing from his scratch pad" fill="none" stroke-linecap="round" stroke-linejoin="round">' + parts.join('') + '</svg>';
+    return wrap;
   }
 
   window.HubScratch = {
     layout: function (card, o) {
       Object.keys(cache).forEach(function (k) { if (k !== o.key) cache[k].close(); });
-      var pad = cache[o.key] || (cache[o.key] = makePad(o.key));
+      var pad = cache[o.key];
+      if (pad) pad.refresh(); else pad = cache[o.key] = makePad(o.key, { mode: role() === 'student' ? 'student' : 'local', lessonId: o.lessonId, qid: o.qid });
       pad.setQuestion(o.label, o.text);
-      var main = document.createElement('div'); main.className = 'qmain'; main.append(card);
-      var side = document.createElement('div'); side.className = 'qside'; side.append(pad.el);
-      var wrap = document.createElement('div'); wrap.className = 'qlayout'; wrap.append(main, side);
+      var main = div('qmain'); main.append(card);
+      var side = div('qside'); side.append(pad.el);
+      var wrap = div('qlayout'); wrap.append(main, side);
+      pad.watch(card, wrap);
+      requestAnimationFrame(function () { pad.size(); });
       return wrap;
     },
-    closeAll: function () { Object.keys(cache).forEach(function (k) { cache[k].close(); }); }
+    closeAll: function () { Object.keys(cache).forEach(function (k) { cache[k].close(); }); },
+    // His work and the tutor's notes for one lesson, keyed by question id.
+    lesson: function (lessonId) {
+      if (!db()) return Promise.resolve({ mine: localWork(lessonId), tutor: {} });
+      return Promise.all([rList('scratch', lessonId), rList('scratchtutor', lessonId)]).then(function (r) { return { mine: r[0], tutor: r[1] }; });
+    },
+    canTutor: function () { return role() === 'tutor' && !!db(); },
+    // The answer-book block for one question, or null when there is nothing to show.
+    view: function (mine, tut, when) {
+      if (!has(mine) && !has(tut)) return null;
+      var box = div('awork'), head = div('awork-head');
+      var lbl = document.createElement('span'); lbl.className = 'label'; lbl.textContent = 'His working';
+      var stamp = document.createElement('span'); stamp.className = 'small muted';
+      stamp.textContent = [has(mine) ? 'Saved ' + when(mine.at) : 'Nothing on his pad', has(tut) ? 'tutor notes ' + when(tut.at) : ''].filter(Boolean).join(', ');
+      head.append(lbl, stamp); box.append(head);
+      var pic = drawing(mine, tut); if (pic) box.append(pic);
+      if (mine && mine.t && String(mine.t).trim()) box.append(div('awork-text', mine.t));
+      if (tut && tut.t && String(tut.t).trim()) { var t = div('awork-text tut'), b = document.createElement('b'); b.textContent = 'Tutor: '; t.append(b, document.createTextNode(tut.t)); box.append(t); }
+      if (has(tut)) box.append(div('awork-key small muted', 'Purple is the tutor’s writing. He can hide it on his pad.'));
+      return box;
+    },
+    // The tutor's pad over his work, full screen. Calls back after the last save when the tutor taps Done.
+    openTutor: function (o, onClose) {
+      var path = o.lessonId + '.' + o.qid, pad;
+      return Promise.all([rGet('scratch/' + path), rGet('scratchtutor/' + path)]).then(function (r) {
+        pad = makePad('tutor:' + path, { mode: 'tutor', lessonId: o.lessonId, qid: o.qid, his: r[0] || {}, mine: r[1] || {}, onDone: function () {
+          pad.flush().then(function (res) {
+            if (res === 'fail') return;                              // keep the pad open; the footer says what to do
+            document.documentElement.classList.remove('spad-lock'); pad.el.remove();
+            if (onClose) onClose();
+          });
+        } });
+        pad.setQuestion(o.label, o.text);
+        document.body.append(pad.el); document.documentElement.classList.add('spad-lock');
+        setTimeout(function () { var b = pad.el.querySelector('.spad-done'); if (b) b.focus(); }, 0);
+        return pad;
+      });
+    }
   };
+  function sizeAll() { Object.keys(cache).forEach(function (k) { cache[k].size(); }); }
+  window.addEventListener('resize', sizeAll);
+  window.addEventListener('orientationchange', function () { setTimeout(sizeAll, 250); });
+  function flushAll() { Object.keys(cache).forEach(function (k) { cache[k].flush(); }); }
+  window.addEventListener('pagehide', flushAll);
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') flushAll(); });
 })();
 </script>
 </body>
