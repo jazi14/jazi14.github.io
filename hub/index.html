@@ -590,6 +590,57 @@ details{border-color:transparent;border-radius:var(--radius);box-shadow:var(--li
 @media (prefers-reduced-motion:reduce){ .card.fold > :first-child::after,nav.tabs button svg{transition:none} }
 @media print{ .card.fold > :not(:first-child){display:block!important} nav.tabs{display:none!important} }
 
+/* ---------- scratch pad beside each question ---------- */
+.qlayout{display:flex;flex-direction:column;gap:14px;min-width:0}
+.qmain{min-width:0;display:flex;flex-direction:column}
+.qside{min-width:0}
+.spad{background:var(--card);border-radius:var(--radius,14px);box-shadow:var(--lift,none);border:1px solid var(--rule);display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.spad-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--rule);background:var(--accent-soft,var(--action-soft))}
+.spad-title{font-weight:800;font-size:.95rem;color:var(--ink);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.spad-title svg{width:18px;height:18px;color:var(--accent-hi,var(--action))}
+.spad-tools,.spad-acts{display:flex;gap:4px;flex-wrap:wrap}
+.spad-tools{grid-column:1 / -1;grid-row:2;flex-wrap:nowrap;background:var(--card);border-radius:999px;padding:3px;border:1px solid var(--rule)}
+.spad-tools button{flex:1 1 0;justify-content:center}
+.spad-bar button{font:inherit;font-size:.82rem;font-weight:700;display:inline-flex;align-items:center;gap:5px;min-height:36px;min-width:36px;padding:4px 10px;border-radius:999px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;touch-action:manipulation}
+.spad-bar button svg{width:18px;height:18px;flex:none}
+.spad-bar button:hover{color:var(--ink)}
+.spad-bar button[aria-pressed="true"]{background:var(--accent,var(--action));color:var(--action-ink,#fff)}
+.spad-bar button[aria-pressed="true"].red{background:var(--bad);color:#fff}
+.spad-bar button:disabled{opacity:.4;cursor:default}
+.spad-acts button{background:var(--card);border:1px solid var(--rule)}
+.spad-acts .spad-done{display:none}
+.spad-surf{position:relative;flex:1 1 auto;height:380px;min-height:260px;background-color:var(--card);
+  background-image:linear-gradient(to right,var(--spad-grid,rgba(66,83,96,.13)) 1px,transparent 1px),linear-gradient(to bottom,var(--spad-grid,rgba(66,83,96,.13)) 1px,transparent 1px);
+  background-size:28px 28px;background-position:-1px -1px}
+.spad-surf canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair;z-index:1}
+.spad[data-tool="eraser"] .spad-surf canvas{cursor:cell}
+.spad textarea.spad-text{position:absolute;inset:0;width:100%;height:100%;min-height:0;margin:0;border:0;border-radius:0;resize:none;background:transparent!important;color:var(--ink);
+  font-family:var(--f-read);font-size:18px!important;line-height:28px;padding:1px 10px 0;z-index:2;pointer-events:none;outline:none;caret-color:var(--accent-hi,var(--action))}
+.spad[data-tool="type"] textarea.spad-text{pointer-events:auto}
+.spad[data-tool="type"] .spad-surf{box-shadow:inset 0 0 0 2px var(--accent,var(--action))}
+.spad-foot{font-size:.78rem;color:var(--muted);padding:6px 12px;border-top:1px solid var(--rule);display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}
+.spad-question{display:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .spad-surf{--spad-grid:rgba(238,240,246,.10)} }
+:root[data-theme="dark"] .spad-surf{--spad-grid:rgba(238,240,246,.10)}
+@media (max-width:480px){ .spad-acts button .lbl{display:none} .spad-bar button{padding:4px 8px} .spad-surf{height:340px} }
+
+/* wide screens: question on the left, pad on the right */
+@media (min-width:960px){
+  .qlayout{flex-direction:row;align-items:flex-start;width:min(1180px,calc(100vw - 48px));margin-left:calc(50% - min(590px,50vw - 24px))}
+  .qmain{flex:1 1 0}
+  .qside{flex:0 0 min(470px,42%);position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px)}
+  .spad-surf{height:calc(100vh - 330px);max-height:620px;min-height:380px}
+}
+
+/* bigger: the pad fills the screen, the question stays on top */
+html.spad-lock,html.spad-lock body{overflow:hidden}
+.spad.full{position:fixed;inset:0;z-index:60;border-radius:0;border:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.spad.full .spad-surf{height:auto;max-height:none;flex:1 1 auto}
+.spad.full .spad-question{display:block;padding:10px 14px;border-bottom:1px solid var(--rule);font-family:var(--f-read);font-size:1.02rem;max-height:30vh;overflow:auto;background:var(--card)}
+.spad.full .spad-acts .spad-big{display:none}
+.spad.full .spad-acts .spad-done{display:inline-flex;background:var(--accent,var(--action));color:var(--action-ink,#fff);border-color:transparent}
+@media print{ .qside{display:none} }
+
 </style>
 </head>
 <body>
@@ -2468,7 +2519,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       kids.push(el('div', {}, el('button', { class: 'linkbtn', type: 'button', text: P.teachOpen ? 'Hide the rule and examples' : 'Show the rule and examples', onclick: function () { P.teachOpen = !P.teachOpen; paint(); } })));
       if (P.teachOpen) kids.push(teachBlock(L));
     }
-    kids.push(card);
+    kids.push(window.HubScratch ? HubScratch.layout(card, { key: P.id + '.' + it.id, label: 'Question ' + x.n, text: it.q }) : card);
     root.replaceChildren.apply(root, kids);
     paintFeedback();
     if (test) paintClock();
@@ -2548,7 +2599,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     row.append(el('span', { class: 'pmsg', 'data-msg': k, hidden: true }));
     return row;
   }
-  function focusNext(inp) { var all = H.$$('input.ans:not(:disabled), textarea:not(:disabled)', root), i = all.indexOf(inp); if (i >= 0 && all[i + 1]) all[i + 1].focus(); else inp.blur(); }
+  function focusNext(inp) { var all = H.$$('input.ans:not(:disabled), textarea:not(:disabled):not(.spad-text)', root), i = all.indexOf(inp); if (i >= 0 && all[i + 1]) all[i + 1].focus(); else inp.blur(); }
   function showSymbols(ans, inp) {
     var bar = H.$('#symbar', root); if (!bar) return;
     var syms = C.symbols(ans); bar.replaceChildren(); bar.hidden = !syms.length;
@@ -5762,5 +5813,190 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 })();
 </script>
 <script>Hub.boot();</script>
+<script>
+/* Scratch pad beside each question. Saved per question on this device only (localStorage, key nlh.pad.<lessonId>.<qid>).
+   Strokes are kept in a 1000-unit-wide space so the drawing scales with the pad. Not graded, never sent to the database. */
+(function () {
+  'use strict';
+  var PRE = 'nlh.pad.', KEEP = 150, U = 1000, ERASE_R = 16;
+  var cache = {};
+  var ICON = {
+    pad: '<path d="M5 3h11l3 3v15H5z"/><path d="M8 9h8M8 13h8M8 17h5"/>',
+    pen: '<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/>',
+    red: '<circle cx="12" cy="12" r="6" fill="currentColor" stroke="none"/>',
+    eraser: '<path d="M8 20h12"/><path d="M4 15l9-9 6 6-7 7H8z"/><path d="M9 10l6 6"/>',
+    type: '<path d="M5 6V4h14v2"/><path d="M12 4v16"/><path d="M9 20h6"/>',
+    undo: '<path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/>',
+    clear: '<path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/>',
+    big: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
+    done: '<path d="M5 12l5 5 9-10"/>'
+  };
+  function svg(name) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[name] + '</svg>'; }
+  function btn(name, label, extra) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = extra || ''; b.setAttribute('aria-label', label); b.title = label;
+    b.innerHTML = svg(name) + '<span class="lbl">' + label + '</span>'; return b;
+  }
+  function lsGet(k) { try { var v = localStorage.getItem(PRE + k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
+  function lsDel(k) { try { localStorage.removeItem(PRE + k); } catch (e) { /* ignore */ } }
+  function prune(room) {
+    try {
+      var rows = [];
+      for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf(PRE) === 0) { var at = 0; try { at = JSON.parse(localStorage.getItem(k)).at || 0; } catch (e) { /* ignore */ } rows.push([k, at]); } }
+      rows.sort(function (a, b) { return a[1] - b[1]; });
+      var drop = rows.length - (KEEP - (room || 0));
+      for (var j = 0; j < drop; j++) localStorage.removeItem(rows[j][0]);
+    } catch (e) { /* ignore */ }
+  }
+  function lsSet(k, v) {
+    var s = JSON.stringify(v);
+    try { localStorage.setItem(PRE + k, s); return true; } catch (e) {
+      prune(40); try { localStorage.setItem(PRE + k, s); return true; } catch (e2) { return false; }
+    }
+  }
+
+  function makePad(key) {
+    var saved = lsGet(key) || {};
+    var S = { tool: 'pen', strokes: saved.s || [], undo: [], penSeen: false, cur: null, erasing: null, scale: 1, timer: null };
+    var el = document.createElement('div'); el.className = 'spad'; el.dataset.tool = 'pen';
+    var bar = document.createElement('div'); bar.className = 'spad-bar';
+    var title = document.createElement('div'); title.className = 'spad-title'; title.innerHTML = svg('pad') + '<span>Scratch pad</span>';
+    var tools = document.createElement('div'); tools.className = 'spad-tools'; tools.setAttribute('role', 'group'); tools.setAttribute('aria-label', 'Tools');
+    var bPen = btn('pen', 'Pen'), bRed = btn('red', 'Red', 'red'), bEr = btn('eraser', 'Eraser'), bType = btn('type', 'Type');
+    tools.append(bPen, bRed, bEr, bType);
+    var acts = document.createElement('div'); acts.className = 'spad-acts';
+    var bUndo = btn('undo', 'Undo'), bClear = btn('clear', 'Clear'), bBig = btn('big', 'Bigger', 'spad-big'), bDone = btn('done', 'Done', 'spad-done');
+    acts.append(bUndo, bClear, bBig, bDone);
+    bar.append(title, tools, acts);
+    var q = document.createElement('div'); q.className = 'spad-question';
+    var surf = document.createElement('div'); surf.className = 'spad-surf';
+    var cv = document.createElement('canvas'); cv.setAttribute('aria-label', 'Scratch pad. Draw with a finger, a stylus or the mouse.');
+    var ta = document.createElement('textarea'); ta.className = 'spad-text'; ta.setAttribute('aria-label', 'Typed notes on the scratch pad');
+    ta.placeholder = ''; ta.spellcheck = false; ta.setAttribute('autocomplete', 'off'); ta.setAttribute('autocapitalize', 'off'); ta.setAttribute('autocorrect', 'off');
+    ta.value = saved.t || '';
+    surf.append(cv, ta);
+    var foot = document.createElement('div'); foot.className = 'spad-foot';
+    foot.innerHTML = '<span>For your working. Not checked or graded.</span><span>Saved on this device</span>';
+    el.append(bar, q, surf, foot);
+    var ctx = cv.getContext('2d');
+
+    function color(c) { var cs = getComputedStyle(el); return (c === 'red' ? cs.getPropertyValue('--bad') : cs.getPropertyValue('--ink')).trim() || (c === 'red' ? '#c0392b' : '#13212B'); }
+    function drawStroke(s) {
+      var p = s.p, k = S.scale; if (!p || p.length < 2) return;
+      ctx.strokeStyle = color(s.c); ctx.fillStyle = ctx.strokeStyle; ctx.lineWidth = s.w * k; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      if (p.length === 2) { ctx.beginPath(); ctx.arc(p[0] * k, p[1] * k, s.w * k / 2, 0, Math.PI * 2); ctx.fill(); return; }
+      ctx.beginPath(); ctx.moveTo(p[0] * k, p[1] * k);
+      for (var i = 2; i < p.length - 2; i += 2) { var mx = (p[i] + p[i + 2]) / 2, my = (p[i + 1] + p[i + 3]) / 2; ctx.quadraticCurveTo(p[i] * k, p[i + 1] * k, mx * k, my * k); }
+      ctx.lineTo(p[p.length - 2] * k, p[p.length - 1] * k); ctx.stroke();
+    }
+    function redraw() {
+      var dpr = window.devicePixelRatio || 1;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+      S.strokes.forEach(drawStroke); if (S.cur) drawStroke(S.cur);
+    }
+    function fit() {
+      var r = surf.getBoundingClientRect(); if (!r.width || !r.height) return;
+      var dpr = window.devicePixelRatio || 1, w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
+      if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+      S.scale = r.width / U; redraw();
+    }
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(surf); else window.addEventListener('resize', fit);
+
+    function setTool(t) {
+      S.tool = t; el.dataset.tool = t;
+      [[bPen, 'pen'], [bRed, 'red'], [bEr, 'eraser'], [bType, 'type']].forEach(function (x) { x[0].setAttribute('aria-pressed', x[1] === t ? 'true' : 'false'); });
+      if (t === 'type') setTimeout(function () { ta.focus(); }, 0); else ta.blur();
+    }
+    function refreshButtons() { bUndo.disabled = !S.undo.length; bClear.disabled = !S.strokes.length && !ta.value; }
+    function save() {
+      clearTimeout(S.timer);
+      S.timer = setTimeout(function () {
+        if (!S.strokes.length && !ta.value) lsDel(key); else lsSet(key, { s: S.strokes, t: ta.value, at: Date.now() });
+      }, 300);
+      refreshButtons();
+    }
+    function pt(e) { var r = cv.getBoundingClientRect(); return [Math.round((e.clientX - r.left) / S.scale), Math.round((e.clientY - r.top) / S.scale)]; }
+    function eraseAt(x, y) {
+      var hit = false;
+      for (var i = S.strokes.length - 1; i >= 0; i--) {
+        var p = S.strokes[i].p, r = ERASE_R + S.strokes[i].w / 2;
+        for (var j = 0; j < p.length; j += 2) { var dx = p[j] - x, dy = p[j + 1] - y; if (dx * dx + dy * dy <= r * r) { S.erasing.push([i, S.strokes[i]]); S.strokes.splice(i, 1); hit = true; break; } }
+      }
+      if (hit) redraw();
+    }
+    cv.addEventListener('pointerdown', function (e) {
+      if (S.tool === 'type') return;
+      if (e.pointerType === 'pen') S.penSeen = true;
+      else if (e.pointerType === 'touch' && S.penSeen) return;     // palm on the screen while writing with a stylus
+      if (e.button > 0 || S.cur || S.erasing) return;
+      e.preventDefault(); try { cv.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
+      S.pid = e.pointerId; var p = pt(e);
+      if (S.tool === 'eraser') { S.erasing = []; eraseAt(p[0], p[1]); return; }
+      S.cur = { c: S.tool === 'red' ? 'red' : 'ink', w: S.tool === 'red' ? 5 : 5, p: [p[0], p[1]] }; redraw();
+    });
+    cv.addEventListener('pointermove', function (e) {
+      if (e.pointerId !== S.pid || (!S.cur && !S.erasing)) return;
+      var evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e]; if (!evs.length) evs = [e];
+      evs.forEach(function (ev) {
+        var p = pt(ev);
+        if (S.erasing) { eraseAt(p[0], p[1]); return; }
+        var a = S.cur.p, lx = a[a.length - 2], ly = a[a.length - 1];
+        if ((p[0] - lx) * (p[0] - lx) + (p[1] - ly) * (p[1] - ly) >= 4) a.push(p[0], p[1]);
+      });
+      if (S.cur) redraw();
+    });
+    function end(e) {
+      if (e.pointerId !== S.pid) return; S.pid = null;
+      if (S.erasing) { if (S.erasing.length) { S.undo.push({ a: 'del', items: S.erasing }); save(); } S.erasing = null; return; }
+      if (!S.cur) return;
+      S.strokes.push(S.cur); S.cur = null; S.undo.push({ a: 'add' }); redraw(); save();
+    }
+    cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+
+    bPen.addEventListener('click', function () { setTool('pen'); });
+    bRed.addEventListener('click', function () { setTool('red'); });
+    bEr.addEventListener('click', function () { setTool('eraser'); });
+    bType.addEventListener('click', function () { setTool('type'); });
+    bUndo.addEventListener('click', function () {
+      var u = S.undo.pop(); if (!u) return;
+      if (u.a === 'add') S.strokes.pop();
+      else if (u.a === 'del') u.items.slice().reverse().forEach(function (x) { S.strokes.splice(x[0], 0, x[1]); });
+      else if (u.a === 'clear') { S.strokes = u.s; ta.value = u.t; }
+      redraw(); save();
+    });
+    bClear.addEventListener('click', function () {
+      if (!S.strokes.length && !ta.value) return;
+      S.undo.push({ a: 'clear', s: S.strokes, t: ta.value }); S.strokes = []; ta.value = ''; redraw(); save();
+    });
+    function full(on) {
+      el.classList.toggle('full', on); document.documentElement.classList.toggle('spad-lock', on);
+      if (on) bDone.focus(); else bBig.focus();
+    }
+    bBig.addEventListener('click', function () { full(true); });
+    bDone.addEventListener('click', function () { full(false); });
+    el.addEventListener('keydown', function (e) { if (e.key === 'Escape' && el.classList.contains('full')) full(false); });
+    ta.addEventListener('input', save);
+    setTool('pen'); refreshButtons();
+
+    return {
+      el: el,
+      setQuestion: function (label, text) { q.textContent = (label ? label + '. ' : '') + (text || ''); },
+      close: function () { if (el.classList.contains('full')) full(false); }
+    };
+  }
+
+  window.HubScratch = {
+    layout: function (card, o) {
+      Object.keys(cache).forEach(function (k) { if (k !== o.key) cache[k].close(); });
+      var pad = cache[o.key] || (cache[o.key] = makePad(o.key));
+      pad.setQuestion(o.label, o.text);
+      var main = document.createElement('div'); main.className = 'qmain'; main.append(card);
+      var side = document.createElement('div'); side.className = 'qside'; side.append(pad.el);
+      var wrap = document.createElement('div'); wrap.className = 'qlayout'; wrap.append(main, side);
+      return wrap;
+    },
+    closeAll: function () { Object.keys(cache).forEach(function (k) { cache[k].close(); }); }
+  };
+})();
+</script>
 </body>
 </html>
