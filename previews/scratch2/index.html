@@ -639,11 +639,9 @@ details{border-color:transparent;border-radius:var(--radius);box-shadow:var(--li
 /* tablets and phones: the pad sits under the question, full width, and reaches the bottom of the screen */
 html.spad-stack .qlayout{gap:12px}
 html.spad-stack .spad-surf{height:var(--spad-h,380px)}
-/* a tall question on a tablet in landscape: the pad goes beside it */
-@media (min-width:960px){
-  html.spad-stack .qlayout.beside{flex-direction:row;align-items:flex-start;width:min(1180px,calc(100vw - 32px));margin-left:calc(50% - min(590px,50vw - 16px))}
-  html.spad-stack .qlayout.beside .qmain{flex:1 1 0}
-  html.spad-stack .qlayout.beside .qside{flex:0 0 min(640px,54%);position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px)}
+/* a tablet in landscape: keep a question's picture short so more of the pad fits on the screen */
+@media (orientation:landscape) and (max-height:900px){
+  html.spad-stack .qmain .fig img{max-height:34vh;width:auto}
 }
 
 /* finger and Apple Pencil sizes */
@@ -6037,28 +6035,23 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       S.scale = r.width / U; redraw();
     }
     if (window.ResizeObserver) new ResizeObserver(fit).observe(surf); else window.addEventListener('resize', fit);
-    // Under the question: make the writing area reach the bottom of the screen (at least 340px; a long question scrolls).
+    // Under the question: make the writing area reach the bottom of the screen. When a tall question (one with a
+    // picture) leaves less than that, the pad is as tall as the screen below the lesson's top bar, so one scroll
+    // down shows the whole pad.
     function sizeIt() {
       if (tutorMode) return;
       if (!stacked() || el.classList.contains('full') || !el.isConnected) { el.style.removeProperty('--spad-h'); return; }
       var top = surf.getBoundingClientRect().top + (window.scrollY || 0);
       var h = Math.round(window.innerHeight - top - foot.offsetHeight - 16);
-      el.style.setProperty('--spad-h', Math.max(340, Math.min(h, 1100)) + 'px');
+      if (h < 380) {
+        var pt = document.querySelector('.ptop'), ph = pt ? pt.getBoundingClientRect().height : 0;
+        h = Math.round(window.innerHeight - ph - bar.offsetHeight - (tnote.hidden ? 0 : tnote.offsetHeight) - foot.offsetHeight - 24);
+      }
+      el.style.setProperty('--spad-h', Math.max(300, Math.min(h, 1100)) + 'px');
     }
     var watching = null, wrapEl = null, ro = window.ResizeObserver ? new ResizeObserver(function () { sizeIt(); }) : null;
     function watch(node, wrap) { wrapEl = wrap; if (!ro || node === watching) return; if (watching) ro.unobserve(watching); watching = node; ro.observe(node); }
-    /* Tablet in landscape: the pad goes under the question when there is room for it on the screen. When a tall
-       question (one with a picture) would push it off the screen, it goes beside the question instead. Decided once
-       per question and again when the screen turns, never while he writes. */
-    function place() {
-      if (!wrapEl) return;
-      wrapEl.classList.remove('beside');
-      if (stacked() && window.innerWidth >= 960 && watching && wrapEl.isConnected) {
-        var spare = window.innerHeight - (watching.getBoundingClientRect().bottom + (window.scrollY || 0)) - bar.offsetHeight - foot.offsetHeight - 28;
-        if (spare < 300 && !/nobeside=1/.test(location.search)) wrapEl.classList.add('beside');
-      }
-      sizeIt();
-    }
+    function place() { sizeIt(); }
 
     function setTool(t) {
       S.tool = t; el.dataset.tool = t;
