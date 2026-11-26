@@ -639,6 +639,10 @@ details{border-color:transparent;border-radius:var(--radius);box-shadow:var(--li
 /* tablets and phones: the pad sits under the question, full width, and reaches the bottom of the screen */
 html.spad-stack .qlayout{gap:12px}
 html.spad-stack .spad-surf{height:var(--spad-h,380px)}
+/* a tablet in landscape: question and pad use the full width of the screen */
+@media (min-width:960px){
+  html.spad-stack .qlayout{width:min(1180px,calc(100vw - 32px));margin-left:calc(50% - min(590px,50vw - 16px))}
+}
 /* a tablet in landscape: keep a question's picture short so more of the pad fits on the screen */
 @media (orientation:landscape) and (max-height:900px){
   html.spad-stack .qmain .fig img{max-height:34vh;width:auto}
