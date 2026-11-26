@@ -595,11 +595,12 @@ details{border-color:transparent;border-radius:var(--radius);box-shadow:var(--li
 .qmain{min-width:0;display:flex;flex-direction:column}
 .qside{min-width:0}
 .spad{background:var(--card);border-radius:var(--radius,14px);box-shadow:var(--lift,none);border:1px solid var(--rule);display:flex;flex-direction:column;overflow:hidden;min-width:0}
-.spad-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 10px;border-bottom:1px solid var(--rule);background:var(--accent-soft,var(--action-soft))}
-.spad-title{font-weight:800;font-size:.95rem;color:var(--ink);margin-right:auto;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.spad-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--rule);background:var(--accent-soft,var(--action-soft))}
+.spad-title{font-weight:800;font-size:.95rem;color:var(--ink);display:flex;align-items:center;gap:6px;white-space:nowrap}
 .spad-title svg{width:18px;height:18px;color:var(--accent-hi,var(--action))}
 .spad-tools,.spad-acts{display:flex;gap:4px;flex-wrap:wrap}
-.spad-tools{background:var(--card);border-radius:999px;padding:3px;border:1px solid var(--rule)}
+.spad-tools{grid-column:1 / -1;grid-row:2;flex-wrap:nowrap;background:var(--card);border-radius:999px;padding:3px;border:1px solid var(--rule)}
+.spad-tools button{flex:1 1 0;justify-content:center}
 .spad-bar button{font:inherit;font-size:.82rem;font-weight:700;display:inline-flex;align-items:center;gap:5px;min-height:36px;min-width:36px;padding:4px 10px;border-radius:999px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;touch-action:manipulation}
 .spad-bar button svg{width:18px;height:18px;flex:none}
 .spad-bar button:hover{color:var(--ink)}
@@ -621,14 +622,14 @@ details{border-color:transparent;border-radius:var(--radius);box-shadow:var(--li
 .spad-question{display:none}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .spad-surf{--spad-grid:rgba(238,240,246,.10)} }
 :root[data-theme="dark"] .spad-surf{--spad-grid:rgba(238,240,246,.10)}
-@media (max-width:480px){ .spad-bar button .lbl{display:none} .spad-bar button{padding:4px 8px} .spad-surf{height:340px} }
+@media (max-width:480px){ .spad-acts button .lbl{display:none} .spad-bar button{padding:4px 8px} .spad-surf{height:340px} }
 
 /* wide screens: question on the left, pad on the right */
 @media (min-width:960px){
   .qlayout{flex-direction:row;align-items:flex-start;width:min(1180px,calc(100vw - 48px));margin-left:calc(50% - min(590px,50vw - 24px))}
   .qmain{flex:1 1 0}
   .qside{flex:0 0 min(470px,42%);position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px)}
-  .spad-surf{height:calc(100vh - 250px);max-height:640px;min-height:380px}
+  .spad-surf{height:calc(100vh - 330px);max-height:620px;min-height:380px}
 }
 
 /* bigger: the pad fills the screen, the question stays on top */
