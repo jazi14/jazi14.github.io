@@ -6050,6 +6050,10 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     surf.append(cv);
     // Scroll bars: the page is bigger than the pad and grows as he writes near its edges
     var vbar = div('spad-vbar'), vthumb = div('spad-thumb'), hbar = div('spad-hbar'), hthumb = div('spad-thumb');
+    [[vbar, 'vertical', 'Scroll the pad up and down'], [hbar, 'horizontal', 'Scroll the pad left and right']].forEach(function (x) {
+      x[0].setAttribute('role', 'scrollbar'); x[0].setAttribute('aria-orientation', x[1]); x[0].setAttribute('aria-label', x[2]); x[0].title = x[2];
+    });
+    vthumb.setAttribute('aria-label', 'Drag to scroll up and down'); hthumb.setAttribute('aria-label', 'Drag to scroll left and right');
     vbar.append(vthumb); hbar.append(hthumb); surf.append(vbar, hbar);
     var tnoteIn = null;
     if (tutorMode) {
@@ -6112,6 +6116,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var tv = vbar.clientHeight, th = hbar.clientWidth;
       var lv = Math.max(40, tv * S.vh / (S.sh || 1)), lh = Math.max(40, th * S.vw / (S.sw || 1));
       vthumb.style.height = lv + 'px'; hthumb.style.width = lh + 'px';
+      vbar.setAttribute('aria-valuenow', S.sh > S.vh ? Math.round(100 * S.sy / (S.sh - S.vh)) : 0); hbar.setAttribute('aria-valuenow', S.sw > S.vw ? Math.round(100 * S.sx / (S.sw - S.vw)) : 0);
       vthumb.style.transform = 'translateY(' + Math.round((tv - lv) * (S.sh > S.vh ? S.sy / (S.sh - S.vh) : 0)) + 'px)';
       hthumb.style.transform = 'translateX(' + Math.round((th - lh) * (S.sw > S.vw ? S.sx / (S.sw - S.vw) : 0)) + 'px)';
     }
