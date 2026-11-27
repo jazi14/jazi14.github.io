@@ -1,0 +1,198 @@
+{
+ "schema": 1,
+ "id": "CU-2026-11-27",
+ "kind": "catchup",
+ "subject": "math",
+ "strand": "Mixed",
+ "title": "2 questions from earlier lessons",
+ "instructions": "Work every problem on paper first and show each step. Then type your answer and press Check. You get two tries on each question. Type a fraction like 3/4, a mixed number like 2 1/2, and a power like 3^4.",
+ "skills": {
+  "frac-mult-simplify": "Simplify and cancel in fraction products",
+  "frac-mult-whole": "Fraction times a whole number"
+ },
+ "sections": [
+  {
+   "name": "Catch-up",
+   "desc": "Questions you missed before, with new numbers or a new story. Right on the first try takes one off your list.",
+   "items": [
+    {
+     "id": "c1",
+     "q": "Cancel first, then multiply. Write each answer in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "1/15",
+        "form": "fraction"
+       },
+       "label": "a",
+       "prompt": "4/9 × 3/20",
+       "tests": {
+        "ok": [
+         "1/15"
+        ],
+        "no": [
+         "7/29",
+         "1/5",
+         "15/1"
+        ],
+        "nudge": [
+         "12/180",
+         "3/45",
+         "4/60"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "3/8",
+        "form": "fraction"
+       },
+       "label": "b",
+       "prompt": "11/36 × 27/22",
+       "tests": {
+        "ok": [
+         "3/8"
+        ],
+        "no": [
+         "38/58",
+         "8/3",
+         "3/4"
+        ],
+        "nudge": [
+         "297/792",
+         "27/72",
+         "33/88"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "8/25",
+        "form": "fraction"
+       },
+       "label": "c",
+       "prompt": "18/35 × 28/45",
+       "tests": {
+        "ok": [
+         "8/25"
+        ],
+        "no": [
+         "46/80",
+         "25/8",
+         "4/25"
+        ],
+        "nudge": [
+         "504/1575",
+         "56/175",
+         "72/225"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 4 and 20 share 4, and 3 and 9 share 3: 4/9 × 3/20 = 1/3 × 1/5 = 1/15",
+      "b) 11 and 22 share 11, and 27 and 36 share 9: 11/36 × 27/22 = 1/4 × 3/2 = 3/8",
+      "c) 18 and 45 share 9, and 28 and 35 share 7: 18/35 × 28/45 = 2/5 × 4/5 = 8/25",
+      "Answers: 1/15, 3/8 and 8/25"
+     ],
+     "skill": "frac-mult-simplify",
+     "hint": "Cancel one pair at a time and write down what is left of both numbers. A numerator can cancel with either denominator.",
+     "min": 6,
+     "from": "L037/q13",
+     "round": 1,
+     "tag": "Back from Lesson 37"
+    },
+    {
+     "id": "c2",
+     "q": "Multiply. Write each answer as a whole number or a mixed number in simplest form.",
+     "parts": [
+      {
+       "ans": {
+        "type": "num",
+        "value": "14",
+        "form": "mixed"
+       },
+       "label": "a",
+       "prompt": "7/8 × 16",
+       "tests": {
+        "ok": [
+         "14"
+        ],
+        "no": [
+         "112",
+         "16 7/8",
+         "2"
+        ],
+        "nudge": [
+         "112/8"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "24",
+        "form": "mixed"
+       },
+       "label": "b",
+       "prompt": "8/15 × 45",
+       "tests": {
+        "ok": [
+         "24"
+        ],
+        "no": [
+         "360",
+         "45 8/15",
+         "3"
+        ],
+        "nudge": [
+         "360/15"
+        ]
+       }
+      },
+      {
+       "ans": {
+        "type": "num",
+        "value": "16 1/2",
+        "form": "mixed"
+       },
+       "label": "c",
+       "prompt": "11/14 × 21",
+       "tests": {
+        "ok": [
+         "16 1/2"
+        ],
+        "no": [
+         "231",
+         "21 11/14",
+         "16",
+         "33"
+        ],
+        "nudge": [
+         "33/2",
+         "231/14",
+         "16 7/14"
+        ]
+       }
+      }
+     ],
+     "a": [
+      "a) 8 goes into 16 twice, so 7/8 × 16 = 7 × 2 = 14",
+      "b) 15 goes into 45 three times, so 8/15 × 45 = 8 × 3 = 24",
+      "c) 14 and 21 share 7, so 11/14 × 21 = 11/2 × 3 = 33/2 = 16 1/2",
+      "Answers: 14, 24 and 16 1/2"
+     ],
+     "skill": "frac-mult-whole",
+     "hint": "Write the whole number over 1. Cancel any factor the whole number shares with the denominator, then change an improper fraction to a mixed number.",
+     "min": 5,
+     "from": "L037/q17",
+     "round": 1,
+     "tag": "Back from Lesson 37"
+    }
+   ]
+  }
+ ]
+}
