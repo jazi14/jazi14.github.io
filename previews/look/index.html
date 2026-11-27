@@ -687,7 +687,7 @@ html.spad-lock,html.spad-lock body{overflow:hidden}
 .spad-touch .spad-vbar .spad-thumb{left:6px;right:6px}.spad-touch .spad-hbar .spad-thumb{top:6px;bottom:6px}
 .spad-touch .spad-thumb,.spad-touch .spad-thumb:hover:not(.on){background:color-mix(in srgb,var(--ink) 60%,transparent)}
 .spad-touch .spad-zoom{right:42px}
-.spad-jump{position:absolute;z-index:4;top:8px;left:8px;min-height:36px;padding:4px 14px;border-radius:999px;border:0;background:var(--spad-tutor,#7c3aed);color:#fff;font:600 14px/1 system-ui,-apple-system,sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.18);cursor:pointer}
+.spad-jump{position:absolute;z-index:4;bottom:44px;left:12px;min-height:36px;padding:4px 14px;border-radius:999px;border:0;background:var(--spad-tutor,#7c3aed);color:#fff;font:600 14px/1 system-ui,-apple-system,sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.18);cursor:pointer}
 .spad-touch .spad-jump{min-height:44px;font-size:15px}
 .spad-jump[hidden],.spad-back[hidden]{display:none}
 .spad-back{border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 12px;font:600 .78rem/1.2 system-ui,-apple-system,sans-serif;cursor:pointer}
@@ -6715,10 +6715,10 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       Hub.go('lesson',{id:qs.get('lesson')||'L038',from:'math'});
       var t2=0;(function act(){var surf=document.querySelector('.spad-surf');if(!surf){if(t2++<200)setTimeout(act,50);return;}
         setTimeout(function(){
-          var sp=document.querySelector('.spad'); if(sp) window.scrollTo(0, sp.getBoundingClientRect().top + window.scrollY - 70);
+          surf=document.querySelector('.spad-surf');          var sp=document.querySelector('.spad'); if(sp) window.scrollTo(0, sp.getBoundingClientRect().top + window.scrollY - 70);
           var sc=+qs.get('scroll')||0; if(sc) surf.dispatchEvent(new WheelEvent('wheel',{bubbles:true,cancelable:true,deltaY:sc}));
           if(qs.get('clear')==='1'){var c=[].slice.call(document.querySelectorAll('.spad-acts button')).filter(function(b){return /Clear/.test(b.textContent)})[0]; if(c){c.click();c.click();}}
-        },1500);})();
+        },3500);})();
       var tries=0;(function pick(){var b=document.querySelector('.strip button[aria-label="Question '+(qs.get('q')||'23')+'"]');if(b){b.click();}else if(tries++<100)setTimeout(pick,50);})();
     });
   }
