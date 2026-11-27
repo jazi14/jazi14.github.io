@@ -5453,14 +5453,23 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
    second tries, time and his own reason for a miss, and the idea card that opens each part. Live while he works. */
 (function () {
   'use strict';
-  var H = window.Hub, el = H.el, C = window.NLHCheck, root = null, cur = null, onlyMiss = false, sig = '', openQ = null, drafts = {}, cuNow = null, work = null;
+  var H = window.Hub, el = H.el, C = window.NLHCheck, root = null, cur = null, onlyMiss = false, sig = '', openQ = null, drafts = {}, cuNow = null, work = null, stopLive = null;
   // His scratch-pad working and the tutor's notes for the open lesson. Read when the lesson opens and after the tutor saves.
   function loadWork(force) {
     if (!window.HubScratch || !cur) return;
     if (!force && work && work.id === cur.id) return;
     var want = cur.id;
     work = { id: want, d: (work && work.id === want && work.d) || { mine: {}, tutor: {} } };
-    HubScratch.lesson(want).then(function (d) { if (cur && cur.id === want) { work = { id: want, d: d }; paint(true); } });
+    HubScratch.lesson(want).then(function (d) { if (cur && cur.id === want) { work = { id: want, d: d }; paint(true); goLive(want); } });
+  }
+  // While the lesson is open, his working and the tutor's notes refresh on their own as they are written.
+  function goLive(want) {
+    if (stopLive) stopLive();
+    stopLive = HubScratch.live ? HubScratch.live(want, function () { return work && work.id === want ? work.d : null; }, function (d) {
+      if (!cur || cur.id !== want) return;
+      var a = document.activeElement; if (a && root && root.contains(a) && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return;   // not while typing
+      work = { id: want, d: d }; sig = ''; paint(false);
+    }) : null;
   }
   var WHYTXT = {};
   function adult() {
@@ -5616,7 +5625,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (wv) box.append(wv);
       if (HubScratch.canTutor()) box.append(el('div', { class: 'noprint' }, el('button', { class: 'linkbtn', type: 'button', 'data-explain': it.id,
         text: wt ? 'Change your notes on his pad' : 'Write on his pad to explain', onclick: function () {
-          HubScratch.openTutor({ lessonId: cur.id, qid: it.id, label: 'Question ' + x.n, text: it.q }, function () { H.toast('Saved. He sees it the next time he opens this question.'); loadWork(true); });
+          HubScratch.openTutor({ lessonId: cur.id, qid: it.id, label: 'Question ' + x.n, text: it.q }, function () { H.toast('Saved. He sees it on his pad.'); loadWork(true); });
         } })));
     }
     notesFor(cur.id, it.id).forEach(function (v) { box.append(noteRow(v)); });
@@ -5691,7 +5700,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     render: function (r) { root = r; (H.math.WHY || []).forEach(function (w) { WHYTXT[w[0]] = w[1]; }); },
     show: function (arg) { cur = { id: arg && arg.id, from: (arg && arg.from) || 'parent', L: null }; onlyMiss = false; openQ = null; sig = ''; paint(true); },
     refresh: function () { var a = document.activeElement; if (a && root && root.contains(a) && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return; paint(false); },
-    hide: function () { cur = null; sig = ''; work = null; }
+    hide: function () { cur = null; sig = ''; work = null; if (stopLive) { stopLive(); stopLive = null; } }
   });
 })();
 
@@ -5884,7 +5893,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
    only the tutor writes scratchtutor. Strokes use a 1000-unit-wide space so a drawing scales with the pad. Never graded. */
 (function () {
   'use strict';
-  var PRE = 'nlh.pad.', KEEP = 150, BUDGET = 1500000, U = 1000, ERASE_R = 16, SYNC_MS = 2500, MAXB = 300000, CACHE_MAX = 8, PEN_MS = 8000;
+  var PRE = 'nlh.pad.', KEEP = 150, BUDGET = 1500000, U = 1000, ERASE_R = 16, SYNC_MS = 1500, MAXWAIT = 4000, LIVE_MS = 3000, MAXB = 300000, CACHE_MAX = 8, PEN_MS = 8000;
   var cache = {}, tutorPad = null;
   // Where the pad goes. Side by side only on a wide screen with a mouse; on a tablet or phone it sits under the question.
   var root = document.documentElement;
@@ -5956,11 +5965,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     if (JSON.stringify(body).length > MAXB) return Promise.resolve('big');
     return d.doc(path).set(body).then(function () { return 'ok'; }, function () { return 'fail'; });
   }
-  function rList(col, lessonId) {
+  function rList(col, lessonId, strict) {
     var d = db(); if (!d) return Promise.resolve({});
     return d.collection(col).where('lessonId', '==', lessonId).get().then(function (snap) {
       var out = {}; snap.docs.forEach(function (x) { var v = x.data(); if (v && v.qid) out[v.qid] = copy(v); }); return out;
-    }, function () { return {}; });
+    }, function () { return strict ? null : {}; });   // strict: a failed read is null, never an empty lesson
   }
   function msOf(v) { return v ? (v.atMs || Date.parse(v.at) || 0) : 0; }
   function has(v) { return !!(v && ((v.s && v.s.length) || (v.t && String(v.t).trim()))); }
@@ -5986,7 +5995,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var saved = tutorMode ? (o.mine || {}) : (lsGet(key) || {});
     var S = { tool: 'pen', strokes: saved.s || [], undo: [], penAt: 0, curType: '', cur: null, erasing: null, scale: 1, ox: 0, timer: null,
       under: tutorMode ? ((o.his && o.his.s) || []) : [], over: [], overText: '', showOver: true, dirty: false, rtimer: null, touched: false,
-      inflight: null, last: null, baseMs: 0, baseSig: {}, baseT: '', clearAt: 0 };
+      inflight: null, last: null, dueAt: 0, baseMs: 0, baseSig: {}, baseT: '', clearAt: 0 };
     // The copy on the server that this pad last read or wrote. Used to merge in work saved from another device
     // instead of writing over it. After a reload only its time is known, so a merge then keeps strokes from both.
     function setBase(v) { S.baseMs = msOf(v); S.baseSig = {}; S.baseT = (v && v.t) || ''; ((v && v.s) || []).forEach(function (st) { S.baseSig[sig(st)] = 1; }); }
@@ -6011,12 +6020,12 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     surf.append(cv);
     var tnoteIn = null;
     if (tutorMode) {
-      surf.append(div('spad-under', (o.his && o.his.t) || ''));
+      var underEl = div('spad-under', (o.his && o.his.t) || ''); surf.append(underEl);
       tnoteIn = document.createElement('textarea'); tnoteIn.className = 'spad-tnote-in'; tnoteIn.rows = 2;
       tnoteIn.placeholder = 'Typed note for him (optional)'; tnoteIn.setAttribute('aria-label', 'Typed note for him'); tnoteIn.value = saved.t || '';
     } else { ta.value = saved.t || ''; surf.append(ta); }
     var foot = div('spad-foot'), footL = document.createElement('span'), footR = document.createElement('span');
-    footL.textContent = tutorMode ? 'He sees your notes the next time he opens this question.' : 'For your working. Not checked or graded.';
+    footL.textContent = tutorMode ? 'He sees your notes on his pad as you write.' : 'For your working. Not checked or graded.';
     footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? 'Your tutor and parent can see this.' : 'Saved on this device';
     foot.append(footL, footR);
     if (tutorMode) el.append(bar, q, surf, tnoteIn, foot); else el.append(bar, q, tnote, surf, foot);
@@ -6112,7 +6121,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
     function push() {
       if (S.inflight) return S.inflight.then(push);
-      clearTimeout(S.rtimer); S.rtimer = null;
+      clearTimeout(S.rtimer); S.rtimer = null; S.dueAt = 0;
       if (!S.dirty || !path || !(sync || tutorMode)) return Promise.resolve(S.last);
       S.dirty = false;
       if (tutorMode) footR.textContent = 'Saving';
@@ -6136,7 +6145,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
     function save() {
       S.touched = true;
-      if (sync || tutorMode) { S.dirty = true; clearTimeout(S.rtimer); S.rtimer = setTimeout(push, SYNC_MS); }
+      // Sent soon after a pause, and at least every few seconds while writing, so the other person sees it live
+      if (sync || tutorMode) {
+        S.dirty = true; var now = Date.now(); if (!S.dueAt) S.dueAt = now + MAXWAIT;
+        clearTimeout(S.rtimer); S.rtimer = setTimeout(push, Math.max(0, Math.min(SYNC_MS, S.dueAt - now)));
+      }
       if (!tutorMode) { clearTimeout(S.timer); S.timer = setTimeout(saveLocal, 300); }
       refreshButtons();
     }
@@ -6241,7 +6254,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     bTut.addEventListener('click', function () { S.showOver = !S.showOver; setOver({ s: S.over, t: S.overText }); });
     function loadRemote() {
       if (!path || tutorMode || !db()) return;
-      rGet('scratchtutor/' + path).then(function (v) { if (v !== undefined) { setOver(v); fit(); } });
+      rGet('scratchtutor/' + path).then(function (v) { if (v !== undefined) { overKey = JSON.stringify(v || null); setOver(v); fit(); } });
       if (sync) rGet('scratch/' + path).then(function (v) {
         if (!v || msOf(v) <= S.baseMs) return;                               // nothing newer on the server
         if (!S.touched && !S.dirty && !saved.pend && msOf(v) > (saved.at || 0)) {
@@ -6252,12 +6265,33 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       });
     }
 
+    /* Live: while this pad is on screen, the other person's layer is read again every few seconds. His pad picks up
+       the tutor's purple notes; the tutor's pad picks up his new strokes underneath. Neither ever writes the other's. */
+    var liveBusy = false, overKey = null, hisKey = tutorMode ? JSON.stringify(o.his || {}) : null;
+    function live() {
+      if (liveBusy || !path || !db() || !el.isConnected) return;
+      liveBusy = true;
+      rGet((tutorMode ? 'scratch/' : 'scratchtutor/') + path).then(function (v) {
+        liveBusy = false;
+        if (v === undefined) return;                                          // could not read: keep what is shown
+        if (tutorMode) {
+          var k = JSON.stringify(v || {}); if (k === hisKey) return; hisKey = k;
+          S.under = (v && v.s) || []; underEl.textContent = (v && v.t) || '';
+        } else {
+          var k2 = JSON.stringify(v || null); if (k2 === overKey) return; overKey = k2;
+          setOver(v);
+        }
+        if (S.cur) redraw(); else fit();                                      // never rescale under a stroke in progress
+      });
+    }
+
     setTool('pen'); refreshButtons(); loadRemote();
     if (sync && saved.pend) { S.dirty = true; S.rtimer = setTimeout(push, SYNC_MS); }   // work not sent last time
     return {
       el: el,
       setQuestion: function (label, text) { q.textContent = (label ? label + '. ' : '') + (text || ''); },
       refresh: loadRemote,
+      live: live,
       size: place,
       watch: watch,
       flush: function () { if (S.timer) saveLocal(); return push(); },
@@ -6325,6 +6359,24 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (!db()) return Promise.resolve({ mine: localWork(lessonId), tutor: {} });
       return Promise.all([rList('scratch', lessonId), rList('scratchtutor', lessonId)]).then(function (r) { return { mine: r[0], tutor: r[1] }; });
     },
+    /* The answer book while it is open: reads his working and the tutor's notes every few seconds and calls onChange
+       with the new set when it differs from what now() says is shown. onChange returns false when it could not show
+       it yet (for example, someone is typing a remark), so the next read tries again. Returns a stop function. */
+    live: function (lessonId, now, onChange) {
+      var stop = false, t = null;
+      function next() { if (!stop) t = setTimeout(tick, LIVE_MS); }
+      function tick() {
+        if (stop) return;
+        if (!db() || document.visibilityState === 'hidden' || tutorPad) { next(); return; }
+        Promise.all([rList('scratch', lessonId, true), rList('scratchtutor', lessonId, true)]).then(function (r) {
+          if (stop) return;
+          if (r[0] && r[1]) { var d = { mine: r[0], tutor: r[1] }; if (JSON.stringify(d) !== JSON.stringify(now())) onChange(d); }
+          next();
+        }, next);
+      }
+      next();
+      return function () { stop = true; clearTimeout(t); };
+    },
     canTutor: function () { return role() === 'tutor' && !!db(); },
     // The answer-book block for one question, or null when there is nothing to show.
     view: function (mine, tut, when) {
@@ -6375,6 +6427,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     lastW = w; lastH = h; sizeAll();
   });
   window.addEventListener('orientationchange', function () { setTimeout(function () { lastW = window.innerWidth; lastH = window.innerHeight; sizeAll(); }, 250); });
+  setInterval(function () {
+    if (document.visibilityState === 'hidden') return;
+    Object.keys(cache).forEach(function (k) { cache[k].live(); });
+    if (tutorPad && tutorPad.live) tutorPad.live();
+  }, LIVE_MS);
   function flushAll() { Object.keys(cache).forEach(function (k) { cache[k].flush(); }); if (tutorPad && tutorPad.flush) tutorPad.flush(); }
   window.addEventListener('pagehide', flushAll);
   document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') flushAll(); });
