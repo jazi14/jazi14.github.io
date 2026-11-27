@@ -5067,7 +5067,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var card = el('div', { class: 'card' }, [el('h2', { text: s.title })].concat(i === 0 ? paras(s.text) : [], prev, topic ? [topic] : [], ex ? [ex] : [], [
       el('div', { class: 'rs-q', id: 'rsQ' },
         bs.length > 1 ? el('span', { class: 'label', text: 'Question ' + (i + 1) + ' of ' + bs.length }) : null,
-        el('p', { class: 'rs-qtext', text: b.label }),
+        el('p', { class: 'rs-qtext', text: /^question \d+$/i.test(b.label) ? 'Your question ' + (i + 1) : b.label }),
         b.help ? el('p', { class: 'small muted', text: b.help }) : null,
         el('p', { class: 'small muted', text: 'Write your answer on the pad under this question.' })),
       note,
