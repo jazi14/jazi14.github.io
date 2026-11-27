@@ -6247,6 +6247,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   function makePad(key, o) {
     var inline = !!o.inline, view = !!o.view, locked = false, lined = o.paper === 'lined';
     var tutorMode = o.mode === 'tutor', sync = o.mode === 'student' && !!db(), path = o.lessonId && o.qid ? o.lessonId + '.' + o.qid : null;
+    var seeMsg = lined ? 'Saved. Your tutor and parent see it once you hand it in.' : 'Your tutor and parent can see this.';
     var saved = tutorMode ? (o.mine || {}) : (lsGet(key) || {});
     var S = { tool: 'pen', strokes: saved.s || [], undo: [], penAt: 0, curType: '', cur: null, erasing: null, scale: 1, ox: 0, timer: null,
       under: tutorMode ? ((o.his && o.his.s) || []) : [], over: [], overText: '', showOver: true, dirty: false, rtimer: null, touched: false,
@@ -6291,7 +6292,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     } else { ta.value = saved.t || ''; surf.append(ta); }
     var foot = div('spad-foot'), footL = document.createElement('span'), footR = document.createElement('span');
     footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : lined ? (o.answer ? 'Your pad is your answer. It locks when you hand it in.' : 'For your working. It locks when this question is done.') : 'For your working. Not graded.';
-    footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? 'Your tutor and parent can see this.' : 'Saved on this device';
+    footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? seeMsg : 'Saved on this device';
     var clrKey = (tutorMode ? 't.' : '') + key;
     var bBack = document.createElement('button'); bBack.type = 'button'; bBack.className = 'spad-back'; bBack.hidden = true;
     bBack.textContent = 'Bring back what you cleared';
@@ -6499,7 +6500,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         S.inflight = null; S.last = r;
         if (r === 'fail') S.dirty = true;
         if (!tutorMode && !S.timer) saveLocal();                             // record on the device whether it was sent
-        footR.textContent = r === 'ok' ? (tutorMode ? 'Saved' : 'Your tutor and parent can see this.')
+        footR.textContent = r === 'ok' ? (tutorMode ? 'Saved' : seeMsg)
           : r === 'big' ? (tutorMode ? 'Too much on this pad to save. Clear some marks, then tap Done.' : 'Too much on this pad to send. It stays on this device.')
           : r === 'fail' ? (tutorMode && !inline ? 'Not saved. Check the connection and tap Done again.' : 'Not sent yet. It tries again soon.') : footR.textContent;
         if (r === 'fail') { clearTimeout(S.rtimer); S.rtimer = setTimeout(push, 20000); }
