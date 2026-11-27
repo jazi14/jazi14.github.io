@@ -4187,7 +4187,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   // The scratch pad beside a step, saved as scratch/comp-<set>.<step or question> like a math question's pad
   function padWrap(card, qid, label, text, setId) {
     var sid = setId || (W && W.id);
-    return window.HubScratch && sid ? HubScratch.layout(card, { key: 'comp-' + sid + '.' + qid, lessonId: 'comp-' + sid, qid: qid, label: label, text: text || '', locked: padLocked(qid, setId), paper: 'lined' }) : card;
+    return window.HubScratch && sid ? HubScratch.layout(card, { key: 'comp-' + sid + '.' + qid, lessonId: 'comp-' + sid, qid: qid, label: label, text: text || '', locked: padLocked(qid, setId), paper: 'lined', answer: qid === 'gist' || qid === 'write' || qid === 'fix' }) : card;
   }
   /* His pad is his answer in Read and write (Taimoor, 27 Nov 2026: "The pad"). When he hands in a step, the pad for
      that step locks, like his first answer in math, and a copy is kept as his final answer for marking. */
@@ -4895,7 +4895,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   function title() { return 'Research: ' + R.L.title; }
   // The scratch pad beside a step, saved as scratch/research-<unit>.<step or question>
   function padWrap(card, qid, label, text) {
-    return window.HubScratch && R && R.id ? HubScratch.layout(card, { key: 'research-' + R.id + '.' + qid, lessonId: 'research-' + R.id, qid: qid, label: label, text: text || '', locked: !!(R.A.pads && R.A.pads[qid]), paper: 'lined' }) : card;
+    return window.HubScratch && R && R.id ? HubScratch.layout(card, { key: 'research-' + R.id + '.' + qid, lessonId: 'research-' + R.id, qid: qid, label: label, text: text || '', locked: !!(R.A.pads && R.A.pads[qid]), paper: 'lined', answer: qid.indexOf('w-') === 0 }) : card;
   }
   // His pad is his answer here too: a question's pad locks once it is done, the writing pads when he hands the unit in.
   function padHas(qid) { return !!(window.HubScratch && HubScratch.hasWork('research-' + R.id + '.' + qid)); }
@@ -6195,7 +6195,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       tnoteIn.placeholder = 'Typed note for him (optional)'; tnoteIn.setAttribute('aria-label', 'Typed note for him'); tnoteIn.value = saved.t || '';
     } else { ta.value = saved.t || ''; surf.append(ta); }
     var foot = div('spad-foot'), footL = document.createElement('span'), footR = document.createElement('span');
-    footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : lined ? 'Your pad is your answer. It locks when you hand it in.' : 'For your working. Not graded.';
+    footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : lined ? (o.answer ? 'Your pad is your answer. It locks when you hand it in.' : 'For your working. It locks when this question is done.') : 'For your working. Not graded.';
     footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? 'Your tutor and parent can see this.' : 'Saved on this device';
     var clrKey = (tutorMode ? 't.' : '') + key;
     var bBack = document.createElement('button'); bBack.type = 'button'; bBack.className = 'spad-back'; bBack.hidden = true;
@@ -6656,7 +6656,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
 
     // His final answer: once he hands in the step this pad belongs to, it is shown as it was and cannot change.
-    var lockNote = div('spad-locknote', 'Handed in. This is your final answer for this step.'); lockNote.hidden = true; el.insertBefore(lockNote, surf);
+    var lockNote = div('spad-locknote', o.answer === false ? 'This question is done. Your working is kept as it is.' : 'Handed in. This is your final answer for this step.'); lockNote.hidden = true; el.insertBefore(lockNote, surf);
     var footTxt = footL.textContent, titleTxt = title.querySelector('span').textContent;
     function setLocked(on) {
       on = !!on && !tutorMode && !view;
@@ -6665,8 +6665,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       locked = on; el.classList.toggle('spad-locked', on);
       tools.hidden = on; bUndo.hidden = on; bClear.hidden = on; bBack.hidden = on || bBack.hidden;
       ta.readOnly = on; lockNote.hidden = !on;
-      footL.textContent = on ? 'Your final answer. Your tutor and parent mark it.' : footTxt;
-      title.querySelector('span').textContent = on ? 'Your final answer' : titleTxt;
+      footL.textContent = on ? (o.answer === false ? 'Kept as your working for this question.' : 'Your final answer. Your tutor and parent mark it.') : footTxt;
+      title.querySelector('span').textContent = on ? (o.answer === false ? 'Your working' : 'Your final answer') : titleTxt;
       if (!on && !view) backCheck();
     }
     setTool('pen'); refreshButtons(); loadRemote();
@@ -6736,7 +6736,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         var r = role(), adult = (r === 'tutor' || r === 'parent') && !!db();
         // the tutor and the parent see his pad for this question, live; the tutor writes on it in purple
         pad = cache[o.key] = adult ? makePad('adult:' + o.key, { mode: 'tutor', inline: true, view: r !== 'tutor', lessonId: o.lessonId, qid: o.qid, paper: o.paper })
-          : makePad(o.key, { mode: r === 'student' ? 'student' : 'local', lessonId: o.lessonId, qid: o.qid, paper: o.paper });
+          : makePad(o.key, { mode: r === 'student' ? 'student' : 'local', lessonId: o.lessonId, qid: o.qid, paper: o.paper, answer: o.answer });
       }
       // keep only a few pads in memory; each one's work is already on the device and sent or queued to send
       var keys = Object.keys(cache); while (keys.length > CACHE_MAX) delete cache[keys.shift()];
