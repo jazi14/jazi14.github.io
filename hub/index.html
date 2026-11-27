@@ -682,6 +682,9 @@ html.spad-lock,html.spad-lock body{overflow:hidden}
 .spad-hbar .spad-thumb{top:5px;bottom:5px;left:0}
 .spad-thumb.on,.spad-thumb:hover{background:color-mix(in srgb,var(--accent,var(--action)) 75%,transparent)}
 .spad textarea.spad-text{padding-right:30px!important}
+.spad-zoom{position:absolute;z-index:4;top:8px;right:32px;min-height:36px;padding:4px 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--ink) 18%,transparent);background:var(--card);color:var(--ink);font:600 14px/1 system-ui,-apple-system,sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.12);cursor:pointer}
+.spad-zoom[hidden]{display:none}
+.spad-view .spad-surf canvas{touch-action:none;cursor:grab}
 .spad textarea.spad-tnote-in{display:block;width:100%;margin:0;border:0;border-top:1px solid var(--rule);border-radius:0;resize:none;font-family:var(--f-read);font-size:1.02rem;padding:10px 12px;background:var(--card);color:var(--spad-tutor);min-height:3.2em}
 
 /* his working in the answer book */
@@ -5903,7 +5906,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
    only the tutor writes scratchtutor. Strokes use a 1000-unit-wide space so a drawing scales with the pad. Never graded. */
 (function () {
   'use strict';
-  var PRE = 'nlh.pad.', KEEP = 150, BUDGET = 1500000, U = 1000, ERASE_R = 16, SYNC_MS = 1500, MAXWAIT = 4000, LIVE_MS = 3000, MAXB = 300000, CACHE_MAX = 8, PEN_MS = 8000;
+  var PRE = 'nlh.pad.', KEEP = 150, BUDGET = 1500000, U = 1000, ERASE_R = 16, SYNC_MS = 1500, MAXWAIT = 4000, LIVE_MS = 3000, MAXB = 300000, CACHE_MAX = 8, PEN_MS = 8000, ZMIN = 0.5, ZMAX = 4, PINCH_GAP = 350;
   var cache = {}, tutorPad = null;
   // Where the pad goes. Side by side only on a wide screen with a mouse; on a tablet or phone it sits under the question.
   var root = document.documentElement;
@@ -6009,7 +6012,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var saved = tutorMode ? (o.mine || {}) : (lsGet(key) || {});
     var S = { tool: 'pen', strokes: saved.s || [], undo: [], penAt: 0, curType: '', cur: null, erasing: null, scale: 1, ox: 0, timer: null,
       under: tutorMode ? ((o.his && o.his.s) || []) : [], over: [], overText: '', showOver: true, dirty: false, rtimer: null, touched: false,
-      inflight: null, last: null, dueAt: 0, baseMs: 0, baseSig: {}, baseT: '', clearAt: 0, oy: 0, sx: 0, sy: 0, sw: 0, sh: 0, vw: 0, vh: 0 };
+      inflight: null, last: null, dueAt: 0, baseMs: 0, baseSig: {}, baseT: '', clearAt: 0, oy: 0, sx: 0, sy: 0, sw: 0, sh: 0, vw: 0, vh: 0, z: 1, k: 1, touches: {}, pinch: null, pan: null };
     // The copy on the server that this pad last read or wrote. Used to merge in work saved from another device
     // instead of writing over it. After a reload only its time is known, so a merge then keeps strokes from both.
     function setBase(v) { S.baseMs = msOf(v); S.baseSig = {}; S.baseT = (v && v.t) || ''; ((v && v.s) || []).forEach(function (st) { S.baseSig[sig(st)] = 1; }); }
@@ -6039,6 +6042,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     });
     vthumb.setAttribute('aria-label', 'Drag to scroll up and down'); hthumb.setAttribute('aria-label', 'Drag to scroll left and right');
     vbar.append(vthumb); hbar.append(hthumb); surf.append(vbar, hbar);
+    // Shows the zoom when it is not 100%; a tap puts it back to 100%
+    var zchip = document.createElement('button'); zchip.type = 'button'; zchip.className = 'spad-zoom'; zchip.hidden = true;
+    zchip.title = 'Back to normal size'; surf.append(zchip);
     var tnoteIn = null;
     if (tutorMode) {
       var underEl = div('spad-under', (o.his && o.his.t) || ''); surf.append(underEl);
@@ -6085,15 +6091,31 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var r = surf.getBoundingClientRect(); if (!r.width || !r.height) return;
       var dpr = window.devicePixelRatio || 1, w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
       if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
-      var k = r.width / U, all = S.under.concat(S.strokes, S.showOver ? S.over : [], S.cur ? [S.cur] : []);
-      S.scale = k; S.vw = r.width; S.vh = r.height;
-      S.sw = Math.max(r.width * 1.5, (maxX(all) + 250) * k); S.sh = Math.max(r.height * 2, (maxY(all) + 350) * k);
-      scrollTo(S.sx, S.sy);
+      S.k = r.width / U; S.vw = r.width; S.vh = r.height;
+      pageSize(); scrollTo(S.sx, S.sy);
     }
+    /* The page in pad units: half again the pad's width and twice its height at normal size, and always past the
+       furthest stroke. Zoom (two fingers on a touch screen, or a trackpad pinch) only changes how big it is drawn on
+       this screen; strokes keep the same units, so the tutor and he still see them at the same spot. */
+    function pageSize() {
+      var all = S.under.concat(S.strokes, S.showOver ? S.over : [], S.cur ? [S.cur] : []);
+      S.scale = S.k * S.z;
+      S.sw = Math.max(S.vw, Math.max(1.5 * U, maxX(all) + 250) * S.scale);
+      S.sh = Math.max(S.vh, Math.max(2 * S.vh / S.k, maxY(all) + 350) * S.scale);
+    }
+    // Zoom to z, keeping pad point (ux, uy) under screen point (cx, cy) inside the pad
+    function zoomTo(z, cx, cy, ux, uy) {
+      z = Math.max(ZMIN, Math.min(ZMAX, z)); if (Math.abs(z - 1) < 0.06) z = 1;
+      S.z = z; pageSize(); scrollTo(ux * S.scale - cx, uy * S.scale - cy);
+      zchip.hidden = z === 1; zchip.textContent = Math.round(z * 100) + '%';
+      zchip.setAttribute('aria-label', 'Zoom ' + Math.round(z * 100) + ' percent. Tap for normal size.');
+    }
+    function zoomAround(z, cx, cy) { zoomTo(z, cx, cy, (cx + S.sx) / S.scale, (cy + S.sy) / S.scale); }
+    zchip.addEventListener('click', function (e) { e.stopPropagation(); zoomAround(1, S.vw / 2, S.vh / 2); });
     function scrollTo(x, y) {
       S.sx = Math.max(0, Math.min(x, S.sw - S.vw)); S.sy = Math.max(0, Math.min(y, S.sh - S.vh));
       S.ox = -Math.round(S.sx); S.oy = -Math.round(S.sy);
-      surf.style.backgroundPosition = (S.ox - 1) + 'px ' + (S.oy - 1) + 'px';
+      surf.style.backgroundPosition = (S.ox - 1) + 'px ' + (S.oy - 1) + 'px'; var g = (28 * S.z) + 'px'; surf.style.backgroundSize = g + ' ' + g;
       bars(); redraw();
     }
     function bars() {
@@ -6128,10 +6150,12 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
     barDrag(vbar, vthumb, true); barDrag(hbar, hthumb, false);
     surf.addEventListener('wheel', function (e) {
-      if (e.ctrlKey) return;
       if (S.tool === 'type' && e.target === ta) return;                      // the typed notes scroll on their own
-      e.preventDefault(); scrollTo(S.sx + e.deltaX, S.sy + e.deltaY);
+      e.preventDefault();
+      if (e.ctrlKey) { var r = surf.getBoundingClientRect(); zoomAround(S.z * Math.exp(-e.deltaY * 0.01), e.clientX - r.left, e.clientY - r.top); return; }
+      scrollTo(S.sx + e.deltaX, S.sy + e.deltaY);
     }, { passive: false });
+    surf.addEventListener('gesturestart', function (e) { e.preventDefault(); });
     function release() { cv.width = cv.height = 0; base.width = base.height = 0; }
     if (window.ResizeObserver) new ResizeObserver(fit).observe(surf); else window.addEventListener('resize', fit);
     // Under the question: make the writing area reach the bottom of the screen. When a tall question (one with a
@@ -6233,9 +6257,50 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (S.erasing) { S.erasing.slice().reverse().forEach(function (x) { S.strokes.splice(x[0], 0, x[1]); }); S.erasing = null; }
       S.cur = null; S.pid = null; S.curType = ''; redraw();
     }
+    /* Two fingers: spread them to zoom in, pinch them to zoom out, move them together to slide the pad. Only two
+       fingers that land close together in time start it, never the Pencil, and not while the Pencil is down, so a
+       hand resting on the screen does not zoom. A stroke the first finger had just started is dropped. */
+    function surfXY(t) { var r = surf.getBoundingClientRect(); return [t.x - r.left, t.y - r.top]; }
+    function twoTouches() {
+      var ids = Object.keys(S.touches); if (ids.length !== 2) return null;
+      var a = S.touches[ids[0]], b = S.touches[ids[1]], pa = surfXY(a), pb = surfXY(b);
+      return { a: a, b: b, d: Math.max(1, Math.hypot(pa[0] - pb[0], pa[1] - pb[1])), cx: (pa[0] + pb[0]) / 2, cy: (pa[1] + pb[1]) / 2 };
+    }
+    function pinchStart() {
+      var t = twoTouches(); if (!t) return false;
+      if (!view && (Math.abs(t.a.t - t.b.t) > PINCH_GAP || S.curType === 'pen' || Date.now() - S.penAt < 400)) return false;
+      S.pan = null;
+      if (S.curType === 'touch') { if (S.cur && S.cur.p.length > 60) return false; dropTouch(); }
+      S.pinch = { d: t.d, cx: t.cx, cy: t.cy, z: S.z, ux: (t.cx + S.sx) / S.scale, uy: (t.cy + S.sy) / S.scale, on: false };
+      return true;
+    }
+    function pinchMove() {
+      var P = S.pinch, t = twoTouches(); if (!P || P === 'done' || !t) return;
+      if (!P.on && Math.abs(t.d - P.d) < 14 && Math.hypot(t.cx - P.cx, t.cy - P.cy) < 14) return;
+      P.on = true; zoomTo(P.z * t.d / P.d, t.cx, t.cy, P.ux, P.uy);
+    }
+    // The parent's view has nothing to write: one finger or the mouse slides the pad, two fingers zoom it
+    function viewDown(e) {
+      if (e.button > 0) return;
+      e.preventDefault(); try { cv.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
+      if (e.pointerType === 'touch') {
+        S.touches[e.pointerId] = { x: e.clientX, y: e.clientY, t: Date.now() };
+        if (S.pinch) return;
+        if (Object.keys(S.touches).length === 2 && pinchStart()) return;
+      }
+      if (!S.pan) S.pan = { id: e.pointerId, x: e.clientX, y: e.clientY, sx: S.sx, sy: S.sy };
+    }
     cv.addEventListener('pointerdown', function (e) {
-      if (view || S.tool === 'type') return;
-      if (e.pointerType === 'pen') { S.penAt = Date.now(); dropTouch(); }
+      if (view) { viewDown(e); return; }
+      if (S.tool === 'type') return;
+      if (e.pointerType === 'touch') {
+        S.touches[e.pointerId] = { x: e.clientX, y: e.clientY, t: Date.now() };
+        if (S.pinch) { e.preventDefault(); return; }                           // a third finger, or one still down after a pinch
+        if (Object.keys(S.touches).length === 2) {
+          if (pinchStart()) { e.preventDefault(); try { cv.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ } return; }
+        }
+      }
+      if (e.pointerType === 'pen') { S.penAt = Date.now(); S.pinch = null; S.touches = {}; dropTouch(); }
       else if (e.pointerType === 'touch' && Date.now() - S.penAt < PEN_MS) return;
       if (e.button > 0 || S.cur || S.erasing) return;
       e.preventDefault(); try { cv.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
@@ -6244,6 +6309,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       S.cur = { c: tutorMode ? 'tutor' : S.tool === 'red' ? 'red' : 'ink', w: 5, p: [p[0], p[1]] }; redraw();
     });
     cv.addEventListener('pointermove', function (e) {
+      var tt = S.touches[e.pointerId];
+      if (tt) { tt.x = e.clientX; tt.y = e.clientY; if (S.pinch) { e.preventDefault(); pinchMove(); return; } }
+      if (S.pan && e.pointerId === S.pan.id) { scrollTo(S.pan.sx - (e.clientX - S.pan.x), S.pan.sy - (e.clientY - S.pan.y)); return; }
       if (e.pointerId !== S.pid || (!S.cur && !S.erasing)) return;
       if (e.pointerType === 'pen') S.penAt = Date.now();
       var evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e]; if (!evs.length) evs = [e];
@@ -6256,6 +6324,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (S.cur) soon();
     });
     function end(e) {
+      if (S.pan && e.pointerId === S.pan.id) S.pan = null;
+      if (S.touches[e.pointerId]) {
+        delete S.touches[e.pointerId];
+        if (S.pinch) { S.pinch = Object.keys(S.touches).length ? 'done' : null; return; }   // the other finger lifts without drawing
+      }
       if (e.pointerId !== S.pid) return; S.pid = null; S.curType = '';
       if (e.pointerType === 'pen') S.penAt = Date.now();
       if (S.erasing) { if (S.erasing.length) { S.undo.push({ a: 'del', items: S.erasing }); save(); } S.erasing = null; return; }
