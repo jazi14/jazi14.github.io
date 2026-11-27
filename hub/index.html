@@ -682,6 +682,24 @@ html.spad-lock,html.spad-lock body{overflow:hidden}
 .spad-hbar .spad-thumb{top:5px;bottom:5px;left:0}
 .spad-thumb.on,.spad-thumb:hover{background:color-mix(in srgb,var(--accent,var(--action)) 75%,transparent)}
 .spad textarea.spad-text{padding-right:30px!important}
+.spad-workrow{margin-top:12px}
+.spad-workrow+.spad-workrow{border-top:1px solid var(--rule);padding-top:12px}
+.spad-worklbl{font-weight:600;margin:0}
+.spad-locknote{background:var(--ok-bg,#e8f5ec);color:var(--ink);font-size:.92rem;font-weight:600;padding:6px 10px;border-bottom:1px solid var(--rule)}
+.spad.spad-locked .spad-surf{background:var(--paper2,#fafaf7)}
+.cw-padpic .awork-pic,.cw-padpic svg{max-width:100%}
+.cw-padpic{margin-top:6px}
+.rs-q{margin-top:10px;padding:12px 14px;border:1px solid var(--rule);border-radius:12px;background:var(--card)}
+.rs-qtext{font-size:1.15rem;font-weight:600;margin:4px 0}
+.awork-final .label{color:var(--ok,#1b7a3d)}
+.spad.spad-lined .spad-surf{--spad-line:rgba(60,110,190,.30);--spad-margin:rgba(200,60,60,.45);
+  background-image:linear-gradient(to bottom,var(--spad-line) 1.5px,transparent 1.5px),linear-gradient(to right,var(--spad-margin),var(--spad-margin));
+  background-repeat:repeat,no-repeat}
+:root{--spad-line:rgba(60,110,190,.30);--spad-margin:rgba(200,60,60,.45)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--spad-line:rgba(140,175,235,.28);--spad-margin:rgba(235,110,110,.40)} :root:not([data-theme="light"]) .spad.spad-lined .spad-surf{--spad-line:rgba(140,175,235,.28);--spad-margin:rgba(235,110,110,.40)} }
+:root[data-theme="dark"]{--spad-line:rgba(140,175,235,.28);--spad-margin:rgba(235,110,110,.40)}
+:root[data-theme="dark"] .spad.spad-lined .spad-surf{--spad-line:rgba(140,175,235,.28);--spad-margin:rgba(235,110,110,.40)}
+.awork-pic.awork-lined{background-image:none!important;background-color:var(--card)}
 .spad textarea.spad-text,.spad-under{transform-origin:0 0;overflow:hidden;resize:none}
 .spad-touch .spad-vbar{width:32px;bottom:38px}.spad-touch .spad-hbar{height:32px;right:38px}
 .spad-touch .spad-vbar .spad-thumb{left:6px;right:6px}.spad-touch .spad-hbar .spad-thumb{top:6px;bottom:6px}
@@ -997,7 +1015,40 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       add: function (data) { var r = this.doc(); return r.set(data).then(function () { return r; }); }
     };
   }
-  var db = { doc: docRef, collection: function (p) { return colRef(p); } };
+  /* Live link for the scratch pads: one private broadcast channel per topic, shared by every pad on the page that
+     uses it. Strokes go across as they are written; nothing is stored by it, the saved rows stay the record. Who may
+     send or listen on which topic is set by the rules on realtime.messages. A channel nobody uses is closed after a
+     short wait, so moving to the next question keeps the same connection. */
+  var liveCh = {};
+  function liveLink(topic, onMsg) {
+    var c = liveCh[topic];
+    if (c) { clearTimeout(c.drop); c.drop = null; }
+    else {
+      c = liveCh[topic] = { subs: [], up: false, ch: null, drop: null };
+      Promise.resolve().then(function () { return sb.realtime.setAuth(); }).catch(function () { /* the channel says if it cannot join */ }).then(function () {
+        if (liveCh[topic] !== c) return;
+        try {
+          c.ch = sb.channel(topic, { config: { private: true, broadcast: { self: false } } });
+          c.ch.on('broadcast', { event: 'pad' }, function (m) { c.subs.forEach(function (s) { if (s.onMsg) try { s.onMsg(m.payload); } catch (e) { /* one pad's error stays there */ } }); });
+          c.ch.subscribe(function (status) { c.up = status === 'SUBSCRIBED'; });
+        } catch (e) { c.up = false; }
+      });
+    }
+    var me = { onMsg: onMsg };
+    c.subs.push(me);
+    return {
+      up: function () { return c.up; },
+      send: function (payload) { if (!c.up || !c.ch) return false; c.ch.send({ type: 'broadcast', event: 'pad', payload: payload }); return true; },
+      close: function () {
+        var i = c.subs.indexOf(me); if (i < 0) return; c.subs.splice(i, 1);
+        if (!c.subs.length && !c.drop) c.drop = setTimeout(function () {
+          if (c.subs.length || liveCh[topic] !== c) return;
+          delete liveCh[topic]; c.up = false; if (c.ch) sb.removeChannel(c.ch);
+        }, 30000);
+      }
+    };
+  }
+  var db = { doc: docRef, collection: function (p) { return colRef(p); }, live: liveLink };
 
   // ---------- sign-in screens ----------
   function el(tag, attrs) {
@@ -3964,7 +4015,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   function fixNote(w) { var m = marksOf(w); return m ? m.note : ''; }
   // The newest finished paragraph that has feedback and no rewrite yet.
   function pendingFix() {
-    var list = works().filter(function (w) { return w.finishedAt && w.write && w.write.text; });
+    var list = works().filter(function (w) { return w.finishedAt && w.write && (w.write.text || w.write.pad); });
     list.sort(function (a, b) { return String(a.finishedAt).localeCompare(String(b.finishedAt)); });
     var w = list[list.length - 1];
     if (!w || w.revision || !fixNote(w)) return null;
@@ -3984,7 +4035,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   function doneLine(w) {
     var s = w.qsum || {}, bits = [];
     if (s.total) bits.push(s.right + ' of ' + s.total + ' questions right the first time');
-    if (w.write && w.write.words) bits.push('paragraph of ' + w.write.words + ' words');
+    if (w.write && w.write.pad) bits.push('paragraph on his pad'); else if (w.write && w.write.words) bits.push('paragraph of ' + w.write.words + ' words');
     return bits.join(' · ');
   }
 
@@ -4148,10 +4199,35 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     ({ read: stepRead, gist: stepGist, qs: stepQs, compare: stepCompare, write: stepWrite, done: stepDone }[st] || stepRead)();
   }
   function title() { return 'Read and write: ' + ((W.L && W.L.title) || ''); }
+  // The scratch pad beside a step, saved as scratch/comp-<set>.<step or question> like a math question's pad
+  function padWrap(card, qid, label, text, setId) {
+    var sid = setId || (W && W.id);
+    return window.HubScratch && sid ? HubScratch.layout(card, { key: 'comp-' + sid + '.' + qid, lessonId: 'comp-' + sid, qid: qid, label: label, text: text || '', locked: padLocked(qid, setId), paper: 'lined', answer: qid === 'gist' || qid === 'write' || qid === 'fix' }) : card;
+  }
+  /* His pad is his answer in Read and write (Taimoor, 27 Nov 2026: "The pad"). When he hands in a step, the pad for
+     that step locks, like his first answer in math, and a copy is kept as his final answer for marking. */
+  function padLocked(qid, setId) { var A = setId ? work(setId) : (W && W.A); return !!(A && A.pads && A.pads[qid]); }
+  function padHas(qid, setId) { return !!(window.HubScratch && HubScratch.hasWork('comp-' + (setId || W.id) + '.' + qid)); }
+  function handIn(qid, setId, p) {   // locks the pad and records the hand-in in the patch p
+    if (!window.HubScratch) return false;
+    var sid = setId || W.id, A = setId ? work(setId) : W.A, prev = A && A.pads && A.pads[qid];
+    var r = HubScratch.finalize({ lessonId: 'comp-' + sid, qid: qid, n: prev ? (prev.n || 1) + 1 : 1 });
+    if (!r.has) return false;
+    p.pads = p.pads || {}; p.pads[qid] = { at: r.at, n: r.n };
+    return true;
+  }
+  function padPic(v, id) {   // a picture of his handed-in pad, for his own screens
+    if (!v || !window.HubScratch) return null;
+    var box = el('div', { class: 'cw-padpic', id: id || null }), pic = HubScratch.drawing(v, 'lined');
+    if (pic) box.append(pic);
+    if (v.t && String(v.t).trim()) box.append(el('p', { class: 'qtext', text: v.t }));
+    return box;
+  }
 
   // ----- step 0: fix last paragraph -----
   function stepFix() {
     var w = W.fix.w, L = W.fix.L, m = marksOf(w);
+    if (w.write && w.write.pad && !w.write.text) return stepFixPad(w, L, m);
     var ta = el('textarea', { id: 'cwFixText', class: 'cw-write', rows: '12', 'aria-label': 'Your rewritten paragraph' });
     ta.value = (w.drafts && w.drafts.fix) || w.write.text;
     var count = el('span', { class: 'small muted num', id: 'cwFixCount', text: words(ta.value) + ' words' });
@@ -4178,6 +4254,33 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
           showModel(w, L);
         } })))]);
     ta.addEventListener('input', function () { clearTimeout(saveTimer); saveTimer = setTimeout(function () { H.store.patch('reading/comp-' + w.setId, { drafts: { fix: ta.value } }); }, 4000); });
+  }
+  // His last paragraph was on the pad: the rewrite goes on a fresh pad beside it, and locks when he saves it.
+  function stepFixPad(w, L, m) {
+    var note = msg(), old = el('div', { class: 'sol', id: 'cwFixOld' }, el('span', { class: 'label', text: 'Your paragraph last time' }), el('p', { class: 'small muted', text: 'Opening' }));
+    if (window.HubScratch) HubScratch.finals('comp-' + w.setId).then(function (f) {
+      var v = f.write; old.replaceChildren(el('span', { class: 'label', text: 'Your paragraph last time' }), v ? padPic(v) : el('p', { class: 'small muted', text: 'Not found on this device.' }));
+    });
+    var marks = el('div', { class: 'cw-marks' });
+    if (m) ROWS.forEach(function (r) { var s = m.scores[r.k]; if (s) marks.append(el('div', { class: 'cw-mrow' }, el('b', { text: r.name + ': ' + s + ' of 4' }), el('span', { class: 'small', text: r.d[s - 1] }))); });
+    show([head('Fix your last paragraph'),
+      padWrap(el('div', { class: 'card' },
+        el('h2', { text: 'First: fix your last paragraph' }),
+        el('p', { class: 'hint', text: 'From "' + (w.title || '') + '". The question was:' }),
+        el('p', { class: 'qtext', text: (L && L.write && L.write.prompt) || '' }),
+        el('div', { class: 'sol' }, el('span', { class: 'label', text: 'One thing to fix' }), el('p', { class: 'qtext cw-fix', id: 'cwFixNote', text: m.note })),
+        marks, old,
+        el('p', { text: 'Write the whole paragraph again on the pad, with that fix. When you save it, it locks.' }),
+        note,
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwFixSave', text: 'Save my rewrite', onclick: function () {
+          if (!padHas('fix', w.setId)) { note.textContent = 'Write your rewrite on the pad first.'; return; }
+          var p = {}; if (!handIn('fix', w.setId, p)) { note.textContent = 'Write your rewrite on the pad first.'; return; }
+          var secs = stepTime();
+          p.revision = { pad: true, sec: secs, at: nowISO() }; p.updatedAt = nowISO();
+          H.store.patch('reading/comp-' + w.setId, p);
+          W.fix.done = true;
+          showModel(w, L);
+        } }))), 'fix', 'Your rewrite', (L && L.write && L.write.prompt) || '', w.setId)]);
   }
   function showModel(w, L) {
     var model = L && L.write && L.write.model;
@@ -4211,7 +4314,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
           var secs = (H.ms() - W.t0) / 1000;
           if (secs < minSec) { early++; note.textContent = 'That was quick. Read the whole passage once more, all the way through, then tap again.'; return; }
           var prev = W.A.read || {}, t = stepTime(), p = addTime('read', t), next = W.A.resume || 'gist';
-          if (next === 'gist' && W.A.gist && W.A.gist.text) next = 'qs';
+          if (next === 'gist' && W.A.gist && (W.A.gist.text || W.A.gist.pad)) next = 'qs';
           p.step = next; p.resume = null;
           p.read = { sec: (prev.sec || 0) + t, quick: false, times: (prev.times || (prev.sec != null ? 1 : 0)) + 1, early: (prev.early || 0) + early };
           if (back && !prev.first && prev.sec != null) p.read.first = { sec: prev.sec, quick: !!prev.quick };
@@ -4221,24 +4324,21 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 
   // ----- step 2: main idea from memory -----
   function stepGist() {
-    var ta = el('textarea', { id: 'cwGist', rows: '4', maxlength: '600', 'aria-label': 'The main idea in your words' });
-    ta.value = (W.A.drafts && W.A.drafts.gist) || '';
     var note = msg();
-    ta.addEventListener('input', function () { queueDraft('gist', ta.value); });
     show([head(title()), stepBar(1),
-      el('div', { class: 'card' },
+      padWrap(el('div', { class: 'card' },
         el('h2', { text: 'Step 2: The main idea, from memory' }),
-        el('p', { class: 'qtext', text: 'The passage is closed. In your notebook, write one or two sentences: what is this passage mostly about?' }),
+        el('p', { class: 'qtext', text: 'The passage is closed. On the pad, write one or two sentences: what is this passage mostly about?' }),
         el('p', { class: 'hint', text: 'Not one detail. Tell the big idea of the whole passage, the way you would explain it to a friend who has not read it.' }),
-        el('p', { text: 'Then type it here.' }),
-        ta, note,
-        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwGistSave', text: 'Save and go on', onclick: function () {
-          var t = ta.value.trim();
-          if (words(t) < 6) { note.textContent = 'Write a full sentence or two about the whole passage.'; return; }
+        el('p', { text: 'Your pad is your answer. When you hand it in, it locks.' }),
+        note,
+        el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwGistSave', text: 'Hand in my main idea', onclick: function () {
+          if (!padHas('gist')) { note.textContent = 'Write your main idea on the pad first.'; return; }
           var secs = stepTime(), p = addTime('gist', secs);
-          p.step = 'qs'; p.gist = { text: t, words: words(t), sec: secs, at: nowISO() };
+          if (!handIn('gist', null, p)) { note.textContent = 'Write your main idea on the pad first.'; return; }
+          p.step = 'qs'; p.gist = { pad: true, sec: secs, at: nowISO() };
           W.drafts = null; save(p); route();
-        } })))]);
+        } }))), 'gist', 'Main idea', 'What is this passage mostly about?')]);
   }
 
   // ----- step 3: questions -----
@@ -4306,7 +4406,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       rec.st = right ? 'ok' : (tries >= 2 ? 'out' : 'no');
       if (qResolved(rec)) rec.sec = Math.round(Math.min((H.ms() - W.qStart) / 1000, 900));
       var p = { q: {} }; p.q[q.id] = rec;
-      if (qResolved(rec)) { var t = stepTime(); Object.assign(p, addTime('qs', t)); W.qStart = null; }
+      if (qResolved(rec)) { var t = stepTime(); Object.assign(p, addTime('qs', t)); W.qStart = null; handIn(q.id, null, p); }
       W.pick = null; save(p); paintQ();
     }
     var resolvedNow = resolved;
@@ -4314,11 +4414,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     if (!resolvedNow) buttons.append(el('button', { class: 'btn', type: 'button', id: 'cwCheck', text: s && s.st === 'no' ? 'Check again' : 'Check', onclick: check }));
     else buttons.append(el('button', { class: 'btn', type: 'button', id: 'cwNext', text: W.qi + 1 < qs.length ? 'Next question' : 'Go on', onclick: function () { W.qi++; if (W.qi >= qs.length) finishQs(); else paintQ(); } }));
     show([head(title()), stepBar(2),
-      el('div', { class: 'card' },
+      padWrap(el('div', { class: 'card' },
         el('div', { class: 'row rd-split' }, el('h2', { text: 'Step 3: Question ' + (W.qi + 1) + ' of ' + qs.length }), el('span', { class: 'chip at', text: QT[q.type] || 'Question' })),
         W.qi === 0 && !s ? el('p', { class: 'hint', text: 'Answer from memory first. If you are not sure, look back at the passage before you check. Your first answer is your score.' }) : null,
         el('p', { class: 'qtext', id: 'cwQ', text: q.q }),
-        row, note, why, buttons, lookBtn),
+        row, note, why, buttons, lookBtn), q.id, 'Question ' + (W.qi + 1), q.q),
       look]);
   }
   function finishQs() {
@@ -4338,7 +4438,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     show([head(title()), stepBar(3),
       el('div', { class: 'card' },
         el('h2', { text: 'Step 4: Check your main idea' }),
-        el('div', { class: 'sol' }, el('span', { class: 'label', text: 'Your main idea' }), el('p', { class: 'qtext', id: 'cwMyGist', text: g.text || '' })),
+        el('div', { class: 'sol' }, el('span', { class: 'label', text: 'Your main idea' }),
+          g.pad ? padPic(window.HubScratch && HubScratch.mine('comp-' + W.id + '.gist'), 'cwMyGist') : el('p', { class: 'qtext', id: 'cwMyGist', text: g.text || '' })),
         el('div', { class: 'sol' }, el('span', { class: 'label', text: 'A strong main idea for this passage' }), el('p', { class: 'qtext', id: 'cwModelGist', text: (W.L.gist && W.L.gist.model) || '' })),
         W.L.gist && W.L.gist.look ? el('p', { class: 'hint', text: 'A strong main idea ' + W.L.gist.look }) : null,
         el('p', { class: 'qtext', text: 'Does yours say the same big idea?' }),
@@ -4351,39 +4452,28 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 
   // ----- step 5: write -----
   function stepWrite() {
-    var wr = W.L.write || {}, A = W.A, sp = speedNow(), drafted = !!(A.write && A.write.draftAt) || sp.keyboard;
-    var minW = wr.minWords || 80, typedFrom = null, keys = 0, warned = false;
-    var ta = el('textarea', { id: 'cwPara', class: 'cw-write', rows: '14', 'aria-label': 'Your paragraph', hidden: !drafted });
-    ta.value = (A.drafts && A.drafts.para) || '';
-    var count = el('span', { class: 'small muted num', id: 'cwCount', text: words(ta.value) + ' words', hidden: !drafted });
-    var note = msg();
-    ta.addEventListener('input', function () { if (typedFrom == null) typedFrom = H.ms(); keys++; count.textContent = words(ta.value) + ' words'; queueDraft('para', ta.value); warned = false; });
+    var wr = W.L.write || {}, note = msg();
     var look = el('div', { id: 'cwLook', hidden: true }, passageNode(W.L));
     var lookBtn = el('button', { class: 'btn ghost', type: 'button', id: 'cwLookBtn', text: 'Look back at the passage', onclick: function () { look.hidden = !look.hidden; lookBtn.textContent = look.hidden ? 'Look back at the passage' : 'Close the passage'; } });
     var plan = el('ol', { class: 'cw-plan' });
     (wr.plan && wr.plan.length ? wr.plan : ['Your answer to the question, in one sentence.', 'A detail from the passage that supports it.', 'Another detail from the passage.', 'How those details prove your answer.', 'A closing sentence.']).forEach(function (x) { plan.append(el('li', { text: x })); });
-    var draftBtn = el('button', { class: 'btn', type: 'button', id: 'cwDraftDone', text: 'My notebook draft is done', hidden: drafted, onclick: function () {
-      var t = stepTime(); var p = addTime('draft', t); p.write = { draftAt: nowISO(), draftSec: t }; save(p);
-      draftBtn.hidden = true; ta.hidden = false; count.hidden = false; hand.hidden = false; typeHow.hidden = false; ta.focus();
-    } });
-    var typeHow = el('p', { class: 'hint', hidden: !drafted, text: sp.keyboard ? 'Your typing has caught up with your handwriting, so you can plan on paper and write your paragraph right here.' : 'Now type your final copy from your notebook. Fix anything you want to improve as you go.' });
-    var hand = el('div', { class: 'row', hidden: !drafted }, el('button', { class: 'btn', type: 'button', id: 'cwHandIn', text: 'Hand in my paragraph', onclick: function () {
-      var t = ta.value.trim(), n = words(t);
-      if (n < 15) { note.textContent = 'Type your whole paragraph first.'; return; }
-      if (n < minW && !warned) { warned = true; note.textContent = 'Your paragraph has ' + n + ' words. A full answer to this question needs about ' + minW + '. Add a detail or explain more, or tap Hand in again to hand it in as it is.'; return; }
-      var secs = stepTime(), p = addTime('write', secs), typedSec = typedFrom == null ? null : Math.round((H.ms() - typedFrom) / 1000);
-      p.write = { text: t, words: n, sec: secs, typedSec: typedSec, at: nowISO(), keyboardDraft: sp.keyboard };
-      p.step = 'done'; p.finishedAt = nowISO(); p.drafts = { para: '' };
+    var armed = false;
+    var hand = el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwHandIn', text: 'Hand in my paragraph', onclick: function () {
+      if (!padHas('write')) { note.textContent = 'Write your paragraph on the pad first.'; return; }
+      if (!armed) { armed = true; note.textContent = 'Read it over once. Did you answer the question, use two details from the passage and explain them? Tap Hand in again when it is ready. After that it locks.'; return; }
+      var secs = stepTime(), p = addTime('write', secs);
+      if (!handIn('write', null, p)) { note.textContent = 'Write your paragraph on the pad first.'; return; }
+      p.write = { pad: true, sec: secs, at: nowISO() };
+      p.step = 'done'; p.finishedAt = nowISO();
       W.drafts = null; save(p); route();
     } }));
     show([head(title()), stepBar(4),
-      el('div', { class: 'card' },
+      padWrap(el('div', { class: 'card' },
         el('h2', { text: 'Step 5: Write' }),
         el('p', { class: 'qtext', id: 'cwPrompt', text: wr.prompt || '' }),
-        el('div', { class: 'sol' }, el('span', { class: 'label', text: 'Plan it in your notebook' }), plan),
-        el('p', { text: sp.keyboard ? 'Plan in your notebook, then write here. Look back at the passage as often as you like.' : 'Plan and write your paragraph in your notebook first. Look back at the passage as often as you like.' }),
-        el('div', { class: 'row' }, draftBtn),
-        typeHow, ta, count, note, hand, lookBtn),
+        el('div', { class: 'sol' }, el('span', { class: 'label', text: 'Your paragraph should have' }), plan),
+        el('p', { text: 'Write your paragraph on the pad. Look back at the passage as often as you like. Your pad is your answer: when you hand it in, it locks.' }),
+        note, hand, lookBtn), 'write', 'Your paragraph', wr.prompt),
       look]);
   }
 
@@ -4395,7 +4485,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         el('h2', { text: 'Set finished' }),
         el('div', { class: 'result' },
           el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Questions right the first time' }), el('span', { class: 'v num', text: (s.right || 0) + ' of ' + (s.total || 0) })),
-          el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Your paragraph' }), el('span', { class: 'v num', text: (wr.words || 0) + ' words' })),
+          el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Your paragraph' }), el('span', { class: 'v num', text: wr.pad ? 'Handed in' : (wr.words || 0) + ' words' })),
           el('div', { class: 'stat' }, el('span', { class: 'label', text: 'Time' }), el('span', { class: 'v num', text: H.fmt.mins(W.A.activeSec || 0) }))),
         el('p', { text: 'Your paragraph goes to a parent or your tutor for marks. Next time you start with one thing to fix.' }),
         el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'cwBack', text: 'Done', onclick: leave })))]);
@@ -4412,6 +4502,19 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var w = work(W.setId);
     if (!w || !L) { show([head('Marks'), el('div', { class: 'empty' }, el('p', { text: 'That set has no work saved yet.' }))]); return; }
     var mk = marksOf(w), cl = (w.marks && w.marks.claude) || null, ad = (w.marks && w.marks.adult) || null;
+    var lid = 'comp-' + W.setId, finP = window.HubScratch ? Promise.all([HubScratch.finals(lid), HubScratch.lesson(lid)]) : null;
+    function finalBox(qid, id, o) {   // o: { label, text, quiet } quiet: show nothing while his pad is empty
+      o = o || {};
+      var box = el('div', { class: 'cw-padpic', id: id || null }, o.quiet ? null : el('p', { class: 'small muted', text: 'Opening his pad' }));
+      if (finP) finP.then(function (r) {
+        var v = HubScratch.view(r[0][qid] || r[1].mine[qid], r[1].tutor[qid], function (iso) { return H.fmt.date(dayOf(iso)); }, r[0][qid] ? 'His final answer' : null, 'lined');
+        box.replaceChildren(v || (o.quiet ? '' : el('p', { class: 'small muted', text: 'Nothing on his pad.' })));
+        if (v && HubScratch.canTutor()) box.append(el('button', { class: 'linkbtn noprint', type: 'button', text: r[1].tutor[qid] ? 'Change your notes on his pad' : 'Write on his pad to explain', onclick: function () {
+          HubScratch.openTutor({ lessonId: lid, qid: qid, label: o.label || (qid === 'gist' ? 'Main idea' : 'His paragraph'), text: o.text || '', paper: 'lined' }, function () { H.toast('Saved. He sees it on his pad.'); });
+        } }));
+      });
+      return box;
+    }
     var picked = {}; ROWS.forEach(function (r) { picked[r.k] = (ad && ad.scores && ad.scores[r.k]) || (cl && cl.scores && cl.scores[r.k]) || null; });
     var gistPick = ad && ad.gist != null ? ad.gist : (cl && cl.gist != null ? cl.gist : null);
     var kids = [head('Marks: ' + (w.title || L.title))];
@@ -4421,7 +4524,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var s = (w.q || {})[q.id] || {}, first = s.v1 != null ? showVal(q.ans, s.v1) : 'not answered';
       qc.append(el('div', { class: 'cw-aq' },
         el('p', {}, el('b', { text: (i + 1) + '. ' + (QT[q.type] || '') + ': ' }), q.q),
-        el('p', { class: 'small' + (s.first ? ' cw-good' : ' cw-bad') }, (s.first ? 'Right the first time: ' : 'First answer: ') + first + (s.first ? '' : ' · Answer: ' + C.show(q.ans)) + (s.looked ? ' · looked back first' : ' · from memory'))));
+        el('p', { class: 'small' + (s.first ? ' cw-good' : ' cw-bad') }, (s.first ? 'Right the first time: ' : 'First answer: ') + first + (s.first ? '' : ' · Answer: ' + C.show(q.ans)) + (s.looked ? ' · looked back first' : ' · from memory')),
+        finalBox(q.id, null, { label: 'Question ' + (i + 1), text: q.q, quiet: true })));   // his working for this question, right under it
     });
     kids.push(qc);
     // main idea
@@ -4432,18 +4536,27 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       gp.append(b);
     });
     kids.push(el('div', { class: 'card' }, el('h2', { text: 'Main idea from memory' }),
-      el('div', { class: 'sol' }, el('span', { class: 'label', text: 'His main idea' + (w.gist && w.gist.self ? ' (he said: ' + ({ yes: 'same as the model', partly: 'partly the same', no: 'missed it' }[w.gist.self] || w.gist.self) + ')' : '') }), el('p', { class: 'qtext', text: (w.gist && w.gist.text) || '' })),
+      el('div', { class: 'sol' }, el('span', { class: 'label', text: 'His main idea' + (w.gist && w.gist.self ? ' (he said: ' + ({ yes: 'same as the model', partly: 'partly the same', no: 'missed it' }[w.gist.self] || w.gist.self) + ')' : '') }),
+        w.gist && w.gist.pad ? finalBox('gist', 'cwMarkGist') : el('p', { class: 'qtext', text: (w.gist && w.gist.text) || '' })),
+      cl && cl.read && cl.read.gist ? el('p', { class: 'small muted', id: 'cwReadGist', text: 'Claude read: ' + cl.read.gist }) : null,
       el('div', { class: 'sol' }, el('span', { class: 'label', text: 'Model' }), el('p', { class: 'qtext', text: (L.gist && L.gist.model) || '' })),
       gp));
     // paragraph
     var wr = w.write || {};
     var pc = el('div', { class: 'card' }, el('h2', { text: 'His paragraph' }),
       el('p', { class: 'hint', text: (L.write && L.write.prompt) || '' }),
-      el('div', { class: 'sol' }, el('span', { class: 'label', text: (wr.words || 0) + ' words' + (wr.typedSec ? ', typed in ' + H.fmt.mmss(wr.typedSec) : '') }), el('p', { class: 'qtext cw-para', id: 'cwMarkPara', text: wr.text || '' })));
-    if (w.revision) pc.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: 'His rewrite (' + w.revision.words + ' words)' }), el('p', { class: 'qtext cw-para', text: w.revision.text })));
+      wr.pad ? el('div', { class: 'sol' }, el('span', { class: 'label', text: 'Handed in on his pad, ' + H.fmt.date(dayOf(wr.at)) + (wr.sec ? ', ' + H.fmt.mins(wr.sec) : '') }), finalBox('write', 'cwMarkPara'),
+          cl && cl.read && cl.read.write ? el('p', { class: 'small muted', id: 'cwReadPara', text: 'Claude read: ' + cl.read.write }) : null)
+        : el('div', { class: 'sol' }, el('span', { class: 'label', text: (wr.words || 0) + ' words' + (wr.typedSec ? ', typed in ' + H.fmt.mmss(wr.typedSec) : '') }), el('p', { class: 'qtext cw-para', id: 'cwMarkPara', text: wr.text || '' })));
+    if (w.revision) pc.append(w.revision.pad ? el('div', { class: 'sol' }, el('span', { class: 'label', text: 'His rewrite, on his pad' }), finalBox('fix'))
+      : el('div', { class: 'sol' }, el('span', { class: 'label', text: 'His rewrite (' + w.revision.words + ' words)' }), el('p', { class: 'qtext cw-para', text: w.revision.text })));
     if (L.write && L.write.model) pc.append(el('details', {}, el('summary', { text: 'Model paragraph' }), el('p', { class: 'qtext', text: L.write.model })));
     if (cl) pc.append(el('div', { class: 'anote', id: 'cwClaude' }, el('div', { class: 'small muted', text: 'Claude\'s draft marks, ' + H.fmt.date(dayOf(cl.at)) }), el('p', { text: (cl.comment ? cl.comment + ' ' : '') + (cl.fix ? 'Fix: ' + cl.fix : '') })));
     kids.push(pc);
+    // older sets typed the main idea and the paragraph; any pad working he did beside them goes here
+    var oldPads = [].concat(w.gist && w.gist.pad ? [] : [{ qid: 'gist', label: 'Main idea', text: 'What is this passage mostly about?' }])
+      .concat(wr.pad ? [] : [{ qid: 'write', label: 'His paragraph', text: (L.write && L.write.prompt) || '' }]);
+    if (window.HubScratch && oldPads.length) kids.push(HubScratch.workCard('comp-' + W.setId, oldPads, function (iso) { return H.fmt.date(dayOf(iso)); }, 'lined'));
     // rubric
     var rc = el('div', { class: 'card' }, el('h2', { text: 'Marks' }), el('p', { class: 'hint', text: ad ? 'Saved by ' + ad.by + ', ' + H.fmt.date(dayOf(ad.at)) + '. Change any row and save again.' : cl ? 'Claude\'s draft marks are filled in. Change any row, then save. Until someone saves, Claude\'s marks stand.' : 'Pick 1 to 4 for each row.' }));
     ROWS.forEach(function (r) {
@@ -4611,7 +4724,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     if (q) {
       var started = !!(q.work && q.work.startedAt);
       nx.append(el('span', { class: 'label', text: q.meta.title }), el('span', { class: 'when', text: 'Set ' + (q.index + 1) + ' of ' + q.total + (fix ? ' · starts with a rewrite of the last paragraph' : '') }),
-        el('p', { text: 'Read a harder passage, tell the main idea from memory, answer questions, then write a paragraph: drafted in the notebook, final copy typed here.' }),
+        el('p', { text: 'Read a harder passage, tell the main idea from memory, answer questions, then write a paragraph on the pad. Each pad locks when he hands it in.' }),
         el('button', { class: 'btn', type: 'button', id: 'cwStart', text: started ? 'Continue' : 'Start', onclick: function () { H.go('write', { set: q.meta.id, from: 'reading' }); } }));
     } else if (fix) {
       nx.append(el('span', { class: 'label', text: 'Fix the last paragraph' }), el('p', { text: 'The feedback is in. The next set arrives with the next build.' }),
@@ -4796,6 +4909,18 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var d = R.drafts; R.drafts = null; save({ ans: d });
   }
   function title() { return 'Research: ' + R.L.title; }
+  // The scratch pad beside a step, saved as scratch/research-<unit>.<step or question>
+  function padWrap(card, qid, label, text) {
+    return window.HubScratch && R && R.id ? HubScratch.layout(card, { key: 'research-' + R.id + '.' + qid, lessonId: 'research-' + R.id, qid: qid, label: label, text: text || '', locked: !!(R.A.pads && R.A.pads[qid]), paper: 'lined', answer: qid.indexOf('w-') === 0 }) : card;
+  }
+  // His pad is his answer here too: a question's pad locks once it is done, the writing pads when he hands the unit in.
+  function padHas(qid) { return !!(window.HubScratch && HubScratch.hasWork('research-' + R.id + '.' + qid)); }
+  function handIn(qid, p) {
+    if (!window.HubScratch) return false;
+    var prev = R.A.pads && R.A.pads[qid], r = HubScratch.finalize({ lessonId: 'research-' + R.id, qid: qid, n: prev ? (prev.n || 1) + 1 : 1 });
+    if (!r.has) return false;
+    p.pads = p.pads || {}; p.pads[qid] = { at: r.at, n: r.n }; return true;
+  }
 
   function startUnit(arg) {
     var q = queue(), id = arg.unit || (q && q.meta.id) || null;
@@ -4839,7 +4964,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         el('div', { class: 'sol', id: 'rsWhyBox' }, [el('span', { class: 'label', text: 'Why researchers do this' })].concat(paras(L.why))),
         fx ? el('div', { class: 'anote', id: 'rsFix' }, el('div', { class: 'small muted', text: 'One thing to work on from last time (' + (fx.w.title || '') + ')' }), el('p', { text: fx.note })) : null,
         L.ai ? el('div', { class: 'note', id: 'rsAi' }, el('h3', { text: 'Using AI in this unit' }), el('p', { class: 'small rd-ink2', text: L.ai })) : null,
-        el('p', { class: 'hint', text: 'Keep your notebook open. Plan on paper, then type your answers here. Everything saves as you go.' }),
+        el('p', { class: 'hint', text: 'Each question has its own pad under it. Write your answer there. When you hand the unit in, your pads lock as your answers.' }),
         el('div', { class: 'row' }, el('button', { class: 'btn big', type: 'button', id: 'rsBegin', text: 'Begin', onclick: function () { var p = addTime('intro', stepTime()); p.introSeen = true; save(p); route(); } })))]);
   }
 
@@ -4885,19 +5010,19 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (tries === 1) { rec.v1 = sel; rec.first = right; }
       rec.st = right ? 'ok' : (tries >= 2 ? 'out' : 'no');
       if (resolved(rec)) rec.sec = Math.round(Math.min((H.ms() - R.qStart) / 1000, 900));
-      var p = { q: {} }; p.q[q.id] = rec; save(p); paintQuiz(s);
+      var p = { q: {} }; p.q[q.id] = rec; if (resolved(rec)) handIn(q.id, p); save(p); paintQuiz(s);
     }
     var btns = el('div', { class: 'row' });
     if (!done) btns.append(el('button', { class: 'btn', type: 'button', id: 'rsCheck', text: st && st.st === 'no' ? 'Check again' : 'Check', onclick: check }));
     else btns.append(el('button', { class: 'btn', type: 'button', id: 'rsNext', text: i + 1 < qs.length ? 'Next question' : 'Go on', onclick: function () { R.qi = i + 1; paintQuiz(s); } }));
     show([head(title()), stepBar(),
-      el('div', { class: 'card' },
+      padWrap(el('div', { class: 'card' },
         el('div', { class: 'row rd-split' }, el('h2', { text: s.title }), el('span', { class: 'chip at', text: (i + 1) + ' of ' + qs.length })),
         i === 0 && !st && s.intro ? el('p', { class: 'hint', text: s.intro }) : null,
         el('p', { class: 'qtext', id: 'rsQ', text: q.q }),
         row, note,
         done && q.why ? el('div', { class: 'sol', id: 'rsWhy' }, el('span', { class: 'label', text: 'Why' }), el('p', { class: 'qtext', text: q.why })) : null,
-        btns)]);
+        btns), q.id, s.title + ', ' + (i + 1) + ' of ' + qs.length, q.q)]);
   }
   function finishQuiz(s) {
     var sum = { right: 0, total: 0 };
@@ -4938,7 +5063,40 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 
   // ----- write: one or more boxes -----
   function prevValue(p) { var w = work(p.set); return w && w.ans ? w.ans[p.field] : null; }
+  /* Each box in a write step is its own question with its own pad under it (Taimoor, 27 Nov 2026: "have each
+     question above the space for him to answer"). One question at a time, Back and Next between them. The pad
+     for box b of step s is scratch/research-<unit>.w-<step>-<box>. A box of an older unit he already typed into
+     keeps the typed box. */
+  function wq(s, b) { return 'w-' + s.id + '-' + b.id; }
   function paintWrite(s) {
+    var A = R.A.ans || {}, bs = s.boxes || [];
+    if (bs.some(function (b) { return A[b.id]; })) return paintWriteTyped(s);
+    if (R.wStep !== s.id) { R.wStep = s.id; R.wi = 0; }
+    var i = Math.max(0, Math.min(R.wi || 0, bs.length - 1)), b = bs[i], qid = wq(s, b), note = msg(), last = i === bs.length - 1;
+    var prev = i === 0 ? (s.prev || []).map(function (p) { var v = prevValue(p); return v ? el('div', { class: 'sol rs-prev' }, el('span', { class: 'label', text: p.label }), el('p', { class: 'qtext cw-para', text: v })) : null; }).filter(Boolean) : [];
+    var topic = s.showTopic && A.topic ? el('div', { class: 'sol rs-prev' }, el('span', { class: 'label', text: 'Your topic' }), el('p', { class: 'qtext', id: 'rsTopic', text: A.topic })) : null;
+    var ex = s.example ? el('details', { class: 'rs-exd', id: 'rsExample' }, el('summary', { text: s.example.label || 'See an example' }), el('div', {}, (s.example.lines || []).map(function (t) { return el('p', { class: 'rs-read', text: t }); }))) : null;
+    function go(j) { R.wi = j; paintWrite(s); }
+    var card = el('div', { class: 'card' }, [el('h2', { text: s.title })].concat(i === 0 ? paras(s.text) : [], prev, topic ? [topic] : [], ex ? [ex] : [], [
+      el('div', { class: 'rs-q', id: 'rsQ' },
+        bs.length > 1 ? el('span', { class: 'label', text: 'Question ' + (i + 1) + ' of ' + bs.length }) : null,
+        el('p', { class: 'rs-qtext', text: /^question \d+$/i.test(b.label) ? 'Your question ' + (i + 1) : b.label }),
+        b.help ? el('p', { class: 'small muted', text: b.help }) : null,
+        el('p', { class: 'small muted', text: 'Write your answer on the pad under this question.' })),
+      note,
+      el('div', { class: 'row' },
+        i > 0 ? el('button', { class: 'btn ghost', type: 'button', id: 'rsPrevQ', text: 'Back', onclick: function () { go(i - 1); } }) : null,
+        el('button', { class: 'btn', type: 'button', id: 'rsWriteSave', text: last ? 'Save and go on' : 'Next question', onclick: function () {
+          if (!b.optional && !padHas(qid)) { note.textContent = 'Write your answer on the pad first.'; return; }
+          if (!last) { go(i + 1); return; }
+          var miss = -1; bs.forEach(function (x, k) { if (miss < 0 && !x.optional && !padHas(wq(s, x))) miss = k; });
+          if (miss >= 0) { go(miss); return; }
+          clearTimeout(saveTimer); R.drafts = null; R.wStep = null;
+          nextStep(s);
+        } }))]));
+    show([head(title()), stepBar(), padWrap(card, qid, b.label, s.title)]);
+  }
+  function paintWriteTyped(s) {
     var A = R.A.ans || {}, boxes = [], note = msg();
     var prev = (s.prev || []).map(function (p) { var v = prevValue(p); return v ? el('div', { class: 'sol rs-prev' }, el('span', { class: 'label', text: p.label }), el('p', { class: 'qtext cw-para', text: v })) : null; }).filter(Boolean);
     var topic = s.showTopic && A.topic ? el('div', { class: 'sol rs-prev' }, el('span', { class: 'label', text: 'Your topic' }), el('p', { class: 'qtext', id: 'rsTopic', text: A.topic })) : null;
@@ -4954,14 +5112,14 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     });
     var ex = s.example ? el('details', { class: 'rs-exd', id: 'rsExample' }, el('summary', { text: s.example.label || 'See an example' }), el('div', {}, (s.example.lines || []).map(function (t) { return el('p', { class: 'rs-read', text: t }); }))) : null;
     show([head(title()), stepBar(),
-      el('div', { class: 'card' }, [el('h2', { text: s.title })].concat(paras(s.text), prev, topic ? [topic] : [], ex ? [ex] : [], kids, [note,
+      padWrap(el('div', { class: 'card' }, [el('h2', { text: s.title })].concat(paras(s.text), prev, topic ? [topic] : [], ex ? [ex] : [], kids, [note,
         el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'rsWriteSave', text: 'Save and go on', onclick: function () {
           var a = {}, empty = [];
           boxes.forEach(function (x) { var v = x.ta.value.trim(); a[x.b.id] = v; if (!v && !x.b.optional) empty.push(x.b.label); });
           if (empty.length) { note.textContent = 'Fill in: ' + empty[0] + (empty.length > 1 ? ' (and ' + (empty.length - 1) + ' more)' : ''); return; }
           clearTimeout(saveTimer); R.drafts = null;
           nextStep(s, { ans: a });
-        } }))]))]);
+        } }))])), 'w-' + s.id, s.title, '')]);   // older units only: one pad for the whole step
   }
 
   // ----- hand in and done -----
@@ -4970,14 +5128,30 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var list = el('div', {});
     R.L.steps.forEach(function (s) {
       if (s.type === 'pick' && A[s.field]) list.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: s.title }), el('p', { class: 'qtext', text: A[s.field] })));
-      if (s.type === 'write') s.boxes.forEach(function (b) { if (A[b.id]) list.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: b.label }), el('p', { class: 'qtext cw-para', text: A[b.id] }))); });
+      if (s.type === 'write') {
+        var mine = window.HubScratch && HubScratch.mine('research-' + R.id + '.w-' + s.id);
+        if (mine) { var pic = HubScratch.drawing(mine, 'lined'); list.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: s.title + ': your pad' }), pic, mine.t && String(mine.t).trim() ? el('p', { class: 'qtext', text: mine.t }) : null)); }
+        s.boxes.forEach(function (b) {
+          var m = window.HubScratch && HubScratch.mine('research-' + R.id + '.' + wq(s, b));
+          if (m) list.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: b.label }), padPicR(m)));
+          else if (A[b.id]) list.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: b.label }), el('p', { class: 'qtext cw-para', text: A[b.id] })));
+        });
+      }
     });
     show([head(title()),
       el('div', { class: 'card' }, el('h2', { text: 'Read it over, then hand it in' }),
-        el('p', { text: 'Check each answer once. If you want to change one, tap Back to that step.' }), list,
+        el('p', { text: 'Check each answer once. If you want to change one, tap Back to that step. When you hand it in, your pads lock as your answers.' }), list,
         el('div', { class: 'row' },
           el('button', { class: 'btn ghost', type: 'button', id: 'rsBack', text: 'Back one step', onclick: function () { save({ step: Math.max(0, (R.A.step || 1) - 1) }); route(); } }),
-          el('button', { class: 'btn', type: 'button', id: 'rsHandIn', text: 'Hand it in', onclick: function () { var p = addTime('handin', stepTime()); p.finishedAt = nowISO(); save(p); route(); } })))]);
+          el('button', { class: 'btn', type: 'button', id: 'rsHandIn', text: 'Hand it in', onclick: function () {
+            var p = addTime('handin', stepTime());
+            R.L.steps.forEach(function (s) {
+              if (s.type !== 'write') return;
+              if (padHas('w-' + s.id)) handIn('w-' + s.id, p);
+              s.boxes.forEach(function (b) { if (padHas(wq(s, b))) handIn(wq(s, b), p); });
+            });
+            p.finishedAt = nowISO(); save(p); route();
+          } })))]);
   }
   function paintDone() {
     var s = (R.A.qsum || {}).all || {};
@@ -4990,14 +5164,22 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         models(),
         el('div', { class: 'row' }, el('button', { class: 'btn', type: 'button', id: 'rsDone', text: 'Done', onclick: leave })))]);
   }
+  function padPicR(v) {   // a picture of one of his pads, for his own screens
+    var box = el('div', { class: 'cw-padpic' }), pic = window.HubScratch ? HubScratch.drawing(v, 'lined') : null;
+    if (pic) box.append(pic);
+    if (v && v.t && String(v.t).trim()) box.append(el('p', { class: 'qtext', text: v.t }));
+    return box;
+  }
   function models() {   // after hand-in: his answer beside one strong answer, for the boxes that have a model
     var A = R.A.ans || {}, box = el('div', { id: 'rsModels' }), n = 0;
     R.L.steps.forEach(function (s) {
       if (s.type !== 'write') return;
       s.boxes.forEach(function (b) {
         if (!b.model) return; n++;
+        var m = window.HubScratch && HubScratch.mine('research-' + R.id + '.' + wq(s, b));
         box.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: b.label }),
-          el('p', { class: 'qtext cw-para', text: 'Yours: ' + (A[b.id] || '') }), el('p', { class: 'qtext rs-model', text: 'One strong answer: ' + b.model })));
+          m ? el('div', {}, el('p', { class: 'small muted', text: 'Yours' }), padPicR(m)) : el('p', { class: 'qtext cw-para', text: 'Yours: ' + (A[b.id] || '') }),
+          el('p', { class: 'qtext rs-model', text: 'One strong answer: ' + b.model })));
       });
     });
     return n ? el('div', {}, el('h3', { text: 'Compare with strong answers' }), box) : null;
@@ -5016,18 +5198,36 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var rows = (L.marks && L.marks.rows) || [], cl = (w.marks && w.marks.claude) || null, ad = (w.marks && w.marks.adult) || null, A = w.ans || {};
     var picked = {}; rows.forEach(function (r) { picked[r.k] = (ad && ad.scores && ad.scores[r.k]) || (cl && cl.scores && cl.scores[r.k]) || null; });
     var kids = [head('Marks: ' + (w.title || L.title))];
-    var qa = (w.qsum || {}).all;
+    var qa = (w.qsum || {}).all, lid = 'research-' + R.id;
+    var finP = window.HubScratch ? Promise.all([HubScratch.finals(lid), HubScratch.lesson(lid)]) : null;
+    function padBox(qid, label, text) {   // his pad for one question, right under it; nothing while it is empty
+      var box = el('div', { class: 'cw-padpic' });
+      if (finP) finP.then(function (r) {
+        var f = r[0][qid], v = HubScratch.view(f || r[1].mine[qid], r[1].tutor[qid], function (iso) { return H.fmt.date(dayOf(iso)); }, f ? 'His final answer' : null, 'lined');
+        if (!v) return;
+        box.replaceChildren(v);
+        if (HubScratch.canTutor()) box.append(el('button', { class: 'linkbtn noprint', type: 'button', text: r[1].tutor[qid] ? 'Change your notes on his pad' : 'Write on his pad to explain', onclick: function () {
+          HubScratch.openTutor({ lessonId: lid, qid: qid, label: label, text: text || '', paper: 'lined' }, function () { H.toast('Saved. He sees it on his pad.'); });
+        } }));
+      });
+      return box;
+    }
     var wc = el('div', { class: 'card' }, el('h2', {}, 'His work ', el('small', { text: qa && qa.total ? qa.right + ' of ' + qa.total + ' sorting questions right the first time' : '' })));
     L.steps.forEach(function (s) {
       if (s.type === 'quiz') s.questions.forEach(function (q) {
         var st = (w.q || {})[q.id] || {};
-        if (!st.first && st.v1 != null) wc.append(el('p', { class: 'small cw-bad' }, q.q + ' · first answer: ' + (st.v1 != null ? q.ans.options[st.v1] : 'not answered') + ' · answer: ' + C.show(q.ans)));
+        wc.append(el('div', { class: 'cw-aq' },
+          el('p', { class: 'small' + (st.first ? ' cw-good' : st.v1 != null ? ' cw-bad' : '') }, q.q + (st.first ? ' · right the first time' : ' · first answer: ' + (st.v1 != null ? q.ans.options[st.v1] : 'not answered') + ' · answer: ' + C.show(q.ans))),
+          padBox(q.id, s.title, q.q)));
       });
       if (s.type === 'pick' && A[s.field]) wc.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: s.title }), el('p', { class: 'qtext', text: A[s.field] })));
-      if (s.type === 'write') s.boxes.forEach(function (b) {
-        wc.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: b.label }), el('p', { class: 'qtext cw-para', text: A[b.id] || '' })));
-        if (b.model) wc.append(el('details', {}, el('summary', { text: 'A strong answer' }), el('p', { class: 'qtext', text: b.model })));
-      });
+      if (s.type === 'write') {
+        wc.append(padBox('w-' + s.id, s.title, ''));   // older units: one pad for the whole step
+        s.boxes.forEach(function (b) {
+          wc.append(el('div', { class: 'sol' }, el('span', { class: 'label', text: b.label }), A[b.id] ? el('p', { class: 'qtext cw-para', text: A[b.id] }) : null, padBox(wq(s, b), b.label, s.title)));
+          if (b.model) wc.append(el('details', {}, el('summary', { text: 'A strong answer' }), el('p', { class: 'qtext', text: b.model })));
+        });
+      }
     });
     if (cl) wc.append(el('div', { class: 'anote', id: 'rsClaude' }, el('div', { class: 'small muted', text: 'Claude\'s draft marks, ' + H.fmt.date(dayOf(cl.at)) }), el('p', { text: (cl.comment ? cl.comment + ' ' : '') + (cl.fix ? 'Fix: ' + cl.fix : '') })));
     kids.push(wc);
@@ -5919,7 +6119,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
    only the tutor writes scratchtutor. Strokes use a 1000-unit-wide space so a drawing scales with the pad. Never graded. */
 (function () {
   'use strict';
-  var PRE = 'nlh.pad.', KEEP = 150, BUDGET = 1500000, U = 1000, ERASE_R = 16, SYNC_MS = 1500, MAXWAIT = 4000, LIVE_MS = 3000, MAXB = 300000, CACHE_MAX = 8, PEN_MS = 8000, ZMIN = 0.5, ZMAX = 4, PINCH_GAP = 350;
+  var LINE = 56, MARGIN = 80, PRE = 'nlh.pad.', KEEP = 150, BUDGET = 1500000, U = 1000, ERASE_R = 16, SYNC_MS = 1500, MAXWAIT = 4000, LIVE_MS = 3000, MAXB = 300000, CACHE_MAX = 8, LINK_MS = 400, LINK_POLL = 15000, LINK_FRESH = 45000, LINK_PING = 20000, LINK_MAX = 200000, PEN_MS = 8000, ZMIN = 0.5, ZMAX = 4, PINCH_GAP = 350;
   var cache = {}, tutorPad = null;
   // Where the pad goes. Side by side only on a wide screen with a mouse; on a tablet or phone it sits under the question.
   var root = document.documentElement;
@@ -6001,6 +6201,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var out = {}; snap.docs.forEach(function (x) { var v = x.data(); if (v && v.qid) out[v.qid] = copy(v); }); return out;
     }, function () { return strict ? null : {}; });   // strict: a failed read is null, never an empty lesson
   }
+  function link(topic, onMsg) { var d = db(); return d && d.live && role() ? d.live(topic, onMsg) : null; }
   function msOf(v) { return v ? (v.atMs || Date.parse(v.at) || 0) : 0; }
   function has(v) { return !!(v && ((v.s && v.s.length) || (v.t && String(v.t).trim()))); }
   function sig(st) { return JSON.stringify([st.c || '', +st.w || 0, st.p || []]); }   // the database reorders keys, so never compare raw JSON
@@ -6024,8 +6225,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
      o.inline: a tutor pad that sits beside the question on the lesson page (not full screen) and reads both layers itself.
      o.view: a parent's view of his pad and the tutor's notes, live, with nothing to write. */
   function makePad(key, o) {
-    var inline = !!o.inline, view = !!o.view;
+    var inline = !!o.inline, view = !!o.view, locked = false, lined = o.paper === 'lined';
     var tutorMode = o.mode === 'tutor', sync = o.mode === 'student' && !!db(), path = o.lessonId && o.qid ? o.lessonId + '.' + o.qid : null;
+    var seeMsg = lined ? 'Saved. Your tutor and parent see it once you hand it in.' : 'Your tutor and parent can see this.';
     var saved = tutorMode ? (o.mine || {}) : (lsGet(key) || {});
     var S = { tool: 'pen', strokes: saved.s || [], undo: [], penAt: 0, curType: '', cur: null, erasing: null, scale: 1, ox: 0, timer: null,
       under: tutorMode ? ((o.his && o.his.s) || []) : [], over: [], overText: '', showOver: true, dirty: false, rtimer: null, touched: false,
@@ -6034,9 +6236,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     // instead of writing over it. After a reload only its time is known, so a merge then keeps strokes from both.
     function setBase(v) { S.baseMs = msOf(v); S.baseSig = {}; S.baseT = (v && v.t) || ''; ((v && v.s) || []).forEach(function (st) { S.baseSig[sig(st)] = 1; }); }
     if (tutorMode) setBase(o.mine); else S.baseMs = saved.bms || 0;
-    var el = div('spad' + (tutorMode ? ' spad-tutormode' + (inline ? ' spad-inline' : ' full') : '') + (view ? ' spad-view' : '')); el.dataset.tool = 'pen';
+    var el = div('spad' + (tutorMode ? ' spad-tutormode' + (inline ? ' spad-inline' : ' full') : '') + (view ? ' spad-view' : '') + (lined ? ' spad-lined' : '')); el.dataset.tool = 'pen';
     var bar = div('spad-bar');
-    var title = div('spad-title'); title.innerHTML = svg(tutorMode && !view ? 'tutor' : 'pad') + '<span>' + (view ? 'His scratch pad' : inline ? 'His pad. Write on it in purple' : tutorMode ? 'Your notes on his work' : 'Scratch pad') + '</span>';
+    var title = div('spad-title'); title.innerHTML = svg(tutorMode && !view ? 'tutor' : 'pad') + '<span>' + (view ? 'His scratch pad' : inline ? 'His pad. Write on it in purple' : tutorMode ? 'Your notes on his work' : lined ? 'Writing pad' : 'Scratch pad') + '</span>';
     var tools = div('spad-tools'); tools.setAttribute('role', 'group'); tools.setAttribute('aria-label', 'Tools');
     var bPen = btn(tutorMode ? 'tutor' : 'pen', 'Pen', tutorMode ? 'tpen' : ''), bRed = btn('red', 'Red', 'red'), bEr = btn('eraser', 'Eraser'), bType = btn('type', 'Type');
     if (view) { /* nothing to write */ } else if (tutorMode) tools.append(bPen, bEr); else tools.append(bPen, bRed, bEr, bType);
@@ -6069,8 +6271,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       tnoteIn.placeholder = 'Typed note for him (optional)'; tnoteIn.setAttribute('aria-label', 'Typed note for him'); tnoteIn.value = saved.t || '';
     } else { ta.value = saved.t || ''; surf.append(ta); }
     var foot = div('spad-foot'), footL = document.createElement('span'), footR = document.createElement('span');
-    footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : 'For your working. Not checked or graded.';
-    footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? 'Your tutor and parent can see this.' : 'Saved on this device';
+    footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : lined ? (o.answer ? 'Your pad is your answer. It locks when you hand it in.' : 'For your working. It locks when this question is done.') : 'For your working. Not graded.';
+    footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? seeMsg : 'Saved on this device';
     var clrKey = (tutorMode ? 't.' : '') + key;
     var bBack = document.createElement('button'); bBack.type = 'button'; bBack.className = 'spad-back'; bBack.hidden = true;
     bBack.textContent = 'Bring back what you cleared';
@@ -6139,7 +6341,12 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     function scrollTo(x, y) {
       S.sx = Math.max(0, Math.min(x, S.sw - S.vw)); S.sy = Math.max(0, Math.min(y, S.sh - S.vh));
       S.ox = -Math.round(S.sx); S.oy = -Math.round(S.sy);
-      surf.style.backgroundPosition = (S.ox - 1) + 'px ' + (S.oy - 1) + 'px'; var g = (28 * S.z) + 'px'; surf.style.backgroundSize = g + ' ' + g;
+      if (lined) {   // wide ruled school paper: a line every LINE units and a margin line, in pad units like his strokes
+        var L = LINE * S.scale;
+        surf.style.backgroundSize = '100% ' + L + 'px, 2px 100%';
+        surf.style.backgroundPosition = '0 ' + (S.oy + L - 1) + 'px, ' + Math.round(S.ox + MARGIN * S.scale) + 'px 0';
+        if (ta) { ta.style.lineHeight = (LINE * S.k) + 'px'; ta.style.paddingTop = Math.round(LINE * S.k * 0.3) + 'px'; ta.style.paddingLeft = Math.round(MARGIN * S.k + 8) + 'px'; }
+      } else { surf.style.backgroundPosition = (S.ox - 1) + 'px ' + (S.oy - 1) + 'px'; var g = (28 * S.z) + 'px'; surf.style.backgroundSize = g + ' ' + g; }
       var tx = 'translate(' + S.ox + 'px,' + S.oy + 'px) scale(' + S.z + ')';
       [tutorMode ? underEl : ta].forEach(function (n) { if (!n) return; n.style.width = (S.sw / S.z) + 'px'; n.style.height = (S.sh / S.z) + 'px'; n.style.transform = tx; });
       bars(); jumpCheck(); if (!S.rf) S.rf = requestAnimationFrame(function () { S.rf = 0; redraw(); });
@@ -6273,7 +6480,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         S.inflight = null; S.last = r;
         if (r === 'fail') S.dirty = true;
         if (!tutorMode && !S.timer) saveLocal();                             // record on the device whether it was sent
-        footR.textContent = r === 'ok' ? (tutorMode ? 'Saved' : 'Your tutor and parent can see this.')
+        footR.textContent = r === 'ok' ? (tutorMode ? 'Saved' : seeMsg)
           : r === 'big' ? (tutorMode ? 'Too much on this pad to save. Clear some marks, then tap Done.' : 'Too much on this pad to send. It stays on this device.')
           : r === 'fail' ? (tutorMode && !inline ? 'Not saved. Check the connection and tap Done again.' : 'Not sent yet. It tries again soon.') : footR.textContent;
         if (r === 'fail') { clearTimeout(S.rtimer); S.rtimer = setTimeout(push, 20000); }
@@ -6282,6 +6489,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       return S.inflight;
     }
     function save() {
+      if (locked) return;
       S.touched = true;
       // Sent soon after a pause, and at least every few seconds while writing, so the other person sees it live
       if (sync || tutorMode) {
@@ -6289,7 +6497,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         clearTimeout(S.rtimer); S.rtimer = setTimeout(push, Math.max(0, Math.min(SYNC_MS, S.dueAt - now)));
       }
       if (!tutorMode) { clearTimeout(S.timer); S.timer = setTimeout(saveLocal, 300); }
-      refreshButtons();
+      refreshButtons(); sendLink(true);
     }
     function pt(e) { var r = cv.getBoundingClientRect(); return [Math.max(0, Math.round((e.clientX - r.left - S.ox) / S.scale)), Math.max(0, Math.round((e.clientY - r.top - S.oy) / S.scale))]; }
     function eraseAt(x, y) {
@@ -6341,7 +6549,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (!S.pan) S.pan = { id: e.pointerId, x: e.clientX, y: e.clientY, sx: S.sx, sy: S.sy };
     }
     cv.addEventListener('pointerdown', function (e) {
-      if (view) { viewDown(e); return; }
+      if (view || locked) { viewDown(e); return; }
       if (S.tool === 'type') return;
       if (e.pointerType === 'touch') {
         S.touches[e.pointerId] = { x: e.clientX, y: e.clientY, t: Date.now() };
@@ -6371,7 +6579,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         var a = S.cur.p, lx = a[a.length - 2], ly = a[a.length - 1];
         if ((p[0] - lx) * (p[0] - lx) + (p[1] - ly) * (p[1] - ly) >= 4) a.push(p[0], p[1]);
       });
-      if (S.cur) soon();
+      if (S.cur) { soon(); sendLink(); }
     });
     function end(e) {
       if (S.pan && e.pointerId === S.pan.id) S.pan = null;
@@ -6408,10 +6616,18 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       }
       disarm();
       S.undo.push({ a: 'clear', s: S.strokes, t: textNow() });
+      keepCleared(S.strokes, textNow());
       clrSet(clrKey, { s: S.strokes, t: textNow(), at: Date.now() }); S.strokes = [];
       if (tutorMode) tnoteIn.value = ''; else ta.value = '';
       fit(); save(); backCheck();
     });
+    // A copy of what he cleared goes to the database too, as its own row, so the morning build and the tutor can still
+    // see his working after he wipes the pad. It is never shown on his pad and nothing reads it back into a pad.
+    function keepCleared(s, t) {
+      if (!sync || tutorMode || !path || (!(s && s.length) && !String(t || '').trim())) return;
+      var ms = Date.now();
+      rSet('scratch/' + path + '.c' + ms, { lessonId: 'cleared:' + o.lessonId, qid: o.qid, of: path, s: copy(s), t: t || '', w: U, at: new Date(ms).toISOString(), atMs: ms });
+    }
     function backCheck() { var c = clrGet(clrKey); bBack.hidden = !(c && ((c.s && c.s.length) || (c.t && String(c.t).trim()))); }
     bBack.addEventListener('click', function () {
       var c = clrGet(clrKey); clrSet(clrKey, null); bBack.hidden = true; if (!c) return;
@@ -6481,13 +6697,13 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 
     /* Live: while this pad is on screen, the other person's layer is read again every few seconds. His pad picks up
        the tutor's purple notes; the tutor's pad picks up his new strokes underneath. Neither ever writes the other's. */
-    var liveBusy = false, overKey = null, hisKey = tutorMode ? JSON.stringify(o.his || {}) : null, tutKey = null;
+    var liveOnce = false, liveBusy = false, overKey = null, hisKey = tutorMode ? JSON.stringify(o.his || {}) : null, tutKey = null;
     // The parent's view also picks up the tutor's purple notes as she writes them.
     var tutBusy = false;
     function liveTut() {
       if (tutBusy) return; tutBusy = true;
       rGet('scratchtutor/' + path).then(function (v) {
-        tutBusy = false; if (v === undefined) return; var k = JSON.stringify(v || null); if (k === tutKey) return; tutKey = k;
+        tutBusy = false; if (v === undefined) return; var k = JSON.stringify(v || null); if (k === tutKey || msOf(v) < S.tutAt) return; tutKey = k;
         S.strokes = (v && v.s) || []; viewNote((v && v.t) || ''); if (S.cur) redraw(); else fit();
       });
     }
@@ -6499,35 +6715,96 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     }
     function live() {
       if (liveBusy || !path || !db() || !el.isConnected || !el.getClientRects().length) return;
+      if (lined && liveOnce) return;    // writing pads are not watched: the other layer is read once, when the pad opens
+      if (sendTo && sendTo.up() && !locked && Date.now() - S.sentAt > LINK_PING) { S.sentAt = Date.now(); sendTo.send({ qid: o.qid, ping: 1 }); }
+      if (liveOnce && Date.now() - S.heard < LINK_FRESH && Date.now() - S.polled < LINK_POLL) return;   // the live link is bringing changes: read only now and then
+      S.polled = Date.now();
       liveBusy = true;
       rGet((tutorMode ? 'scratch/' : 'scratchtutor/') + path).then(function (v) {
         liveBusy = false;
         if (v === undefined) return;                                          // could not read: keep what is shown
+        liveOnce = true;
         if (tutorMode) {
-          var k = JSON.stringify(v || {}); if (k === hisKey) { if (view) liveTut(); return; } hisKey = k;
+          var k = JSON.stringify(v || {}); if (k === hisKey || msOf(v) < S.hisAt) { if (view) liveTut(); return; } hisKey = k;   // older than what the link showed: keep that
           S.under = (v && v.s) || []; underEl.textContent = (v && v.t) || '';
           if (view) liveTut();
         } else {
-          var k2 = JSON.stringify(v || null); if (k2 === overKey) return; overKey = k2;
+          var k2 = JSON.stringify(v || null); if (k2 === overKey || msOf(v) < S.tutAt) return; overKey = k2;
           setOver(v);
         }
         if (S.cur) redraw(); else fit();                                      // never rescale under a stroke in progress
       });
     }
 
+    /* The live link (math pads only; writing pads are not watched). Each change goes straight to the other screen as it is
+       written, so the person watching sees it in about a second. It only shows: the saved rows stay the record, and the
+       reads above drop to one every 15 seconds while the link is bringing changes, or back to every 3 seconds if it is not. */
+    S.sentAt = 0; S.ltimer = null; S.polled = 0; S.heard = 0; S.hisAt = 0; S.tutAt = 0;
+    var links = [], sendTo = null;
+    function sendLink(now) {
+      if (!sendTo || locked || view) return;
+      var t = Date.now();
+      if (!now && t - S.sentAt < LINK_MS) { if (!S.ltimer) S.ltimer = setTimeout(function () { S.ltimer = null; sendLink(true); }, LINK_MS - (t - S.sentAt)); return; }
+      clearTimeout(S.ltimer); S.ltimer = null; S.sentAt = t;
+      var m = { qid: o.qid, s: S.strokes.concat(S.cur ? [S.cur] : []), t: textNow(), at: t };
+      if (JSON.stringify(m).length < LINK_MAX) sendTo.send(m);         // a very full pad goes by the saved copy instead
+    }
+    function heard(layer, m) {
+      if (!m || m.qid !== o.qid) return;
+      S.heard = Date.now(); if (m.ping) return;
+      var at = +m.at || Date.now();
+      if (layer === 'his') {
+        if (!tutorMode || at <= S.hisAt) return; S.hisAt = at;
+        S.under = m.s || []; underEl.textContent = m.t || ''; hisKey = null;
+      } else {
+        if (at <= S.tutAt) return; S.tutAt = at;
+        if (view) { S.strokes = m.s || []; viewNote(m.t || ''); tutKey = null; }
+        else if (!tutorMode) { overKey = null; setOver({ s: m.s || [], t: m.t || '' }); }
+        else return;                                                          // her own other device: merged on the next read
+      }
+      if (!el.isConnected) return;
+      if (S.cur) redraw(); else fit();
+    }
+    if (!lined && path && (sync || tutorMode)) {
+      var meL = tutorMode ? 'tut' : 'his';
+      ['his', 'tut'].forEach(function (layer) {
+        var mine = layer === meL && !view, hear = view || layer !== meL;
+        var l = link('pad:' + layer + ':' + o.lessonId, hear ? function (m) { heard(layer, m); } : null);
+        if (!l) return; links.push(l); if (mine) sendTo = l;
+      });
+    }
+    function unlink() { clearTimeout(S.ltimer); S.ltimer = null; links.forEach(function (l) { l.close(); }); links = []; sendTo = null; }
+
+    // His final answer: once he hands in the step this pad belongs to, it is shown as it was and cannot change.
+    var lockNote = div('spad-locknote', o.answer === false ? 'This question is done. Your working is kept as it is.' : 'Handed in. This is your final answer for this step.'); lockNote.hidden = true; el.insertBefore(lockNote, surf);
+    var footTxt = footL.textContent, titleTxt = title.querySelector('span').textContent;
+    function setLocked(on) {
+      on = !!on && !tutorMode && !view;
+      if (on === locked) return;
+      if (on) { if (S.cur) { S.strokes.push(S.cur); S.cur = null; } S.erasing = null; disarm(); }
+      locked = on; el.classList.toggle('spad-locked', on);
+      tools.hidden = on; bUndo.hidden = on; bClear.hidden = on; bBack.hidden = on || bBack.hidden;
+      ta.readOnly = on; lockNote.hidden = !on;
+      footL.textContent = on ? (o.answer === false ? 'Kept as your working for this question.' : 'Your final answer. Your tutor and parent mark it.') : footTxt;
+      title.querySelector('span').textContent = on ? (o.answer === false ? 'Your working' : 'Your final answer') : titleTxt;
+      if (!on && !view) backCheck();
+    }
     setTool('pen'); refreshButtons(); loadRemote();
     if (sync && saved.pend) { S.dirty = true; S.rtimer = setTimeout(push, SYNC_MS); }   // work not sent last time
     return {
       el: el,
       setQuestion: function (label, text) { q.textContent = (label ? label + '. ' : '') + (text || ''); },
-      refresh: loadRemote,
+      refresh: function () { liveOnce = false; return loadRemote.apply(null, arguments); },
       live: live,
       size: place,
       watch: watch,
       flush: function () { if (S.timer) saveLocal(); return push(); },
+      snap: function () { return { s: copy(S.strokes.concat(S.cur ? [S.cur] : [])), t: tutorMode ? '' : ta.value }; },
+      setLocked: setLocked,
+      isLocked: function () { return locked; },
       close: function (drop) {
         if ((!tutorMode || inline) && el.classList.contains('full')) full(false);
-        if (S.timer) saveLocal(); push(); if (drop) release();
+        if (S.timer) saveLocal(); push(); if (drop) { unlink(); release(); }
       }
     };
   }
@@ -6550,7 +6827,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     return d + 'L' + p[p.length - 2] + ' ' + p[p.length - 1];
   }
   // A read-only picture of one question's pad: his strokes, then the tutor's on top.
-  function drawing(mine, tut) {
+  function drawing(mine, tut, paper) {
     var layers = [[(mine && mine.s) || [], null], [(tut && tut.s) || [], 'tutor']], maxY = 0, n = 0;
     layers.forEach(function (L) { L[0].forEach(function (s) { n++; for (var i = 1; i < (s.p || []).length; i += 2) if (s.p[i] > maxY) maxY = s.p[i]; }); });
     if (!n) return null;
@@ -6563,25 +6840,35 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         parts.push('<path d="' + pathD(s.p.map(Number)) + '" style="stroke:' + v + '" stroke-width="' + (Number(s.w) || 5) + '"/>');
       });
     });
-    var wrap = div('awork-pic');
-    wrap.innerHTML = '<svg viewBox="0 0 ' + wid + ' ' + h + '" role="img" aria-label="Drawing from his scratch pad" fill="none" stroke-linecap="round" stroke-linejoin="round">' + parts.join('') + '</svg>';
+    var lines = '';
+    if (paper === 'lined') { for (var y = LINE; y < h; y += LINE) lines += '<path d="M0 ' + y + 'H' + wid + '" style="stroke:var(--spad-line)" stroke-width="1.5"/>'; lines += '<path d="M' + MARGIN + ' 0V' + h + '" style="stroke:var(--spad-margin)" stroke-width="1.5"/>'; }
+    var wrap = div('awork-pic' + (paper === 'lined' ? ' awork-lined' : ''));
+    wrap.innerHTML = '<svg viewBox="0 0 ' + wid + ' ' + h + '" role="img" aria-label="Drawing from his scratch pad" fill="none" stroke-linecap="round" stroke-linejoin="round">' + lines + parts.join('') + '</svg>';
     return wrap;
   }
 
   window.HubScratch = {
     layout: function (card, o) {
       Object.keys(cache).forEach(function (k) { if (k !== o.key) cache[k].close(true); });
+      var r0 = role();
+      if ((r0 === 'tutor' || r0 === 'parent') && db() && o.paper === 'lined') {
+        // writing: adults see his pad only once he hands it in, on the Marks page; nothing is watched while he writes
+        var nt = div('spad-adultnote small muted', 'You see his writing once he hands it in. It is on the Marks page then.');
+        card.append(nt);
+        return card;
+      }
       var pad = cache[o.key];
       if (pad) { delete cache[o.key]; cache[o.key] = pad; pad.refresh(); }    // most recently used last
       else {
         var r = role(), adult = (r === 'tutor' || r === 'parent') && !!db();
         // the tutor and the parent see his pad for this question, live; the tutor writes on it in purple
-        pad = cache[o.key] = adult ? makePad('adult:' + o.key, { mode: 'tutor', inline: true, view: r !== 'tutor', lessonId: o.lessonId, qid: o.qid })
-          : makePad(o.key, { mode: r === 'student' ? 'student' : 'local', lessonId: o.lessonId, qid: o.qid });
+        pad = cache[o.key] = adult ? makePad('adult:' + o.key, { mode: 'tutor', inline: true, view: r !== 'tutor', lessonId: o.lessonId, qid: o.qid, paper: o.paper })
+          : makePad(o.key, { mode: r === 'student' ? 'student' : 'local', lessonId: o.lessonId, qid: o.qid, paper: o.paper, answer: o.answer });
       }
       // keep only a few pads in memory; each one's work is already on the device and sent or queued to send
       var keys = Object.keys(cache); while (keys.length > CACHE_MAX) delete cache[keys.shift()];
       pad.setQuestion(o.label, o.text);
+      if (pad.setLocked) pad.setLocked(!!o.locked);
       var main = div('qmain'); main.append(card);
       var side = div('qside'); side.append(pad.el);
       var wrap = div('qlayout'); wrap.append(main, side);
@@ -6599,30 +6886,110 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
        with the new set when it differs from what now() says is shown. onChange returns false when it could not show
        it yet (for example, someone is typing a remark), so the next read tries again. Returns a stop function. */
     live: function (lessonId, now, onChange) {
-      var stop = false, t = null;
+      var stop = false, t = null, heard = 0, polled = 0, at = { his: {}, tut: {} }, links = [];
+      // The live link brings each change as he (or the tutor) writes it; the reads below then only check now and then.
+      function hear(layer) {
+        return function (m) {
+          if (stop || !m || !m.qid) return; heard = Date.now(); if (m.ping) return;
+          var ms = +m.at || Date.now(); if (ms <= (at[layer][m.qid] || 0)) return; at[layer][m.qid] = ms;
+          var cur = now(); if (!cur || tutorPad) return;                     // not showing yet: the next read brings it
+          var k = layer === 'his' ? 'mine' : 'tutor', d = { mine: cur.mine, tutor: cur.tutor };
+          d[k] = Object.assign({}, cur[k]);
+          d[k][m.qid] = Object.assign({}, cur[k][m.qid] || { lessonId: lessonId, qid: m.qid }, { s: m.s || [], t: m.t || '', at: new Date(ms).toISOString(), atMs: ms });
+          onChange(d);
+        };
+      }
+      ['his', 'tut'].forEach(function (layer) { var l = link('pad:' + layer + ':' + lessonId, hear(layer)); if (l) links.push(l); });
       function next() { if (!stop) t = setTimeout(tick, LIVE_MS); }
       function tick() {
         if (stop) return;
         if (!db() || document.visibilityState === 'hidden' || tutorPad) { next(); return; }
+        if (Date.now() - heard < LINK_FRESH && Date.now() - polled < LINK_POLL) { next(); return; }
+        polled = Date.now();
         Promise.all([rList('scratch', lessonId, true), rList('scratchtutor', lessonId, true)]).then(function (r) {
           if (stop) return;
-          if (r[0] && r[1]) { var d = { mine: r[0], tutor: r[1] }; if (JSON.stringify(d) !== JSON.stringify(now())) onChange(d); }
+          if (r[0] && r[1]) {
+            var cur = now() || {};
+            [['mine', 'his', r[0]], ['tutor', 'tut', r[1]]].forEach(function (x) {      // a saved copy older than what the link showed: keep the newer
+              Object.keys(at[x[1]]).forEach(function (qid) { if (msOf(x[2][qid]) < at[x[1]][qid] && cur[x[0]] && cur[x[0]][qid]) x[2][qid] = cur[x[0]][qid]; });
+            });
+            var d = { mine: r[0], tutor: r[1] }; if (JSON.stringify(d) !== JSON.stringify(now())) onChange(d);
+          }
           next();
         }, next);
       }
       next();
-      return function () { stop = true; clearTimeout(t); };
+      return function () { stop = true; clearTimeout(t); links.forEach(function (l) { l.close(); }); };
     },
     canTutor: function () { return role() === 'tutor' && !!db(); },
+    // What is on his pad for this key now (the pad on screen, or what this device kept), or null.
+    mine: function (key) {
+      var p = cache[key]; if (p && p.snap) { var v = p.snap(); return has(v) ? v : null; }
+      var l = lsGet(key); return l && has(l) ? { s: l.s || [], t: l.t || '' } : null;
+    },
+    hasWork: function (key) { return !!HubScratch.mine(key); },
+    /* He handed in the step this pad belongs to: lock the pad and keep his final answer as its own row,
+       scratch/<lessonId>.<qid>.f<n> with lessonId 'final:<lessonId>'. n counts hand-ins of the same step (1 the first
+       time). The copy is taken now, before anything is sent, so what he handed in is exactly what he saw.
+       Returns { has, n, at, done } where done is a promise of 'ok', 'fail' or 'local' (not signed in). */
+    finalize: function (o) {
+      var key = o.lessonId + '.' + o.qid, p = cache[key], v = HubScratch.mine(key), n = o.n || 1, ms = Date.now();
+      if (p && p.setLocked) p.setLocked(true);
+      var res = { has: !!v, n: n, at: new Date(ms).toISOString() };
+      if (!v || role() !== 'student' || !db()) { res.done = Promise.resolve(v ? 'local' : 'empty'); return res; }
+      var body = { lessonId: 'final:' + o.lessonId, qid: o.qid, of: key, n: n, s: v.s, t: v.t || '', w: U, at: res.at, atMs: ms };
+      res.done = (p ? p.flush() : Promise.resolve()).then(function () { return rSet('scratch/' + key + '.f' + n, body); })
+        .then(function (r) { if (r === 'fail') { var t = setInterval(function () { rSet('scratch/' + key + '.f' + n, body).then(function (r2) { if (r2 === 'ok') clearInterval(t); }); }, 20000); } return r; });
+      return res;
+    },
+    // His handed-in answers for one lesson, keyed by qid (the newest hand-in of each step).
+    finals: function (lessonId) {
+      if (!db()) return Promise.resolve({});
+      var d = db();
+      return d.collection('scratch').where('lessonId', '==', 'final:' + lessonId).get().then(function (snap) {
+        var out = {}; snap.docs.forEach(function (x) { var v = x.data(); if (v && v.qid && (!out[v.qid] || (v.n || 1) > (out[v.qid].n || 1))) out[v.qid] = copy(v); }); return out;
+      }, function () { return {}; });
+    },
+    drawing: function (v, paper) { return drawing(v, null, paper); },
+    /* A card for a marking screen outside math (Read and write, Research): his pad for each step that has work on it,
+       with the tutor's way to write on it. items: [{qid, label, text}]. Hidden while nothing is on any pad. */
+    workCard: function (lessonId, items, when, paper) {
+      var card = div('card spad-workcard'); card.hidden = true;
+      var h = document.createElement('h2'); h.textContent = 'His pad'; card.append(h);
+      var body = div('spad-workbody'); card.append(body);
+      function fill() {
+        Promise.all([HubScratch.lesson(lessonId), HubScratch.finals(lessonId)]).then(function (r) {
+          var d = r[0], fin = r[1];
+          body.replaceChildren(); var any = false;
+          items.forEach(function (it) {
+            var f = fin[it.qid], wm = f || d.mine[it.qid], wt = d.tutor[it.qid], v = HubScratch.view(wm, wt, when, f ? 'His final answer' : null, paper);
+            if (!v) return;
+            any = true;
+            var row = div('spad-workrow'), lb = document.createElement('p'); lb.className = 'spad-worklbl'; lb.textContent = it.label;
+            row.append(lb, v);
+            if (HubScratch.canTutor()) {
+              var b = document.createElement('button'); b.className = 'linkbtn noprint'; b.type = 'button';
+              b.textContent = wt ? 'Change your notes on his pad' : 'Write on his pad to explain';
+              b.addEventListener('click', function () { HubScratch.openTutor({ lessonId: lessonId, qid: it.qid, label: it.label, text: it.text || '', paper: paper }, function () { if (window.Hub && window.Hub.toast) window.Hub.toast('Saved. He sees it on his pad.'); fill(); }); });
+              row.append(b);
+            }
+            body.append(row);
+          });
+          card.hidden = !any;
+        });
+      }
+      fill();
+      return card;
+    },
     // The answer-book block for one question, or null when there is nothing to show.
-    view: function (mine, tut, when) {
+    view: function (mine, tut, when, label, paper) {
       if (!has(mine) && !has(tut)) return null;
-      var box = div('awork'), head = div('awork-head');
-      var lbl = document.createElement('span'); lbl.className = 'label'; lbl.textContent = 'His working';
+      var box = div('awork' + (label ? ' awork-final' : '')), head = div('awork-head');
+      var lbl = document.createElement('span'); lbl.className = 'label'; lbl.textContent = label || 'His working';
       var stamp = document.createElement('span'); stamp.className = 'small muted';
-      stamp.textContent = [has(mine) ? 'Saved ' + when(mine.at) : 'Nothing on his pad', has(tut) ? 'tutor notes ' + when(tut.at) : ''].filter(Boolean).join(', ');
+      stamp.textContent = [has(mine) ? (label ? 'Handed in ' : 'Saved ') + when(mine.at) : 'Nothing on his pad', has(tut) ? 'tutor notes ' + when(tut.at) : ''].filter(Boolean).join(', ');
       head.append(lbl, stamp); box.append(head);
-      var pic = drawing(mine, tut); if (pic) box.append(pic);
+      var pic = drawing(mine, tut, paper); if (pic) box.append(pic);
       if (mine && mine.t && String(mine.t).trim()) box.append(div('awork-text', mine.t));
       if (tut && tut.t && String(tut.t).trim()) { var t = div('awork-text tut'), b = document.createElement('b'); b.textContent = 'Tutor: '; t.append(b, document.createTextNode(tut.t)); box.append(t); }
       if (has(tut)) box.append(div('awork-key small muted', 'Purple is the tutor’s writing. He can hide it on his pad.'));
@@ -6639,7 +7006,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
           if (window.Hub && window.Hub.toast) window.Hub.toast('Could not load his pad. Check the connection and try again.');
           return null;
         }
-        pad = makePad('tutor:' + path, { mode: 'tutor', lessonId: o.lessonId, qid: o.qid, his: r[0] || {}, mine: r[1] || {}, onDone: function () {
+        pad = makePad('tutor:' + path, { mode: 'tutor', lessonId: o.lessonId, qid: o.qid, paper: o.paper, his: r[0] || {}, mine: r[1] || {}, onDone: function () {
           pad.flush().then(function (res) {
             if (res === 'fail' || res === 'big') return;              // keep the pad open; the footer says what to do
             document.documentElement.classList.remove('spad-lock'); pad.el.remove(); tutorPad = null;
