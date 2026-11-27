@@ -6715,6 +6715,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       Hub.go('lesson',{id:qs.get('lesson')||'L038',from:'math'});
       var t2=0;(function act(){var surf=document.querySelector('.spad-surf');if(!surf){if(t2++<200)setTimeout(act,50);return;}
         setTimeout(function(){
+          var sp=document.querySelector('.spad'); if(sp) window.scrollTo(0, sp.getBoundingClientRect().top + window.scrollY - 70);
           var sc=+qs.get('scroll')||0; if(sc) surf.dispatchEvent(new WheelEvent('wheel',{bubbles:true,cancelable:true,deltaY:sc}));
           if(qs.get('clear')==='1'){var c=[].slice.call(document.querySelectorAll('.spad-acts button')).filter(function(b){return /Clear/.test(b.textContent)})[0]; if(c){c.click();c.click();}}
         },1500);})();
