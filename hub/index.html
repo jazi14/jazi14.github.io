@@ -674,6 +674,14 @@ html.spad-lock,html.spad-lock body{overflow:hidden}
 .spad-tutormode .spad-title svg{color:var(--spad-tutor)}
 .spad-view .spad-surf canvas{cursor:default;touch-action:auto}
 .spad-view .spad-tools{display:none}
+.spad-vbar,.spad-hbar{position:absolute;z-index:4;touch-action:none;border-radius:999px;background:color-mix(in srgb,var(--ink) 7%,transparent);cursor:pointer}
+.spad-vbar{top:6px;right:3px;bottom:28px;width:22px}
+.spad-hbar{left:6px;right:28px;bottom:3px;height:22px}
+.spad-thumb{position:absolute;border-radius:999px;background:color-mix(in srgb,var(--ink) 38%,transparent);touch-action:none}
+.spad-vbar .spad-thumb{left:5px;right:5px;top:0}
+.spad-hbar .spad-thumb{top:5px;bottom:5px;left:0}
+.spad-thumb.on,.spad-thumb:hover{background:color-mix(in srgb,var(--accent,var(--action)) 75%,transparent)}
+.spad textarea.spad-text{padding-right:30px!important}
 .spad textarea.spad-tnote-in{display:block;width:100%;margin:0;border:0;border-top:1px solid var(--rule);border-radius:0;resize:none;font-family:var(--f-read);font-size:1.02rem;padding:10px 12px;background:var(--card);color:var(--spad-tutor);min-height:3.2em}
 
 /* his working in the answer book */
@@ -5976,6 +5984,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   function msOf(v) { return v ? (v.atMs || Date.parse(v.at) || 0) : 0; }
   function has(v) { return !!(v && ((v.s && v.s.length) || (v.t && String(v.t).trim()))); }
   function sig(st) { return JSON.stringify(st); }
+  function maxX(list) { var m = 0; list.forEach(function (st) { for (var i = 0; i < (st.p || []).length; i += 2) if (st.p[i] > m) m = st.p[i]; }); return m; }
   function maxY(list) { var m = 0; list.forEach(function (st) { for (var i = 1; i < (st.p || []).length; i += 2) if (st.p[i] > m) m = st.p[i]; }); return m; }
 
   function colors(node) {
@@ -6000,7 +6009,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var saved = tutorMode ? (o.mine || {}) : (lsGet(key) || {});
     var S = { tool: 'pen', strokes: saved.s || [], undo: [], penAt: 0, curType: '', cur: null, erasing: null, scale: 1, ox: 0, timer: null,
       under: tutorMode ? ((o.his && o.his.s) || []) : [], over: [], overText: '', showOver: true, dirty: false, rtimer: null, touched: false,
-      inflight: null, last: null, dueAt: 0, baseMs: 0, baseSig: {}, baseT: '', clearAt: 0 };
+      inflight: null, last: null, dueAt: 0, baseMs: 0, baseSig: {}, baseT: '', clearAt: 0, oy: 0, sx: 0, sy: 0, sw: 0, sh: 0, vw: 0, vh: 0 };
     // The copy on the server that this pad last read or wrote. Used to merge in work saved from another device
     // instead of writing over it. After a reload only its time is known, so a merge then keeps strokes from both.
     function setBase(v) { S.baseMs = msOf(v); S.baseSig = {}; S.baseT = (v && v.t) || ''; ((v && v.s) || []).forEach(function (st) { S.baseSig[sig(st)] = 1; }); }
@@ -6023,6 +6032,13 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var ta = document.createElement('textarea'); ta.className = 'spad-text'; ta.setAttribute('aria-label', 'Typed notes on the scratch pad');
     ta.placeholder = ''; ta.spellcheck = false; ta.setAttribute('autocomplete', 'off'); ta.setAttribute('autocapitalize', 'off'); ta.setAttribute('autocorrect', 'off');
     surf.append(cv);
+    // Scroll bars: the page is bigger than the pad and grows as he writes near its edges
+    var vbar = div('spad-vbar'), vthumb = div('spad-thumb'), hbar = div('spad-hbar'), hthumb = div('spad-thumb');
+    [[vbar, 'vertical', 'Scroll the pad up and down'], [hbar, 'horizontal', 'Scroll the pad left and right']].forEach(function (x) {
+      x[0].setAttribute('role', 'scrollbar'); x[0].setAttribute('aria-orientation', x[1]); x[0].setAttribute('aria-label', x[2]); x[0].title = x[2];
+    });
+    vthumb.setAttribute('aria-label', 'Drag to scroll up and down'); hthumb.setAttribute('aria-label', 'Drag to scroll left and right');
+    vbar.append(vthumb); hbar.append(hthumb); surf.append(vbar, hbar);
     var tnoteIn = null;
     if (tutorMode) {
       var underEl = div('spad-under', (o.his && o.his.t) || ''); surf.append(underEl);
@@ -6044,7 +6060,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       c2.strokeStyle = col[c || s.c] || col.ink; c2.fillStyle = c2.strokeStyle; c2.lineWidth = s.w * S.scale; c2.lineCap = 'round'; c2.lineJoin = 'round';
       strokePath(c2, s, S.scale);
     }
-    function setT(c2) { var dpr = window.devicePixelRatio || 1; c2.setTransform(dpr, 0, 0, dpr, S.ox * dpr, 0); }
+    function setT(c2) { var dpr = window.devicePixelRatio || 1; c2.setTransform(dpr, 0, 0, dpr, S.ox * dpr, S.oy * dpr); }
     function compose() {
       raf = 0; if (!cv.width) return;
       ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height); ctx.drawImage(base, 0, 0);
@@ -6062,17 +6078,60 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       compose();
     }
     function soon() { if (!raf) raf = requestAnimationFrame(compose); }
-    /* Strokes are kept in a space 1000 units wide. Normally that fills the pad's width. When the drawing reaches
-       lower than the pad is tall (he wrote on a taller pad, turned the iPad, or the tutor's screen is shorter), the
-       whole drawing is shrunk to fit and centred, so nothing he wrote is ever hidden below the edge. */
+    /* Strokes are kept in a space 1000 units wide, which fills the pad's width, so writing is never shrunk or grown
+       when more is added. The page is wider and taller than the pad: twice its height and half again its width, and
+       always past the furthest stroke, so there is room to keep writing. The scroll bars move around it. */
     function fit() {
       var r = surf.getBoundingClientRect(); if (!r.width || !r.height) return;
       var dpr = window.devicePixelRatio || 1, w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
       if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
-      var k = r.width / U, my = maxY(S.under.concat(S.strokes, S.showOver ? S.over : []));
-      if (my && (my + 12) * k > r.height) k = Math.max(r.height / (my + 12), k * 0.4);
-      S.scale = k; S.ox = Math.round((r.width - U * k) / 2); redraw();
+      var k = r.width / U, all = S.under.concat(S.strokes, S.showOver ? S.over : [], S.cur ? [S.cur] : []);
+      S.scale = k; S.vw = r.width; S.vh = r.height;
+      S.sw = Math.max(r.width * 1.5, (maxX(all) + 250) * k); S.sh = Math.max(r.height * 2, (maxY(all) + 350) * k);
+      scrollTo(S.sx, S.sy);
     }
+    function scrollTo(x, y) {
+      S.sx = Math.max(0, Math.min(x, S.sw - S.vw)); S.sy = Math.max(0, Math.min(y, S.sh - S.vh));
+      S.ox = -Math.round(S.sx); S.oy = -Math.round(S.sy);
+      surf.style.backgroundPosition = (S.ox - 1) + 'px ' + (S.oy - 1) + 'px';
+      bars(); redraw();
+    }
+    function bars() {
+      var tv = vbar.clientHeight, th = hbar.clientWidth;
+      var lv = Math.max(40, tv * S.vh / (S.sh || 1)), lh = Math.max(40, th * S.vw / (S.sw || 1));
+      vthumb.style.height = lv + 'px'; hthumb.style.width = lh + 'px';
+      vbar.setAttribute('aria-valuenow', S.sh > S.vh ? Math.round(100 * S.sy / (S.sh - S.vh)) : 0); hbar.setAttribute('aria-valuenow', S.sw > S.vw ? Math.round(100 * S.sx / (S.sw - S.vw)) : 0);
+      vthumb.style.transform = 'translateY(' + Math.round((tv - lv) * (S.sh > S.vh ? S.sy / (S.sh - S.vh) : 0)) + 'px)';
+      hthumb.style.transform = 'translateX(' + Math.round((th - lh) * (S.sw > S.vw ? S.sx / (S.sw - S.vw) : 0)) + 'px)';
+    }
+    // Drag a thumb to scroll; tap the bar beside it to move most of a pad's height or width that way.
+    function barDrag(bar, thumb, vert) {
+      var start = null;
+      bar.addEventListener('pointerdown', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        if (e.target !== thumb) {
+          var tr = thumb.getBoundingClientRect(), before = vert ? e.clientY < tr.top : e.clientX < tr.left, step = (vert ? S.vh : S.vw) * 0.8;
+          if (vert) scrollTo(S.sx, S.sy + (before ? -step : step)); else scrollTo(S.sx + (before ? -step : step), S.sy);
+          return;
+        }
+        try { thumb.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
+        start = { id: e.pointerId, c: vert ? e.clientY : e.clientX, s: vert ? S.sy : S.sx }; thumb.classList.add('on');
+      });
+      thumb.addEventListener('pointermove', function (e) {
+        if (!start || e.pointerId !== start.id) return;
+        var track = vert ? bar.clientHeight - thumb.offsetHeight : bar.clientWidth - thumb.offsetWidth, room = vert ? S.sh - S.vh : S.sw - S.vw;
+        var v = start.s + ((vert ? e.clientY : e.clientX) - start.c) * (track > 0 ? room / track : 0);
+        if (vert) scrollTo(S.sx, v); else scrollTo(v, S.sy);
+      });
+      function stop(e) { if (start && e.pointerId === start.id) { start = null; thumb.classList.remove('on'); } }
+      thumb.addEventListener('pointerup', stop); thumb.addEventListener('pointercancel', stop);
+    }
+    barDrag(vbar, vthumb, true); barDrag(hbar, hthumb, false);
+    surf.addEventListener('wheel', function (e) {
+      if (e.ctrlKey) return;
+      if (S.tool === 'type' && e.target === ta) return;                      // the typed notes scroll on their own
+      e.preventDefault(); scrollTo(S.sx + e.deltaX, S.sy + e.deltaY);
+    }, { passive: false });
     function release() { cv.width = cv.height = 0; base.width = base.height = 0; }
     if (window.ResizeObserver) new ResizeObserver(fit).observe(surf); else window.addEventListener('resize', fit);
     // Under the question: make the writing area reach the bottom of the screen. When a tall question (one with a
@@ -6158,7 +6217,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (!tutorMode) { clearTimeout(S.timer); S.timer = setTimeout(saveLocal, 300); }
       refreshButtons();
     }
-    function pt(e) { var r = cv.getBoundingClientRect(); return [Math.round((e.clientX - r.left - S.ox) / S.scale), Math.round((e.clientY - r.top) / S.scale)]; }
+    function pt(e) { var r = cv.getBoundingClientRect(); return [Math.round((e.clientX - r.left - S.ox) / S.scale), Math.round((e.clientY - r.top - S.oy) / S.scale)]; }
     function eraseAt(x, y) {
       var hit = false;
       for (var i = S.strokes.length - 1; i >= 0; i--) {
@@ -6201,7 +6260,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (e.pointerType === 'pen') S.penAt = Date.now();
       if (S.erasing) { if (S.erasing.length) { S.undo.push({ a: 'del', items: S.erasing }); save(); } S.erasing = null; return; }
       if (!S.cur) return;
-      S.strokes.push(S.cur); S.cur = null; S.undo.push({ a: 'add' }); redraw(); save();
+      S.strokes.push(S.cur); S.cur = null; S.undo.push({ a: 'add' }); fit(); save();
     }
     cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
 
@@ -6351,7 +6410,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     var layers = [[(mine && mine.s) || [], null], [(tut && tut.s) || [], 'tutor']], maxY = 0, n = 0;
     layers.forEach(function (L) { L[0].forEach(function (s) { n++; for (var i = 1; i < (s.p || []).length; i += 2) if (s.p[i] > maxY) maxY = s.p[i]; }); });
     if (!n) return null;
-    var h = Math.max(160, Math.ceil(maxY + 24)), parts = [];
+    var h = Math.max(160, Math.ceil(maxY + 24)), wid = U, parts = [];
+    layers.forEach(function (L) { L[0].forEach(function (s) { for (var i = 0; i < (s.p || []).length; i += 2) if (s.p[i] + 24 > wid) wid = Math.ceil(s.p[i] + 24); }); });
     layers.forEach(function (L) {
       L[0].forEach(function (s) {
         if (!s.p || s.p.length < 2) return;
@@ -6360,7 +6420,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       });
     });
     var wrap = div('awork-pic');
-    wrap.innerHTML = '<svg viewBox="0 0 ' + U + ' ' + h + '" role="img" aria-label="Drawing from his scratch pad" fill="none" stroke-linecap="round" stroke-linejoin="round">' + parts.join('') + '</svg>';
+    wrap.innerHTML = '<svg viewBox="0 0 ' + wid + ' ' + h + '" role="img" aria-label="Drawing from his scratch pad" fill="none" stroke-linecap="round" stroke-linejoin="round">' + parts.join('') + '</svg>';
     return wrap;
   }
 
