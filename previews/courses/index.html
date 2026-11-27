@@ -697,6 +697,7 @@ html.spad-lock,html.spad-lock body{overflow:hidden}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--spad-line:rgba(140,175,235,.28);--spad-margin:rgba(235,110,110,.40)} :root:not([data-theme="light"]) .spad.spad-lined .spad-surf{--spad-line:rgba(140,175,235,.28);--spad-margin:rgba(235,110,110,.40)} }
 :root[data-theme="dark"]{--spad-line:rgba(140,175,235,.28);--spad-margin:rgba(235,110,110,.40)}
 :root[data-theme="dark"] .spad.spad-lined .spad-surf{--spad-line:rgba(140,175,235,.28);--spad-margin:rgba(235,110,110,.40)}
+.awork-pic.awork-lined{background-image:none!important;background-color:var(--card)}
 .spad textarea.spad-text,.spad-under{transform-origin:0 0;overflow:hidden;resize:none}
 .spad-touch .spad-vbar{width:32px;bottom:38px}.spad-touch .spad-hbar{height:32px;right:38px}
 .spad-touch .spad-vbar .spad-thumb{left:6px;right:6px}.spad-touch .spad-hbar .spad-thumb{top:6px;bottom:6px}
@@ -6160,7 +6161,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     if (tutorMode) setBase(o.mine); else S.baseMs = saved.bms || 0;
     var el = div('spad' + (tutorMode ? ' spad-tutormode' + (inline ? ' spad-inline' : ' full') : '') + (view ? ' spad-view' : '') + (lined ? ' spad-lined' : '')); el.dataset.tool = 'pen';
     var bar = div('spad-bar');
-    var title = div('spad-title'); title.innerHTML = svg(tutorMode && !view ? 'tutor' : 'pad') + '<span>' + (view ? 'His scratch pad' : inline ? 'His pad. Write on it in purple' : tutorMode ? 'Your notes on his work' : 'Scratch pad') + '</span>';
+    var title = div('spad-title'); title.innerHTML = svg(tutorMode && !view ? 'tutor' : 'pad') + '<span>' + (view ? 'His scratch pad' : inline ? 'His pad. Write on it in purple' : tutorMode ? 'Your notes on his work' : lined ? 'Writing pad' : 'Scratch pad') + '</span>';
     var tools = div('spad-tools'); tools.setAttribute('role', 'group'); tools.setAttribute('aria-label', 'Tools');
     var bPen = btn(tutorMode ? 'tutor' : 'pen', 'Pen', tutorMode ? 'tpen' : ''), bRed = btn('red', 'Red', 'red'), bEr = btn('eraser', 'Eraser'), bType = btn('type', 'Type');
     if (view) { /* nothing to write */ } else if (tutorMode) tools.append(bPen, bEr); else tools.append(bPen, bRed, bEr, bType);
@@ -6193,7 +6194,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       tnoteIn.placeholder = 'Typed note for him (optional)'; tnoteIn.setAttribute('aria-label', 'Typed note for him'); tnoteIn.value = saved.t || '';
     } else { ta.value = saved.t || ''; surf.append(ta); }
     var foot = div('spad-foot'), footL = document.createElement('span'), footR = document.createElement('span');
-    footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : 'For your working. Not graded.';
+    footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : lined ? 'Your pad is your answer. It locks when you hand it in.' : 'For your working. Not graded.';
     footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? 'Your tutor and parent can see this.' : 'Saved on this device';
     var clrKey = (tutorMode ? 't.' : '') + key;
     var bBack = document.createElement('button'); bBack.type = 'button'; bBack.className = 'spad-back'; bBack.hidden = true;
@@ -6720,7 +6721,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     });
     var lines = '';
     if (paper === 'lined') { for (var y = LINE; y < h; y += LINE) lines += '<path d="M0 ' + y + 'H' + wid + '" style="stroke:var(--spad-line)" stroke-width="1.5"/>'; lines += '<path d="M' + MARGIN + ' 0V' + h + '" style="stroke:var(--spad-margin)" stroke-width="1.5"/>'; }
-    var wrap = div('awork-pic');
+    var wrap = div('awork-pic' + (paper === 'lined' ? ' awork-lined' : ''));
     wrap.innerHTML = '<svg viewBox="0 0 ' + wid + ' ' + h + '" role="img" aria-label="Drawing from his scratch pad" fill="none" stroke-linecap="round" stroke-linejoin="round">' + lines + parts.join('') + '</svg>';
     return wrap;
   }
