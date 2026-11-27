@@ -6111,7 +6111,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       tnoteIn.placeholder = 'Typed note for him (optional)'; tnoteIn.setAttribute('aria-label', 'Typed note for him'); tnoteIn.value = saved.t || '';
     } else { ta.value = saved.t || ''; surf.append(ta); }
     var foot = div('spad-foot'), footL = document.createElement('span'), footR = document.createElement('span');
-    footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : 'For your working. Not checked or graded.';
+    footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : 'For your working. Not graded.';
     footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? 'Your tutor and parent can see this.' : 'Saved on this device';
     var clrKey = (tutorMode ? 't.' : '') + key;
     var bBack = document.createElement('button'); bBack.type = 'button'; bBack.className = 'spad-back'; bBack.hidden = true;
