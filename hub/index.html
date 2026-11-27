@@ -672,6 +672,8 @@ html.spad-lock,html.spad-lock body{overflow:hidden}
 .spad-under{position:absolute;inset:0;font-family:var(--f-read);font-size:18px;line-height:28px;padding:1px 10px 0;white-space:pre-wrap;overflow:hidden;color:var(--ink);pointer-events:none;z-index:2}
 .spad-tutormode .spad-bar{background:color-mix(in srgb,var(--spad-tutor) 16%,var(--card))}
 .spad-tutormode .spad-title svg{color:var(--spad-tutor)}
+.spad-view .spad-surf canvas{cursor:default;touch-action:auto}
+.spad-view .spad-tools{display:none}
 .spad textarea.spad-tnote-in{display:block;width:100%;margin:0;border:0;border-top:1px solid var(--rule);border-radius:0;resize:none;font-family:var(--f-read);font-size:1.02rem;padding:10px 12px;background:var(--card);color:var(--spad-tutor);min-height:3.2em}
 
 /* his working in the answer book */
@@ -5989,8 +5991,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   }
 
   /* One pad. o.mode: 'student' (his own pad, also saved to the database when signed in), 'local' (this device only) or
-     'tutor' (the tutor's layer over his work; his strokes and typed text show underneath and cannot be changed). */
+     'tutor' (the tutor's layer over his work; his strokes and typed text show underneath and cannot be changed).
+     o.inline: a tutor pad that sits beside the question on the lesson page (not full screen) and reads both layers itself.
+     o.view: a parent's view of his pad and the tutor's notes, live, with nothing to write. */
   function makePad(key, o) {
+    var inline = !!o.inline, view = !!o.view;
     var tutorMode = o.mode === 'tutor', sync = o.mode === 'student' && !!db(), path = o.lessonId && o.qid ? o.lessonId + '.' + o.qid : null;
     var saved = tutorMode ? (o.mine || {}) : (lsGet(key) || {});
     var S = { tool: 'pen', strokes: saved.s || [], undo: [], penAt: 0, curType: '', cur: null, erasing: null, scale: 1, ox: 0, timer: null,
@@ -6000,21 +6005,21 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     // instead of writing over it. After a reload only its time is known, so a merge then keeps strokes from both.
     function setBase(v) { S.baseMs = msOf(v); S.baseSig = {}; S.baseT = (v && v.t) || ''; ((v && v.s) || []).forEach(function (st) { S.baseSig[sig(st)] = 1; }); }
     if (tutorMode) setBase(o.mine); else S.baseMs = saved.bms || 0;
-    var el = div('spad' + (tutorMode ? ' spad-tutormode full' : '')); el.dataset.tool = 'pen';
+    var el = div('spad' + (tutorMode ? ' spad-tutormode' + (inline ? ' spad-inline' : ' full') : '') + (view ? ' spad-view' : '')); el.dataset.tool = 'pen';
     var bar = div('spad-bar');
-    var title = div('spad-title'); title.innerHTML = svg(tutorMode ? 'tutor' : 'pad') + '<span>' + (tutorMode ? 'Your notes on his work' : 'Scratch pad') + '</span>';
+    var title = div('spad-title'); title.innerHTML = svg(tutorMode && !view ? 'tutor' : 'pad') + '<span>' + (view ? 'His scratch pad' : inline ? 'His pad. Write on it in purple' : tutorMode ? 'Your notes on his work' : 'Scratch pad') + '</span>';
     var tools = div('spad-tools'); tools.setAttribute('role', 'group'); tools.setAttribute('aria-label', 'Tools');
     var bPen = btn(tutorMode ? 'tutor' : 'pen', 'Pen', tutorMode ? 'tpen' : ''), bRed = btn('red', 'Red', 'red'), bEr = btn('eraser', 'Eraser'), bType = btn('type', 'Type');
-    if (tutorMode) tools.append(bPen, bEr); else tools.append(bPen, bRed, bEr, bType);
+    if (view) { /* nothing to write */ } else if (tutorMode) tools.append(bPen, bEr); else tools.append(bPen, bRed, bEr, bType);
     var acts = div('spad-acts');
     var bUndo = btn('undo', 'Undo'), bClear = btn('clear', tutorMode ? 'Clear mine' : 'Clear'), bBig = btn('big', 'Bigger', 'spad-big'), bDone = btn('done', 'Done', 'spad-done');
     var bTut = btn('tutor', 'Tutor', 'spad-tut'); bTut.hidden = true; bTut.title = 'Show or hide your tutor’s notes';
-    if (tutorMode) acts.append(bUndo, bClear, bDone); else acts.append(bTut, bUndo, bClear, bBig, bDone);
+    if (view) acts.append(bBig, bDone); else if (inline) acts.append(bUndo, bClear, bBig, bDone); else if (tutorMode) acts.append(bUndo, bClear, bDone); else acts.append(bTut, bUndo, bClear, bBig, bDone);
     bar.append(title, tools, acts);
     var q = div('spad-question');
     var tnote = div('spad-tnote'); tnote.hidden = true;
     var surf = div('spad-surf');
-    var cv = document.createElement('canvas'); cv.setAttribute('aria-label', tutorMode ? 'His scratch pad. Your marks go on top in your own color and never change his.' : 'Scratch pad. Draw with a finger, a stylus or the mouse.');
+    var cv = document.createElement('canvas'); cv.setAttribute('aria-label', view ? 'His scratch pad, shown live as he writes.' : tutorMode ? 'His scratch pad. Your marks go on top in your own color and never change his.' : 'Scratch pad. Draw with a finger, a stylus or the mouse.');
     var ta = document.createElement('textarea'); ta.className = 'spad-text'; ta.setAttribute('aria-label', 'Typed notes on the scratch pad');
     ta.placeholder = ''; ta.spellcheck = false; ta.setAttribute('autocomplete', 'off'); ta.setAttribute('autocapitalize', 'off'); ta.setAttribute('autocorrect', 'off');
     surf.append(cv);
@@ -6025,10 +6030,10 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       tnoteIn.placeholder = 'Typed note for him (optional)'; tnoteIn.setAttribute('aria-label', 'Typed note for him'); tnoteIn.value = saved.t || '';
     } else { ta.value = saved.t || ''; surf.append(ta); }
     var foot = div('spad-foot'), footL = document.createElement('span'), footR = document.createElement('span');
-    footL.textContent = tutorMode ? 'He sees your notes on his pad as you write.' : 'For your working. Not checked or graded.';
+    footL.textContent = view ? 'His working, live. Purple is the tutor’s.' : tutorMode ? 'He sees your notes on his pad as you write.' : 'For your working. Not checked or graded.';
     footR.textContent = tutorMode ? (o.mine && has(o.mine) ? 'Saved' : '') : sync ? 'Your tutor and parent can see this.' : 'Saved on this device';
     foot.append(footL, footR);
-    if (tutorMode) el.append(bar, q, surf, tnoteIn, foot); else el.append(bar, q, tnote, surf, foot);
+    if (view) el.append(bar, q, surf, foot); else if (tutorMode) el.append(bar, q, surf, tnoteIn, foot); else el.append(bar, q, tnote, surf, foot);
     var ctx = cv.getContext('2d');
     // Finished strokes are drawn once into a second canvas; while he writes, only the stroke in progress is drawn on
     // top of it, once per screen frame, so a full pad stays quick.
@@ -6074,7 +6079,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     // picture) leaves less than that, the pad is as tall as the screen below the lesson's top bar, so one scroll
     // down shows the whole pad.
     function sizeIt() {
-      if (tutorMode) return;
+      if (tutorMode && !inline) return;
       if (!stacked() || el.classList.contains('full') || !el.isConnected) { el.style.removeProperty('--spad-h'); return; }
       var top = surf.getBoundingClientRect().top + (window.scrollY || 0);
       var h = Math.round(window.innerHeight - top - foot.offsetHeight - 16);
@@ -6170,7 +6175,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       S.cur = null; S.pid = null; S.curType = ''; redraw();
     }
     cv.addEventListener('pointerdown', function (e) {
-      if (S.tool === 'type') return;
+      if (view || S.tool === 'type') return;
       if (e.pointerType === 'pen') { S.penAt = Date.now(); dropTouch(); }
       else if (e.pointerType === 'touch' && Date.now() - S.penAt < PEN_MS) return;
       if (e.button > 0 || S.cur || S.erasing) return;
@@ -6233,7 +6238,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       if (el.isConnected) { if (on) bDone.focus(); else bBig.focus(); }
       sizeIt();
     }
-    function done() { if (tutorMode) { if (o.onDone) o.onDone(); } else full(false); }
+    function done() { if (tutorMode && !inline) { if (o.onDone) o.onDone(); } else full(false); }
     bBig.addEventListener('click', function () { full(true); });
     bDone.addEventListener('click', done);
     el.addEventListener('keydown', function (e) { if (e.key === 'Escape' && el.classList.contains('full')) done(); });
@@ -6252,7 +6257,21 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       redraw(); sizeIt();
     }
     bTut.addEventListener('click', function () { S.showOver = !S.showOver; setOver({ s: S.over, t: S.overText }); });
+    // The tutor's pad beside the question reads his work and her own notes itself, and keeps her unsaved marks.
+    function loadInline() {
+      rGet('scratch/' + path).then(function (v) {
+        if (v === undefined) return;
+        hisKey = JSON.stringify(v || {}); S.under = (v && v.s) || []; underEl.textContent = (v && v.t) || ''; fit();
+      });
+      rGet('scratchtutor/' + path).then(function (v) {
+        if (!v || msOf(v) <= S.baseMs) return;
+        if (view) { S.strokes = v.s || []; setBase(v); fit(); return; }
+        if (!S.touched && !S.dirty) { S.strokes = v.s || []; tnoteIn.value = v.t || ''; S.undo = []; setBase(v); fit(); refreshButtons(); footR.textContent = has(v) ? 'Saved' : ''; return; }
+        mergeIn(v); setBase(v); fit(); save();
+      });
+    }
     function loadRemote() {
+      if (tutorMode && inline && path && db()) { loadInline(); return; }
       if (!path || tutorMode || !db()) return;
       rGet('scratchtutor/' + path).then(function (v) { if (v !== undefined) { overKey = JSON.stringify(v || null); setOver(v); fit(); } });
       if (sync) rGet('scratch/' + path).then(function (v) {
@@ -6267,7 +6286,14 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 
     /* Live: while this pad is on screen, the other person's layer is read again every few seconds. His pad picks up
        the tutor's purple notes; the tutor's pad picks up his new strokes underneath. Neither ever writes the other's. */
-    var liveBusy = false, overKey = null, hisKey = tutorMode ? JSON.stringify(o.his || {}) : null;
+    var liveBusy = false, overKey = null, hisKey = tutorMode ? JSON.stringify(o.his || {}) : null, tutKey = null;
+    // The parent's view also picks up the tutor's purple notes as she writes them.
+    function liveTut() {
+      rGet('scratchtutor/' + path).then(function (v) {
+        if (v === undefined) return; var k = JSON.stringify(v || null); if (k === tutKey) return; tutKey = k;
+        S.strokes = (v && v.s) || []; if (S.cur) redraw(); else fit();
+      });
+    }
     function live() {
       if (liveBusy || !path || !db() || !el.isConnected) return;
       liveBusy = true;
@@ -6275,8 +6301,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         liveBusy = false;
         if (v === undefined) return;                                          // could not read: keep what is shown
         if (tutorMode) {
-          var k = JSON.stringify(v || {}); if (k === hisKey) return; hisKey = k;
+          var k = JSON.stringify(v || {}); if (k === hisKey) { if (view) liveTut(); return; } hisKey = k;
           S.under = (v && v.s) || []; underEl.textContent = (v && v.t) || '';
+          if (view) liveTut();
         } else {
           var k2 = JSON.stringify(v || null); if (k2 === overKey) return; overKey = k2;
           setOver(v);
@@ -6296,7 +6323,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       watch: watch,
       flush: function () { if (S.timer) saveLocal(); return push(); },
       close: function (drop) {
-        if (!tutorMode && el.classList.contains('full')) full(false);
+        if ((!tutorMode || inline) && el.classList.contains('full')) full(false);
         if (S.timer) saveLocal(); push(); if (drop) release();
       }
     };
@@ -6342,7 +6369,12 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       Object.keys(cache).forEach(function (k) { if (k !== o.key) cache[k].close(true); });
       var pad = cache[o.key];
       if (pad) { delete cache[o.key]; cache[o.key] = pad; pad.refresh(); }    // most recently used last
-      else pad = cache[o.key] = makePad(o.key, { mode: role() === 'student' ? 'student' : 'local', lessonId: o.lessonId, qid: o.qid });
+      else {
+        var r = role(), adult = (r === 'tutor' || r === 'parent') && !!db();
+        // the tutor and the parent see his pad for this question, live; the tutor writes on it in purple
+        pad = cache[o.key] = adult ? makePad('adult:' + o.key, { mode: 'tutor', inline: true, view: r !== 'tutor', lessonId: o.lessonId, qid: o.qid })
+          : makePad(o.key, { mode: r === 'student' ? 'student' : 'local', lessonId: o.lessonId, qid: o.qid });
+      }
       // keep only a few pads in memory; each one's work is already on the device and sent or queued to send
       var keys = Object.keys(cache); while (keys.length > CACHE_MAX) delete cache[keys.shift()];
       pad.setQuestion(o.label, o.text);
