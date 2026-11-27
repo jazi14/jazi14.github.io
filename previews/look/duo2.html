@@ -1,0 +1,7 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pad preview</title>
+<style>body{margin:0;display:flex;height:100vh;font:14px system-ui}div{flex:1;display:flex;flex-direction:column;border-right:2px solid #999}b{padding:4px 8px;background:#eee}iframe{flex:1;border:0;width:100%}</style></head>
+<body><div><b>Nahyan just tapped Clear</b><iframe id="a" title="left"></iframe></div><div><b>Your view as parent</b><iframe id="b" title="right"></iframe></div>
+<script>
+document.getElementById('a').src='index.html?as=student&lesson=L037&q=16&stack=1&reset=1&clear=1';
+setTimeout(function(){document.getElementById('b').src='index.html?as=parent&lesson=L038&q=23&stack=1';},2500);
+</script></body></html>
